@@ -1,0 +1,100 @@
+Arguments: 
+  C:\Program Files\nodejs\node.exe D:\Program Files (x86)\Yarn\bin\yarn.js add preset-stage-3 --dave
+
+PATH: 
+  C:\Program Files (x86)\Common Files\Oracle\Java\javapath;d:\Ruby25-x64\bin;C:\windows\system32;C:\windows;C:\windows\System32\Wbem;C:\windows\System32\WindowsPowerShell\v1.0\;C:\Program Files\dotnet\;C:\Program Files\Microsoft SQL Server\130\Tools\Binn\;C:\Program Files\Git\cmd;D:\Program Files\TortoiseSVN\bin;C:\ProgramData\chocolatey\bin;D:\Program Files (x86)\Yarn\bin\;"C:\Program Files\Java\jdk1.8.0_181\bin;C:\Program Files\Java\jdk1.8.0_181\jre\bin;";C:\Program Files\TortoiseGit\bin;C:\Program Files\nodejs\;C:\Program Files\Microsoft\Web Platform Installer\;C:\Users\Administrator\AppData\Local\Microsoft\WindowsApps;C:\Users\Administrator\AppData\Local\Yarn\bin;C:\Users\Administrator\AppData\Roaming\npm
+
+Yarn version: 
+  1.10.1
+
+Node version: 
+  10.12.0
+
+Platform: 
+  win32 x64
+
+Trace: 
+  Error: http://registry.npmjs.org/preset-stage-3: Not found
+      at Request.params.callback [as _callback] (D:\Program Files (x86)\Yarn\lib\cli.js:60182:18)
+      at Request.self.callback (D:\Program Files (x86)\Yarn\lib\cli.js:120166:22)
+      at Request.emit (events.js:182:13)
+      at Request.<anonymous> (D:\Program Files (x86)\Yarn\lib\cli.js:121138:10)
+      at Request.emit (events.js:182:13)
+      at IncomingMessage.<anonymous> (D:\Program Files (x86)\Yarn\lib\cli.js:121060:12)
+      at Object.onceWrapper (events.js:273:13)
+      at IncomingMessage.emit (events.js:187:15)
+      at endReadableNT (_stream_readable.js:1094:12)
+      at process._tickCallback (internal/process/next_tick.js:63:19)
+
+npm manifest: 
+  {
+    "name": "gulp-rollup",
+    "version": "0.0.0",
+    "description": "Nodejs-mvc",
+    "main": "server.js",
+    "author": "dell",
+    "scripts": {
+      "test": "node test",
+      "start": "node app.js",
+      "del": "gulp  del",
+      "dev": "gulp watch",
+      "build": "gulp  release"
+    },
+    "license": "ISC",
+    "dependencies": {
+      "element-ui": "^2.4.9",
+      "vee-validate": "^2.1.1",
+      "vue": "^2.5.17",
+      "vue-resource": "^1.5.1",
+      "vue-router": "^3.0.1"
+    },
+    "devDependencies": {
+      "autoprefixer": "^7.1.4",
+      "babel-core": "^6.26.0",
+      "babel-plugin-component": "^1.1.1",
+      "babel-plugin-external-helpers": "^6.22.0",
+      "babel-preset-es2015-rollup": "^3.0.0",
+      "babel-preset-latest": "^6.24.1",
+      "babel-preset-stage-2": "^6.22.0",
+  		"babel-preset-stage-3": "^6.24.1",
+      "del": "^3.0.0",
+      "gulp": "^3.9.1",
+      "gulp-clean-css": "^3.4.2",
+      "gulp-concat": "^2.6.1",
+      "gulp-connect": "^5.5.0",
+      "gulp-eslint": "^4.0.0",
+      "gulp-htmlmin": "^5.0.1",
+      "gulp-imagemin": "^3.4.0",
+      "gulp-postcss": "^7.0.0",
+      "gulp-rename": "^1.4.0",
+      "gulp-sass": "^3.1.0",
+      "gulp-uglify": "^3.0.0",
+      "node-sass": "^4.9.3",
+      "rollup": "^0.51.8",
+      "rollup-plugin-babel": "^3.0.5",
+      "rollup-plugin-commonjs": "^8.2.6",
+      "rollup-plugin-css-only": "^0.4.0",
+      "rollup-plugin-json": "^2.3.1",
+      "rollup-plugin-node-resolve": "^3.0.0",
+      "rollup-plugin-postcss": "^1.6.2",
+      "rollup-plugin-replace": "^2.1.0",
+      "rollup-plugin-scss": "^0.4.0",
+      "rollup-plugin-uglify": "^2.0.1",
+      "rollup-plugin-vue2": "^0.8.0",
+      "rollup-watch": "^4.0.0"
+    },
+    "repository": "git+https://github.com/18320867985/nodejs-mvc.git",
+    "bugs": {
+      "url": "https://github.com/18320867985/nodejs-mvc/issues"
+    },
+    "homepage": "https://github.com/18320867985/nodejs-mvc#readme",
+    "directories": {
+      "test": "test"
+    }
+  }
+
+yarn manifest: 
+  No manifest
+
+Lockfile: 
+  No lockfile
