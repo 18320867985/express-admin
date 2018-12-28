@@ -13,7 +13,7 @@ router.post("/",(req,res)=>{
 
      let form =new formidable.IncomingForm();
      form.keepExtensions=true;
-     form.uploadDir=path.resolve("./upload");
+     form.uploadDir=path.resolve("./public/upload");
      form.multiples=false;
      form.parse(req,(err,fileds,files)=>{
 

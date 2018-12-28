@@ -2,5 +2,5 @@
 exports.mongoose = require("mongoose");
 
 // models
-exports.Cat = require("./cat");
-exports.CatType = require("./catType");
+exports.User = require("./user");
+exports.UserRule = require("./userRule");
