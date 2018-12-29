@@ -61,6 +61,9 @@ gulp.task('release', ["build-scss", "build"], function () {
 		//.pipe(img())                     // 压缩图片
 		.pipe(gulp.dest('./dist/static/images/')); //复制img
 
+		gulp.src(['./src/ueditor/**/*.*'])  // ueditor 富文本编辑器
+		.pipe(gulp.dest('./dist/ueditor'));  
+
 	gulp.src(['./src/static/**/*.*', '!./src/static/css/**/*.*', '!./src/static/js/**/*.*', '!./src/static/images/**/*.*']).pipe(gulp.dest('./dist/static'));
 
 });

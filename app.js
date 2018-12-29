@@ -5,25 +5,36 @@ var cookieParser = require('cookie-parser');
 var session = require('express-session');
 var logger = require('morgan');
 var nunjucks=require('nunjucks');
-
 var app = express();
-
-// nunjucks
-app.set('view engine', 'nunjucks');
-nunjucks.configure('views', {
-  autoescape: true,
-  express: app
-});
-
-// view engine setup
-app.set('views', path.join(__dirname, 'views'));
-
 
 app.use(logger('dev'));
 app.use(express.json());                           // for parsing application/json
 app.use(express.urlencoded({ extended: false })); // for parsing application/x-www-form-urlencoded
 app.use(cookieParser());
-app.use(express.static(path.join(__dirname, 'public')));
+//app.use(express.static(path.join(__dirname, 'public')));
+
+let ueditorDir,ueditorUpload,htmlStatic,nunjucksDir;
+// dev
+// ueditorUpload=path.join(__dirname, 'html/src');
+//  ueditorDir=path.join(__dirname, 'html/src/ueditor');
+//  htmlStatic=path.join(__dirname, 'html/src/static');
+//  nunjucksDir=path.join(__dirname, 'html/src/views');
+
+// release
+ueditorUpload=path.join(__dirname, 'html/dist');
+ ueditorDir=path.join(__dirname, 'html/dist/ueditor');
+ htmlStatic=path.join(__dirname, 'html/dist/static');
+ nunjucksDir=path.join(__dirname, 'html/dist/views');
+
+app.set('view engine', 'html'); //   设置扩展名
+nunjucks.configure(nunjucksDir, {
+    autoescape: true,
+    express: app
+  });
+
+app.use("/static", express.static(htmlStatic));
+app.use("/ueditor", express.static(ueditorDir));
+
 
 // session
 app.set('trust proxy', 1) // trust first proxy
@@ -35,22 +46,15 @@ app.use(session({
 }));
 
 // route 
-var indexRouter = require('./routes/index');
-var usersRouter = require('./routes/users');
-var adminRouter=require("./routes/admin");
-var fileRouter=require("./routes/file");
-
+ let indexRouter = require('./routes/index');
 app.use('/', indexRouter);
-app.use('/users', usersRouter);
-app.use('/admin', adminRouter);
-app.use('/file', fileRouter);
 
 
 // ueditor
 var ueditor = require("ueditor");
-app.use("/ueditor/ue", ueditor(path.join(__dirname, 'public'), function (req, res, next) {
+app.use("/ueditor/ue", ueditor(ueditorUpload, function (req, res, next) {
   //客户端上传文件设置
-  var imgDir = '/img/ueditor/'
+  var imgDir = '/ueditor/upload-img/'
    var ActionType = req.query.action;
   if (ActionType === 'uploadimage' || ActionType === 'uploadfile' || ActionType === 'uploadvideo') {
       var file_url = imgDir;//默认图片上传地址
@@ -82,18 +86,8 @@ app.use("/ueditor/ue", ueditor(path.join(__dirname, 'public'), function (req, re
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
   res.render("404.html");
-  //next(createError(404));
 });
 
-// error handler
-app.use(function(err, req, res, next) {
-  // set locals, only providing error in development
-  res.locals.message = err.message;
-  res.locals.error = req.app.get('env') === 'development' ? err : {};
 
-  // render the error page
-  res.status(err.status || 500);
-  res.render('error');
-});
 
 module.exports = app;

@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="UTF-8">
+	<title></title>
+	<meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1, user-scalable=no">
+	<link rel="stylesheet" type="text/css" href="/static/css/cstFonts/iconfont.css" />
+	<!--vue component css-->
+	<link rel="stylesheet" type="text/css" href="/static/css/vue-spa.css" />
+	<link rel="stylesheet" type="text/css" href="/static/css/main.css" />
+</head>
+
+<body class="test">
+	<h1>66666</h1>
+		<div id="app">
+		</div>
+
+		<ul>
+			{% for item in items %}
+			  <li class="li-del"  data-id="{{item._id}}" :class="{}">{{ item.name }}</li>
+			  {% else %}
+			  <li>This would display if the 'item' collection were empty</li>
+			  {% endfor %}
+		  
+			</ul>
+	<script data-parent="umd" data-umd="" defer src="/static/js/spa.js" type="text/javascript" charset="utf-8"></script>
+	</script>
+</body>
+
+</html>
