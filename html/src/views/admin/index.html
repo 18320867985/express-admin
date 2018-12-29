@@ -1,27 +1,155 @@
 <!DOCTYPE html>
-<html>
-	<head>
-		<meta charset="UTF-8">
-		<title></title>
-		<meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1, user-scalable=no">
-		<link rel="stylesheet" type="text/css" href="/static/css/cstFonts/iconfont.css" />
-		<!--vue component css-->
-		<link rel="stylesheet" type="text/css" href="/static/css/vue-admin.css" />
-		<link rel="stylesheet" type="text/css" href="/static/css/admin.css" />
-	</head>
-	<body class="test">
-		<h1>admin</h1>
-		<ul class="list-group">
-			{% for item in  items%}
-			<li class="list-group-item">{{item.title}}</li>
-			{% endfor%}
-				
-		</ul>
-		 <button class="btn btn-default">btn</button>
-		<div id="app">
-		</div>
-		<script data-parent="umd" data-umd="test" src="/static/js/admin.js" type="text/javascript" charset="utf-8"></script>
-		</script>
-	</body>
-</html>
+<html lang="zh-CN">
 
+<head>
+	<meta charset="utf-8" />
+	<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=no" />
+	<meta name="Keywords" content="网站管理系统" />
+	<meta name="Description" content="网站管理系统" />
+	<title>网站管理系统</title>
+	<link rel="stylesheet" type="text/css" href="/static/css/iframe/cstfont/iconfont.css" />
+	<link rel="stylesheet" type="text/css" href="/static/css/iframe/all.css" />
+</head>
+
+<body>
+	<!--
+        	作者：724485868@qq.com
+        	时间：2018-02-07
+        	描述：
+        -->
+
+	<header>
+		<div class="container-fluid-12">
+			<div class="row">
+				<div class="head-logo clearfix">
+					<div class="pull-left">
+						<a href="javascript:;">
+							<!-- <img class="logo" src="/static/images/logo.png" alt="logo image" /> -->
+							<h4>网站管理系统</h4>
+						</a>
+					</div>
+					<div class="pull-right">
+						<!--头像图-->
+						<a href="javascript:;">
+							<img class="head-img" src="/static/images/head.png" alt="头像图" />
+						</a>
+
+						<span class=" iconfont  icon-mima"> </span>
+						<span class=" iconfont icon-yonghu-copy"></span>
+						<span class=" iconfont icon-tuichu" data-toggle="tooltip" data-placement="left" title="退出登录"></span>
+					</div>
+
+				</div>
+
+			</div>
+
+		</div>
+	</header>
+
+	<section>
+
+		<div class="container-fluid-12 admin">
+			<div class="row clearfix">
+
+				<!--左边-->
+				<div class="admin-left pull-left">
+					<h4 class="ttl-1"> 菜单管理</h4>
+					<div class="box-big">
+
+						<ul class="nemu-1" data-maxcount="100">
+
+							<li class="">
+								<!-- <span class="iconfont icon-ttpodicon"></span> -->
+								<a href="javascript:;">系统管理</a>
+
+								<!--二级菜单-->
+								<ul class="nemu-2">
+									<li class="active">
+										<a href="系统管理.html">系统管理</a>
+									</li>
+									
+								</ul>
+							</li>
+
+							<li class="">
+								<!-- <span class="iconfont icon-ccgl-rukuyugao-5"></span> -->
+								<a href="javascript:;">图片管理</a>
+
+								<!--二级菜单-->
+								<ul class="nemu-2">
+									<li class="">
+										<a href="图片管理.html">图片管理</a>
+									</li>
+
+									
+
+								</ul>
+
+						</ul>
+
+					</div>
+
+				</div>
+
+				<!--右边-->
+				<div class="admin-right pull-left clearfix">
+
+					<div class="wrap-ttl col-xs-11">
+						<div class="row">
+							<ul class="ttl-1 clearfix">
+
+								<!--<li class="active"><span class="txt">产品档案报表 </span><span class="close">&times;</span></li>-->
+
+							</ul>
+						</div>
+						<!--左右键移动btn-->
+						<span class="warp-left-btn glyphicon glyphicon-menu-left"></span>
+						<span class="warp-right-btn glyphicon glyphicon-menu-right"></span>
+					</div>
+
+					<div class="col-xs-1 ">
+						<button class=" btn btn-default btn-xs-x btn-refresh  " type="button" data-toggle="tooltip" data-placement="left"
+						 title="刷新子页面">
+							<span class="glyphicon glyphicon-refresh"></span>
+						</button>
+
+					</div>
+
+					<!--iframe-->
+					<div class="iframe-big">
+
+						<!--<iframe id="iframe" class="iframe-box active" src="系统管理-产品档案报表.html"></iframe>-->
+
+					</div>
+
+				</div>
+
+			</div>
+		</div>
+
+	</section>
+
+	<footer>
+		<div class="footer">
+			<div class="container-fluid-12">
+				<div class="cont">
+					<span>网站管理系统</span>
+				</div>
+
+			</div>
+		</div>
+	</footer>
+	<script src="/static/js/common/jquery-1.11.0.js" type="text/javascript" charset="utf-8"></script>
+	<script src="/static/js/iframe/all.js" type="text/javascript" charset="utf-8"></script>
+
+	<script type="text/javascript">
+		$(function () {
+			admin.init();
+			admin.showIframeActive(); // 第一次显示页面  li元素 class="active"
+
+		});
+	</script>
+</body>
+
+</html>

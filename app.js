@@ -1,4 +1,4 @@
-var createError = require('http-errors');
+//var createError = require('http-errors');
 var express = require('express');
 var path = require('path');
 var cookieParser = require('cookie-parser');
@@ -13,7 +13,9 @@ app.use(express.urlencoded({ extended: false })); // for parsing application/x-w
 app.use(cookieParser());
 //app.use(express.static(path.join(__dirname, 'public')));
 
+// 配合前端打包工具使用 前端打包文件夹html
 let ueditorDir,ueditorUpload,htmlStatic,nunjucksDir;
+
 // dev
  ueditorUpload=path.join(__dirname, 'html/src');
  ueditorDir=path.join(__dirname, 'html/src/ueditor');
@@ -26,11 +28,12 @@ let ueditorDir,ueditorUpload,htmlStatic,nunjucksDir;
 //  htmlStatic=path.join(__dirname, 'html/dist/static');
 //  nunjucksDir=path.join(__dirname, 'html/dist/views');
 
+
 app.set('view engine', 'html'); //   设置扩展名
 nunjucks.configure(nunjucksDir, {
     autoescape: true,
     express: app,
-    throwOnUndefined :true
+    //throwOnUndefined :true
   });
 
 app.use("/static", express.static(htmlStatic));
@@ -50,7 +53,7 @@ app.use(session({
 app.use(function(req,res,next){ 
     var reqOrigin = req.header("origin");
     if(reqOrigin !=undefined ){
-      res.header("Access-Control-Allow-Origin", "*");   // * 表示所以站点可以访问,单个指定例如：http://localhost:8888
+      res.header("Access-Control-Allow-Origin", "*");   // * 表示所有站点可以访问,单个指定例如：http://localhost:8888
       res.header("Access-Control-Allow-Methods","PUT,POST,GET,DELETE,OPTIONS");
       res.header("Access-Control-Allow-Headers", "Content-Type,Content-Length, Authorization, Accept,X-Requested-With");
     }
@@ -60,7 +63,9 @@ app.use(function(req,res,next){
   
 // route 
  let indexRouter = require('./routes/index');
+ let  adminRouter = require('./routes/admin/index');
 app.use('/', indexRouter);
+app.use('/admin', adminRouter);
 
 
 // ueditor
