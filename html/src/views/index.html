@@ -12,20 +12,18 @@
 </head>
 
 <body class="test">
-	<h1>66666</h1>
+	
 		<div id="app">
 		</div>
-
-		<ul>
-			{% for item in items %}
-			  <li class="li-del"  data-id="{{item._id}}" :class="{}">{{ item.name }}</li>
-			  {% else %}
-			  <li>This would display if the 'item' collection were empty</li>
-			  {% endfor %}
-		  
-			</ul>
 	<script data-parent="umd" data-umd="" defer src="/static/js/spa.js" type="text/javascript" charset="utf-8"></script>
-	</script>
+	<!-- <script  src="../static/js/jquery-1.11.0.js"></script>
+	  <script>
+	//   $(function(){
+	// 	  $.get("http://127.0.0.1/json",function(data){
+	// 		   console.log(data)
+	// 	  })
+	//   })
+	  </script> -->
 </body>
 
 </html>

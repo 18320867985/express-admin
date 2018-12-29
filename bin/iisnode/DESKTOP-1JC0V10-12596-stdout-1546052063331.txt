@@ -1,0 +1,10 @@
+服务器运行在 localhost:\\.\pipe\e06eaa3c-dd1a-4b52-bde8-8ebfa52458ae 端口上...
+processId:12596
+[0mGET /static/css/vue-spa.css [36m304 [0m8.411 ms - -[0m
+[0mGET /static/js/jquery-1.11.0.js [36m304 [0m6.116 ms - -[0m
+[0mGET /static/css/cstFonts/iconfont.css [36m304 [0m5.739 ms - -[0m
+[0mGET /static/css/main.css [36m304 [0m5.574 ms - -[0m
+[0mGET /static/js/spa.js [36m304 [0m5.468 ms - -[0m
+[0mGET /static/css/fonts/glyphicons-halflings-regular.woff2 [36m304 [0m1.152 ms - -[0m
+[0mGET /favicon.ico [32m200 [0m22.990 ms - 440[0m
+[0mGET /json [36m304 [0m1.977 ms - -[0m

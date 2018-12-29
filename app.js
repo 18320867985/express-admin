@@ -13,23 +13,36 @@ app.use(express.urlencoded({ extended: false })); // for parsing application/x-w
 app.use(cookieParser());
 //app.use(express.static(path.join(__dirname, 'public')));
 
+// 跨域CORS
+app.use(function(req,res,next){ 
+  var reqOrigin = req.header("origin");
+  if(reqOrigin !=undefined ){
+    res.header("Access-Control-Allow-Origin", "*");   // * 表示所以站点可以访问,单个指定例如：http://localhost:8888
+    res.header("Access-Control-Allow-Methods","PUT,POST,GET,DELETE,OPTIONS");
+    res.header("Access-Control-Allow-Headers", "Content-Type,Content-Length, Authorization, Accept,X-Requested-With");
+  }
+  next();
+
+});
+
 let ueditorDir,ueditorUpload,htmlStatic,nunjucksDir;
 // dev
-// ueditorUpload=path.join(__dirname, 'html/src');
-//  ueditorDir=path.join(__dirname, 'html/src/ueditor');
-//  htmlStatic=path.join(__dirname, 'html/src/static');
-//  nunjucksDir=path.join(__dirname, 'html/src/views');
+ ueditorUpload=path.join(__dirname, 'html/src');
+ ueditorDir=path.join(__dirname, 'html/src/ueditor');
+ htmlStatic=path.join(__dirname, 'html/src/static');
+ nunjucksDir=path.join(__dirname, 'html/src/views');
 
 // release
-ueditorUpload=path.join(__dirname, 'html/dist');
- ueditorDir=path.join(__dirname, 'html/dist/ueditor');
- htmlStatic=path.join(__dirname, 'html/dist/static');
- nunjucksDir=path.join(__dirname, 'html/dist/views');
+//  ueditorUpload=path.join(__dirname, 'html/dist');
+//  ueditorDir=path.join(__dirname, 'html/dist/ueditor');
+//  htmlStatic=path.join(__dirname, 'html/dist/static');
+//  nunjucksDir=path.join(__dirname, 'html/dist/views');
 
 app.set('view engine', 'html'); //   设置扩展名
 nunjucks.configure(nunjucksDir, {
     autoescape: true,
-    express: app
+    express: app,
+    throwOnUndefined :true
   });
 
 app.use("/static", express.static(htmlStatic));
