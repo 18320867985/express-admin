@@ -13,18 +13,6 @@ app.use(express.urlencoded({ extended: false })); // for parsing application/x-w
 app.use(cookieParser());
 //app.use(express.static(path.join(__dirname, 'public')));
 
-// 跨域CORS
-app.use(function(req,res,next){ 
-  var reqOrigin = req.header("origin");
-  if(reqOrigin !=undefined ){
-    res.header("Access-Control-Allow-Origin", "*");   // * 表示所以站点可以访问,单个指定例如：http://localhost:8888
-    res.header("Access-Control-Allow-Methods","PUT,POST,GET,DELETE,OPTIONS");
-    res.header("Access-Control-Allow-Headers", "Content-Type,Content-Length, Authorization, Accept,X-Requested-With");
-  }
-  next();
-
-});
-
 let ueditorDir,ueditorUpload,htmlStatic,nunjucksDir;
 // dev
  ueditorUpload=path.join(__dirname, 'html/src');
@@ -58,6 +46,18 @@ app.use(session({
     cookie: {}
 }));
 
+// 跨域CORS
+app.use(function(req,res,next){ 
+    var reqOrigin = req.header("origin");
+    if(reqOrigin !=undefined ){
+      res.header("Access-Control-Allow-Origin", "*");   // * 表示所以站点可以访问,单个指定例如：http://localhost:8888
+      res.header("Access-Control-Allow-Methods","PUT,POST,GET,DELETE,OPTIONS");
+      res.header("Access-Control-Allow-Headers", "Content-Type,Content-Length, Authorization, Accept,X-Requested-With");
+    }
+    next();
+  
+  });
+  
 // route 
  let indexRouter = require('./routes/index');
 app.use('/', indexRouter);

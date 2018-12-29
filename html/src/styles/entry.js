@@ -5,7 +5,7 @@ module.exports = {
 	// 模块列表
 	list: [
 		"main", // 默认主模块
-		"news",
+		"admin"
 	],
 
 	dir: "./src/styles/",   // 默认文件父级

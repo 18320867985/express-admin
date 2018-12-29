@@ -11,6 +11,13 @@
 	</head>
 	<body class="test">
 		<h1>admin</h1>
+		<ul class="list-group">
+			{% for item in  items%}
+			<li class="list-group-item">{{item.title}}</li>
+			{% endfor%}
+				
+		</ul>
+		 <button class="btn btn-default">btn</button>
 		<div id="app">
 		</div>
 		<script data-parent="umd" data-umd="test" src="/static/js/admin.js" type="text/javascript" charset="utf-8"></script>
