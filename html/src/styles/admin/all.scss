@@ -3,9 +3,9 @@
 
 // @import "../scss/common/normalize.scss";                  //  reset css style             
 
-@import "../scss/bs-scss-3/_bootstrap.scss";        // bootstrap 3.* scss
+// @import "../scss/bs-scss-3/_bootstrap.scss";        // bootstrap 3.* scss
 
-//@import "../scss/bs-scss-4/bootstrap.scss";        // bootstrap 4.* scss
+@import "../scss/bs-scss-4/bootstrap.scss";        // bootstrap 4.* scss
 
 @import "../scss/common/mixin.scss";                          // 函数
  
@@ -25,7 +25,7 @@
 // 
 // @import "../scss/common/h5File.scss";                           // h5文件上传
 
-  //@import "./page-scss/all.scss";                 // 子页面scss集合 
+@import "./page-scss/all.scss";                 // 子页面scss集合 
 
  
 
