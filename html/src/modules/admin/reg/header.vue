@@ -1,12 +1,12 @@
 <template>
   <header>
     <navbar inverse fluid class="rd-no2 container-fuild">
-      <a class="navbar-brand rd-no2" slot="brand" href="#">网站登录</a>
+      <a class="navbar-brand rd-no2" slot="brand" href="#">网站注册</a>
       <template slot="collapse">
      
         <navbar-nav right>
           <li>
-            <a class="btn-link" href="reg.html" role="button">注册</a>
+            <a class="btn-link" href="login.html" role="button">登录</a>
           </li>
         </navbar-nav>
       </template>
@@ -17,7 +17,6 @@
 <script>
 export default {
 
-  
 }
 </script>
 

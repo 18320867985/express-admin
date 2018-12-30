@@ -3,9 +3,11 @@
 
 // @import "../scss/common/normalize.scss";                  //  reset css style             
 
-// @import "../scss/bs-scss-3/_bootstrap.scss";        // bootstrap 3.* scss
+ @import "../scss/bs-scss-3/_bootstrap.scss";        // bootstrap 3.* scss
 
-@import "../scss/bs-scss-4/bootstrap.scss";        // bootstrap 4.* scss
+// @import "../scss/bs-scss-4/bootstrap.scss";        // bootstrap 4.* scss
+// @import "../scss/common/bootstrap-vue.scss";        // bootstrap-vue 4.* scss
+
 
 @import "../scss/common/mixin.scss";                          // 函数
  
@@ -17,8 +19,8 @@
 
 
 // @import "../scss/common/component-scss/comp-all.scss";          //  默认-组件
-// 
-// @import "../scss/common/vue-component/vue-all.scss";          // vue-组件
+
+ @import "../scss/vue-ui-scss/all.scss";          // vue-组件
 
 
 // @import "../scss/common/vd.scss";                             // 验证   scss
