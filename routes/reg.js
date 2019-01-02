@@ -20,8 +20,17 @@ router.post("/reg/data", async (req, res) => {
          res.json(res.errorData(isok));
          return;
       }
-     var  rs= await mainModel.User.create(user)
-      res.json(res.successData(rs))
+     var  userinfo= await mainModel.User.create(user)
+     if(!userinfo){
+        res.json(res.errorData("注册失败"));
+        return;
+     }
+     req.session.login={
+        isLogin:true,
+        code:1,
+        user:userinfo
+    }
+      res.json(res.successData(userinfo))
      return;
  });
 

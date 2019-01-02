@@ -4,7 +4,7 @@ const mainModel=require("../../models/main");
 
 router.get("/user", (req, res) => {
     
-    res.send(res.send(req.session.test));
+    res.send("ser");
     return;
 });
 

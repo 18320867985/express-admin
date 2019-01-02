@@ -1,7 +1,0 @@
-服务器运行在 localhost:\\.\pipe\6ab59dd7-5b5e-4e34-86b2-5f782046b4f8 端口上...
-processId:8520
-[0mGET /static/js/admin.js [36m304 [0m9.258 ms - -[0m
-[0mGET /static/css/admin.css [36m304 [0m8.485 ms - -[0m
-[0mGET /favicon.ico [36m304 [0m13.988 ms - -[0m
-mongodb connection success 
-[0mGET /static/css/fonts/glyphicons-halflings-regular.woff2 [36m304 [0m0.849 ms - -[0m

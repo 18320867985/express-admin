@@ -32,7 +32,6 @@
             ref="pwd"
             placeholder="输入密码"
             v-validate="{ required:true,min:8}"
-         
           >
           <p class="text-danger" v-show="errors.has('pwd:required')">密码不为空！</p>
           <p class="text-danger" v-show="errors.has('pwd:min')">密码最小长度为8位！</p>
@@ -55,15 +54,15 @@
             data-vv-as="pwd"
             placeholder="输入确认密码"
           >
-           <p class="text-danger" v-show="errors.has('pwd2:required')">密码不为空！</p>
-           <p class="text-danger" v-show="errors.has('pwd2:confirmed')">两次密码不相同！</p>
+          <p class="text-danger" v-show="errors.has('pwd2:required')">密码不为空！</p>
+          <p class="text-danger" v-show="errors.has('pwd2:confirmed')">两次密码不相同！</p>
           <span
             v-show="errors.has('pwd2')"
             class="glyphicon glyphicon-remove form-control-feedback"
             aria-hidden="true"
           ></span>
         </div>
-        <div class="form-group has-feedback" :class="{'has-error':errors.has('email')}" >
+        <div class="form-group has-feedback" :class="{'has-error':errors.has('email')}">
           <label class="control-label" for="email">邮箱:</label>
           <input
             class="form-control"
@@ -71,21 +70,24 @@
             name="email"
             id="email"
             v-model="email"
-             v-validate="'required|email'"
+            v-validate="'required|email'"
             placeholder="输入邮箱"
           >
-           <p class="text-danger" v-show="errors.has('eamil:required')">邮箱不为空！</p>
-           <p class="text-danger" v-show="errors.has('email:email')">邮箱格式不对！</p>
-           <span
+          <p class="text-danger" v-show="errors.has('eamil:required')">邮箱不为空！</p>
+          <p class="text-danger" v-show="errors.has('email:email')">邮箱格式不对！</p>
+          <span
             v-show="errors.has('email')"
             class="glyphicon glyphicon-remove form-control-feedback"
             aria-hidden="true"
           ></span>
         </div>
         <div class="form-group">
-          <button type="submit" class="btn btn-primary  btn-block" :disabled="errors.items.length>0" >注册</button>
+          <button
+            type="submit"
+            class="btn btn-primary btn-block"
+            :disabled="errors.items.length>0"
+          >注册</button>
         </div>
-      
       </form>
     </div>
   </section>
@@ -106,23 +108,30 @@ export default {
       this.$validator.validateAll().then(result => {
         if (result) {
           // eslint-disable-next-line
-          alert(JSON.stringify( this.$data));
-          this.$http.post("/reg/data",this.$data).then((data)=>{
-              console.log(data.body)
-          },(error)=>{
-
-          }).catch();
+          alert(JSON.stringify(this.$data));
+          this.$http
+            .post("/reg/data", this.$data)
+            .then(
+              data => {
+                data = data.body;
+                if (data.code == 1) {
+                  window.location.href = "/admin/index";
+                } else {
+                  this.$notify({
+                    type: "danger",
+                    title: "",
+                    content: "注册失败！"
+                  });
+                }
+              },
+              error => {}
+            )
+            .catch();
           return;
-        } else {
-          //alert(result);
         }
       });
-
     }
   },
-  created(){
-   
-  },
-
-}
+  created() {}
+};
 </script>

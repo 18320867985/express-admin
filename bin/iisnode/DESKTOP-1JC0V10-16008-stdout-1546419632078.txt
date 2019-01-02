@@ -1,0 +1,4 @@
+服务器运行在 localhost:\\.\pipe\f3f4a8ae-7f90-4e16-acf0-70d837a6fe41 端口上...
+processId:16008
+[0mGET /admin/index [32m200 [0m10.565 ms - 1[0m
+mongodb connection success 

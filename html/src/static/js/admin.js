@@ -23586,6 +23586,44 @@ var locale$2 = {
   }
 };
 
+var App = {
+  render: function render() {
+    var _vm = this;var _h = _vm.$createElement;var _c = _vm._self._c || _h;return _c('div', [_c('span', { staticClass: "text-white " }, [_vm._v("admin")]), _vm._v(" "), _c('span', { staticClass: "iconfont icon-tuichu", attrs: { "data-toggle": "tooltip", "data-placement": "left", "title": "退出登录" }, on: { "click": _vm.logout } })]);
+  },
+  staticRenderFns: [],
+  data: function data() {
+    return {};
+  },
+
+  methods: {
+    logout: function logout() {
+      var _this = this;
+
+      this.$confirm({
+        title: "退出登录",
+        content: "确认退出登录？"
+      }).then(function () {
+        _this.$http.post("/logout/data").then(function (data) {
+          data = data.body;
+          if (data.code == 1) {
+            window.location.href = "/login";
+          } else {}
+        }).catch();
+      }).catch(function () {});
+    }
+  }
+};
+
+var index$1 = {
+    init: function init() {
+        new Vue({
+            render: function render(h) {
+                return h(App);
+            }
+        }).$mount("#app");
+    }
+};
+
 var bsHeader = {
   render: function render() {
     var _vm = this;var _h = _vm.$createElement;var _c = _vm._self._c || _h;return _c('header', [_c('navbar', { staticClass: "rd-no2 container-fuild", attrs: { "inverse": "", "fluid": "" } }, [_c('a', { staticClass: "navbar-brand rd-no2", attrs: { "slot": "brand", "href": "#" }, slot: "brand" }, [_vm._v("网站登录")]), _vm._v(" "), _c('template', { slot: "collapse" }, [_c('navbar-nav', { attrs: { "right": "" } }, [_c('li', [_c('a', { staticClass: "btn-link", attrs: { "href": "/reg", "role": "button" } }, [_vm._v("注册")])])])], 1)], 2)], 1);
@@ -23645,7 +23683,7 @@ var bsContent = {
   }
 };
 
-var App = {
+var App$1 = {
   render: function render() {
     var _vm = this;var _h = _vm.$createElement;var _c = _vm._self._c || _h;return _c('div', {}, [_c('bs-header'), _vm._v(" "), _c('bs-content')], 1);
   },
@@ -23664,7 +23702,7 @@ var login = {
     init: function init() {
         new Vue({
             render: function render(h) {
-                return h(App);
+                return h(App$1);
             }
         }).$mount("#app");
     }
@@ -23702,7 +23740,7 @@ var bscontent = {
           if ($event.target.composing) {
             return;
           }_vm.email = $event.target.value;
-        } } }), _vm._v(" "), _c('p', { directives: [{ name: "show", rawName: "v-show", value: _vm.errors.has('eamil:required'), expression: "errors.has('eamil:required')" }], staticClass: "text-danger" }, [_vm._v("邮箱不为空！")]), _vm._v(" "), _c('p', { directives: [{ name: "show", rawName: "v-show", value: _vm.errors.has('email:email'), expression: "errors.has('email:email')" }], staticClass: "text-danger" }, [_vm._v("邮箱格式不对！")]), _vm._v(" "), _c('span', { directives: [{ name: "show", rawName: "v-show", value: _vm.errors.has('email'), expression: "errors.has('email')" }], staticClass: "glyphicon glyphicon-remove form-control-feedback", attrs: { "aria-hidden": "true" } })]), _vm._v(" "), _c('div', { staticClass: "form-group" }, [_c('button', { staticClass: "btn btn-primary  btn-block", attrs: { "type": "submit", "disabled": _vm.errors.items.length > 0 } }, [_vm._v("注册")])])])])]);
+        } } }), _vm._v(" "), _c('p', { directives: [{ name: "show", rawName: "v-show", value: _vm.errors.has('eamil:required'), expression: "errors.has('eamil:required')" }], staticClass: "text-danger" }, [_vm._v("邮箱不为空！")]), _vm._v(" "), _c('p', { directives: [{ name: "show", rawName: "v-show", value: _vm.errors.has('email:email'), expression: "errors.has('email:email')" }], staticClass: "text-danger" }, [_vm._v("邮箱格式不对！")]), _vm._v(" "), _c('span', { directives: [{ name: "show", rawName: "v-show", value: _vm.errors.has('email'), expression: "errors.has('email')" }], staticClass: "glyphicon glyphicon-remove form-control-feedback", attrs: { "aria-hidden": "true" } })]), _vm._v(" "), _c('div', { staticClass: "form-group" }, [_c('button', { staticClass: "btn btn-primary btn-block", attrs: { "type": "submit", "disabled": _vm.errors.items.length > 0 } }, [_vm._v("注册")])])])])]);
   },
   staticRenderFns: [],
   data: function data() {
@@ -23723,11 +23761,18 @@ var bscontent = {
           // eslint-disable-next-line
           alert(JSON.stringify(_this.$data));
           _this.$http.post("/reg/data", _this.$data).then(function (data) {
-            console.log(data.body);
+            data = data.body;
+            if (data.code == 1) {
+              window.location.href = "/admin/index";
+            } else {
+              _this.$notify({
+                type: "danger",
+                title: "",
+                content: "注册失败！"
+              });
+            }
           }, function (error) {}).catch();
           return;
-        } else {
-          //alert(result);
         }
       });
     }
@@ -23735,7 +23780,7 @@ var bscontent = {
   created: function created() {}
 };
 
-var App$1 = {
+var App$2 = {
   render: function render() {
     var _vm = this;var _h = _vm.$createElement;var _c = _vm._self._c || _h;return _c('div', {}, [_c('bs-header'), _vm._v(" "), _c('bscontent')], 1);
   },
@@ -23755,7 +23800,7 @@ var reg = {
     init: function init() {
         new Vue({
             render: function render(h) {
-                return h(App$1);
+                return h(App$2);
             }
         }).$mount("#app");
     }
@@ -23764,13 +23809,14 @@ var reg = {
 Vue.use(VeeValidate$1);
 
 Vue.use(plugin);
-Vue.http.options.root = 'http://localhost:3000'; //'http://127.0.0.1';
+Vue.http.options.root = '/';
 Vue.http.options.emulateJSON = true;
 
 Vue.use(VueComponent); // 全局注册组件
 
 Vue.use(uiv, { locale: locale$2 });
 
+exports.index = index$1;
 exports.login = login;
 exports.reg = reg;
 

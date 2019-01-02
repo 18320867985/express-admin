@@ -1,0 +1,3 @@
+服务器运行在 localhost:\\.\pipe\930e80f9-31a2-4a3c-84b9-5711f0298fbf 端口上...
+processId:17096
+[0mGET /admin/index [36m304 [0m9.470 ms - -[0m

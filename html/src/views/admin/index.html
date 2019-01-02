@@ -10,6 +10,20 @@
 	<title>网站管理系统</title>
 	<link rel="stylesheet" type="text/css" href="/static/css/iframe/cstfont/iconfont.css" />
 	<link rel="stylesheet" type="text/css" href="/static/css/iframe/all.css" />
+	<style>
+	.head-logo .iconfont {
+    position: relative;
+    top: 22px;
+    font-size: 32px;
+    color: #fff;
+}
+.head-logo .text-white{
+   position: relative;
+   top: 17px;
+   right: 20px;
+   cursor: pointer;
+}
+	</style>
 </head>
 
 <body>
@@ -30,14 +44,15 @@
 						</a>
 					</div>
 					<div class="pull-right">
+						<div id="app"></div>
 						<!--头像图-->
-						<a href="javascript:;">
+						<!-- <a href="javascript:;">
 							<img class="head-img" src="/static/images/head.png" alt="头像图" />
 						</a>
 
 						<span class=" iconfont  icon-mima"> </span>
 						<span class=" iconfont icon-yonghu-copy"></span>
-						<span class=" iconfont icon-tuichu" data-toggle="tooltip" data-placement="left" title="退出登录"></span>
+						<span class=" iconfont icon-tuichu" data-toggle="tooltip" data-placement="left" title="退出登录"></span> -->
 					</div>
 
 				</div>
@@ -68,7 +83,7 @@
 									<li class="active">
 										<a href="系统管理.html">系统管理</a>
 									</li>
-									
+
 								</ul>
 							</li>
 
@@ -82,7 +97,7 @@
 										<a href="图片管理.html">图片管理</a>
 									</li>
 
-									
+
 
 								</ul>
 
@@ -142,6 +157,7 @@
 	</footer>
 	<script src="/static/js/common/jquery-1.11.0.js" type="text/javascript" charset="utf-8"></script>
 	<script src="/static/js/iframe/all.js" type="text/javascript" charset="utf-8"></script>
+	<script data-parent="umd" data-umd="index" defer src="/static/js/admin.js" type="text/javascript" charset="utf-8"></script>
 
 	<script type="text/javascript">
 		$(function () {

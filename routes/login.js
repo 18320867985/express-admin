@@ -27,9 +27,12 @@ router.post("/login/data", async(req,res)=>{
     res.json(res.successData(null,"登录成功！"))
     return;
 });
-router.get("/login/get", async(req,res)=>{
-  
-    res.json(req.session.login)
+
+router.post("/logout/data",(req,res)=>{
+   req.session.login.isLogin=false;
+   req.session.login.code=0;
+   req.session.login.user=null;
+    res.json(res.successData("ok"));
     return;
 });
 

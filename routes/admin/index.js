@@ -5,12 +5,13 @@ const router = require("./_router");
 require("./filter");
 
 router.get("/index",(req,res)=>{
-    res.render("admin/index");
+    res.render("admin/index",{});
     return;  
 
 });
+
 // user
-//require("./user");
+require("./user");
 
 // userRule
 require("./userRule");

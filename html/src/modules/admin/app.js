@@ -6,7 +6,7 @@ Vue.use(VeeValidate);
 
 import VueResource from 'vue-resource'
 Vue.use(VueResource);
-Vue.http.options.root = 'http://localhost:3000';//'http://127.0.0.1';
+Vue.http.options.root = '/';
 Vue.http.options.emulateJSON = true;
 
 import VueComponent from "../../components/vue-share/index";
@@ -16,5 +16,6 @@ import * as uiv from 'uiv';
 import locale from 'uiv/src/locale/lang/zh-CN';
 Vue.use(uiv, {locale});
 
+export {index}  from "./index";
 export {login}  from "./login";
 export {reg}  from "./reg";

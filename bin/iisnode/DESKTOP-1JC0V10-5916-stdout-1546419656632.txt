@@ -1,0 +1,4 @@
+服务器运行在 localhost:\\.\pipe\fc20a53e-fa4f-4ad1-ad12-bdd9882587de 端口上...
+processId:5916
+[0mGET /favicon.ico [32m200 [0m20.028 ms - 441[0m
+[0mGET /admin/index [36m304 [0m1.533 ms - -[0m
