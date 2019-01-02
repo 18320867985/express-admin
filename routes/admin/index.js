@@ -10,6 +10,18 @@ router.get("/index",(req,res)=>{
 
 });
 
+router.get("/index/data",(req,res)=>{
+    if(req.session.login&&req.session.login.isLogin){
+        res.json(res.successData(req.session.login.user));
+        return;  
+    }else{
+        res.json(res.errorData());
+        return;  
+    }
+   
+});
+
+
 // user
 require("./user");
 

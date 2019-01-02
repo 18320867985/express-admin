@@ -6,7 +6,7 @@ Vue.use(VeeValidate);
 
 import VueResource from 'vue-resource'
 Vue.use(VueResource);
-Vue.http.options.root = '/';
+Vue.http.options.root = 'http://localhost:3000/';
 Vue.http.options.emulateJSON = true;
 
 import VueComponent from "../../components/vue-share/index";

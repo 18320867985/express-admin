@@ -23588,11 +23588,13 @@ var locale$2 = {
 
 var App = {
   render: function render() {
-    var _vm = this;var _h = _vm.$createElement;var _c = _vm._self._c || _h;return _c('div', [_c('span', { staticClass: "text-white " }, [_vm._v("admin")]), _vm._v(" "), _c('span', { staticClass: "iconfont icon-tuichu", attrs: { "data-toggle": "tooltip", "data-placement": "left", "title": "退出登录" }, on: { "click": _vm.logout } })]);
+    var _vm = this;var _h = _vm.$createElement;var _c = _vm._self._c || _h;return _c('div', [_c('span', { staticClass: "text-white" }, [_vm._v(_vm._s(_vm.name))]), _vm._v(" "), _c('span', { staticClass: "iconfont icon-tuichu", attrs: { "data-toggle": "tooltip", "data-placement": "left", "title": "退出登录" }, on: { "click": _vm.logout } })]);
   },
   staticRenderFns: [],
   data: function data() {
-    return {};
+    return {
+      name: ""
+    };
   },
 
   methods: {
@@ -23611,6 +23613,16 @@ var App = {
         }).catch();
       }).catch(function () {});
     }
+  },
+  mounted: function mounted() {
+    var _this2 = this;
+
+    this.$http.get("/admin/index/data").then(function (data) {
+      data = data.body;
+      if (data.code == 1) {
+        _this2.name = data.data.name;
+      } else {}
+    });
   }
 };
 
@@ -23809,7 +23821,7 @@ var reg = {
 Vue.use(VeeValidate$1);
 
 Vue.use(plugin);
-Vue.http.options.root = '/';
+Vue.http.options.root = 'http://localhost:3000/';
 Vue.http.options.emulateJSON = true;
 
 Vue.use(VueComponent); // 全局注册组件

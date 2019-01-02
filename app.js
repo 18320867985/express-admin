@@ -20,8 +20,7 @@ app.use(session({
     saveUninitialized: true,
     cookie: {
         path: '/',
-        httpOnly: true,
-        maxAge:6000000
+        httpOnly: true
     }
 }));
 
@@ -52,7 +51,6 @@ nunjucks.configure(nunjucksDir, {
 
 app.use("/static", express.static(htmlStatic));
 app.use("/ueditor", express.static(ueditorDir));
-
 
 
 

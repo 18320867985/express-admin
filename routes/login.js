@@ -29,9 +29,11 @@ router.post("/login/data", async(req,res)=>{
 });
 
 router.post("/logout/data",(req,res)=>{
-   req.session.login.isLogin=false;
-   req.session.login.code=0;
-   req.session.login.user=null;
+    if( req.session.login){
+        req.session.login.isLogin=false;
+        req.session.login.code=0;
+        req.session.login.user=null
+    }
     res.json(res.successData("ok"));
     return;
 });
