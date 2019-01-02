@@ -1,0 +1,4 @@
+服务器运行在 localhost:\\.\pipe\582839a6-48d0-4578-babb-e8ced4fc6ef1 端口上...
+processId:4952
+[0mPOST /admin/user/data [32m200 [0m42.129 ms - 4[0m
+mongodb connection success 

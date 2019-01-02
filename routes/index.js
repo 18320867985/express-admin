@@ -1,15 +1,12 @@
-var express = require('express');
-var router = express.Router();
-
+var router = require('./_router');
 
 /* GET home page. */
-var items = [{ title: "foo", id: 1 }, { title: "bar", id: 2},{ title: "google", id: 3}];
-router.get('/', async function(req, res, next) {
-  res.render('admin/index', {items:items});
+router.get('/', async function (req, res) {
+  res.redirect("admin/index");
+  return;
 });
 
-router.get('/json', async function(req, res) {
-  res.json(items);
-});
+require("./login");
+require("./reg");
 
 module.exports = router;

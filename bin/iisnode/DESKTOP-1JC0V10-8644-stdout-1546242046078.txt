@@ -1,0 +1,10 @@
+服务器运行在 localhost:\\.\pipe\97454057-9d10-4723-9136-4984b4063ed5 端口上...
+processId:8644
+[0mGET /static/css/vue-admin.css [36m304 [0m10.161 ms - -[0m
+[0mGET /static/js/admin.js [36m304 [0m6.774 ms - -[0m
+[0mGET /static/css/admin.css [36m304 [0m6.078 ms - -[0m
+[0mGET /static/css/cstFonts/iconfont.css [36m304 [0m5.804 ms - -[0m
+[0mGET /favicon.ico [36m304 [0m19.617 ms - -[0m
+mongodb connection success 
+[0mGET /admin/reg [36m304 [0m3.972 ms - -[0m
+[0mGET /static/css/cstFonts/iconfont.css [36m304 [0m1.996 ms - -[0m

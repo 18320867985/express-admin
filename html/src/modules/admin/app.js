@@ -1,5 +1,13 @@
 import   "../../libs/autoRun.js";   // must   import
- import Vue from "vue";
+import Vue from "vue";
+
+import VeeValidate from 'vee-validate';
+Vue.use(VeeValidate);
+
+import VueResource from 'vue-resource'
+Vue.use(VueResource);
+Vue.http.options.root = 'http://localhost:3000';//'http://127.0.0.1';
+Vue.http.options.emulateJSON = true;
 
 import VueComponent from "../../components/vue-share/index";
 Vue.use(VueComponent) ; // 全局注册组件

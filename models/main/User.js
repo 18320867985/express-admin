@@ -12,6 +12,7 @@ var schema = new orm.mongoose.Schema({
             type:Date,
             default:Date.now
     },
+    emall:{type:String},
     ruleId:{
         type:orm.mongoose.Schema.Types.ObjectId,
         ref:"UserRule"
@@ -21,6 +22,6 @@ var schema = new orm.mongoose.Schema({
 });
 
 
-var User =dbHelp.db.model("User", schema);
+var User =orm.db.model("User", schema);
 
 module.exports = User;

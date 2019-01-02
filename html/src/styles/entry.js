@@ -4,7 +4,6 @@
 module.exports = {
 	// 模块列表
 	list: [
-		"main", 
 		"admin"
 	],
 

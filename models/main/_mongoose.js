@@ -5,7 +5,8 @@ const config=require("./_config");
 const url=config.url;
 const database=config.database;
 
-var db=mongoose.createConnection(url+database);
+var db=mongoose.createConnection(url+database, { useNewUrlParser:true});
+
 db.on("open",function(err,data){
     console.log("mongodb connection success ");
 });

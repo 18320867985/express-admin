@@ -1,14 +1,19 @@
 
-const router = require("./index");
+const router = require("./_router");
 
-router.use((req, res,next) => {
-  let user=  req.session["user"]||{login:false};
- if(user.login===true){
+router.use("/",(req, res,next) => {
+  // console.log("filter",req.session.login)
+      if(!req.session.login){
+         res.json({status:"No access rights",code:0,msg:"你没有访问的权限"});
+         return;
+      }
+    if( !req.session.login.isLogin){
+      res.json({status:"No access rights",code:0,msg:"你没有访问的权限"});
+      return;
+    }
+
     next();
- }else{
-     res.json({status:"No access rights",code:0,msg:"你没有访问的权限"});
-     return;
- }
+
     
 });
 

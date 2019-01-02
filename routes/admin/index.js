@@ -1,17 +1,19 @@
-var express = require('express');
-module.exports = router = express.Router();
 
-router.get("/",(req,res)=>{
+const router = require("./_router");
 
-    res.render("admin/index");
-
-});
 // filter
 require("./filter");
 
+router.get("/index",(req,res)=>{
+    res.render("admin/index");
+    return;  
+
+});
 // user
-require("./user");
+//require("./user");
 
 // userRule
 require("./userRule");
 
+
+module.exports = router;

@@ -6,7 +6,7 @@
      
         <navbar-nav right>
           <li>
-            <a class="btn-link" href="reg.html" role="button">注册</a>
+            <a class="btn-link" href="/reg" role="button">注册</a>
           </li>
         </navbar-nav>
       </template>
@@ -17,9 +17,6 @@
 <script>
 export default {
 
-  
 }
 </script>
-
-
 

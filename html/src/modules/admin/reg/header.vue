@@ -6,7 +6,7 @@
      
         <navbar-nav right>
           <li>
-            <a class="btn-link" href="login.html" role="button">登录</a>
+            <a class="btn-link" href="/login" role="button">登录</a>
           </li>
         </navbar-nav>
       </template>
@@ -18,6 +18,7 @@
 export default {
 
 }
+
 </script>
 
 

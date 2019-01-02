@@ -1,4 +1,4 @@
-const router=require("./index");
+const router = require("./_router");
 
 router.get("/userRule",(req,res)=>{
 
