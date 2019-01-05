@@ -1,5 +1,5 @@
 ﻿/*mongoose model*/
-exports.mongoose = require("mongoose");
+exports.orm = require("./_mongoose");
 
 // models
 exports.User = require("./user");

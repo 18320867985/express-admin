@@ -7,7 +7,7 @@ router.get("/reg",(req,res)=>{
 });
 router.post("/reg/data", async (req, res) => {
 
-     let user= new mainModel.User({name:req.body.user,pwd:req.body.pwd,email:req.body.email});
+     let user= new mainModel.User({name:req.body.user,pwd:req.body.pwd,email:req.body.email,price:100});
    //var o=  await mainModel.UserRule.create(new mainModel.UserRule({name:"普通用户",code:0}));
      let rule= await mainModel.UserRule.findOne({code:0}); //普通用户
      if(!rule){

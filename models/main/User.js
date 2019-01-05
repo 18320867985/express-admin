@@ -16,7 +16,8 @@ var schema = new orm.mongoose.Schema({
     ruleId:{
         type:orm.mongoose.Schema.Types.ObjectId,
         ref:"UserRule"
-    }
+    },
+    price:{ type:Number,   min:[0,"min vlaue is 0"]}
 
     
 });
