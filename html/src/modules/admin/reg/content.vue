@@ -10,7 +10,7 @@
             name="user"
             id="user"
             v-validate="{required:true,min:4}"
-            v-model="user"
+            v-model="user.user"
             placeholder="输入用户名"
           >
           <p class="text-danger" v-show="errors.has('user:required')">用户名不为空！</p>
@@ -27,7 +27,7 @@
             class="form-control"
             type="password"
             id="pwd"
-            v-model="pwd"
+            v-model="user.pwd"
             name="pwd"
             ref="pwd"
             placeholder="输入密码"
@@ -49,7 +49,7 @@
             type="password"
             name="pwd2"
             id="pwd2"
-            v-model="pwd2"
+            v-model="user.pwd2"
             v-validate="{ required:true,confirmed:'pwd'}"
             data-vv-as="pwd"
             placeholder="输入确认密码"
@@ -69,7 +69,7 @@
             type="text"
             name="email"
             id="email"
-            v-model="email"
+            v-model="user.email"
             v-validate="'required|email'"
             placeholder="输入邮箱"
           >
@@ -81,6 +81,10 @@
             aria-hidden="true"
           ></span>
         </div>
+           <div class="form-group">
+          <alert type="danger" v-if="show" dismissible @dismissed="show = false">{{errText}}</alert>
+        </div>
+
         <div class="form-group">
           <button
             type="submit"
@@ -97,10 +101,14 @@
 export default {
   data() {
     return {
-      user: "",
+     user:{
+        user: "",
       pwd: "",
       pwd2: "",
       email: ""
+     },
+     show:false,
+     errText:"注册失败！"
     };
   },
   methods: {
@@ -108,23 +116,32 @@ export default {
       this.$validator.validateAll().then(result => {
         if (result) {
           // eslint-disable-next-line
-          alert(JSON.stringify(this.$data));
+       //   alert(JSON.stringify(this.$data));
           this.$http
-            .post("/reg/data", this.$data)
+            .post("/reg/data", this.user)
             .then(
               data => {
                 data = data.body;
                 if (data.code == 1) {
+                  this.show=false;
                   window.location.href = "/admin/index";
                 } else {
+                  this.show=true;
                   this.$notify({
                     type: "danger",
                     title: "",
                     content: "注册失败！"
+                   
                   });
                 }
               },
-              error => {}
+              error => {
+                this.$notify({
+                type: "danger",
+                title: "网络连接失败",
+                content: "网络连接失败"
+              });
+              }
             )
             .catch();
           return;

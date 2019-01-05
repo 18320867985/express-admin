@@ -23258,7 +23258,7 @@ var initModal = function initModal(type) {
   }
 };
 
-var alert$1 = function alert(options, cb) {
+var alert = function alert(options, cb) {
   return initModal.apply(this, [TYPES.ALERT, options, cb]);
 };
 
@@ -23270,7 +23270,7 @@ var prompt = function prompt(options, cb) {
   return initModal.apply(this, [TYPES.PROMPT, options, cb]);
 };
 
-var messageBox = { alert: alert$1, confirm: confirm, prompt: prompt };
+var messageBox = { alert: alert, confirm: confirm, prompt: prompt };
 
 var TYPES$1 = {
   SUCCESS: 'success',
@@ -23652,28 +23652,36 @@ var bsContent = {
           }$event.preventDefault();return _vm.submit($event);
         } } }, [_c('form', { on: { "submit": function submit($event) {
           $event.preventDefault();return _vm.submit($event);
-        } } }, [_c('div', { staticClass: "form-group", class: { 'has-error': _vm.errors.has('user') } }, [_c('label', { staticClass: "control-label", attrs: { "for": "user" } }, [_vm._v("用户名:")]), _vm._v(" "), _c('input', { directives: [{ name: "validate", rawName: "v-validate", value: { required: true }, expression: "{required:true}" }, { name: "model", rawName: "v-model", value: _vm.user, expression: "user" }], staticClass: "form-control", attrs: { "type": "text", "id": "user", "name": "user", "placeholder": "输入用户名" }, domProps: { "value": _vm.user }, on: { "input": function input($event) {
+        } } }, [_c('div', { staticClass: "form-group", class: { 'has-error': _vm.errors.has('user') } }, [_c('label', { staticClass: "control-label", attrs: { "for": "user" } }, [_vm._v("用户名:")]), _vm._v(" "), _c('input', { directives: [{ name: "validate", rawName: "v-validate", value: { required: true }, expression: "{required:true}" }, { name: "model", rawName: "v-model", value: _vm.user.user, expression: "user.user" }], staticClass: "form-control", attrs: { "type": "text", "id": "user", "name": "user", "placeholder": "输入用户名" }, domProps: { "value": _vm.user.user }, on: { "input": function input($event) {
           if ($event.target.composing) {
             return;
-          }_vm.user = $event.target.value;
-        } } }), _vm._v(" "), _c('p', { directives: [{ name: "show", rawName: "v-show", value: _vm.errors.has('user:required'), expression: "errors.has('user:required')" }], staticClass: "text-danger" }, [_vm._v("用户名不能为空！")])]), _vm._v(" "), _c('div', { staticClass: "form-group", class: { 'has-error': _vm.errors.has('pwd') } }, [_c('label', { staticClass: "control-label", attrs: { "for": "pwd" } }, [_vm._v("密码:")]), _vm._v(" "), _c('input', { directives: [{ name: "model", rawName: "v-model", value: _vm.pwd, expression: "pwd" }, { name: "validate", rawName: "v-validate", value: { required: true }, expression: "{required:true}" }], staticClass: "form-control", attrs: { "type": "password", "name": "pwd", "id": "pwd", "placeholder": "输入密码" }, domProps: { "value": _vm.pwd }, on: { "input": function input($event) {
+          }_vm.$set(_vm.user, "user", $event.target.value);
+        } } }), _vm._v(" "), _c('p', { directives: [{ name: "show", rawName: "v-show", value: _vm.errors.has('user:required'), expression: "errors.has('user:required')" }], staticClass: "text-danger" }, [_vm._v("用户名不能为空！")])]), _vm._v(" "), _c('div', { staticClass: "form-group", class: { 'has-error': _vm.errors.has('pwd') } }, [_c('label', { staticClass: "control-label", attrs: { "for": "pwd" } }, [_vm._v("密码:")]), _vm._v(" "), _c('input', { directives: [{ name: "model", rawName: "v-model", value: _vm.user.pwd, expression: "user.pwd" }, { name: "validate", rawName: "v-validate", value: { required: true }, expression: "{required:true}" }], staticClass: "form-control", attrs: { "type": "password", "name": "pwd", "id": "pwd", "placeholder": "输入密码" }, domProps: { "value": _vm.user.pwd }, on: { "input": function input($event) {
           if ($event.target.composing) {
             return;
-          }_vm.pwd = $event.target.value;
+          }_vm.$set(_vm.user, "pwd", $event.target.value);
         } } }), _vm._v(" "), _c('p', { directives: [{ name: "show", rawName: "v-show", value: _vm.errors.has('pwd:required'), expression: "errors.has('pwd:required')" }], staticClass: "text-danger" }, [_vm._v("密码不能为空！")])]), _vm._v(" "), _c('div', { staticClass: "form-group clearfix" }, [_c('div', { staticClass: "pull-left" }, [_c('vue-checkbox', { model: { value: _vm.isAuto, callback: function callback($$v) {
           _vm.isAuto = $$v;
-        }, expression: "isAuto" } }, [_vm._v("记住密码")])], 1), _vm._v(" "), _vm._m(0)]), _vm._v(" "), _c('div', { staticClass: "form-group" }, [_c('button', { staticClass: "btn btn-primary btn-block", attrs: { "type": "submit", "disabled": _vm.errors.items.length > 0 } }, [_vm._v("登录")])])])])]);
+        }, expression: "isAuto" } }, [_vm._v("记住密码")])], 1), _vm._v(" "), _vm._m(0)]), _vm._v(" "), _c('div', { staticClass: "form-group" }, [_vm.show ? _c('alert', { attrs: { "type": "danger", "dismissible": "" }, on: { "dismissed": function dismissed($event) {
+          _vm.show = false;
+        } } }, [_vm._v(_vm._s(_vm.errText))]) : _vm._e()], 1), _vm._v(" "), _c('div', { staticClass: "form-group" }, [_c('button', { ref: "submit", staticClass: "btn btn-primary btn-block", attrs: { "type": "submit", "disabled": _vm.errors.items.length > 0 } }, [_vm._v("登录")])])])])]);
   },
   staticRenderFns: [function () {
     var _vm = this;var _h = _vm.$createElement;var _c = _vm._self._c || _h;return _c('div', { staticClass: "pull-right" }, [_c('a', { attrs: { "href": "javascript:;" } }, [_vm._v("忘记密码？")])]);
   }],
   data: function data() {
     return {
-      user: "",
-      pwd: "",
-      isAuto: false
+      user: {
+        user: "",
+        pwd: "",
+        isAuto: false
+      },
+      show: false,
+      errText: "用户与密码不对！",
+      only: true
     };
   },
+
 
   methods: {
     submit: function submit() {
@@ -23681,14 +23689,31 @@ var bsContent = {
 
       this.$validator.validateAll().then(function (res) {
         if (res) {
-          _this.$http.post("/login/data", _this.$data).then(function (data) {
+          if (!_this.only) {
+            return;
+          }
+
+          _this.$refs.submit.innerText = "登录中...";
+          _this.$http.post("/login/data", _this.user).then(function (data) {
+            _this.$refs.submit.innerText = "登录";
+            _this.only = true;
             data = data.body;
             if (data.code === 1) {
               window.location.href = "/admin/index";
             } else {
-              alert(data.data);
+              _this.show = true;
+              _this.errText = data.data;
+              _this.only = true;
             }
-          }, function (err) {});
+          }, function (err) {
+            _this.$refs.submit.innerText = "登录";
+            _this.only = true;
+            _this.$notify({
+              type: "danger",
+              title: "网络连接失败",
+              content: "网络连接失败"
+            });
+          });
         }
       });
     }
@@ -23736,31 +23761,37 @@ var bscontent = {
           }$event.preventDefault();return _vm.validateBeforeSubmit($event);
         } } }, [_c('form', { on: { "submit": function submit($event) {
           $event.preventDefault();return _vm.validateBeforeSubmit($event);
-        } } }, [_c('div', { staticClass: "form-group has-feedback", class: { ' has-error': _vm.errors.has('user') } }, [_c('label', { staticClass: "control-label", attrs: { "for": "user" } }, [_vm._v("用户名:")]), _vm._v(" "), _c('input', { directives: [{ name: "validate", rawName: "v-validate", value: { required: true, min: 4 }, expression: "{required:true,min:4}" }, { name: "model", rawName: "v-model", value: _vm.user, expression: "user" }], staticClass: "form-control", attrs: { "type": "text", "name": "user", "id": "user", "placeholder": "输入用户名" }, domProps: { "value": _vm.user }, on: { "input": function input($event) {
+        } } }, [_c('div', { staticClass: "form-group has-feedback", class: { ' has-error': _vm.errors.has('user') } }, [_c('label', { staticClass: "control-label", attrs: { "for": "user" } }, [_vm._v("用户名:")]), _vm._v(" "), _c('input', { directives: [{ name: "validate", rawName: "v-validate", value: { required: true, min: 4 }, expression: "{required:true,min:4}" }, { name: "model", rawName: "v-model", value: _vm.user.user, expression: "user.user" }], staticClass: "form-control", attrs: { "type": "text", "name": "user", "id": "user", "placeholder": "输入用户名" }, domProps: { "value": _vm.user.user }, on: { "input": function input($event) {
           if ($event.target.composing) {
             return;
-          }_vm.user = $event.target.value;
-        } } }), _vm._v(" "), _c('p', { directives: [{ name: "show", rawName: "v-show", value: _vm.errors.has('user:required'), expression: "errors.has('user:required')" }], staticClass: "text-danger" }, [_vm._v("用户名不为空！")]), _vm._v(" "), _c('p', { directives: [{ name: "show", rawName: "v-show", value: _vm.errors.has('user:min'), expression: "errors.has('user:min')" }], staticClass: "text-danger" }, [_vm._v("用户名最小长度为4位！")]), _vm._v(" "), _c('span', { directives: [{ name: "show", rawName: "v-show", value: _vm.errors.has('user'), expression: "errors.has('user')" }], staticClass: "glyphicon glyphicon-remove form-control-feedback", attrs: { "aria-hidden": "true" } })]), _vm._v(" "), _c('div', { staticClass: "form-group has-feedback", class: { 'has-error': _vm.errors.has('pwd') } }, [_c('label', { staticClass: "control-label", attrs: { "for": "pwd" } }, [_vm._v("密码:")]), _vm._v(" "), _c('input', { directives: [{ name: "model", rawName: "v-model", value: _vm.pwd, expression: "pwd" }, { name: "validate", rawName: "v-validate", value: { required: true, min: 8 }, expression: "{ required:true,min:8}" }], ref: "pwd", staticClass: "form-control", attrs: { "type": "password", "id": "pwd", "name": "pwd", "placeholder": "输入密码" }, domProps: { "value": _vm.pwd }, on: { "input": function input($event) {
+          }_vm.$set(_vm.user, "user", $event.target.value);
+        } } }), _vm._v(" "), _c('p', { directives: [{ name: "show", rawName: "v-show", value: _vm.errors.has('user:required'), expression: "errors.has('user:required')" }], staticClass: "text-danger" }, [_vm._v("用户名不为空！")]), _vm._v(" "), _c('p', { directives: [{ name: "show", rawName: "v-show", value: _vm.errors.has('user:min'), expression: "errors.has('user:min')" }], staticClass: "text-danger" }, [_vm._v("用户名最小长度为4位！")]), _vm._v(" "), _c('span', { directives: [{ name: "show", rawName: "v-show", value: _vm.errors.has('user'), expression: "errors.has('user')" }], staticClass: "glyphicon glyphicon-remove form-control-feedback", attrs: { "aria-hidden": "true" } })]), _vm._v(" "), _c('div', { staticClass: "form-group has-feedback", class: { 'has-error': _vm.errors.has('pwd') } }, [_c('label', { staticClass: "control-label", attrs: { "for": "pwd" } }, [_vm._v("密码:")]), _vm._v(" "), _c('input', { directives: [{ name: "model", rawName: "v-model", value: _vm.user.pwd, expression: "user.pwd" }, { name: "validate", rawName: "v-validate", value: { required: true, min: 8 }, expression: "{ required:true,min:8}" }], ref: "pwd", staticClass: "form-control", attrs: { "type": "password", "id": "pwd", "name": "pwd", "placeholder": "输入密码" }, domProps: { "value": _vm.user.pwd }, on: { "input": function input($event) {
           if ($event.target.composing) {
             return;
-          }_vm.pwd = $event.target.value;
-        } } }), _vm._v(" "), _c('p', { directives: [{ name: "show", rawName: "v-show", value: _vm.errors.has('pwd:required'), expression: "errors.has('pwd:required')" }], staticClass: "text-danger" }, [_vm._v("密码不为空！")]), _vm._v(" "), _c('p', { directives: [{ name: "show", rawName: "v-show", value: _vm.errors.has('pwd:min'), expression: "errors.has('pwd:min')" }], staticClass: "text-danger" }, [_vm._v("密码最小长度为8位！")]), _vm._v(" "), _c('span', { directives: [{ name: "show", rawName: "v-show", value: _vm.errors.has('pwd'), expression: "errors.has('pwd')" }], staticClass: "glyphicon glyphicon-remove form-control-feedback", attrs: { "aria-hidden": "true" } })]), _vm._v(" "), _c('div', { staticClass: "form-group has-feedback", class: { 'has-error': _vm.errors.has('pwd2') } }, [_c('label', { staticClass: "control-label", attrs: { "for": "pwd2" } }, [_vm._v("确认密码:")]), _vm._v(" "), _c('input', { directives: [{ name: "model", rawName: "v-model", value: _vm.pwd2, expression: "pwd2" }, { name: "validate", rawName: "v-validate", value: { required: true, confirmed: 'pwd' }, expression: "{ required:true,confirmed:'pwd'}" }], staticClass: "form-control", attrs: { "type": "password", "name": "pwd2", "id": "pwd2", "data-vv-as": "pwd", "placeholder": "输入确认密码" }, domProps: { "value": _vm.pwd2 }, on: { "input": function input($event) {
+          }_vm.$set(_vm.user, "pwd", $event.target.value);
+        } } }), _vm._v(" "), _c('p', { directives: [{ name: "show", rawName: "v-show", value: _vm.errors.has('pwd:required'), expression: "errors.has('pwd:required')" }], staticClass: "text-danger" }, [_vm._v("密码不为空！")]), _vm._v(" "), _c('p', { directives: [{ name: "show", rawName: "v-show", value: _vm.errors.has('pwd:min'), expression: "errors.has('pwd:min')" }], staticClass: "text-danger" }, [_vm._v("密码最小长度为8位！")]), _vm._v(" "), _c('span', { directives: [{ name: "show", rawName: "v-show", value: _vm.errors.has('pwd'), expression: "errors.has('pwd')" }], staticClass: "glyphicon glyphicon-remove form-control-feedback", attrs: { "aria-hidden": "true" } })]), _vm._v(" "), _c('div', { staticClass: "form-group has-feedback", class: { 'has-error': _vm.errors.has('pwd2') } }, [_c('label', { staticClass: "control-label", attrs: { "for": "pwd2" } }, [_vm._v("确认密码:")]), _vm._v(" "), _c('input', { directives: [{ name: "model", rawName: "v-model", value: _vm.user.pwd2, expression: "user.pwd2" }, { name: "validate", rawName: "v-validate", value: { required: true, confirmed: 'pwd' }, expression: "{ required:true,confirmed:'pwd'}" }], staticClass: "form-control", attrs: { "type": "password", "name": "pwd2", "id": "pwd2", "data-vv-as": "pwd", "placeholder": "输入确认密码" }, domProps: { "value": _vm.user.pwd2 }, on: { "input": function input($event) {
           if ($event.target.composing) {
             return;
-          }_vm.pwd2 = $event.target.value;
-        } } }), _vm._v(" "), _c('p', { directives: [{ name: "show", rawName: "v-show", value: _vm.errors.has('pwd2:required'), expression: "errors.has('pwd2:required')" }], staticClass: "text-danger" }, [_vm._v("密码不为空！")]), _vm._v(" "), _c('p', { directives: [{ name: "show", rawName: "v-show", value: _vm.errors.has('pwd2:confirmed'), expression: "errors.has('pwd2:confirmed')" }], staticClass: "text-danger" }, [_vm._v("两次密码不相同！")]), _vm._v(" "), _c('span', { directives: [{ name: "show", rawName: "v-show", value: _vm.errors.has('pwd2'), expression: "errors.has('pwd2')" }], staticClass: "glyphicon glyphicon-remove form-control-feedback", attrs: { "aria-hidden": "true" } })]), _vm._v(" "), _c('div', { staticClass: "form-group has-feedback", class: { 'has-error': _vm.errors.has('email') } }, [_c('label', { staticClass: "control-label", attrs: { "for": "email" } }, [_vm._v("邮箱:")]), _vm._v(" "), _c('input', { directives: [{ name: "model", rawName: "v-model", value: _vm.email, expression: "email" }, { name: "validate", rawName: "v-validate", value: 'required|email', expression: "'required|email'" }], staticClass: "form-control", attrs: { "type": "text", "name": "email", "id": "email", "placeholder": "输入邮箱" }, domProps: { "value": _vm.email }, on: { "input": function input($event) {
+          }_vm.$set(_vm.user, "pwd2", $event.target.value);
+        } } }), _vm._v(" "), _c('p', { directives: [{ name: "show", rawName: "v-show", value: _vm.errors.has('pwd2:required'), expression: "errors.has('pwd2:required')" }], staticClass: "text-danger" }, [_vm._v("密码不为空！")]), _vm._v(" "), _c('p', { directives: [{ name: "show", rawName: "v-show", value: _vm.errors.has('pwd2:confirmed'), expression: "errors.has('pwd2:confirmed')" }], staticClass: "text-danger" }, [_vm._v("两次密码不相同！")]), _vm._v(" "), _c('span', { directives: [{ name: "show", rawName: "v-show", value: _vm.errors.has('pwd2'), expression: "errors.has('pwd2')" }], staticClass: "glyphicon glyphicon-remove form-control-feedback", attrs: { "aria-hidden": "true" } })]), _vm._v(" "), _c('div', { staticClass: "form-group has-feedback", class: { 'has-error': _vm.errors.has('email') } }, [_c('label', { staticClass: "control-label", attrs: { "for": "email" } }, [_vm._v("邮箱:")]), _vm._v(" "), _c('input', { directives: [{ name: "model", rawName: "v-model", value: _vm.user.email, expression: "user.email" }, { name: "validate", rawName: "v-validate", value: 'required|email', expression: "'required|email'" }], staticClass: "form-control", attrs: { "type": "text", "name": "email", "id": "email", "placeholder": "输入邮箱" }, domProps: { "value": _vm.user.email }, on: { "input": function input($event) {
           if ($event.target.composing) {
             return;
-          }_vm.email = $event.target.value;
-        } } }), _vm._v(" "), _c('p', { directives: [{ name: "show", rawName: "v-show", value: _vm.errors.has('eamil:required'), expression: "errors.has('eamil:required')" }], staticClass: "text-danger" }, [_vm._v("邮箱不为空！")]), _vm._v(" "), _c('p', { directives: [{ name: "show", rawName: "v-show", value: _vm.errors.has('email:email'), expression: "errors.has('email:email')" }], staticClass: "text-danger" }, [_vm._v("邮箱格式不对！")]), _vm._v(" "), _c('span', { directives: [{ name: "show", rawName: "v-show", value: _vm.errors.has('email'), expression: "errors.has('email')" }], staticClass: "glyphicon glyphicon-remove form-control-feedback", attrs: { "aria-hidden": "true" } })]), _vm._v(" "), _c('div', { staticClass: "form-group" }, [_c('button', { staticClass: "btn btn-primary btn-block", attrs: { "type": "submit", "disabled": _vm.errors.items.length > 0 } }, [_vm._v("注册")])])])])]);
+          }_vm.$set(_vm.user, "email", $event.target.value);
+        } } }), _vm._v(" "), _c('p', { directives: [{ name: "show", rawName: "v-show", value: _vm.errors.has('eamil:required'), expression: "errors.has('eamil:required')" }], staticClass: "text-danger" }, [_vm._v("邮箱不为空！")]), _vm._v(" "), _c('p', { directives: [{ name: "show", rawName: "v-show", value: _vm.errors.has('email:email'), expression: "errors.has('email:email')" }], staticClass: "text-danger" }, [_vm._v("邮箱格式不对！")]), _vm._v(" "), _c('span', { directives: [{ name: "show", rawName: "v-show", value: _vm.errors.has('email'), expression: "errors.has('email')" }], staticClass: "glyphicon glyphicon-remove form-control-feedback", attrs: { "aria-hidden": "true" } })]), _vm._v(" "), _c('div', { staticClass: "form-group" }, [_vm.show ? _c('alert', { attrs: { "type": "danger", "dismissible": "" }, on: { "dismissed": function dismissed($event) {
+          _vm.show = false;
+        } } }, [_vm._v(_vm._s(_vm.errText))]) : _vm._e()], 1), _vm._v(" "), _c('div', { staticClass: "form-group" }, [_c('button', { staticClass: "btn btn-primary btn-block", attrs: { "type": "submit", "disabled": _vm.errors.items.length > 0 } }, [_vm._v("注册")])])])])]);
   },
   staticRenderFns: [],
   data: function data() {
     return {
-      user: "",
-      pwd: "",
-      pwd2: "",
-      email: ""
+      user: {
+        user: "",
+        pwd: "",
+        pwd2: "",
+        email: ""
+      },
+      show: false,
+      errText: "注册失败！"
     };
   },
 
@@ -23771,19 +23802,28 @@ var bscontent = {
       this.$validator.validateAll().then(function (result) {
         if (result) {
           // eslint-disable-next-line
-          alert(JSON.stringify(_this.$data));
-          _this.$http.post("/reg/data", _this.$data).then(function (data) {
+          //   alert(JSON.stringify(this.$data));
+          _this.$http.post("/reg/data", _this.user).then(function (data) {
             data = data.body;
             if (data.code == 1) {
+              _this.show = false;
               window.location.href = "/admin/index";
             } else {
+              _this.show = true;
               _this.$notify({
                 type: "danger",
                 title: "",
                 content: "注册失败！"
+
               });
             }
-          }, function (error) {}).catch();
+          }, function (error) {
+            _this.$notify({
+              type: "danger",
+              title: "网络连接失败",
+              content: "网络连接失败"
+            });
+          }).catch();
           return;
         }
       });
