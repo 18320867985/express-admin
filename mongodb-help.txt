@@ -4,25 +4,16 @@
 C:\mongodb\bin\mongod --dbpath c:\data\db
 如果执行成功，会输出如下信息：
 
-
-
-
 2.连接MongoDB
-
 我们可以在命令窗口中运行 mongo.exe 命令即可连接上 MongoDB，执行如下命令：
 C:\mongodb\bin\mongo.exe
 
-
 3.配置 MongoDB 服务
-
-
 创建目录，执行下面的语句来创建数据库和日志文件的目录
-
 mkdir c:\data\db
 mkdir c:\data\log
 
 创建配置文件
-
 例如，创建一个配置文件位于 C:\mongodb\mongod.cfg，
 其中指定 systemLog.path 和 storage.dbPath。具体配置内容如下：
 
@@ -34,7 +25,6 @@ storage:
 
 
 4.安装 MongoDB服务
-
 通过执行mongod.exe，使用--install选项来安装服务，使用--config选项来指定之前创建的配置文件。
 
  mongod --config "e:\mongodb\data\mongod.cfg" --install --serviceName "mongodb" --serviceDisplayName  "mongodb" 
@@ -66,7 +56,7 @@ MongoDB 后台管理 Shell
 5.> mongo
 MongoDB shell version: 3.0.6
 connecting to: test
-……
+
 	
 6.初始化副本集
        启动三台MongoDB服务后，开始把他们初始化为副本集。在想要设置成primary（主节点）的机器上运行客户端mongo。例如第1台机器上：
@@ -104,8 +94,6 @@ rs.addArb("192.168.32.138:27017")
 不能在SECONDARY写数据
 
 例如：
-
-
 db.getMongo().setSlaveOk()或rs.slaveOk()
 
 6.6
@@ -120,16 +108,16 @@ rs:PRIMARY> use admin
 switched to db admin
 rs:PRIMARY> db.createUser({user:"root",pwd:"123456",roles:["root"]})；
 
-2. 查看 
+6.7. 登录查看 
 rs:PRIMARY> db.auth("root","123456") 
 
- 7.备份与恢复bson文件
+7.备份与恢复bson文件
 
- 7.1备份
- mongodump -h localhost --port 27017 -o "e:\mongodb\dump"
+7.1备份
+ mongodump -h localhost --port 27017 -o  e:\mongodb\dump
  
-  7.2恢复
-mongorestore -h localhost --port 27017 -o "e:\mongodb\dump"
+7.2恢复
+mongorestore -h localhost --port 27017 -o  e:\mongodb\dump
 
 // 备份
 --备份单个表
@@ -156,3 +144,12 @@ mongorestore   -u  superuser -p 123456 --port 27017  --authenticationDatabase ad
 
 --恢复单表
 mongorestore -u  superuser -p 123456  --authenticationDatabase admin -d myTest -c d /backup/mongodb/myTest_d_bak_201507021701.bak/myTest/d.bson
+
+
+8.数据导入和导出
+
+8.1  数据导出
+mongoexport -d admin -c  users -o  e:\mongodb\export\user.json
+
+8.2  数据导入
+mongoimport -d admin -c  users --file  e:\mongodb\export\user.json
