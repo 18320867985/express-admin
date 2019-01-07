@@ -3,7 +3,7 @@ const  orm= require("./_mongoose");
 
 var schema = new orm.mongoose.Schema({
     name:{type:String},
-    code:{type:Number,required:true},
+    code:{type:Number},
     createDate:{
         type:Date,default:Date.now
     }
