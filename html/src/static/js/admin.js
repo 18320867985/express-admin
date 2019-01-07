@@ -23605,7 +23605,7 @@ var App = {
         title: "退出登录",
         content: "确认退出登录？"
       }).then(function () {
-        _this.$http.post("/logout/data").then(function (data) {
+        _this.$http.post("logout/data").then(function (data) {
           data = data.body;
           if (data.code == 1) {
             window.location.href = "/login";
@@ -23617,7 +23617,7 @@ var App = {
   mounted: function mounted() {
     var _this2 = this;
 
-    this.$http.get("/admin/index/data").then(function (data) {
+    this.$http.get("admin/index/data").then(function (data) {
       data = data.body;
       if (data.code == 1) {
         _this2.name = data.data.name;
@@ -23694,7 +23694,7 @@ var bsContent = {
           }
 
           _this.$refs.submit.innerText = "登录中...";
-          _this.$http.post("/login/data", _this.user).then(function (data) {
+          _this.$http.post("login/data", _this.user).then(function (data) {
             _this.$refs.submit.innerText = "登录";
             _this.only = true;
             data = data.body;
@@ -23803,7 +23803,7 @@ var bscontent = {
         if (result) {
           // eslint-disable-next-line
           //   alert(JSON.stringify(this.$data));
-          _this.$http.post("/reg/data", _this.user).then(function (data) {
+          _this.$http.post("reg/data", _this.user).then(function (data) {
             data = data.body;
             if (data.code == 1) {
               _this.show = false;

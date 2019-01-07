@@ -16,7 +16,7 @@ router.post("/login/data", async (req, res) => {
     // var men=50;
     // try {
 
-    //  var  t1=  await  mainModel.User.findOneAndUpdate({_id:"5c301aabe73f1e00d806441e"},{$inc:{
+    //  var  t1=  await  mainModel.User.findOneAndUpdate({_id:"5c31ec56a457c910c0fb1f14"},{$inc:{
     //         price:-men
     //     }
 
@@ -27,7 +27,7 @@ router.post("/login/data", async (req, res) => {
     //         throw    new Error("er");
     //     }
 
-    //     var  t2  = await  mainModel.User.findOneAndUpdate({_id:"5c301ac8e73f1e00d806441f"},{$inc:{
+    //     var  t2  = await  mainModel.User.findOneAndUpdate({_id:"5c31edf8d4782a223c3c57c2"},{$inc:{
     //         price:men
     //     }},{new:true ,session});
     //     if(t2.price<0){
@@ -39,6 +39,8 @@ router.post("/login/data", async (req, res) => {
     //     console.log(error)
     //    await  session.abortTransaction();
     // }
+
+    // return ;
 
     let name = req.body.user || "";
     let pwd = req.body.pwd || "";

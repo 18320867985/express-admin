@@ -31,7 +31,6 @@ router.post("/reg/data", async (req, res) => {
         user:userinfo
     }
       res.json(res.successData(userinfo))
-     return;
  });
 
 module.exports = router;

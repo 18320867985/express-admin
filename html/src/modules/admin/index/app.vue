@@ -32,7 +32,7 @@ export default {
       })
         .then(() => {
           this.$http
-            .post("/logout/data")
+            .post("logout/data")
             .then(data => {
               data = data.body;
               if (data.code == 1) {
@@ -46,7 +46,7 @@ export default {
     }
   },
   mounted() {
-    this.$http.get("/admin/index/data").then(data => {
+    this.$http.get("admin/index/data").then(data => {
       data = data.body;
       if (data.code == 1) {
       this.name=data.data.name

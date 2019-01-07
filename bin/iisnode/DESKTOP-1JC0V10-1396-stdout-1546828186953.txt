@@ -1,0 +1,9 @@
+服务器运行在 localhost:\\.\pipe\1712bc71-589d-4884-956a-9bce54a7b048 端口上...
+processId:1396
+mongodb connection success 
+[0mPOST /login/data [32m200 [0m990.756 ms - 67[0m
+[0mPOST /login/data [32m200 [0m5.295 ms - 67[0m
+[0mPOST /login/data [32m200 [0m4.226 ms - 67[0m
+[0mGET /admin/index/data [32m200 [0m3.258 ms - 71[0m
+[0mGET /admin/index/data [32m200 [0m2.225 ms - 71[0m
+[0mPOST /login/data [32m200 [0m11.428 ms - 65[0m

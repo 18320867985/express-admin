@@ -118,7 +118,7 @@ export default {
           // eslint-disable-next-line
        //   alert(JSON.stringify(this.$data));
           this.$http
-            .post("/reg/data", this.user)
+            .post("reg/data", this.user)
             .then(
               data => {
                 data = data.body;
@@ -152,3 +152,4 @@ export default {
   created() {}
 };
 </script>
+

@@ -6,7 +6,6 @@
 /* GET home page. */
 router.get('/', async function (req, res) {
  res.redirect("admin/index");
-  return;
 });
 
 

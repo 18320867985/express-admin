@@ -76,7 +76,7 @@ export default {
           }
 
           this.$refs.submit.innerText = "登录中...";
-          this.$http.post("/login/data", this.user).then(
+          this.$http.post("login/data", this.user).then(
             data => {
               this.$refs.submit.innerText = "登录";
               this.only = true;

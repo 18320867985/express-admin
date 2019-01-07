@@ -8,9 +8,18 @@ router.use("/", (req, res, next) => {
   }
   else{
     if (req.method.toLowerCase() == "get") {
-      res.redirect("/login");
-      return;
+      // request ajax
+      if(req.path.toLowerCase().endsWith("data")){
+        res.json({ status: "No access rights", code: 0, msg: "你没有访问的权限" });
+        return;
+      }else{   
+         // request brm url
+        res.redirect("/login");
+        return;
+      }
+      
     } else {
+       // request ajax
       res.json({ status: "No access rights", code: 0, msg: "你没有访问的权限" });
       return;
     }
