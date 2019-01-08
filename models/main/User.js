@@ -13,13 +13,10 @@ var schema = new orm.mongoose.Schema({
             default:Date.now
     },
     emall:{type:String},
-    ruleId:{
+    roleId:{
         type:orm.mongoose.Schema.Types.ObjectId,
-        ref:"UserRule"
-    },
-    price:{ type:Number,   min:[0,"min vlaue is 0"]}
-
-    
+        ref:"UserRole"
+    }
 });
 
 

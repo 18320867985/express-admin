@@ -68,22 +68,23 @@ app.use(function (req, res, next) {
 
 // 返回处理的数据
 app.use((req, res, next) => {
+
     // success return data
-    res.successData = ((data, msg) => {
+    res.ok = ((data, desc) => {
         return {
             status: "success",
             code: 1,
             data,
-            msg
+            desc
         }
     });
     // error return data
-    res.errorData = ((data, msg) => {
+    res.err = ((data, desc) => {
         return {
             status: "error",
             code: 0,
             data,
-            msg
+            desc
         }
 
     });

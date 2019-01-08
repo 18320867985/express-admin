@@ -2,20 +2,18 @@
 const router = require("./_router");
 
 // filter
-require("./filter");
+//require("./filter");
 
 router.get("/index",(req,res)=>{
     res.render("admin/index",{});
-    return;  
-
 });
 
 router.get("/index/data",(req,res)=>{
     if(req.session.login&&req.session.login.isLogin){
-        res.json(res.successData(req.session.login.user));
+        res.json(res.ok(req.session.login.user));
         return;  
     }else{
-        res.json(res.errorData());
+        res.json(res.err());
         return;  
     }
    

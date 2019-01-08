@@ -11,6 +11,6 @@ var schema = new orm.mongoose.Schema({
 });
 
 
-var UserRule =orm.db.model("UserRule", schema);
+var UserRole =orm.db.model("UserRole", schema);
 
-module.exports = UserRule;
+module.exports = UserRole;

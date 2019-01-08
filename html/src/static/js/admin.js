@@ -23586,6 +23586,38 @@ var locale$2 = {
   }
 };
 
+var components$2 = [{
+	name: "date",
+	fn: function fn(value, fmt) {
+
+		var fmt = typeof fmt !== "string" ? "yyyy-MM-dd HH:mm:ss" : fmt;
+		var txts = value.toString().replace("/Date(", "").replace(")/", "");
+		var times = Number(txts);
+		times = isNaN(times) ? new Date(value).getTime() : times;
+		var dt = new Date(Number(times.toString()));
+		var o = {
+			"M+": dt.getMonth() + 1, //月份 
+			"d+": dt.getDate(), //日 
+			"H+": dt.getHours(), //小时 
+			"m+": dt.getMinutes(), //分 
+			"s+": dt.getSeconds(), //秒 
+			"q+": Math.floor((dt.getMonth() + 3) / 3), //季度 
+			"S": dt.getMilliseconds() //毫秒 
+		};
+
+		if (/(y+)/.test(fmt)) fmt = fmt.replace(RegExp.$1, (dt.getFullYear() + "").substr(4 - RegExp.$1.length));
+		for (var k in o) {
+			if (new RegExp("(" + k + ")").test(fmt)) fmt = fmt.replace(RegExp.$1, RegExp.$1.length == 1 ? o[k] : ("00" + o[k]).substr(("" + o[k]).length));
+		}return fmt;
+	}
+}];
+
+var filter = function (Vue) {
+	components$2.forEach(function (item) {
+		Vue.filter(item.name, item.fn);
+	});
+};
+
 var App = {
   render: function render() {
     var _vm = this;var _h = _vm.$createElement;var _c = _vm._self._c || _h;return _c('div', [_c('span', { staticClass: "text-white" }, [_vm._v(_vm._s(_vm.name))]), _vm._v(" "), _c('span', { staticClass: "iconfont icon-tuichu", attrs: { "data-toggle": "tooltip", "data-placement": "left", "title": "退出登录" }, on: { "click": _vm.logout } })]);
@@ -23858,6 +23890,102 @@ var reg = {
     }
 };
 
+var App$3 = {
+  render: function render() {
+    var _vm = this;var _h = _vm.$createElement;var _c = _vm._self._c || _h;return _c('div', { staticClass: "user" }, [_c('div', { staticClass: "container-fluid-12" }, [_c('table', { staticClass: "table table-hover table-bordered" }, [_vm._m(0), _vm._v(" "), _c('tbody', _vm._l(_vm.users, function (item, index) {
+      return _c('tr', { key: item._id }, [_c('td', [_vm._v(_vm._s(item._id))]), _vm._v(" "), _c('td', [_vm._v(_vm._s(item.name))]), _vm._v(" "), _c('td', [_vm._v(_vm._s(item.roleId && item.roleId.name))]), _vm._v(" "), _c('td', [_vm._v(_vm._s(_vm._f("date")(item.createDate)))]), _vm._v(" "), _c('td', [_c('button', { staticClass: "btn btn-warning btn-xs", on: { "click": function click($event) {
+            _vm.edit(item);
+          } } }, [_vm._v("修改")]), _vm._v(" "), _c('button', { staticClass: "btn btn-danger btn-xs", on: { "click": function click($event) {
+            $event.preventDefault();_vm.del(item._id, index);
+          } } }, [_vm._v("删除")])])]);
+    }), 0)])]), _vm._v(" "), _c('modal', { ref: "modal", attrs: { "title": "修改信息", "id": "modal-demo" }, model: { value: _vm.open, callback: function callback($$v) {
+          _vm.open = $$v;
+        }, expression: "open" } }, [_c('h4', { staticClass: "text-muted" }, [_vm._v("编号: " + _vm._s(_vm.editObj._id))]), _vm._v(" "), _c('form', [_c('div', { staticClass: "form-group" }, [_c('label', { attrs: { "for": "exampleInputEmail1" } }, [_vm._v("用户类型")]), _vm._v(" "), _c('select', { staticClass: "form-control", attrs: { "name": "", "id": "", "placeholder": "Email" } }, [_c('option', { attrs: { "value": "" } })])]), _vm._v(" "), _c('button', { staticClass: "btn  btn-primary", attrs: { "type": "submit" } }, [_vm._v("Submit")])])])], 1);
+  },
+  staticRenderFns: [function () {
+    var _vm = this;var _h = _vm.$createElement;var _c = _vm._self._c || _h;return _c('thead', [_c('tr', { staticClass: "text-center" }, [_c('th', [_vm._v("编号")]), _vm._v(" "), _c('th', [_vm._v("用户名")]), _vm._v(" "), _c('th', [_vm._v("类型")]), _vm._v(" "), _c('th', [_vm._v("创建时间")]), _vm._v(" "), _c('th', [_vm._v("操作")])])]);
+  }],
+  data: function data() {
+    return {
+      users: [],
+      open: false,
+      editObj: {}
+    };
+  },
+  mounted: function mounted() {
+    var _this = this;
+
+    this.$http.get("admin/user/data", {}).then(function (ok) {
+      var body = ok.body;
+      if (body.code) {
+        _this.users = body.data;
+      } else {
+        _this.$notify({
+          type: "danger",
+          title: "error",
+          content: body.data
+        });
+      }
+    }, function (err) {
+      _this.$notify({
+        type: "danger",
+        title: "连接失败",
+        content: "连接失败"
+      });
+    });
+  },
+
+  methods: {
+    // del
+    del: function del(id, index) {
+      var _this2 = this;
+
+      this.$confirm({
+        title: "删除数据",
+        content: "确认删除数据？"
+      }).then(function (ok) {
+        _this2.$http.delete("admin/user/data/" + id).then(function (ok) {
+          var body = ok.body;
+          if (body.code) {
+            _this2.users.splice(index, 1);
+            _this2.$notify({
+              type: "success",
+              content: "删除数据成功！"
+            });
+          } else {
+            _this2.$notify({
+              type: "danger",
+              content: "删除数据失败！"
+            });
+          }
+        }, function (err) {
+          _this2.$notify({
+            type: "danger",
+            title: "连接失败",
+            content: "连接失败"
+          });
+        });
+      }).catch(function (err) {
+        // cancel
+      });
+    },
+    edit: function edit(item) {
+      this.editObj = item;
+      this.open = true;
+    }
+  }
+};
+
+var user = {
+    init: function init() {
+        new Vue({
+            render: function render(h) {
+                return h(App$3);
+            }
+        }).$mount("#app");
+    }
+};
+
 Vue.use(VeeValidate$1);
 
 Vue.use(plugin);
@@ -23868,9 +23996,13 @@ Vue.use(VueComponent); // 全局注册组件
 
 Vue.use(uiv, { locale: locale$2 });
 
+// 过滤器
+Vue.use(filter);
+
 exports.index = index$1;
 exports.login = login;
 exports.reg = reg;
+exports.user = user;
 
 Object.defineProperty(exports, '__esModule', { value: true });
 

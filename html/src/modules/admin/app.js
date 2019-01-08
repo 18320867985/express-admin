@@ -16,6 +16,11 @@ import * as uiv from 'uiv';
 import locale from 'uiv/src/locale/lang/zh-CN';
 Vue.use(uiv, {locale});
 
+// 过滤器
+import filter from "../../components/filter";
+Vue.use(filter);
+
 export {index}  from "./index";
 export {login}  from "./login";
 export {reg}  from "./reg";
+export {user}  from "./user";

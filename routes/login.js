@@ -48,7 +48,7 @@ router.post("/login/data", async (req, res) => {
     let pwd = req.body.pwd || "";
     var userinfo = await mainModel.User.findOne({ "name": name, "pwd": pwd });
     if (!userinfo) {
-        res.json(res.errorData("用户名与密码不匹配！"));
+        res.json(res.err("用户名与密码不匹配！"));
         return;
     }
 
@@ -58,7 +58,7 @@ router.post("/login/data", async (req, res) => {
         user: userinfo
     }
 
-    res.json(res.successData(null, "登录成功！"))
+    res.json(res.ok(null, "登录成功！"))
     return;
 });
 
@@ -68,7 +68,7 @@ router.post("/logout/data", (req, res) => {
         req.session.login.code = 0;
         req.session.login.user = null
     }
-    res.json(res.successData("ok"));
+    res.json(res.ok("ok"));
     return;
 });
 
