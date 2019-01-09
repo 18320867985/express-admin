@@ -23898,9 +23898,19 @@ var App$3 = {
           } } }, [_vm._v("修改")]), _vm._v(" "), _c('button', { staticClass: "btn btn-danger btn-xs", on: { "click": function click($event) {
             $event.preventDefault();_vm.del(item._id, index);
           } } }, [_vm._v("删除")])])]);
-    }), 0)])]), _vm._v(" "), _c('modal', { ref: "modal", attrs: { "title": "修改信息", "id": "modal-demo" }, model: { value: _vm.open, callback: function callback($$v) {
+    }), 0)])]), _vm._v(" "), _c('modal', { ref: "modal", attrs: { "title": "修改用户信息", "id": "modal-demo" }, model: { value: _vm.open, callback: function callback($$v) {
           _vm.open = $$v;
-        }, expression: "open" } }, [_c('h4', { staticClass: "text-muted" }, [_vm._v("编号: " + _vm._s(_vm.editObj._id))]), _vm._v(" "), _c('form', [_c('div', { staticClass: "form-group" }, [_c('label', { attrs: { "for": "exampleInputEmail1" } }, [_vm._v("用户类型")]), _vm._v(" "), _c('select', { staticClass: "form-control", attrs: { "name": "", "id": "", "placeholder": "Email" } }, [_c('option', { attrs: { "value": "" } })])]), _vm._v(" "), _c('button', { staticClass: "btn  btn-primary", attrs: { "type": "submit" } }, [_vm._v("Submit")])])])], 1);
+        }, expression: "open" } }, [_c('h4', { staticClass: "text-warning" }, [_vm._v("编号: " + _vm._s(_vm.editObj._id))]), _vm._v(" "), _c('h4', { staticClass: "text-warning" }, [_vm._v("用户名: " + _vm._s(_vm.editObj.name))]), _vm._v(" "), _c('form', [_c('div', { staticClass: "form-group" }, [_c('label', { attrs: { "for": "exampleInputEmail1" } }, [_vm._v("用户类型")]), _vm._v(" "), _c('select', { directives: [{ name: "model", rawName: "v-model", value: _vm.editObj.roleId, expression: "editObj.roleId" }], staticClass: "form-control", attrs: { "name": "", "id": "", "placeholder": "Email" }, on: { "change": function change($event) {
+          var $$selectedVal = Array.prototype.filter.call($event.target.options, function (o) {
+            return o.selected;
+          }).map(function (o) {
+            var val = "_value" in o ? o._value : o.value;return val;
+          });_vm.$set(_vm.editObj, "roleId", $event.target.multiple ? $$selectedVal : $$selectedVal[0]);
+        } } }, _vm._l(_vm.roles, function (item, index) {
+      return _c('option', { key: index, domProps: { "selected": _vm.editObj.roleId === _vm.item_id, "value": item._id } }, [_vm._v(_vm._s(item.name))]);
+    }), 0)]), _vm._v(" "), _c('button', { staticClass: "btn btn-primary", attrs: { "type": "submit" }, on: { "click": function click($event) {
+          $event.preventDefault();return _vm.submitEdit($event);
+        } } }, [_vm._v("修改")])])])], 1);
   },
   staticRenderFns: [function () {
     var _vm = this;var _h = _vm.$createElement;var _c = _vm._self._c || _h;return _c('thead', [_c('tr', { staticClass: "text-center" }, [_c('th', [_vm._v("编号")]), _vm._v(" "), _c('th', [_vm._v("用户名")]), _vm._v(" "), _c('th', [_vm._v("类型")]), _vm._v(" "), _c('th', [_vm._v("创建时间")]), _vm._v(" "), _c('th', [_vm._v("操作")])])]);
@@ -23909,16 +23919,25 @@ var App$3 = {
     return {
       users: [],
       open: false,
-      editObj: {}
+      editObj: {
+        _id: "",
+        name: "",
+        roleId: ""
+      },
+      roles: []
     };
   },
   mounted: function mounted() {
     var _this = this;
 
-    this.$http.get("admin/user/data", {}).then(function (ok) {
+    // get users
+    this.getUsers();
+
+    // get roles
+    this.$http.get("admin/userRole/data", {}).then(function (ok) {
       var body = ok.body;
       if (body.code) {
-        _this.users = body.data;
+        _this.roles = body.data;
       } else {
         _this.$notify({
           type: "danger",
@@ -23970,8 +23989,60 @@ var App$3 = {
       });
     },
     edit: function edit(item) {
-      this.editObj = item;
+      this.editObj._id = item._id;
+      this.editObj.name = item.name;
+      roleId = item.roleId;
+      this.editObj.roleId = item.roleId._id;
+
       this.open = true;
+    },
+    submitEdit: function submitEdit() {
+      var _this3 = this;
+
+      this.$http.put("admin/user/data", this.editObj).then(function (ok) {
+        var body = ok.body;
+        _this3.open = false;
+        if (body.code) {
+          _this3.getUsers();
+          _this3.$notify({
+            type: "success",
+            content: "修改数据成功！"
+          });
+        } else {
+          _this3.$notify({
+            type: "danger",
+            content: "修改数据失败！"
+          });
+        }
+      }, function (err) {
+        _this3.$notify({
+          type: "danger",
+          title: "连接失败",
+          content: "连接失败"
+        });
+      });
+    },
+    getUsers: function getUsers() {
+      var _this4 = this;
+
+      this.$http.get("admin/user/data", {}).then(function (ok) {
+        var body = ok.body;
+        if (body.code) {
+          _this4.users = body.data;
+        } else {
+          _this4.$notify({
+            type: "danger",
+            title: "error",
+            content: body.data
+          });
+        }
+      }, function (err) {
+        _this4.$notify({
+          type: "danger",
+          title: "连接失败",
+          content: "连接失败"
+        });
+      });
     }
   }
 };

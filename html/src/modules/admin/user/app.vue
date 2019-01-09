@@ -25,18 +25,22 @@
         </tbody>
       </table>
     </div>
-    <modal v-model="open" title="修改信息" ref="modal" id="modal-demo">
-      <h4 class="text-muted">编号: {{editObj._id}}</h4>
+    <modal v-model="open" title="修改用户信息" ref="modal" id="modal-demo">
+      <h4 class="text-warning">编号: {{editObj._id}}</h4>
+      <h4 class="text-warning">用户名: {{editObj.name}}</h4>
       <form>
         <div class="form-group">
           <label for="exampleInputEmail1">用户类型</label>
-          <select name="" id=""  class="form-control"  placeholder="Email">
-            <option value=""></option>
+          <select name id class="form-control" v-model="editObj.roleId" placeholder="Email">
+            <option
+              v-for="(item ,index) of roles"
+              :key="index"
+              :selected="editObj.roleId===item_id"
+              :value="item._id"
+            >{{item.name}}</option>
           </select>
         </div>
-        
-        
-        <button type="submit" class="btn  btn-primary">Submit</button>
+        <button type="submit" @click.prevent="submitEdit" class="btn btn-primary">修改</button>
       </form>
     </modal>
   </div>
@@ -48,15 +52,24 @@ export default {
     return {
       users: [],
       open: false,
-      editObj: {}
+      editObj: {
+        _id: "",
+        name: "",
+        roleId: ""
+      },
+      roles: []
     };
   },
   mounted() {
-    this.$http.get("admin/user/data", {}).then(
+    // get users
+    this.getUsers();
+
+    // get roles
+    this.$http.get("admin/userRole/data", {}).then(
       ok => {
         var body = ok.body;
         if (body.code) {
-          this.users = body.data;
+          this.roles = body.data;
         } else {
           this.$notify({
             type: "danger",
@@ -112,8 +125,63 @@ export default {
         });
     },
     edit(item) {
-      this.editObj = item;
+      ({
+        _id: this.editObj._id,
+        name: this.editObj.name,
+        roleId,
+        roleId: { _id: this.editObj.roleId }
+      } = item);
       this.open = true;
+    },
+    submitEdit() {
+      this.$http.put(`admin/user/data`, this.editObj).then(
+        ok => {
+          var body = ok.body;
+          this.open = false;
+          if (body.code) {
+            this.getUsers();
+            this.$notify({
+              type: "success",
+              content: "修改数据成功！"
+            });
+          } else {
+            this.$notify({
+              type: "danger",
+              content: "修改数据失败！"
+            });
+          }
+        },
+        err => {
+          this.$notify({
+            type: "danger",
+            title: "连接失败",
+            content: "连接失败"
+          });
+        }
+      );
+    },
+    getUsers() {
+      this.$http.get("admin/user/data", {}).then(
+        ok => {
+          var body = ok.body;
+          if (body.code) {
+            this.users = body.data;
+          } else {
+            this.$notify({
+              type: "danger",
+              title: "error",
+              content: body.data
+            });
+          }
+        },
+        err => {
+          this.$notify({
+            type: "danger",
+            title: "连接失败",
+            content: "连接失败"
+          });
+        }
+      );
     }
   }
 };

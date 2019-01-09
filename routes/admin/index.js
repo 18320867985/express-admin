@@ -24,7 +24,7 @@ router.get("/index/data",(req,res)=>{
 require("./user");
 
 // userRule
-require("./userRule");
+require("./userRole");
 
 
 module.exports = router;

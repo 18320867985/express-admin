@@ -3,4 +3,4 @@ exports.orm = require("./_mongoose");
 
 // models
 exports.User = require("./user");
-exports.UserRule = require("./UserRole");
+exports.UserRole = require("./UserRole");
