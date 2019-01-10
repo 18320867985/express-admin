@@ -8,6 +8,7 @@ router.get("/userRole",(req,res)=>{
 });
 
 router.get("/userRole/data",async (req,res)=>{
+  
   let userRoles= await mainModel.UserRole.find().sort({_id:-1}).catch(err=>{});
   if(!userRoles){
     userRoles=[];

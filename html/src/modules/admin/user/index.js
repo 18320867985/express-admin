@@ -4,10 +4,12 @@ import App from './app.vue';
 
 const user = {
     init() {
-        new Vue({
+
+      var vm=  new Vue({
             render: (h) => h(App),
-        }).$mount("#app")
+        }).$mount("#app");
     }
+
 }
 
 export {

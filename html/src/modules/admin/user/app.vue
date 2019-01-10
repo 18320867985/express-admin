@@ -18,7 +18,7 @@
             <td>{{ item.roleId&&item.roleId.name}}</td>
             <td>{{ item.createDate|date}}</td>
             <td>
-              <button class="btn btn-warning btn-xs" @click="edit(item)">修改</button>
+              <button class="btn btn-warning btn-xs" @click="editBtn(item)">修改</button>
               <button class="btn btn-danger btn-xs" @click.prevent="del(item._id,index)">删除</button>
             </td>
           </tr>
@@ -26,8 +26,7 @@
       </table>
     </div>
     <modal v-model="open" title="修改用户信息" ref="modal" id="modal-demo">
-      <h4 class="text-warning">编号: {{editObj._id}}</h4>
-      <h4 class="text-warning">用户名: {{editObj.name}}</h4>
+      <h4 class="text-muted">用户名: {{editObj.name}}</h4>
       <form>
         <div class="form-group">
           <label for="exampleInputEmail1">用户类型</label>
@@ -40,13 +39,18 @@
             >{{item.name}}</option>
           </select>
         </div>
-        <button type="submit" @click.prevent="submitEdit" class="btn btn-primary">修改</button>
       </form>
+      <div slot="footer">
+        <button type="button" @click.prevent="open=false" class="btn btn-defaul">取消</button>
+        <button type="submit" @click.prevent="edit" class="btn btn-primary">修改</button>
+      </div>
     </modal>
+    <paging :page-click="pageClick" :page-obj="pageObj"></paging>
   </div>
 </template>
 
 <script>
+import paging from "../../../components/common/paging.vue";
 export default {
   data() {
     return {
@@ -57,7 +61,18 @@ export default {
         name: "",
         roleId: ""
       },
-      roles: []
+      roles: [],
+      // 分页
+      pageObj: {
+        index: 1, //	当前页
+        pageItem: 20, //  每页条数
+        allItem: 100, //  总条数
+        showCount: 5, //  显示的页码数目
+        selector: ".paging", //分页父元素
+        isShowSkip: true, // 是否显示跳转页
+        isShowCount: true, // 是否显示总页数
+        isShowAllItems: true // 是否显示总条目
+      }
     };
   },
   mounted() {
@@ -86,6 +101,43 @@ export default {
         });
       }
     );
+
+    //  // 分页
+    //     paging.init({
+    //         index: 1, //	当前页
+    //         pageItem: 10, //  每页条数
+    //         allItem: 100, //  总条数
+    //         showCount: 5, //  显示的页码数目
+    //         selector: ".paging", //分页父元素
+    //         isAnimation: true, //是否显示动画
+    //         isShowSkip: true, // 是否显示跳转页
+    //         isShowCount: true, // 是否显示总页数
+    //         isShowAllItems: true, // 是否显示总条目
+    //     });
+
+    //     //点击事件
+    //     $(document).on("paging_click", function (event, id) {
+
+    //         //id 当前点击的元素的页码
+    //         alert("第" + id + "页");
+    //         // $.get("/json/paging.json", {
+    //         //     id: id
+    //         // }, function (data) {
+
+    //         //     var data = data.map(function (item) {
+    //         //         item.a2 = "第" + id + "页：" + item.a2;
+    //         //         item.a3 = "第" + id + "页：" + item.a3;
+    //         //         item.a4 = "第" + id + "页：" + item.a4;
+    //         //         return item;
+
+    //         //     });
+
+    //         //     vm.list = data;
+    //         //     $.loadingRemove(".app");
+
+    //         // });
+
+    //     });
   },
   methods: {
     // del
@@ -124,7 +176,7 @@ export default {
           // cancel
         });
     },
-    edit(item) {
+    editBtn(item) {
       ({
         _id: this.editObj._id,
         name: this.editObj.name,
@@ -133,7 +185,7 @@ export default {
       } = item);
       this.open = true;
     },
-    submitEdit() {
+    edit() {
       this.$http.put(`admin/user/data`, this.editObj).then(
         ok => {
           var body = ok.body;
@@ -182,7 +234,16 @@ export default {
           });
         }
       );
+    },
+    callback(msg) {
+      this.$notify(`Modal dismissed with msg '${msg}'.`);
+    },
+    pageClick(id) {
+      alert(id);
     }
+  },
+  components: {
+    paging
   }
 };
 </script>

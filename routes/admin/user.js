@@ -2,15 +2,15 @@
 const router = require("./_router");
 const mainModel=require("../../models/main");
 
-router.get("/user", (req, res) => {
-  
+router.get("/user", async (req, res) => {
+
     res.render("admin/user.html");
-   
 });
 
 router.get("/user/data", async (req, res) => {
+
    let list = await  mainModel.User.find().populate("roleId","name code");
-     res.json(res.ok(list));
+    res.json(res.ok(list));
 });
 
 router.post("/user/data",  async(req, res) => {
@@ -18,6 +18,7 @@ router.post("/user/data",  async(req, res) => {
 });
 
 router.put("/user/data", async(req, res) => {
+    
     let id=req.body._id;
     let roleId=req.body.roleId;
     let v= await  mainModel.User.findByIdAndUpdate(id,{$set:{ roleId}},{new:true});

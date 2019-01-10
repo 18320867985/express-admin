@@ -70,24 +70,40 @@ app.use(function (req, res, next) {
 app.use((req, res, next) => {
 
     // success return data
-    res.ok = ((data, desc) => {
-        return {
+    res.ok = (data, desc) => {
+        let o= {
             status: "success",
             code: 1,
             data,
-            desc
         }
-    });
+
+        if( typeof data !="undefined"&& desc  instanceof Object){
+            for(name in desc){
+                o[name]=desc[name];
+            }
+            return o;
+        }
+        o.desc=desc;
+        return o;
+    };
+
     // error return data
-    res.err = ((data, desc) => {
-        return {
+    res.err = (data, desc) => {
+        let o= {
             status: "error",
             code: 0,
             data,
-            desc
         }
 
-    });
+        if( typeof data !="undefined"&& desc instanceof Object){
+            for(name in desc){
+                o[name]=desc[name];
+            }
+            return o;
+        }
+        o.desc=desc;
+        return o;
+    };
 
     next();
 });
@@ -97,7 +113,6 @@ let indexRouter = require('./routes/index');
 let adminRouter = require('./routes/admin/index');
 app.use('/', indexRouter);
 app.use('/admin', adminRouter);
-
 
 // ueditor
 var ueditor = require("ueditor");
