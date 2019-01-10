@@ -23258,7 +23258,7 @@ var initModal = function initModal(type) {
   }
 };
 
-var alert$1 = function alert(options, cb) {
+var alert = function alert(options, cb) {
   return initModal.apply(this, [TYPES.ALERT, options, cb]);
 };
 
@@ -23270,7 +23270,7 @@ var prompt = function prompt(options, cb) {
   return initModal.apply(this, [TYPES.PROMPT, options, cb]);
 };
 
-var messageBox = { alert: alert$1, confirm: confirm, prompt: prompt };
+var messageBox = { alert: alert, confirm: confirm, prompt: prompt };
 
 var TYPES$1 = {
   SUCCESS: 'success',
@@ -23889,6 +23889,8 @@ var reg = {
         }).$mount("#app");
     }
 };
+
+var eventBus = new Vue();
 
 var commonjsGlobal = typeof window !== 'undefined' ? window : typeof global !== 'undefined' ? global : typeof self !== 'undefined' ? self : {};
 
@@ -25621,7 +25623,7 @@ var paging$2 = function paging($) {
 	function _init(obj) {
 
 		// 检测参数是否为对象
-		if ((typeof obj === "undefined" ? "undefined" : _typeof(obj)) !== "object") {
+		if (!obj instanceof Object) {
 			return "参数有误";
 		}
 
@@ -25904,54 +25906,28 @@ var paginger = function ($) {
 
 var paging = paginger($);
 var paging$1 = {
-    render: function render() {
-        var _vm = this;var _h = _vm.$createElement;var _c = _vm._self._c || _h;return _c('div', { staticClass: "paging text-center" });
-    },
-    staticRenderFns: [],
-    props: {
-        pageClick: {
-            type: Function,
-            default: function _default() {}
-        },
-        pageObj: {
-            type: Object,
-            default: function _default() {
-                return {
-                    index: 1, //	当前页
-                    pageItem: 20, //  每页条数
-                    allItem: 100, //  总条数
-                    showCount: 5, //  显示的页码数目
-                    selector: ".paging", //分页父元素
-                    isShowSkip: true, // 是否显示跳转页
-                    isShowCount: true, // 是否显示总页数
-                    isShowAllItems: true // 是否显示总条目
-                };
-            } }
-    },
-    mounted: function mounted() {
-
-        // 分页
-        paging.init(this.pageObj);
-        //     {
-        //     index: 1, //	当前页
-        //     pageItem: 10, //  每页条数
-        //     allItem: 100, //  总条数
-        //     showCount: 5, //  显示的页码数目
-        //     selector: ".paging", //分页父元素
-        //     isShowSkip: true, // 是否显示跳转页
-        //     isShowCount: true, // 是否显示总页数
-        //     isShowAllItems: true, // 是否显示总条目
-        // }
-        //);
-
-        //点击事件
-        $(document).on("paging_click", function (event, id) {
-
-            //id 当前点击的元素的页码	
-            //  alert("第" + id + "页");
-            this.pageClick(id);
-        }.bind(this));
+  render: function render() {
+    var _vm = this;var _h = _vm.$createElement;var _c = _vm._self._c || _h;return _c('div', { staticClass: "paging text-center" });
+  },
+  staticRenderFns: [],
+  props: {
+    pageClick: {
+      type: Function,
+      default: function _default() {}
     }
+
+  },
+  created: function created() {
+    eventBus.$on("initPage", function (obj) {
+      paging.init(obj);
+    });
+  },
+  mounted: function mounted() {
+    //点击事件
+    $(document).on("paging_click", function (event, id) {
+      this.pageClick(id);
+    }.bind(this));
+  }
 };
 
 var App$3 = {
@@ -25976,7 +25952,7 @@ var App$3 = {
           $event.preventDefault();_vm.open = false;
         } } }, [_vm._v("取消")]), _vm._v(" "), _c('button', { staticClass: "btn btn-primary", attrs: { "type": "submit" }, on: { "click": function click($event) {
           $event.preventDefault();return _vm.edit($event);
-        } } }, [_vm._v("修改")])])]), _vm._v(" "), _c('paging', { attrs: { "page-click": _vm.pageClick, "page-obj": _vm.pageObj } })], 1);
+        } } }, [_vm._v("修改")])])]), _vm._v(" "), _c('paging', { attrs: { "page-click": _vm.pageClick } })], 1);
   },
   staticRenderFns: [function () {
     var _vm = this;var _h = _vm.$createElement;var _c = _vm._self._c || _h;return _c('thead', [_c('tr', { staticClass: "text-center" }, [_c('th', [_vm._v("编号")]), _vm._v(" "), _c('th', [_vm._v("用户名")]), _vm._v(" "), _c('th', [_vm._v("类型")]), _vm._v(" "), _c('th', [_vm._v("创建时间")]), _vm._v(" "), _c('th', [_vm._v("操作")])])]);
@@ -25990,12 +25966,13 @@ var App$3 = {
         name: "",
         roleId: ""
       },
+      bl: false,
       roles: [],
       // 分页
       pageObj: {
         index: 1, //	当前页
-        pageItem: 20, //  每页条数
-        allItem: 100, //  总条数
+        pageItem: 10, //  每页条数
+        allItem: 1, //  总条数
         showCount: 5, //  显示的页码数目
         selector: ".paging", //分页父元素
         isShowSkip: true, // 是否显示跳转页
@@ -26008,7 +25985,7 @@ var App$3 = {
     var _this = this;
 
     // get users
-    this.getUsers();
+    this.getUsers(1);
 
     // get roles
     this.$http.get("admin/userRole/data", {}).then(function (ok) {
@@ -26029,43 +26006,6 @@ var App$3 = {
         content: "连接失败"
       });
     });
-
-    //  // 分页
-    //     paging.init({
-    //         index: 1, //	当前页
-    //         pageItem: 10, //  每页条数
-    //         allItem: 100, //  总条数
-    //         showCount: 5, //  显示的页码数目
-    //         selector: ".paging", //分页父元素
-    //         isAnimation: true, //是否显示动画
-    //         isShowSkip: true, // 是否显示跳转页
-    //         isShowCount: true, // 是否显示总页数
-    //         isShowAllItems: true, // 是否显示总条目
-    //     });
-
-    //     //点击事件
-    //     $(document).on("paging_click", function (event, id) {
-
-    //         //id 当前点击的元素的页码
-    //         alert("第" + id + "页");
-    //         // $.get("/json/paging.json", {
-    //         //     id: id
-    //         // }, function (data) {
-
-    //         //     var data = data.map(function (item) {
-    //         //         item.a2 = "第" + id + "页：" + item.a2;
-    //         //         item.a3 = "第" + id + "页：" + item.a3;
-    //         //         item.a4 = "第" + id + "页：" + item.a4;
-    //         //         return item;
-
-    //         //     });
-
-    //         //     vm.list = data;
-    //         //     $.loadingRemove(".app");
-
-    //         // });
-
-    //     });
   },
 
   methods: {
@@ -26136,13 +26076,18 @@ var App$3 = {
         });
       });
     },
-    getUsers: function getUsers() {
+    getUsers: function getUsers(i) {
       var _this4 = this;
 
-      this.$http.get("admin/user/data", {}).then(function (ok) {
+      // 分页
+      this.$http.get("admin/user/data/" + i + "/" + this.pageObj.pageItem, {}).then(function (ok) {
         var body = ok.body;
         if (body.code) {
           _this4.users = body.data;
+          _this4.pageObj.index = Number(body.index);
+          _this4.pageObj.pageItem = Number(body.pageItem);
+          _this4.pageObj.allItem = Number(body.allItem);
+          eventBus.$emit("initPage", _this4.pageObj);
         } else {
           _this4.$notify({
             type: "danger",
@@ -26162,7 +26107,7 @@ var App$3 = {
       this.$notify("Modal dismissed with msg '" + msg + "'.");
     },
     pageClick: function pageClick(id) {
-      alert(id);
+      this.getUsers(id);
     }
   },
   components: {

@@ -68,7 +68,7 @@ var paging = function($) {
 	function _init(obj) {
 
 		// 检测参数是否为对象
-		if(typeof obj !== "object") {
+		if(!obj instanceof Object) {
 			return "参数有误";
 		}
 

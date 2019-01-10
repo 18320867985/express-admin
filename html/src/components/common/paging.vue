@@ -1,64 +1,144 @@
 <template>
-	<!-- 分页-->
-<div class="paging text-center"></div>
+  <!-- 分页-->
+  <div class="paging text-center"></div>
 </template>
 <script>
-import $ from './$.js';
-import paginger from './paging.js';
-var  paging=paginger($);
-export default {
-     props:{
-         pageClick:{
-             type:Function,
-             default:function(){}
-         },
-         pageObj:{
-             type:Object,
-             default:function(){
-                    return{
-                    index: 1, //	当前页
-                    pageItem: 20, //  每页条数
-                    allItem: 100, //  总条数
-                    showCount: 5, //  显示的页码数目
-                    selector: ".paging", //分页父元素
-                    isShowSkip: true, // 是否显示跳转页
-                    isShowCount: true, // 是否显示总页数
-                    isShowAllItems: true, // 是否显示总条目
-             }
-         }}
-     },
-    mounted() {
-        
-           // 分页
-        paging.init(this.pageObj);
-        //     {
-        //     index: 1, //	当前页
-        //     pageItem: 10, //  每页条数
-        //     allItem: 100, //  总条数
-        //     showCount: 5, //  显示的页码数目
-        //     selector: ".paging", //分页父元素
-        //     isShowSkip: true, // 是否显示跳转页
-        //     isShowCount: true, // 是否显示总页数
-        //     isShowAllItems: true, // 是否显示总条目
-        // }
-        //);
 
-        //点击事件
-        $(document).on("paging_click", function (event, id) {
-        
-             //id 当前点击的元素的页码	
-          //  alert("第" + id + "页");
-            this.pageClick(id)
-           
-        }.bind(this));
+import {eventBus} from "./eventBus.js";
+import $ from "./$.js";
+import paginger from "./paging.js";
+var paging = paginger($);
+export default {
+  props: {
+    pageClick: {
+      type: Function,
+      default: function() {}
     },
     
-}
-
+  },
+  created() {
+    eventBus.$on("initPage",(obj)=>{
+         paging.init(obj);
+    })
+    
+  },
+  mounted() {
+    //点击事件
+    $(document).on(
+      "paging_click",
+      function(event, id) {
+        this.pageClick(id);
+      }.bind(this)
+    );
+  }
+};
 </script>
 
 <style lang="scss">
+$bg-head: rgb(61, 111, 174);
 
+$text-blue: $bg-head;
+
+.paging {
+  width: 100%;
+  padding: 10px;
+}
+
+$paing-color: $bg-head;
+
+$ping-rd: 0;
+
+$count-item-color: #666;
+
+.paging .item {
+  padding: 5px 8px;
+  border: 1px solid #ddd;
+  border-radius: $ping-rd;
+  background: #fff;
+  vertical-align: middle;
+}
+
+/*鼠标移动的样式 */
+
+.paging a:hover {
+  cursor: pointer;
+  color: #fff !important;
+  border: 1px solid lighten($bg-head, 5%);
+  border-radius: $ping-rd;
+  background: lighten($bg-head, 5%);
+}
+
+/*激活的样式*/
+
+.paging a.active {
+  color: $paing-color;
+  border: 1px solid lighten($bg-head, 5%);
+}
+
+/*禁用的样式*/
+
+.paging span.disabled {
+  color: #777;
+}
+
+/*数字禁用的样式*/
+
+.paging .disabled.num {
+  color: #666;
+  border: none;
+  background: transparent;
+}
+
+.paging .item + .item {
+  margin-left: 10px;
+}
+
+/*跳转页*/
+
+.paging .skip-txt {
+  width: 50px;
+  margin-left: 10px;
+  padding: 5px;
+  border: 1px solid #ddd;
+  border-radius: $ping-rd;
+  text-indent: 5px;
+}
+
+.paging .skip-btn {
+  margin-left: 3px;
+  padding: 5px 10px !important;
+
+  color: #fff;
+  border: 1px solid #fff;
+  border-radius: $ping-rd;
+  background: $bg-head;
+}
+
+.paging .skip-btn:hover {
+  color: #fff;
+  border: 1px solid #fff;
+  border-radius: $ping-rd;
+  background: darken($bg-head, 10%);
+}
+
+// 总记录
+.paging .count-items {
+  margin-left: 10px;
+}
+
+.paging .count-items strong {
+  color: $count-item-color;
+}
+
+/*总页数*/
+
+.paging .count-num {
+  margin-left: 10px;
+}
+
+.paging .count-num strong {
+  color: $count-item-color;
+}
 </style>
 
 

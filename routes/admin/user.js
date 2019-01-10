@@ -7,12 +7,31 @@ router.get("/user", async (req, res) => {
     res.render("admin/user.html");
 });
 
-router.get("/user/data", async (req, res) => {
+// router.get("/user/data", async (req, res) => {
 
-   let list = await  mainModel.User.find().populate("roleId","name code");
-    res.json(res.ok(list));
-});
+//    let list = await  mainModel.User.find().populate("roleId","name code");
+//     res.json(res.ok(list));
+// });
 
+router.get("/user/data/:index/:pageItem", async (req, res) => {
+
+    // paging start
+    let index=Number( req.params.index)||1; 
+    let pageItem=Number(req.params.pageItem)||10;
+    let count= await  mainModel.User.countDocuments(); //edit line
+    let maxIndex=Math.ceil(count/pageItem);
+    index=index>maxIndex?maxIndex:index;
+    let index2= (index-1)*pageItem;
+    // paging end
+
+    let list = await  mainModel.User.find({}).populate("roleId","name code").skip(index2).limit(pageItem);
+
+     res.json(res.ok(list,{
+        index: index, //	当前页
+        pageItem: pageItem, //  每页条数
+        allItem: count, //  总条数
+     }));
+ });
 router.post("/user/data",  async(req, res) => {
         res.json(res.ok("post"));
 });

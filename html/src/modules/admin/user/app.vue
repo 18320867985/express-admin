@@ -45,12 +45,13 @@
         <button type="submit" @click.prevent="edit" class="btn btn-primary">修改</button>
       </div>
     </modal>
-    <paging :page-click="pageClick" :page-obj="pageObj"></paging>
+    <paging :page-click="pageClick" ></paging>
   </div>
 </template>
 
 <script>
 import paging from "../../../components/common/paging.vue";
+import {eventBus} from "../../../components/common/eventBus.js";
 export default {
   data() {
     return {
@@ -61,12 +62,13 @@ export default {
         name: "",
         roleId: ""
       },
+      bl:false,
       roles: [],
       // 分页
-      pageObj: {
+      pageObj:{
         index: 1, //	当前页
-        pageItem: 20, //  每页条数
-        allItem: 100, //  总条数
+        pageItem: 10, //  每页条数
+        allItem: 1, //  总条数
         showCount: 5, //  显示的页码数目
         selector: ".paging", //分页父元素
         isShowSkip: true, // 是否显示跳转页
@@ -75,11 +77,13 @@ export default {
       }
     };
   },
-  mounted() {
-    // get users
-    this.getUsers();
 
-    // get roles
+  mounted() {
+  
+    // get users
+    this.getUsers(1);
+
+   // get roles
     this.$http.get("admin/userRole/data", {}).then(
       ok => {
         var body = ok.body;
@@ -102,42 +106,6 @@ export default {
       }
     );
 
-    //  // 分页
-    //     paging.init({
-    //         index: 1, //	当前页
-    //         pageItem: 10, //  每页条数
-    //         allItem: 100, //  总条数
-    //         showCount: 5, //  显示的页码数目
-    //         selector: ".paging", //分页父元素
-    //         isAnimation: true, //是否显示动画
-    //         isShowSkip: true, // 是否显示跳转页
-    //         isShowCount: true, // 是否显示总页数
-    //         isShowAllItems: true, // 是否显示总条目
-    //     });
-
-    //     //点击事件
-    //     $(document).on("paging_click", function (event, id) {
-
-    //         //id 当前点击的元素的页码
-    //         alert("第" + id + "页");
-    //         // $.get("/json/paging.json", {
-    //         //     id: id
-    //         // }, function (data) {
-
-    //         //     var data = data.map(function (item) {
-    //         //         item.a2 = "第" + id + "页：" + item.a2;
-    //         //         item.a3 = "第" + id + "页：" + item.a3;
-    //         //         item.a4 = "第" + id + "页：" + item.a4;
-    //         //         return item;
-
-    //         //     });
-
-    //         //     vm.list = data;
-    //         //     $.loadingRemove(".app");
-
-    //         // });
-
-    //     });
   },
   methods: {
     // del
@@ -212,12 +180,19 @@ export default {
         }
       );
     },
-    getUsers() {
-      this.$http.get("admin/user/data", {}).then(
+    getUsers(i) {
+      
+      // 分页
+      this.$http.get(`admin/user/data/${i}/${ this.pageObj.pageItem}`, {}).then(
         ok => {
           var body = ok.body;
           if (body.code) {
             this.users = body.data;
+            this.pageObj.index=Number( body.index);
+            this.pageObj.pageItem=Number(body.pageItem);
+            this.pageObj.allItem=Number(body.allItem);
+            eventBus.$emit("initPage", this.pageObj);
+  
           } else {
             this.$notify({
               type: "danger",
@@ -239,12 +214,12 @@ export default {
       this.$notify(`Modal dismissed with msg '${msg}'.`);
     },
     pageClick(id) {
-      alert(id);
+    this.getUsers(id);
     }
   },
   components: {
     paging
-  }
+  },
 };
 </script>
 <style lang="scss">
