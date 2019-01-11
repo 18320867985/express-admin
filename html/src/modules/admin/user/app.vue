@@ -45,27 +45,15 @@
         <button type="submit" @click.prevent="edit" class="btn btn-primary">修改</button>
       </div>
     </modal>
-    <vue-paging :page-click="pageClick" ></vue-paging>
-    <hr>
-    <div class="form-group">
-      <div class="col-sm-6">
-<input class="form-control" type="text" name="" id="" v-model="file">
-      </div>
-        <div class="col-sm-4">
-        <vue-file btn-class="btn-primary" v-model="file" url="http://localhost:3000/file"   @success="fileok" @error="fileerr"
-        line-class="text-primary" btn-text="上传图片"></vue-file>
-        </div>
-    </div>
-    {{file}}
-
- 
+    <vue-paging :page-click="pageClick"></vue-paging>
+  
   </div>
 </template>
 
 <script>
 import vuePaging from "../../../components/common/paging.vue";
-import {eventBus} from "../../../components/common/eventBus.js";
-import vueFile from "../../../components/common/file.vue"
+import { eventBus } from "../../../components/common/eventBus.js";
+
 export default {
   data() {
     return {
@@ -76,10 +64,10 @@ export default {
         name: "",
         roleId: ""
       },
-      bl:false,
+      bl: false,
       roles: [],
       // 分页
-      pageObj:{
+      pageObj: {
         index: 1, //	当前页
         pageItem: 10, //  每页条数
         allItem: 1, //  总条数
@@ -89,16 +77,15 @@ export default {
         isShowCount: true, // 是否显示总页数
         isShowAllItems: true // 是否显示总条目
       },
-      file:"",
+    
     };
   },
 
   mounted() {
-  
     // get users
     this.getUsers(1);
 
-   // get roles
+    // get roles
     this.$http.get("admin/userRole/data", {}).then(
       ok => {
         var body = ok.body;
@@ -120,7 +107,6 @@ export default {
         });
       }
     );
-
   },
   methods: {
     // del
@@ -196,18 +182,16 @@ export default {
       );
     },
     getUsers(i) {
-      
       // 分页
-      this.$http.get(`admin/user/data/${i}/${ this.pageObj.pageItem}`, {}).then(
+      this.$http.get(`admin/user/data/${i}/${this.pageObj.pageItem}`, {}).then(
         ok => {
           var body = ok.body;
           if (body.code) {
             this.users = body.data;
-            this.pageObj.index=Number( body.index);
-            this.pageObj.pageItem=Number(body.pageItem);
-            this.pageObj.allItem=Number(body.allItem);
+            this.pageObj.index = Number(body.index);
+            this.pageObj.pageItem = Number(body.pageItem);
+            this.pageObj.allItem = Number(body.allItem);
             eventBus.$emit("initPage", this.pageObj);
-  
           } else {
             this.$notify({
               type: "danger",
@@ -229,19 +213,14 @@ export default {
       this.$notify(`Modal dismissed with msg '${msg}'.`);
     },
     pageClick(id) {
-    this.getUsers(id);
+      this.getUsers(id);
     },
-    fileok(data){
-      console.log(data)
-    },
-    fileerr(err){
-      console.log(err)
-    }
+   
   },
   components: {
     vuePaging,
-    vueFile
-  },
+
+  }
 };
 </script>
 <style lang="scss">

@@ -25930,183 +25930,6 @@ var vuePaging = {
   }
 };
 
-var file = function ($) {
-    var upload = function upload(option) {
-        var p = $(option.el).parents(".vue-file");
-        if ((typeof option === "undefined" ? "undefined" : _typeof(option)) !== 'object') {
-            $(".vue-file-btn").show();
-            $.alert("参数有误！");
-            return;
-        }
-
-        if (option.size) {
-            if (option.data.size > option.size) {
-                $.alert("文件大于" + option.size / 1000000 + "M");
-                $(".vue-file-btn").show();
-                return;
-            }
-        } else {
-            $.alert("参数没有设置文件大小值[size]");
-            $(".vue-file-btn", p).show();
-            return;
-        }
-
-        var data = new FormData();
-
-        data.append('file', option.data);
-
-        $.ajax({
-            url: option.url,
-            data: data,
-            type: "post",
-            timeout: option.outTime,
-            cache: false,
-            processData: false,
-            contentType: option.contentType || false,
-            xhrFields: {
-                withCredentials: true
-            },
-            xhr: function xhr() {
-                //获取ajaxSettings中的xhr对象，为它的upload属性绑定progress事件的处理函数
-                var myXhr = $.ajaxSettings.xhr();
-                if (myXhr.upload) {
-                    //检查upload属性是否存在
-                    //绑定progress事件的回调函数
-                    myXhr.upload.onprogress = progressFunction;
-                }
-                return myXhr; //xhr对象返回给jQuery或zepto使用
-            },
-            success: option.success,
-            error: option.error
-        });
-
-        //progress事件的回调函数
-        function progressFunction(evt) {
-
-            //var p = $(option.el).parents(".vue-file");
-            var widthAll = $(".progress-all", p).width();
-            var progressBar = $(".progress-all", p);
-            var percentageDiv = $(".progress-now", p);
-            var percentageNum = $(".progress-num", p);
-
-            if (evt.lengthComputable) {
-                progressBar.max = evt.total;
-                progressBar.value = evt.loaded;
-                $(percentageDiv).css("width", Math.round(evt.loaded / evt.total * widthAll) + "px");
-                $(percentageNum).text(Math.ceil(evt.loaded / evt.total * 100) + "%");
-                //          if (evt.loaded == evt.total) {
-                //            //  console.log("上传完成100%");
-                //          }
-            }
-        }
-    };
-
-    $.fn.VueFile = function (option) {
-
-        $(document).on("click", ".vue-file-btn", function (e) {
-            e.stopPropagation();
-            e.preventDefault();
-            var p = $(this).parents(".vue-file");
-            // 点击文件上传框
-            $(".fileUp", p).click();
-        });
-
-        // 文件上传框值变化
-        $(document).on("change", ".fileUp", function () {
-            fileupff(this);
-        });
-
-        var fileupff = function fileupff(obj) {
-            var p = $(obj).parents(".vue-file");
-            $(".vue-file-btn", p).hide();
-            var $img = $(obj).closest(".vue-file").find(".img");
-            var $propress = $(obj).closest(".vue-file").find(".progress-all");
-            $propress.show();
-
-            // 是否支持html5 文件上传
-            if (typeof obj.files === "undefined") {
-                $(".vue-file-btn", p).show();
-                alert("不支持html5 文件上传,请升级你的浏览器  \n not support html5 ");
-                return;
-            }
-
-            var file = obj.files[0];
-
-            upload({
-                data: file, //选择的文件
-                url: option.url, //"./index.html", //上传网址
-                outTime: 30000,
-                el: $(obj), //当前element
-                size: option.size * 1000000, //1m=1000000
-                contentType: option.contentType, //false,
-                success: function success(data) {
-                    option.success(data, p);
-                    $propress.hide();
-                    obj.value = null;
-                    $(".vue-file-btn", p).show();
-                }, //成功回调
-                error: function error(data) {
-                    option.error(data, p);
-                    $propress.hide();
-                    obj.value = null;
-                    $(".vue-file-btn", p).show();
-                } //错误回调
-
-            }); //调用上传接口
-        };
-    };
-};
-
-file($);
-var vueFile = {
-  render: function render() {
-    var _vm = this;var _h = _vm.$createElement;var _c = _vm._self._c || _h;return _c('div', { staticClass: "vue-file" }, [_c('a', { staticClass: "vue-file-btn btn", class: _vm.btnClass, attrs: { "name": "up", "href": "javascript:" } }, [_c('span', { staticClass: "glyphicon glyphicon-upload" }), _vm._v("\n    " + _vm._s(_vm.btnText) + "\n  ")]), _vm._v(" "), _c('input', { staticClass: "fileUp v-hide-text", attrs: { "type": "file", "id": "fileUp", "value": "", "name": "file" } }), _vm._v(" "), _c('div', { staticClass: "progress-all v-hide" }, [_c('div', { staticClass: "progress-now", class: _vm.lineClass }), _vm._v(" "), _c('div', { staticClass: "progress-num" }, [_vm._v("0%")])])]);
-  },
-  staticRenderFns: [],
-  props: {
-    value: {},
-    url: {
-      type: String,
-      default: ""
-    },
-    btnClass: {
-      type: String,
-      default: "btn-primary"
-    },
-    lineClass: {
-      type: String,
-      default: "text-primary"
-    },
-    btnText: {
-      type: String,
-      default: "上传图片"
-    },
-    success: {
-      type: Function,
-      default: function _default() {}
-    },
-    error: { type: Function,
-      default: function _default() {} }
-  },
-  mounted: function mounted() {
-    /***文件上传  start***/
-    $(".vue-file").VueFile({
-      url: this.url, //上传网址
-      outTime: 30000,
-      size: 300000, // 大小 m
-      contentType: false,
-      success: function (data, el) {
-        this.$emit("input", data);
-        this.success(data);
-      }.bind(this),
-      error: function (err, el) {
-        this.$emit("input", err);
-        this.error(err);
-      }.bind(this)
-    });
-  }
-};
-
 var App$3 = {
   render: function render() {
     var _vm = this;var _h = _vm.$createElement;var _c = _vm._self._c || _h;return _c('div', { staticClass: "user" }, [_c('div', { staticClass: "container-fluid-12" }, [_c('table', { staticClass: "table table-hover table-bordered" }, [_vm._m(0), _vm._v(" "), _c('tbody', _vm._l(_vm.users, function (item, index) {
@@ -26129,13 +25952,7 @@ var App$3 = {
           $event.preventDefault();_vm.open = false;
         } } }, [_vm._v("取消")]), _vm._v(" "), _c('button', { staticClass: "btn btn-primary", attrs: { "type": "submit" }, on: { "click": function click($event) {
           $event.preventDefault();return _vm.edit($event);
-        } } }, [_vm._v("修改")])])]), _vm._v(" "), _c('vue-paging', { attrs: { "page-click": _vm.pageClick } }), _vm._v(" "), _c('hr'), _vm._v(" "), _c('div', { staticClass: "form-group" }, [_c('div', { staticClass: "col-sm-6" }, [_c('input', { directives: [{ name: "model", rawName: "v-model", value: _vm.file, expression: "file" }], staticClass: "form-control", attrs: { "type": "text", "name": "", "id": "" }, domProps: { "value": _vm.file }, on: { "input": function input($event) {
-          if ($event.target.composing) {
-            return;
-          }_vm.file = $event.target.value;
-        } } })]), _vm._v(" "), _c('div', { staticClass: "col-sm-4" }, [_c('vue-file', { attrs: { "btn-class": "btn-primary", "url": "http://localhost:3000/file", "line-class": "text-primary", "btn-text": "上传图片" }, on: { "success": _vm.fileok, "error": _vm.fileerr }, model: { value: _vm.file, callback: function callback($$v) {
-          _vm.file = $$v;
-        }, expression: "file" } })], 1)]), _vm._v("\n    " + _vm._s(_vm.file) + "\n\n \n  ")], 1);
+        } } }, [_vm._v("修改")])])]), _vm._v(" "), _c('vue-paging', { attrs: { "page-click": _vm.pageClick } })], 1);
   },
   staticRenderFns: [function () {
     var _vm = this;var _h = _vm.$createElement;var _c = _vm._self._c || _h;return _c('thead', [_c('tr', { staticClass: "text-center" }, [_c('th', [_vm._v("编号")]), _vm._v(" "), _c('th', [_vm._v("用户名")]), _vm._v(" "), _c('th', [_vm._v("类型")]), _vm._v(" "), _c('th', [_vm._v("创建时间")]), _vm._v(" "), _c('th', [_vm._v("操作")])])]);
@@ -26161,8 +25978,8 @@ var App$3 = {
         isShowSkip: true, // 是否显示跳转页
         isShowCount: true, // 是否显示总页数
         isShowAllItems: true // 是否显示总条目
-      },
-      file: ""
+      }
+
     };
   },
   mounted: function mounted() {
@@ -26292,17 +26109,11 @@ var App$3 = {
     },
     pageClick: function pageClick(id) {
       this.getUsers(id);
-    },
-    fileok: function fileok(data) {
-      console.log(data);
-    },
-    fileerr: function fileerr(err) {
-      console.log(err);
     }
   },
   components: {
-    vuePaging: vuePaging,
-    vueFile: vueFile
+    vuePaging: vuePaging
+
   }
 };
 
@@ -26312,6 +26123,236 @@ var user = {
         var vm = new Vue({
             render: function render(h) {
                 return h(App$3);
+            }
+        }).$mount("#app");
+    }
+};
+
+var file$1 = function ($) {
+    var upload = function upload(option) {
+        var p = $(option.el).parents(".vue-file");
+        if ((typeof option === "undefined" ? "undefined" : _typeof(option)) !== 'object') {
+            $(".vue-file-btn").show();
+            $.alert("参数有误！");
+            return;
+        }
+
+        if (option.size) {
+            if (option.data.size > option.size) {
+                $.alert("文件大于" + option.size / 1000000 + "M");
+                $(".vue-file-btn").show();
+                return;
+            }
+        } else {
+            $.alert("参数没有设置文件大小值[size]");
+            $(".vue-file-btn", p).show();
+            return;
+        }
+
+        var data = new FormData();
+
+        data.append('file', option.data);
+
+        $.ajax({
+            url: option.url,
+            data: data,
+            type: "post",
+            timeout: option.outTime,
+            cache: false,
+            processData: false,
+            contentType: option.contentType || false,
+            xhrFields: {
+                withCredentials: true
+            },
+            xhr: function xhr() {
+                //获取ajaxSettings中的xhr对象，为它的upload属性绑定progress事件的处理函数
+                var myXhr = $.ajaxSettings.xhr();
+                if (myXhr.upload) {
+                    //检查upload属性是否存在
+                    //绑定progress事件的回调函数
+                    myXhr.upload.onprogress = progressFunction;
+                }
+                return myXhr; //xhr对象返回给jQuery或zepto使用
+            },
+            success: option.success,
+            error: option.error
+        });
+
+        //progress事件的回调函数
+        function progressFunction(evt) {
+
+            //var p = $(option.el).parents(".vue-file");
+            var widthAll = $(".progress-all", p).width();
+            var progressBar = $(".progress-all", p);
+            var percentageDiv = $(".progress-now", p);
+            var percentageNum = $(".progress-num", p);
+
+            if (evt.lengthComputable) {
+                progressBar.max = evt.total;
+                progressBar.value = evt.loaded;
+                $(percentageDiv).css("width", Math.round(evt.loaded / evt.total * widthAll) + "px");
+                $(percentageNum).text(Math.ceil(evt.loaded / evt.total * 100) + "%");
+                //          if (evt.loaded == evt.total) {
+                //            //  console.log("上传完成100%");
+                //          }
+            }
+        }
+    };
+
+    $.fn.VueFile = function (option) {
+
+        $(document).on("click", ".vue-file-btn", function (e) {
+            e.stopPropagation();
+            e.preventDefault();
+            var p = $(this).parents(".vue-file");
+            // 点击文件上传框
+            $(".fileUp", p).click();
+        });
+
+        // 文件上传框值变化
+        $(document).on("change", ".fileUp", function () {
+            fileupff(this);
+        });
+
+        var fileupff = function fileupff(obj) {
+            var p = $(obj).parents(".vue-file");
+            $(".vue-file-btn", p).hide();
+            var $img = $(obj).closest(".vue-file").find(".img");
+            var $propress = $(obj).closest(".vue-file").find(".progress-all");
+            $propress.show();
+
+            // 是否支持html5 文件上传
+            if (typeof obj.files === "undefined") {
+                $(".vue-file-btn", p).show();
+                alert("不支持html5 文件上传,请升级你的浏览器  \n not support html5 ");
+                return;
+            }
+
+            var file = obj.files[0];
+
+            upload({
+                data: file, //选择的文件
+                url: option.url, //"./index.html", //上传网址
+                outTime: 30000,
+                el: $(obj), //当前element
+                size: option.size * 1000000, //1m=1000000
+                contentType: option.contentType, //false,
+                success: function success(data) {
+                    option.success(data, p);
+                    $propress.hide();
+                    obj.value = null;
+                    $(".vue-file-btn", p).show();
+                }, //成功回调
+                error: function error(data) {
+                    option.error(data, p);
+                    $propress.hide();
+                    obj.value = null;
+                    $(".vue-file-btn", p).show();
+                } //错误回调
+
+            }); //调用上传接口
+        };
+    };
+};
+
+file$1($);
+var vueFile = {
+  render: function render() {
+    var _vm = this;var _h = _vm.$createElement;var _c = _vm._self._c || _h;return _c('div', { staticClass: "vue-file" }, [_c('a', { staticClass: "vue-file-btn btn", class: _vm.btnClass, attrs: { "name": "up", "href": "javascript:" } }, [_c('span', { staticClass: "glyphicon glyphicon-upload" }), _vm._v("\n    " + _vm._s(_vm.btnText) + "\n  ")]), _vm._v(" "), _c('input', { staticClass: "fileUp v-hide-text", attrs: { "type": "file", "id": "fileUp", "value": "", "name": "file", "accept": _vm.fileType } }), _vm._v(" "), _c('div', { staticClass: "progress-all v-hide" }, [_c('div', { staticClass: "progress-now", class: _vm.lineClass }), _vm._v(" "), _c('div', { staticClass: "progress-num" }, [_vm._v("0%")])])]);
+  },
+  staticRenderFns: [],
+  props: {
+    value: {},
+    url: {
+      type: String,
+      default: ""
+    },
+    fileType: {
+      type: String,
+      default: "*.*"
+    },
+    size: {
+      type: Number,
+      default: 100
+    },
+    timeout: {
+      type: Number,
+      default: 30
+    },
+    btnClass: {
+      type: String,
+      default: "btn-primary"
+    },
+    lineClass: {
+      type: String,
+      default: "text-primary"
+    },
+    btnText: {
+      type: String,
+      default: "上传图片"
+    },
+    ok: {
+      type: Function,
+      default: function _default() {}
+    },
+    err: { type: Function,
+      default: function _default() {} }
+  },
+  mounted: function mounted() {
+    /***文件上传  start***/
+    $(".vue-file").VueFile({
+      url: this.url, //上传网址
+      outTime: this.timeout * 1000,
+      size: this.size * 1024, // 大小 m
+      contentType: false,
+      success: function (data, el) {
+        this.$emit("input", data);
+        this.ok(data, el);
+      }.bind(this),
+      error: function (err, el) {
+        //  this.$emit("input", err);
+        this.err(err, el);
+      }.bind(this)
+    });
+  }
+};
+
+var App$4 = {
+  render: function render() {
+    var _vm = this;var _h = _vm.$createElement;var _c = _vm._self._c || _h;return _c('div', { staticClass: "file" }, [_c('hr'), _vm._v(" "), _c('div', { staticClass: "form-group" }, [_c('div', { staticClass: "col-sm-6" }, [_c('input', { directives: [{ name: "model", rawName: "v-model", value: _vm.file.data, expression: "file.data" }], staticClass: "form-control", attrs: { "type": "text", "name": "", "id": "" }, domProps: { "value": _vm.file.data }, on: { "input": function input($event) {
+          if ($event.target.composing) {
+            return;
+          }_vm.$set(_vm.file, "data", $event.target.value);
+        } } })]), _vm._v(" "), _c('div', { staticClass: "col-sm-4" }, [_c('vue-file', { attrs: { "btn-class": "btn-primary", "url": "http://localhost:3000/file", "file-type": "image/*", "size": 300, "timeout": 30, "line-class": "text-primary", "btn-text": "上传图片" }, on: { "ok": _vm.ok, "err": _vm.err }, model: { value: _vm.file, callback: function callback($$v) {
+          _vm.file = $$v;
+        }, expression: "file" } })], 1), _vm._v(" "), _c('div', { staticClass: "form-group" }, [_c('div', { staticClass: "col-xs-6" }, [_c('img', { staticStyle: { "max-width": "100%", "max-height": "100%", "margin": "20px" }, attrs: { "src": _vm.file.data, "alt": "" } })])])])]);
+  },
+  staticRenderFns: [],
+  data: function data() {
+    return {
+      file: ""
+    };
+  },
+
+  methods: {
+    ok: function ok(data, el) {
+      console.log(data);
+    },
+    err: function err(_err, el) {
+      console.log(_err);
+    }
+  },
+  components: {
+    vueFile: vueFile
+  }
+};
+
+var file = {
+    init: function init() {
+
+        var vm = new Vue({
+            render: function render(h) {
+                return h(App$4);
             }
         }).$mount("#app");
     }
@@ -26334,6 +26375,7 @@ exports.index = index$1;
 exports.login = login;
 exports.reg = reg;
 exports.user = user;
+exports.file = file;
 
 Object.defineProperty(exports, '__esModule', { value: true });
 

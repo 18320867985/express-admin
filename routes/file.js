@@ -2,6 +2,7 @@
 var express = require("express");
 var router = express.Router();
 var path = require("path");
+var fs = require("fs");
 var formidable = require("formidable"); //上传文件
 
 router.get("/", (req, res) => {
@@ -13,6 +14,9 @@ router.post("/", (req, res) => {
     try {
 
         let _url = "./public/upload";
+        if(!fs.existsSync(path.resolve( _url))){
+            fs.mkdirSync(path.resolve( _url));
+        }
         let form = new formidable.IncomingForm();
         form.keepExtensions = true;
         form.uploadDir = path.resolve(_url);
@@ -30,7 +34,7 @@ router.post("/", (req, res) => {
             var p = path.dirname(_path);
             var extname = path.extname(_path);
             var basename = path.basename(_path);
-            let url = "public/upload/" + basename;
+            let url = "/public/upload/" + basename;
             res.json(res.ok(url));
 
         });

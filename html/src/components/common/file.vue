@@ -5,7 +5,7 @@
       <span class="glyphicon glyphicon-upload"></span>
       {{btnText}}
     </a>
-    <input class="fileUp v-hide-text" type="file"  id="fileUp" value name="file"  >
+    <input class="fileUp v-hide-text" type="file"  id="fileUp" value name="file"    :accept="fileType"  >
     <!--进度条-->
     <div class="progress-all v-hide">
       <div class="progress-now" :class="lineClass"></div>
@@ -25,6 +25,18 @@ export default {
       type: String,
       default: ""
     },
+    fileType: {
+      type: String,
+      default: "*.*"
+    },
+     size: {
+      type: Number,
+      default: 100
+    },
+     timeout: {
+      type: Number,
+      default: 30
+    },
     btnClass: {
       type: String,
       default: "btn-primary"
@@ -37,27 +49,27 @@ export default {
       type: String,
       default: "上传图片"
     },
-    success: {
+    ok: {
       type: Function,
       default: function() {}
     },
-    error: { type: Function,
+    err: { type: Function,
      default: function() {} }
   },
   mounted() {
     /***文件上传  start***/
     $(".vue-file").VueFile({
       url: this.url, //上传网址
-      outTime: 30000,
-      size: 300000, // 大小 m
+      outTime: this.timeout*1000,
+      size: this.size*1024, // 大小 m
       contentType: false,
       success: function(data, el) {
         this.$emit("input", data);
-        this.success(data);
+        this.ok(data,el);
       }.bind(this),
       error: function(err, el) {
-        this.$emit("input", err);
-        this.error(err);
+      //  this.$emit("input", err);
+        this.err(err,el);
       }.bind(this)
     });
   }

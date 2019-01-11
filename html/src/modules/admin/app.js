@@ -24,3 +24,5 @@ export {index}  from "./index";
 export {login}  from "./login";
 export {reg}  from "./reg";
 export {user}  from "./user";
+
+export {file}  from "./file";
