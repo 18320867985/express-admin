@@ -24,7 +24,7 @@ app.use(session({
     }
 }));
 
-//app.use(express.static(path.join(__dirname, 'public')));
+app.use("/public",express.static(path.join(__dirname, 'public')));
 
 // 配合前端打包工具使用 前端打包文件夹html
 let ueditorDir, ueditorUpload, htmlStatic, nunjucksDir;
@@ -111,8 +111,10 @@ app.use((req, res, next) => {
 // route 
 let indexRouter = require('./routes/index');
 let adminRouter = require('./routes/admin/index');
+let file = require('./routes/file');
 app.use('/', indexRouter);
 app.use('/admin', adminRouter);
+app.use('/file', file);
 
 // ueditor
 var ueditor = require("ueditor");

@@ -45,13 +45,27 @@
         <button type="submit" @click.prevent="edit" class="btn btn-primary">修改</button>
       </div>
     </modal>
-    <paging :page-click="pageClick" ></paging>
+    <vue-paging :page-click="pageClick" ></vue-paging>
+    <hr>
+    <div class="form-group">
+      <div class="col-sm-6">
+<input class="form-control" type="text" name="" id="" v-model="file">
+      </div>
+        <div class="col-sm-4">
+        <vue-file btn-class="btn-primary" v-model="file" url="http://localhost:3000/file"   @success="fileok" @error="fileerr"
+        line-class="text-primary" btn-text="上传图片"></vue-file>
+        </div>
+    </div>
+    {{file}}
+
+ 
   </div>
 </template>
 
 <script>
-import paging from "../../../components/common/paging.vue";
+import vuePaging from "../../../components/common/paging.vue";
 import {eventBus} from "../../../components/common/eventBus.js";
+import vueFile from "../../../components/common/file.vue"
 export default {
   data() {
     return {
@@ -74,7 +88,8 @@ export default {
         isShowSkip: true, // 是否显示跳转页
         isShowCount: true, // 是否显示总页数
         isShowAllItems: true // 是否显示总条目
-      }
+      },
+      file:"",
     };
   },
 
@@ -215,10 +230,17 @@ export default {
     },
     pageClick(id) {
     this.getUsers(id);
+    },
+    fileok(data){
+      console.log(data)
+    },
+    fileerr(err){
+      console.log(err)
     }
   },
   components: {
-    paging
+    vuePaging,
+    vueFile
   },
 };
 </script>
@@ -233,6 +255,5 @@ export default {
   }
 }
 </style>
-
 
 
