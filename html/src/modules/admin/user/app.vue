@@ -45,7 +45,7 @@
         <button type="submit" @click.prevent="edit" class="btn btn-primary">修改</button>
       </div>
     </modal>
-    <vue-paging :page-click="pageClick"></vue-paging>
+    <vue-paging :page-click="pageClick" text-class="text-center"></vue-paging>
   
   </div>
 </template>
@@ -69,13 +69,13 @@ export default {
       // 分页
       pageObj: {
         index: 1, //	当前页
-        pageItem: 10, //  每页条数
+        pageItem: 2, //  每页条数
         allItem: 1, //  总条数
         showCount: 5, //  显示的页码数目
-        selector: ".paging", //分页父元素
         isShowSkip: true, // 是否显示跳转页
         isShowCount: true, // 是否显示总页数
-        isShowAllItems: true // 是否显示总条目
+        isShowAllItems: true, // 是否显示总条目
+        selector:".paging"
       },
     
     };
@@ -121,15 +121,22 @@ export default {
               var body = ok.body;
               if (body.code) {
                 this.users.splice(index, 1);
-               this.$info("success","删除数据成功！");
+              
+               this.$notify({
+                 type:"success",
+                 content:"删除数据成功！"
+               });
               } else {
-                this.$info("danger","删除数据失败！");
+                 this.$notify({
+                 type:"danger",
+                 content:"删除数据失败！"
+               });
+           
               }
             },
             err => {
               this.$notify({
                 type: "danger",
-                title: "连接失败",
                 content: "连接失败"
               });
             }
@@ -169,7 +176,6 @@ export default {
         err => {
           this.$notify({
             type: "danger",
-            title: "连接失败",
             content: "连接失败"
           });
         }
@@ -193,7 +199,6 @@ export default {
           } else {
             this.$notify({
               type: "danger",
-              title: "error",
               content: body.data
             });
           }
@@ -202,7 +207,6 @@ export default {
           this.$loading(false);
           this.$notify({
             type: "danger",
-            title: "连接失败",
             content: "连接失败"
           });
         }

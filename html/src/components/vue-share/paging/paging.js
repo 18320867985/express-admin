@@ -358,8 +358,6 @@ var paging = function ($) {
 		return allText;
 	}
 
-
-
 	// 返回结果
 	return {
 

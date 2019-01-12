@@ -1,6 +1,6 @@
 <template>
   <!-- 分页-->
-  <div class="paging text-center"></div>
+  <div class="paging " :class="textClass"></div>
 </template>
 <script>
 
@@ -15,6 +15,10 @@ export default {
       type: Function,
       default: function() {}
     },
+    textClass: {
+      type: String,
+      default:"text-center"   
+       },
     
   },
   created() {

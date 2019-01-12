@@ -21036,7 +21036,7 @@ var paginger = function ($) {
 var paging = paginger(dom);
 var VuePaging = {
   render: function render() {
-    var _vm = this;var _h = _vm.$createElement;var _c = _vm._self._c || _h;return _c('div', { staticClass: "paging text-center" });
+    var _vm = this;var _h = _vm.$createElement;var _c = _vm._self._c || _h;return _c('div', { staticClass: "paging ", class: _vm.textClass });
   },
   staticRenderFns: [],
   name: "VuePaging",
@@ -21044,6 +21044,10 @@ var VuePaging = {
     pageClick: {
       type: Function,
       default: function _default() {}
+    },
+    textClass: {
+      type: String,
+      default: "text-center"
     }
 
   },
@@ -26252,7 +26256,7 @@ var App$3 = {
           $event.preventDefault();_vm.open = false;
         } } }, [_vm._v("取消")]), _vm._v(" "), _c('button', { staticClass: "btn btn-primary", attrs: { "type": "submit" }, on: { "click": function click($event) {
           $event.preventDefault();return _vm.edit($event);
-        } } }, [_vm._v("修改")])])]), _vm._v(" "), _c('vue-paging', { attrs: { "page-click": _vm.pageClick } })], 1);
+        } } }, [_vm._v("修改")])])]), _vm._v(" "), _c('vue-paging', { attrs: { "page-click": _vm.pageClick, "text-class": "text-center" } })], 1);
   },
   staticRenderFns: [function () {
     var _vm = this;var _h = _vm.$createElement;var _c = _vm._self._c || _h;return _c('thead', [_c('tr', { staticClass: "text-center" }, [_c('th', [_vm._v("编号")]), _vm._v(" "), _c('th', [_vm._v("用户名")]), _vm._v(" "), _c('th', [_vm._v("类型")]), _vm._v(" "), _c('th', [_vm._v("创建时间")]), _vm._v(" "), _c('th', [_vm._v("操作")])])]);
@@ -26271,13 +26275,13 @@ var App$3 = {
       // 分页
       pageObj: {
         index: 1, //	当前页
-        pageItem: 10, //  每页条数
+        pageItem: 2, //  每页条数
         allItem: 1, //  总条数
         showCount: 5, //  显示的页码数目
-        selector: ".paging", //分页父元素
         isShowSkip: true, // 是否显示跳转页
         isShowCount: true, // 是否显示总页数
-        isShowAllItems: true // 是否显示总条目
+        isShowAllItems: true, // 是否显示总条目
+        selector: ".paging"
       }
 
     };
@@ -26322,14 +26326,20 @@ var App$3 = {
           var body = ok.body;
           if (body.code) {
             _this2.users.splice(index, 1);
-            _this2.$info("success", "删除数据成功！");
+
+            _this2.$notify({
+              type: "success",
+              content: "删除数据成功！"
+            });
           } else {
-            _this2.$info("danger", "删除数据失败！");
+            _this2.$notify({
+              type: "danger",
+              content: "删除数据失败！"
+            });
           }
         }, function (err) {
           _this2.$notify({
             type: "danger",
-            title: "连接失败",
             content: "连接失败"
           });
         });
@@ -26366,7 +26376,6 @@ var App$3 = {
       }, function (err) {
         _this3.$notify({
           type: "danger",
-          title: "连接失败",
           content: "连接失败"
         });
       });
@@ -26389,7 +26398,6 @@ var App$3 = {
         } else {
           _this4.$notify({
             type: "danger",
-            title: "error",
             content: body.data
           });
         }
@@ -26397,7 +26405,6 @@ var App$3 = {
         _this4.$loading(false);
         _this4.$notify({
           type: "danger",
-          title: "连接失败",
           content: "连接失败"
         });
       });
