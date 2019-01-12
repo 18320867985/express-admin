@@ -31,7 +31,7 @@
 </template>
 
 <script>
-import vueFile from "../../../components/common/file.vue";
+
 export default {
   data() {
     return {
@@ -46,11 +46,10 @@ export default {
       console.log(err);
     }
   },
-  components: {
-    vueFile
-  }
+ 
 };
 </script>
+
 <style lang="scss">
 </style>
 

@@ -1,83 +1,4 @@
 @charset "UTF-8";
-.user {
-  padding-top: 20px; }
-  .user .table th,
-  .user .table td {
-    text-align: center; }
-
-.paging {
-  width: 100%;
-  padding: 10px; }
-
-.paging .item {
-  padding: 5px 8px;
-  border: 1px solid #ddd;
-  border-radius: 0;
-  background: #fff;
-  vertical-align: middle; }
-
-/*鼠标移动的样式 */
-.paging a:hover {
-  cursor: pointer;
-  color: #fff !important;
-  border: 1px solid #467bbe;
-  border-radius: 0;
-  background: #467bbe; }
-
-/*激活的样式*/
-.paging a.active {
-  color: #3d6fae;
-  border: 1px solid #467bbe; }
-
-/*禁用的样式*/
-.paging span.disabled {
-  color: #777; }
-
-/*数字禁用的样式*/
-.paging .disabled.num {
-  color: #666;
-  border: none;
-  background: transparent; }
-
-.paging .item + .item {
-  margin-left: 10px; }
-
-/*跳转页*/
-.paging .skip-txt {
-  width: 50px;
-  margin-left: 10px;
-  padding: 5px;
-  border: 1px solid #ddd;
-  border-radius: 0;
-  text-indent: 5px; }
-
-.paging .skip-btn {
-  margin-left: 3px;
-  padding: 5px 10px !important;
-  color: #fff;
-  border: 1px solid #fff;
-  border-radius: 0;
-  background: #3d6fae; }
-
-.paging .skip-btn:hover {
-  color: #fff;
-  border: 1px solid #fff;
-  border-radius: 0;
-  background: #305788; }
-
-.paging .count-items {
-  margin-left: 10px; }
-
-.paging .count-items strong {
-  color: #666; }
-
-/*总页数*/
-.paging .count-num {
-  margin-left: 10px; }
-
-.paging .count-num strong {
-  color: #666; }
-
 .vue-file {
   display: flex;
   align-items: center;
@@ -153,3 +74,82 @@
   height: 10px;
   text-align: center;
   font-size: 12px; }
+
+.paging {
+  width: 100%;
+  padding: 10px; }
+
+.paging .item {
+  padding: 5px 8px;
+  border: 1px solid #ddd;
+  border-radius: 0;
+  background: #fff;
+  vertical-align: middle; }
+
+/*鼠标移动的样式 */
+.paging a:hover {
+  cursor: pointer;
+  color: #fff !important;
+  border: 1px solid #467bbe;
+  border-radius: 0;
+  background: #467bbe; }
+
+/*激活的样式*/
+.paging a.active {
+  color: #3d6fae;
+  border: 1px solid #467bbe; }
+
+/*禁用的样式*/
+.paging span.disabled {
+  color: #777; }
+
+/*数字禁用的样式*/
+.paging .disabled.num {
+  color: #666;
+  border: none;
+  background: transparent; }
+
+.paging .item + .item {
+  margin-left: 10px; }
+
+/*跳转页*/
+.paging .skip-txt {
+  width: 50px;
+  margin-left: 10px;
+  padding: 5px;
+  border: 1px solid #ddd;
+  border-radius: 0;
+  text-indent: 5px; }
+
+.paging .skip-btn {
+  margin-left: 3px;
+  padding: 5px 10px !important;
+  color: #fff;
+  border: 1px solid #fff;
+  border-radius: 0;
+  background: #3d6fae; }
+
+.paging .skip-btn:hover {
+  color: #fff;
+  border: 1px solid #fff;
+  border-radius: 0;
+  background: #305788; }
+
+.paging .count-items {
+  margin-left: 10px; }
+
+.paging .count-items strong {
+  color: #666; }
+
+/*总页数*/
+.paging .count-num {
+  margin-left: 10px; }
+
+.paging .count-num strong {
+  color: #666; }
+
+.user {
+  padding-top: 20px; }
+  .user .table th,
+  .user .table td {
+    text-align: center; }

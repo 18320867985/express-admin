@@ -13,6 +13,10 @@ import  VueSwitch from "./switch/switch.vue";
 
 import  VueNumber from "./number/number.vue";
 
+import  VueFile from "./file/file.vue";
+
+import  VuePaging from "./paging/paging.vue";
+
 let components=[
 	VueCheckbox,
 	vueCheckboxGroup,
@@ -23,14 +27,26 @@ let components=[
 	VueRadiobtn,
 
 	VueSwitch,
-	VueNumber
+	VueNumber,
+
+	VueFile,
+
+	VuePaging
 ];
 
+
+// 实例方法
+import  info from "./info/info";
+import  loading from "./loading/loading";
 
  export default function(Vue){
 	components.forEach(item=>{
 		Vue.component(item.name,item);
 	});
-}
 
+	
+	Vue.prototype.$info=info;
+
+	Vue.prototype.$loading=loading;
+}
 

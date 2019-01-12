@@ -1,0 +1,92 @@
+.message {
+    display: none;
+}
+
+
+
+/*info*/
+.messageinfo {
+    opacity: 0;
+   animation: info-show 1s  both;
+   &.info-hide{
+    animation: info-hide 1s  both;
+   }
+}
+
+@keyframes info-show{
+    0%{
+        opacity: 0;
+    }
+    100%{
+        opacity: 1;
+    }
+}
+
+@keyframes info-hide{
+    0%{
+        opacity: 1;
+    }
+    100%{
+        opacity: 0;
+    }
+}
+.info-box {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  margin-top: -20px;
+  margin-left: -60px;
+  z-index: 9999;
+  text-align: center;
+  outline:none;
+ 
+ 
+  /*标题0*/
+  .ttl.default {
+      padding: 13px 20px;
+      min-width: 120px;
+      font-size: 14px;
+      font-weight: 400;
+      color: #f8f8f8;
+      text-align: center;
+      background: #333;
+      border-radius: 4px;
+    
+  }
+  /*标题1*/
+  .ttl.success {
+      padding: 13px 20px;
+      min-width: 120px;
+      font-size: 14px;
+      font-weight: 400;
+      color: #fff;
+      text-align: center;
+      background: $text-success;
+      border-radius: 4px;
+    
+  }
+  /*标题2*/
+  .ttl.warning {
+      padding: 13px 20px;
+      min-width: 120px;
+      font-size: 14px;
+      font-weight: 400;
+      color: #fff;
+      text-align: center;
+      background: $text-warning;
+      border-radius: 4px;
+    
+  }
+  /*标题3*/
+  .ttl.danger {
+      padding: 13px 20px;
+      min-width: 120px;
+      font-size: 14px;
+      font-weight: 400;
+      color: #fff;
+      text-align: center;
+      background: $text-danger;
+      border-radius: 4px;
+     
+  }
+}

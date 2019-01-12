@@ -51,8 +51,8 @@
 </template>
 
 <script>
-import vuePaging from "../../../components/common/paging.vue";
-import { eventBus } from "../../../components/common/eventBus.js";
+
+ import { eventBus } from "../../../components/eventBus.js";
 
 export default {
   data() {
@@ -121,15 +121,9 @@ export default {
               var body = ok.body;
               if (body.code) {
                 this.users.splice(index, 1);
-                this.$notify({
-                  type: "success",
-                  content: "删除数据成功！"
-                });
+               this.$info("success","删除数据成功！");
               } else {
-                this.$notify({
-                  type: "danger",
-                  content: "删除数据失败！"
-                });
+                this.$info("danger","删除数据失败！");
               }
             },
             err => {
@@ -183,8 +177,10 @@ export default {
     },
     getUsers(i) {
       // 分页
+       this.$loading();
       this.$http.get(`admin/user/data/${i}/${this.pageObj.pageItem}`, {}).then(
         ok => {
+        this.$loading(false);
           var body = ok.body;
           if (body.code) {
             this.users = body.data;
@@ -218,7 +214,6 @@ export default {
    
   },
   components: {
-    vuePaging,
 
   }
 };
@@ -234,5 +229,6 @@ export default {
   }
 }
 </style>
+
 
 

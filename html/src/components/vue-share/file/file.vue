@@ -15,10 +15,11 @@
 </template>
 
 <script>
-import $ from "./$.js";
+import $ from "../dom.js";
 import file from "./file.js";
 file($);
 export default {
+  	name:"VueFile",
   props: {
     value: {},
      url: {

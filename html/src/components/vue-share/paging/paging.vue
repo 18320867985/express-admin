@@ -4,11 +4,12 @@
 </template>
 <script>
 
-import {eventBus} from "./eventBus.js";
-import $ from "./$.js";
+import {eventBus} from "../../eventBus.js";
+import $ from "../dom.js";
 import paginger from "./paging.js";
 var paging = paginger($);
 export default {
+  	name:"VuePaging",
   props: {
     pageClick: {
       type: Function,

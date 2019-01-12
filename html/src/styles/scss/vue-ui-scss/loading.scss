@@ -1,0 +1,55 @@
+
+.loading-box {
+    position: absolute;
+    height: 100%;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    z-index: 9999;
+    background: rgba(#333, 0.1);
+  
+    .loading-content {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      z-index: 9999;
+      padding: 10px 50px;
+      min-width: 250px;
+      margin-left: -125px;
+      margin-top: -22.5px;
+      box-shadow: 0 0 5px #999, 0 0 5px #999;
+      border-radius: 5px;
+      background: #fafafa;
+  
+      > * {
+        vertical-align: middle;
+      }
+    }
+  
+    .iconfont {
+      font-size: 24px;
+      color: #666;
+    }
+  
+    .loading-text {
+      color: #666;
+    }
+  }
+  
+
+  .spin{
+    display: inline-block;
+     font-size: 18px;
+     margin: 0 5px;
+    animation:  spin-keyframes 2s   linear infinite;
+}
+
+@keyframes spin-keyframes{
+   0%{
+       transform: rotate(0deg);
+   }
+  100%{
+        transform: rotate(360deg);
+   }
+}
