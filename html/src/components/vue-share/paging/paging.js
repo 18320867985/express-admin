@@ -2,7 +2,7 @@
  * 分页组件
  * */
 
-var paging = function($) {
+var paging = function ($) {
 
 	var page = {
 		index: 0, //	当前页
@@ -16,7 +16,7 @@ var paging = function($) {
 		isShowSkip: false, // 是否显示跳转页
 		isShowCount: false, // 是否显示总页数
 		isShowAllItems: false, // 是否显示总条目
-		
+
 
 		prevText: "上一页",
 		nextText: "下一页",
@@ -47,7 +47,7 @@ var paging = function($) {
 		page.isShowSkip = typeof obj.isShowSkip === "boolean" ? obj.isShowSkip : false;
 		page.isShowCount = typeof obj.isShowCount === "boolean" ? obj.isShowCount : false;
 		page.isShowAllItems = typeof obj.isShowAllItems === "boolean" ? obj.isShowAllItems : false;
-		
+
 
 		// 显示的文本
 		page.prevText = typeof obj.prevText === "string" ? obj.prevText : page.prevText;
@@ -62,13 +62,14 @@ var paging = function($) {
 		page.isShowPrevNext = typeof obj.isShowPrevNext === "boolean" ? obj.isShowPrevNext : page.isShowPrevNext;
 		page.isShowFirstLast = typeof obj.isShowFirstLast === "boolean" ? obj.isShowFirstLast : page.isShowFirstLast;
 		page.isShowPrevNextGroup = typeof obj.isShowPrevNextGroup === "boolean" ? obj.isShowPrevNextGroup : page.isShowPrevNextGroup;
+		page
 
 	}
 	// 初始化
 	function _init(obj) {
 
 		// 检测参数是否为对象
-		if(!obj instanceof Object) {
+		if (!obj instanceof Object) {
 			return "参数有误";
 		}
 
@@ -84,69 +85,78 @@ var paging = function($) {
 		// 添加页码到页面元素里
 		$(page.selector).html(_create(obj.index));
 
-		// 点击触发事件
-		$(page.selector).on("click", "a.item", function(e) {
-			e.stopPropagation();
-			e.preventDefault();
+	}
 
-			var id = $(this).attr("data-id");
-			$(page.selector).find(".skip-txt").val(id)
-			//点击触发自定义事件
-			$(this).trigger("paging_click", [id]);
+	// 点击触发事件
+	$(document).on("click", ".paging a.item", function (e) {
+		e.stopPropagation();
+		e.preventDefault();
 
-			// 添加页码到页面元素里
-			$(page.selector).html(_create(id));
+		var id = $(this).attr("data-id");
+		var p=$(this).parent(".paging");
+		$(p).find(".skip-txt").val(id)
+		//点击触发自定义事件
+		$(this).trigger("paging_click", [id]);
 
-			// 显示动画
-			if(page.isAnimation) {
-				$('html,body').animate({
-					scrollTop: '0px'
-				}, 400);
-			}
-		});
+		// 添加页码到页面元素里
+		//$(page.selector).html(_create(id));
+		//end(id);
 
-		// 点击跳转页 触发事件
-		$(page.selector).on("click", ".skip-btn", function(e) {
-			e.stopPropagation();
-			e.preventDefault();
-			var id = 1;
-			var v = $(page.selector).find(".skip-txt").val();
-			v = v == "" ? 1 : v;
-			if(!isNaN(Number(v))) {
-				id = v;
-			} else {
-				id = 1;
-			}
+		// 显示动画
+		if (page.isAnimation) {
+			$('html,body').animate({
+				scrollTop: '0px'
+			}, 400);
+		}
+	});
 
-			// 最小值
-			id=id<=0?1:id;
-			// 检查最大值
-			id = id > page.allPage ? page.allPage : id;
 
-			$(page.selector).find(".skip-txt").val(id)
-			//点击触发自定义事件
-			$(this).trigger("paging_click", [id]);
+	// 点击跳转页 触发事件
+	$(document).on("click", ".paging .skip-btn", function (e) {
+		e.stopPropagation();
+		e.preventDefault();
+		var id = 1;
+		var p=$(this).parent(".paging");
+		var v = $(p).find(".skip-txt").val();
+		v = v == "" ? 1 : v;
+		if (!isNaN(Number(v))) {
+			id = v;
+		} else {
+			id = 1;
+		}
 
-			// 添加页码到页面元素里
-			$(page.selector).html(_create(id));
+		// 最小值
+		id = id <= 0 ? 1 : id;
+		// 检查最大值
+		id = id > page.allPage ? page.allPage : id;
 
-			// 显示动画
-			if(page.isAnimation) {
-				$('html,body').animate({
-					scrollTop: '0px'
-				}, 400);
-			}
-		});
+		$(p).find(".skip-txt").val(id)
+		//点击触发自定义事件
+		$(this).trigger("paging_click", [id]);
 
+		// 添加页码到页面元素里
+		//$(p).html(_create(id));
+
+		// 显示动画
+		if (page.isAnimation) {
+			$('html,body').animate({
+				scrollTop: '0px'
+			}, 400);
+		}
+	});
+
+	// ajax加载完成调用
+	function end(id) {
+		$(page.selector).html(_create(id));
 	}
 
 	// 设置总页数
 	function getAllPage() {
-		if(page.pageItem > page.allItem) {
+		if (page.pageItem > page.allItem) {
 
 			page.allPage = 1;
 		} else {
-			if(page.allItem % page.pageItem === 0) {
+			if (page.allItem % page.pageItem === 0) {
 
 				page.allPage = Math.floor(page.allItem / page.pageItem);
 			} else {
@@ -157,8 +167,8 @@ var paging = function($) {
 
 	// 页码的分组数目
 	function getGroupPage() {
-		if(page.allPage > page.showCount) {
-			if(page.allPage % page.showCount === 0) {
+		if (page.allPage > page.showCount) {
+			if (page.allPage % page.showCount === 0) {
 				page.groupPage = Math.floor(page.allPage / page.showCount);
 			} else {
 				page.groupPage = Math.floor(page.allPage / page.showCount) + 1;
@@ -183,32 +193,32 @@ var paging = function($) {
 		var countItmes = "";
 		currentPage = parseInt(currentPage);
 		// 没有数据
-		if(currentPage <= 0) {
+		if (currentPage <= 0) {
 			return "<span class='no-data'>没有相关数据</span>";
 		}
 		currentPage = currentPage > page.allPage ? page.allPage : currentPage;
 
 		var setPageCount = 0; // 设置页码所在的数目
-		if(currentPage > page.showCount) {
+		if (currentPage > page.showCount) {
 			setPageCount = Math.floor(currentPage / page.showCount);
 			setPageCount = currentPage % page.showCount === 0 ? setPageCount - 1 : setPageCount;
 		}
 
 		page.tempId = 1;
-		for(var i = (setPageCount * page.showCount) + 1; i <= page.allPage; i++) {
-			if(i > page.allPage) {
+		for (var i = (setPageCount * page.showCount) + 1; i <= page.allPage; i++) {
+			if (i > page.allPage) {
 				break;
 			}
-			if(page.tempId > page.showCount) {
+			if (page.tempId > page.showCount) {
 				break;
 			}
 
 			// 当前页
-			if(currentPage === i) {
+			if (currentPage === i) {
 
 				// 当前页样式
 				var span = "<span class='item disabled num '>" + i + "</span>";
-			
+
 				num += span;
 
 			} else {
@@ -220,7 +230,7 @@ var paging = function($) {
 		}
 
 		// 上一页
-		if(currentPage === 1) {
+		if (currentPage === 1) {
 
 			prev = "<span class='item disabled'>" + page.prevText + "</span>";
 
@@ -229,7 +239,7 @@ var paging = function($) {
 		}
 
 		// 下一页
-		if(currentPage === page.allPage) {
+		if (currentPage === page.allPage) {
 
 			next = "<span class='item disabled'>" + page.nextText + "</span>";
 		} else {
@@ -237,7 +247,7 @@ var paging = function($) {
 		}
 
 		// 第一页 
-		if(currentPage === 1) {
+		if (currentPage === 1) {
 
 			first = "<span class='item disabled'>" + page.firstText + "</span>";
 
@@ -246,7 +256,7 @@ var paging = function($) {
 		}
 
 		//  最后一页
-		if(currentPage === page.allPage) {
+		if (currentPage === page.allPage) {
 
 			last = "<span class='item disabled'>" + page.lastText + "</span>";
 		} else {
@@ -254,7 +264,7 @@ var paging = function($) {
 		}
 
 		// 前一组
-		if(setPageCount > 0) {
+		if (setPageCount > 0) {
 			var temp_prev_num = (setPageCount - 1) * page.showCount + 1;
 			prevGroup = "<a class='item active' data-id='" + temp_prev_num + "'>" + page.prevGroupText + "</a>";
 
@@ -263,7 +273,7 @@ var paging = function($) {
 		}
 
 		// 下一组
-		if((setPageCount + 1) < page.groupPage) {
+		if ((setPageCount + 1) < page.groupPage) {
 			var temp_next_num = (setPageCount + 1) * page.showCount + 1;
 			nextGroup = "<a class='item active ' data-id='" + temp_next_num + "'>" + page.nextGroupText + "</a>";
 
@@ -272,17 +282,17 @@ var paging = function($) {
 		}
 
 		// 跳转页
-		if(page.isShowSkip) {
+		if (page.isShowSkip) {
 			skipBtn = "<input type='text' class='skip-txt' value='" + currentPage + "' /> <input type='button' class='skip-btn' value='跳转' />";
 		}
 
 		// 总条目数
-		if(page.isShowAllItems) {
+		if (page.isShowAllItems) {
 			countItmes = "<span class='count-items'>总共<strong>" + page.allItem + "</strong>条记录,每页<strong>" + page.pageItem + "</strong>条</span>";
 		}
 
 		// 总页数
-		if(page.isShowCount) {
+		if (page.isShowCount) {
 			CountNum = "<span class='count-num'>总共<strong>" + page.allPage + "</strong>页</span>";
 		}
 
@@ -293,60 +303,62 @@ var paging = function($) {
 	function GetAllText(first, prev, prevGroup, num, nextGroup, next, last, skipBtn, countItmes, CountNum) {
 		var allText = "";
 		// 1
-		if(page.isShowFirstLast) {
+		if (page.isShowFirstLast) {
 			allText += first;
 		}
 
 		// 2
-		if(page.isShowPrevNext) {
+		if (page.isShowPrevNext) {
 			allText += prev;
 
 		}
 
 		// 3
-		if(page.isShowPrevNextGroup) {
+		if (page.isShowPrevNextGroup) {
 			allText += prevGroup;
 
 		}
 
 		// 4
-		if(page.isShowNumber) {
+		if (page.isShowNumber) {
 			allText += num;
 
 		}
 
 		// 3
-		if(page.isShowPrevNextGroup) {
+		if (page.isShowPrevNextGroup) {
 			allText += nextGroup;
 
 		}
 		// 2
-		if(page.isShowPrevNext) {
+		if (page.isShowPrevNext) {
 			allText += next;
 
 		}
 		// 1
-		if(page.isShowFirstLast) {
+		if (page.isShowFirstLast) {
 			allText += last;
 		}
 
 		// 跳转页
-		if(page.isShowSkip) {
+		if (page.isShowSkip) {
 			allText += skipBtn;
 		}
 
 		// 总共页
-		if(page.isShowAllItems) {
+		if (page.isShowAllItems) {
 			allText += countItmes;
 		}
 
 		// 总共页
-		if(page.isShowCount) {
+		if (page.isShowCount) {
 			allText += CountNum;
 		}
 
 		return allText;
 	}
+
+
 
 	// 返回结果
 	return {
@@ -360,6 +372,6 @@ var paging = function($) {
 };
 
 
-export default function ($){
-	return	paging($);
+export default function ($) {
+	return paging($);
 } 

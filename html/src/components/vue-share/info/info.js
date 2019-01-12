@@ -1,6 +1,6 @@
 
 
-import $ from "../dom3.js";
+import $ from "../dom.js";
  export default function (type,mess) {
 
     mess = mess || "信息提示框";

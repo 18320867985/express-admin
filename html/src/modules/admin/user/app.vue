@@ -187,7 +187,9 @@ export default {
             this.pageObj.index = Number(body.index);
             this.pageObj.pageItem = Number(body.pageItem);
             this.pageObj.allItem = Number(body.allItem);
+        
             eventBus.$emit("initPage", this.pageObj);
+
           } else {
             this.$notify({
               type: "danger",
@@ -197,6 +199,7 @@ export default {
           }
         },
         err => {
+          this.$loading(false);
           this.$notify({
             type: "danger",
             title: "连接失败",
@@ -208,8 +211,9 @@ export default {
     callback(msg) {
       this.$notify(`Modal dismissed with msg '${msg}'.`);
     },
-    pageClick(id) {
-      this.getUsers(id);
+    pageClick(id,end) {
+
+      this.getUsers(id,end);
     },
    
   },

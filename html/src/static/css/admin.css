@@ -6586,7 +6586,7 @@ select.form-control {
   top: 0;
   bottom: 0;
   z-index: 9999;
-  background: rgba(51, 51, 51, 0.1); }
+  background: rgba(51, 51, 51, 0); }
   .loading-box .loading-content {
     position: absolute;
     top: 50%;
