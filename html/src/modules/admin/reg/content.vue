@@ -121,24 +121,18 @@ export default {
             .post("reg/data", this.user)
             .then(
               data => {
-                data = data.body;
-                if (data.code == 1) {
+               var body = data.body;
+                if (body.code == 1) {
                   this.show=false;
                   window.location.href = "/admin/index";
                 } else {
                   this.show=true;
-                  this.$notify({
-                    type: "danger",
-                    title: "",
-                    content: "注册失败！"
-                   
-                  });
+                  this.errText=body.data|| this.errText;
                 }
               },
               error => {
                 this.$notify({
                 type: "danger",
-                title: "网络连接失败",
                 content: "网络连接失败"
               });
               }

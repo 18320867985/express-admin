@@ -8,7 +8,7 @@ router.get("/reg",(req,res)=>{
 router.post("/reg/data", async (req, res) => {
 
      let user= new mainModel.User({name:req.body.user,pwd:req.body.pwd,email:req.body.email,price:100});
- //  var o=  await mainModel.UserRole.create(new mainModel.UserRole({name:"普通用户",code:0}));
+ //  var o=  await mainModel.UserRole.create(new mainModel.UserRole({name:"普通用户",code:3}));
      let rule= await mainModel.UserRole.findOne({code:0}); //普通用户
      if(!rule){
          res.json(res.err(rule));
@@ -20,6 +20,13 @@ router.post("/reg/data", async (req, res) => {
          res.json(res.err(isok));
          return;
       }
+      // 检查用户是否存在
+     var count= await mainModel.User.countDocuments({name:user.name});
+        if(count>0){
+            res.json(res.err("用户名已存在！"));
+            return;
+        };
+
      var  userinfo= await mainModel.User.create(user)
      if(!userinfo){
         res.json(res.ok("注册失败"));

@@ -4,7 +4,7 @@ const config=require("./_config");
 
 const url=config.url;
 
-var db=mongoose.createConnection(url,{ useNewUrlParser:true ,useFindAndModify:false} );
+var db=mongoose.createConnection(url,{ useNewUrlParser:true ,useFindAndModify:false,useCreateIndex:true} );
 
 db.on("open",function(err,data){
     console.log("mongodb connection success ");

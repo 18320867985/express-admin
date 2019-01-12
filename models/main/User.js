@@ -5,7 +5,10 @@ const  orm= require("./_mongoose");
 // });
 
 var schema = new orm.mongoose.Schema({
-    name:{type:String},
+    name:{type:String,
+       index:true,
+       unique:true
+      },
     pwd:{type:String,
         minlength:[8,"最小长度为8位"]},
     createDate:{
