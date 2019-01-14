@@ -2,17 +2,20 @@
 
 	.vue-checkbox {
 	
-	    display: inline-block;
-		vertical-align: middle;
+		display: inline-block;
+		float: none;
 		height: 22px;
-		width: 22px;
+		vertical-align: middle;
+	
 	    > * {
 	        vertical-align: middle;
 	    }
 	    cursor: pointer;
 	    .vue-checkbox-item {
 			font-size: 22px;
-		
+			height: 22px;
+			width: 22px;
+			font-weight: 200;
 	
 	        &:before {
 	            content: '\e602';

@@ -1,8 +1,8 @@
 <template>
-		<div class="vue-checkbox"  >
-			<span class="vue-checkbox-item iconfont icon-vue-checkbox " :class="{'active':value,disabled:disabled}" @click="checked"  :disabled="disabled">
+		<div class="vue-checkbox" @click="checked" >
+			<span class="vue-checkbox-item iconfont icon-vue-checkbox " :class="{'active':ck,disabled:disabled}"   :disabled="disabled">
 			</span>
-			<span @click="checked"><slot ></slot></span>
+			<span ><slot ></slot></span>
 		</div>
 </template>
 
@@ -13,12 +13,11 @@
 			value:Boolean,
 			disabled:{
 				type:Boolean,
-				default:false
+				default(){
+					return false;
+				}
 			},
-			check: {
-				type: Boolean,
-				default:false
-			},
+	
 			callback:{
 				type:Function,
 				default:function(){}
@@ -32,7 +31,6 @@
 		},
 		watch: {
 			value:{
-				deep:true,
 				handler(v){
 					this.ck=v;
 				}

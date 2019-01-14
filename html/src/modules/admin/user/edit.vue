@@ -3,6 +3,7 @@
     <form>
       <h4 class="text-muted">
         <em>修改用户信息</em>
+          <span @click="cancelBtn" class="close">&times;</span>
       </h4>
       <hr>
       <div class="form-group">

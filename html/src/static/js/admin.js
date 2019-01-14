@@ -18429,7 +18429,7 @@ if (typeof window !== 'undefined' && window.Vue) {
 
 var VueCheckbox = {
 	render: function render() {
-		var _vm = this;var _h = _vm.$createElement;var _c = _vm._self._c || _h;return _c('div', { staticClass: "vue-checkbox" }, [_c('span', { staticClass: "vue-checkbox-item iconfont icon-vue-checkbox ", class: { 'active': _vm.value, disabled: _vm.disabled }, attrs: { "disabled": _vm.disabled }, on: { "click": _vm.checked } }), _vm._v(" "), _c('span', { on: { "click": _vm.checked } }, [_vm._t("default")], 2)]);
+		var _vm = this;var _h = _vm.$createElement;var _c = _vm._self._c || _h;return _c('div', { staticClass: "vue-checkbox", on: { "click": _vm.checked } }, [_c('span', { staticClass: "vue-checkbox-item iconfont icon-vue-checkbox ", class: { 'active': _vm.ck, disabled: _vm.disabled }, attrs: { "disabled": _vm.disabled } }), _vm._v(" "), _c('span', [_vm._t("default")], 2)]);
 	},
 	staticRenderFns: [],
 	name: "VueCheckbox",
@@ -18437,12 +18437,11 @@ var VueCheckbox = {
 		value: Boolean,
 		disabled: {
 			type: Boolean,
-			default: false
+			default: function _default() {
+				return false;
+			}
 		},
-		check: {
-			type: Boolean,
-			default: false
-		},
+
 		callback: {
 			type: Function,
 			default: function _default() {}
@@ -18457,7 +18456,6 @@ var VueCheckbox = {
 
 	watch: {
 		value: {
-			deep: true,
 			handler: function handler(v) {
 				this.ck = v;
 			}
@@ -18543,14 +18541,18 @@ callback(){}  // 回调函数
 */
 var VueCheckbtn = {
 	render: function render() {
-		var _vm = this;var _h = _vm.$createElement;var _c = _vm._self._c || _h;return _c('div', { staticClass: "vue-checkbtn" }, [_c('div', { staticClass: "vue-checkbtn-item ", class: { active: _vm.value }, attrs: { "data-val": "true" }, on: { "click": _vm.ck } }, [_vm._t("default", [_vm._v("爱心")])], 2)]);
+		var _vm = this;var _h = _vm.$createElement;var _c = _vm._self._c || _h;return _c('div', { staticClass: "vue-checkbtn" }, [_c('div', { staticClass: "vue-checkbtn-item ", class: { active: _vm.checkValue }, attrs: { "data-val": "true" }, on: { "click": function click($event) {
+					$event.preventDefault();return _vm.ck($event);
+				} } }, [_vm._t("default", [_vm._v("爱心")])], 2)]);
 	},
 	staticRenderFns: [],
 	name: "VueCheckbtn",
 	props: {
 		value: {
 			type: Boolean,
-			default: false
+			default: function _default() {
+				return false;
+			}
 		},
 		callback: {
 			type: Function,
@@ -18762,7 +18764,7 @@ var VueRadiobtn = {
 
 var VueSwitch = {
     render: function render() {
-        var _vm = this;var _h = _vm.$createElement;var _c = _vm._self._c || _h;return _c('div', { staticClass: "vue-switch", class: { active: _vm.value }, on: { "click": _vm.ck } }, [_c('div', { staticClass: "vue-switch-handler" })]);
+        var _vm = this;var _h = _vm.$createElement;var _c = _vm._self._c || _h;return _c('div', { staticClass: "vue-switch", class: { active: _vm.ck }, on: { "click": _vm.ck } }, [_c('div', { staticClass: "vue-switch-handler" })]);
     },
     staticRenderFns: [],
     name: "VueSwitch",
@@ -18778,23 +18780,22 @@ var VueSwitch = {
     },
     data: function data() {
         return {
-            bl: this.value
+            ck: this.value
         };
     },
 
     watch: {
         value: {
-            deep: true,
             handler: function handler(v) {
-                this.bl = v;
+                this.ck = v;
             }
         }
     },
     methods: {
         ck: function ck() {
-            this.bl = !this.bl;
-            this.$emit("input", this.bl);
-            this.callback(this.bl);
+            this.ck = !this.ck;
+            this.$emit("input", this.ck);
+            this.callback(this.ck);
         }
     }
 };
@@ -26260,7 +26261,7 @@ var vueList = {
   render: function render() {
     var _vm = this;var _h = _vm.$createElement;var _c = _vm._self._c || _h;return _c('div', [_c('table', { staticClass: "table table-hover table-bordered" }, [_c('thead', [_c('tr', { staticClass: "text-center" }, [_c('th', [_c('vue-checkbtn', { attrs: { "callback": _vm.allChcek }, model: { value: _vm.allcheckBtn, callback: function callback($$v) {
           _vm.allcheckBtn = $$v;
-        }, expression: "allcheckBtn" } }, [_c('span', { staticClass: "glyphicon glyphicon-check" }), _vm._v(" 全选\n          ")])], 1), _vm._v(" "), _c('th', [_vm._v("编号")]), _vm._v(" "), _c('th', [_vm._v("用户名")]), _vm._v(" "), _c('th', [_vm._v("类型")]), _vm._v(" "), _c('th', [_vm._v("创建时间")])])]), _vm._v(" "), _c('tbody', _vm._l(_vm.users, function (item, index) {
+        }, expression: "allcheckBtn" } }, [_c('span', { staticClass: "glyphicon glyphicon-check" })])], 1), _vm._v(" "), _c('th', [_vm._v("编号")]), _vm._v(" "), _c('th', [_vm._v("用户名")]), _vm._v(" "), _c('th', [_vm._v("类型")]), _vm._v(" "), _c('th', [_vm._v("创建时间")])])]), _vm._v(" "), _c('tbody', _vm._l(_vm.users, function (item, index) {
       return _c('tr', { key: index }, [_c('td', [_c('vue-checkbox', { model: { value: item.bl, callback: function callback($$v) {
             _vm.$set(item, "bl", $$v);
           }, expression: "item.bl" } })], 1), _vm._v(" "), _c('td', [_vm._v(_vm._s(item._id))]), _vm._v(" "), _c('td', [_vm._v(_vm._s(item.name))]), _vm._v(" "), _c('td', [_vm._v(_vm._s(item.roleId && item.roleId.name))]), _vm._v(" "), _c('td', [_vm._v(_vm._s(_vm._f("date")(item.createDate)))])]);
@@ -26270,7 +26271,9 @@ var vueList = {
   props: {
     value: {
       type: Array,
-      default: []
+      default: function _default() {
+        return [];
+      }
     }
   },
 
@@ -26363,7 +26366,7 @@ var vueList = {
 
 var vueEdit = {
   render: function render() {
-    var _vm = this;var _h = _vm.$createElement;var _c = _vm._self._c || _h;return _c('div', { staticClass: "user-edit" }, [_c('form', [_vm._m(0), _vm._v(" "), _c('hr'), _vm._v(" "), _vm._m(1), _vm._v(" "), _c('div', { staticClass: "form-group" }, [_c('label', { attrs: { "for": "exampleInputEmail1" } }, [_vm._v("用户类型")]), _vm._v(" "), _c('select', { directives: [{ name: "model", rawName: "v-model", value: _vm.editObj.roleId, expression: "editObj.roleId" }], staticClass: "form-control", attrs: { "name": "", "id": "", "placeholder": "Email" }, on: { "change": function change($event) {
+    var _vm = this;var _h = _vm.$createElement;var _c = _vm._self._c || _h;return _c('div', { staticClass: "user-edit" }, [_c('form', [_c('h4', { staticClass: "text-muted" }, [_c('em', [_vm._v("修改用户信息")]), _vm._v(" "), _c('span', { staticClass: "close", on: { "click": _vm.cancelBtn } }, [_vm._v("×")])]), _vm._v(" "), _c('hr'), _vm._v(" "), _vm._m(0), _vm._v(" "), _c('div', { staticClass: "form-group" }, [_c('label', { attrs: { "for": "exampleInputEmail1" } }, [_vm._v("用户类型")]), _vm._v(" "), _c('select', { directives: [{ name: "model", rawName: "v-model", value: _vm.editObj.roleId, expression: "editObj.roleId" }], staticClass: "form-control", attrs: { "name": "", "id": "", "placeholder": "Email" }, on: { "change": function change($event) {
           var $$selectedVal = Array.prototype.filter.call($event.target.options, function (o) {
             return o.selected;
           }).map(function (o) {
@@ -26372,8 +26375,6 @@ var vueEdit = {
         } } })]), _vm._v(" "), _c('div', { staticClass: "form-group" }, [_c('button', { staticClass: "btn btn-primary", attrs: { "type": "submit" } }, [_vm._v("保存")]), _vm._v(" "), _c('button', { staticClass: "btn btn-default pull-right", attrs: { "type": "button" }, on: { "click": _vm.cancelBtn } }, [_c('span', { staticClass: "glyphicon glyphicon-share-alt text-warning" }), _vm._v(" 返回\n      ")])])])]);
   },
   staticRenderFns: [function () {
-    var _vm = this;var _h = _vm.$createElement;var _c = _vm._self._c || _h;return _c('h4', { staticClass: "text-muted" }, [_c('em', [_vm._v("修改用户信息")])]);
-  }, function () {
     var _vm = this;var _h = _vm.$createElement;var _c = _vm._self._c || _h;return _c('div', { staticClass: "form-group" }, [_c('label', { attrs: { "for": "exampleInputEmail1" } }, [_vm._v("用户名")])]);
   }],
   props: {
@@ -26403,7 +26404,7 @@ var vueEdit = {
 
 var vueAdd = {
   render: function render() {
-    var _vm = this;var _h = _vm.$createElement;var _c = _vm._self._c || _h;return _c('div', { staticClass: "user-add" }, [_c('form', [_vm._m(0), _vm._v(" "), _c('hr'), _vm._v(" "), _c('div', { staticClass: "form-group has-feedback", class: { ' has-error': _vm.errors.has('user') } }, [_c('label', { staticClass: "control-label", attrs: { "for": "user" } }, [_vm._v("用户名:")]), _vm._v(" "), _c('input', { directives: [{ name: "validate", rawName: "v-validate", value: { required: true, min: 4 }, expression: "{required:true,min:4}" }], staticClass: "form-control", attrs: { "type": "text", "name": "user", "id": "user", "placeholder": "输入用户名" } }), _vm._v(" "), _c('p', { directives: [{ name: "show", rawName: "v-show", value: _vm.errors.has('user:required'), expression: "errors.has('user:required')" }], staticClass: "text-danger" }, [_vm._v("用户名不为空！")]), _vm._v(" "), _c('p', { directives: [{ name: "show", rawName: "v-show", value: _vm.errors.has('user:min'), expression: "errors.has('user:min')" }], staticClass: "text-danger" }, [_vm._v("用户名最小长度为4位！")]), _vm._v(" "), _c('span', { directives: [{ name: "show", rawName: "v-show", value: _vm.errors.has('user'), expression: "errors.has('user')" }], staticClass: "glyphicon glyphicon-remove form-control-feedback", attrs: { "aria-hidden": "true" } })]), _vm._v(" "), _c('div', { staticClass: "form-group has-feedback", class: { 'has-error': _vm.errors.has('pwd') } }, [_c('label', { staticClass: "control-label", attrs: { "for": "pwd" } }, [_vm._v("密码:")]), _vm._v(" "), _c('input', { directives: [{ name: "validate", rawName: "v-validate", value: { required: true, min: 8 }, expression: "{ required:true,min:8}" }], ref: "pwd", staticClass: "form-control", attrs: { "type": "password", "id": "pwd", "name": "pwd", "placeholder": "输入密码" } }), _vm._v(" "), _c('p', { directives: [{ name: "show", rawName: "v-show", value: _vm.errors.has('pwd:required'), expression: "errors.has('pwd:required')" }], staticClass: "text-danger" }, [_vm._v("密码不为空！")]), _vm._v(" "), _c('p', { directives: [{ name: "show", rawName: "v-show", value: _vm.errors.has('pwd:min'), expression: "errors.has('pwd:min')" }], staticClass: "text-danger" }, [_vm._v("密码最小长度为8位！")]), _vm._v(" "), _c('span', { directives: [{ name: "show", rawName: "v-show", value: _vm.errors.has('pwd'), expression: "errors.has('pwd')" }], staticClass: "glyphicon glyphicon-remove form-control-feedback", attrs: { "aria-hidden": "true" } })]), _vm._v(" "), _c('div', { staticClass: "form-group has-feedback", class: { 'has-error': _vm.errors.has('pwd2') } }, [_c('label', { staticClass: "control-label", attrs: { "for": "pwd2" } }, [_vm._v("确认密码:")]), _vm._v(" "), _c('input', { directives: [{ name: "validate", rawName: "v-validate", value: { required: true, confirmed: 'pwd' }, expression: "{ required:true,confirmed:'pwd'}" }], staticClass: "form-control", attrs: { "type": "password", "name": "pwd2", "id": "pwd2", "data-vv-as": "pwd", "placeholder": "输入确认密码" } }), _vm._v(" "), _c('p', { directives: [{ name: "show", rawName: "v-show", value: _vm.errors.has('pwd2:required'), expression: "errors.has('pwd2:required')" }], staticClass: "text-danger" }, [_vm._v("密码不为空！")]), _vm._v(" "), _c('p', { directives: [{ name: "show", rawName: "v-show", value: _vm.errors.has('pwd2:confirmed'), expression: "errors.has('pwd2:confirmed')" }], staticClass: "text-danger" }, [_vm._v("两次密码不相同！")]), _vm._v(" "), _c('span', { directives: [{ name: "show", rawName: "v-show", value: _vm.errors.has('pwd2'), expression: "errors.has('pwd2')" }], staticClass: "glyphicon glyphicon-remove form-control-feedback", attrs: { "aria-hidden": "true" } })]), _vm._v(" "), _c('div', { staticClass: "form-group" }, [_c('label', { attrs: { "for": "exampleInputEmail1" } }, [_vm._v("用户类型")]), _vm._v(" "), _c('select', { directives: [{ name: "model", rawName: "v-model", value: _vm.addObj.roleId, expression: "addObj.roleId" }], staticClass: "form-control", attrs: { "name": "", "id": "" }, on: { "change": function change($event) {
+    var _vm = this;var _h = _vm.$createElement;var _c = _vm._self._c || _h;return _c('div', { staticClass: "user-add" }, [_c('form', [_c('h4', { staticClass: "text-muted" }, [_c('em', [_vm._v("添加用户信息")]), _vm._v(" "), _c('span', { staticClass: "close", on: { "click": _vm.cancelBtn } }, [_vm._v("×")])]), _vm._v(" "), _c('hr'), _vm._v(" "), _c('div', { staticClass: "form-group has-feedback", class: { ' has-error': _vm.errors.has('user') } }, [_c('label', { staticClass: "control-label", attrs: { "for": "user" } }, [_vm._v("用户名:")]), _vm._v(" "), _c('input', { directives: [{ name: "validate", rawName: "v-validate", value: { required: true, min: 4 }, expression: "{required:true,min:4}" }], staticClass: "form-control", attrs: { "type": "text", "name": "user", "id": "user", "placeholder": "输入用户名" } }), _vm._v(" "), _c('p', { directives: [{ name: "show", rawName: "v-show", value: _vm.errors.has('user:required'), expression: "errors.has('user:required')" }], staticClass: "text-danger" }, [_vm._v("用户名不为空！")]), _vm._v(" "), _c('p', { directives: [{ name: "show", rawName: "v-show", value: _vm.errors.has('user:min'), expression: "errors.has('user:min')" }], staticClass: "text-danger" }, [_vm._v("用户名最小长度为4位！")]), _vm._v(" "), _c('span', { directives: [{ name: "show", rawName: "v-show", value: _vm.errors.has('user'), expression: "errors.has('user')" }], staticClass: "glyphicon glyphicon-remove form-control-feedback", attrs: { "aria-hidden": "true" } })]), _vm._v(" "), _c('div', { staticClass: "form-group has-feedback", class: { 'has-error': _vm.errors.has('pwd') } }, [_c('label', { staticClass: "control-label", attrs: { "for": "pwd" } }, [_vm._v("密码:")]), _vm._v(" "), _c('input', { directives: [{ name: "validate", rawName: "v-validate", value: { required: true, min: 8 }, expression: "{ required:true,min:8}" }], ref: "pwd", staticClass: "form-control", attrs: { "type": "password", "id": "pwd", "name": "pwd", "placeholder": "输入密码" } }), _vm._v(" "), _c('p', { directives: [{ name: "show", rawName: "v-show", value: _vm.errors.has('pwd:required'), expression: "errors.has('pwd:required')" }], staticClass: "text-danger" }, [_vm._v("密码不为空！")]), _vm._v(" "), _c('p', { directives: [{ name: "show", rawName: "v-show", value: _vm.errors.has('pwd:min'), expression: "errors.has('pwd:min')" }], staticClass: "text-danger" }, [_vm._v("密码最小长度为8位！")]), _vm._v(" "), _c('span', { directives: [{ name: "show", rawName: "v-show", value: _vm.errors.has('pwd'), expression: "errors.has('pwd')" }], staticClass: "glyphicon glyphicon-remove form-control-feedback", attrs: { "aria-hidden": "true" } })]), _vm._v(" "), _c('div', { staticClass: "form-group has-feedback", class: { 'has-error': _vm.errors.has('pwd2') } }, [_c('label', { staticClass: "control-label", attrs: { "for": "pwd2" } }, [_vm._v("确认密码:")]), _vm._v(" "), _c('input', { directives: [{ name: "validate", rawName: "v-validate", value: { required: true, confirmed: 'pwd' }, expression: "{ required:true,confirmed:'pwd'}" }], staticClass: "form-control", attrs: { "type": "password", "name": "pwd2", "id": "pwd2", "data-vv-as": "pwd", "placeholder": "输入确认密码" } }), _vm._v(" "), _c('p', { directives: [{ name: "show", rawName: "v-show", value: _vm.errors.has('pwd2:required'), expression: "errors.has('pwd2:required')" }], staticClass: "text-danger" }, [_vm._v("密码不为空！")]), _vm._v(" "), _c('p', { directives: [{ name: "show", rawName: "v-show", value: _vm.errors.has('pwd2:confirmed'), expression: "errors.has('pwd2:confirmed')" }], staticClass: "text-danger" }, [_vm._v("两次密码不相同！")]), _vm._v(" "), _c('span', { directives: [{ name: "show", rawName: "v-show", value: _vm.errors.has('pwd2'), expression: "errors.has('pwd2')" }], staticClass: "glyphicon glyphicon-remove form-control-feedback", attrs: { "aria-hidden": "true" } })]), _vm._v(" "), _c('div', { staticClass: "form-group" }, [_c('label', { attrs: { "for": "exampleInputEmail1" } }, [_vm._v("用户类型")]), _vm._v(" "), _c('select', { directives: [{ name: "model", rawName: "v-model", value: _vm.addObj.roleId, expression: "addObj.roleId" }], staticClass: "form-control", attrs: { "name": "", "id": "" }, on: { "change": function change($event) {
           var $$selectedVal = Array.prototype.filter.call($event.target.options, function (o) {
             return o.selected;
           }).map(function (o) {
@@ -26415,9 +26416,7 @@ var vueAdd = {
           _vm.show = false;
         } } }, [_vm._v(_vm._s(_vm.errText))]) : _vm._e()], 1), _vm._v(" "), _c('div', { staticClass: "form-group" }, [_c('button', { staticClass: "btn btn-primary", attrs: { "type": "submit" } }, [_vm._v("添加")]), _vm._v(" "), _c('button', { staticClass: "btn btn-default pull-right", attrs: { "type": "button" }, on: { "click": _vm.cancelBtn } }, [_c('span', { staticClass: "glyphicon glyphicon-share-alt text-warning" }), _vm._v(" 返回\n      ")])])])]);
   },
-  staticRenderFns: [function () {
-    var _vm = this;var _h = _vm.$createElement;var _c = _vm._self._c || _h;return _c('h4', { staticClass: "text-muted" }, [_c('em', [_vm._v("添加用户信息")])]);
-  }],
+  staticRenderFns: [],
   props: {
     value: {
       type: Object,
@@ -26445,11 +26444,11 @@ var vueAdd = {
 
 var App$3 = {
   render: function render() {
-    var _vm = this;var _h = _vm.$createElement;var _c = _vm._self._c || _h;return _c('div', { staticClass: "user" }, [_c('div', { staticClass: "container-fluid-12" }, [_c('div', { directives: [{ name: "show", rawName: "v-show", value: _vm.tab.index, expression: "tab.index" }] }, [_c('div', { staticClass: "btn-toolbar clearfix" }, [_c('div', { staticClass: "btn-group pull-left" }), _vm._v(" "), _c('div', { staticClass: "btn-group pull-right" }, [_c('button', { staticClass: "btn btn-default btn-sm", on: { "click": _vm.addBtn } }, [_c('span', { staticClass: "text-primary glyphicon glyphicon-plus" }), _vm._v(" 添加\n          ")]), _vm._v(" "), _c('button', { staticClass: "btn btn-default btn-sm", on: { "click": _vm.editBtn } }, [_c('span', { staticClass: "glyphicon glyphicon-edit text-warning" }), _vm._v(" 修改\n          ")]), _vm._v(" "), _c('button', { staticClass: "btn btn-default btn-sm", on: { "click": function click($event) {
+    var _vm = this;var _h = _vm.$createElement;var _c = _vm._self._c || _h;return _c('div', { staticClass: "user" }, [_c('div', { staticClass: "container-fluid-12" }, [_c('div', { staticClass: "tab-slide", class: { 'active': _vm.tab.index } }, [_c('div', { staticClass: "btn-toolbar clearfix" }, [_c('div', { staticClass: "btn-group pull-left" }), _vm._v(" "), _c('div', { staticClass: "btn-group pull-right" }, [_c('button', { staticClass: "btn btn-default btn-sm", on: { "click": _vm.addBtn } }, [_c('span', { staticClass: "text-primary glyphicon glyphicon-plus" }), _vm._v(" 添加\n          ")]), _vm._v(" "), _c('button', { staticClass: "btn btn-default btn-sm", on: { "click": _vm.editBtn } }, [_c('span', { staticClass: "glyphicon glyphicon-edit text-warning" }), _vm._v(" 修改\n          ")]), _vm._v(" "), _c('button', { staticClass: "btn btn-default btn-sm", on: { "click": function click($event) {
           $event.preventDefault();_vm.delAll();
         } } }, [_c('span', { staticClass: "glyphicon glyphicon-trash text-danger" }), _vm._v(" 删除\n          ")])])]), _vm._v(" "), _c('vue-list', { model: { value: _vm.users, callback: function callback($$v) {
           _vm.users = $$v;
-        }, expression: "users" } })], 1), _vm._v(" "), _c('div', { directives: [{ name: "show", rawName: "v-show", value: _vm.tab.edit, expression: "tab.edit" }] }, [_c('vue-edit', { attrs: { "cancel": _vm.editCancel } })], 1), _vm._v(" "), _c('div', { directives: [{ name: "show", rawName: "v-show", value: _vm.tab.add, expression: "tab.add" }] }, [_c('vue-add', { attrs: { "cancel": _vm.addCancel } })], 1)])]);
+        }, expression: "users" } })], 1), _vm._v(" "), _c('div', { staticClass: "tab-slide", class: { 'active': _vm.tab.edit } }, [_c('vue-edit', { attrs: { "cancel": _vm.editCancel } })], 1), _vm._v(" "), _c('div', { staticClass: "tab-slide", class: { 'active': _vm.tab.add } }, [_c('vue-add', { attrs: { "cancel": _vm.addCancel } })], 1)])]);
   },
   staticRenderFns: [],
   data: function data() {

@@ -1,12 +1,16 @@
 <template>
   <div>
+   
     <table class="table table-hover table-bordered">
       <thead>
         <tr class="text-center">
           <th>
-            <vue-checkbtn :callback="allChcek" v-model="allcheckBtn">
-              <span class="glyphicon glyphicon-check"></span> 全选
+             <vue-checkbtn :callback="allChcek" v-model="allcheckBtn">
+              <span class="glyphicon glyphicon-check"></span> 
             </vue-checkbtn>
+
+            <!-- <vue-checkbox :callback="allChcek" v-model="allcheckBtn"> 选择
+            </vue-checkbox> -->
           </th>
           <th>编号</th>
           <th>用户名</th>
@@ -41,7 +45,9 @@ export default {
   props: {
     value: {
       type: Array,
-      default: []
+      default(){
+        return [];
+      }
     }
   },
 

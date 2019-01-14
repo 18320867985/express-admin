@@ -3,7 +3,10 @@
     <form>
       <h4 class="text-muted">
         <em>添加用户信息</em>
+         <span @click="cancelBtn" class="close">&times;</span>
       </h4>
+
+     
       <hr>
       <div class="form-group has-feedback" :class="{' has-error':errors.has('user')}">
         <label class="control-label" for="user">用户名:</label>

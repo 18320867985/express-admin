@@ -1,0 +1,21 @@
+
+/* tab animate*/
+.tab-slide {
+    display: none;
+    &.active {
+      display: block;
+      animation: showIframe 0.5s linear both;
+    }
+  }
+  
+  @keyframes showIframe {
+    0% {
+      opacity: 0;
+      transform: translateX(50px);
+    }
+    100% {
+      opacity: 1;
+      transform: translateX(0px);
+    }
+  }
+  

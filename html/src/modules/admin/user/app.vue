@@ -1,7 +1,7 @@
 <template>
   <div class="user">
     <div class="container-fluid-12">
-      <div v-show="tab.index">
+      <div class="tab-slide" :class="{'active':tab.index}">
         <div class="btn-toolbar clearfix">
           <div class="btn-group pull-left"></div>
           <div class="btn-group pull-right">
@@ -9,7 +9,7 @@
               <span class="text-primary glyphicon glyphicon-plus"></span> 添加
             </button>
             
-            <button class="btn btn-default btn-sm"  @click="editBtn">
+            <button class="btn btn-default btn-sm" @click="editBtn">
               <span class="glyphicon glyphicon-edit text-warning"></span> 修改
             </button>
             <button class="btn btn-default btn-sm" @click.prevent="delAll()">
@@ -19,17 +19,13 @@
         </div>
         <vue-list v-model="users"></vue-list>
       </div>
-
-      <div v-show="tab.edit">
+      <div class="tab-slide" :class="{'active':tab.edit}">
         <vue-edit :cancel="editCancel"></vue-edit>
       </div>
-
-       <div v-show="tab.add">
+      <div class="tab-slide" :class="{'active':tab.add}">
         <vue-add :cancel="addCancel"></vue-add>
       </div>
     </div>
-
-
   </div>
 </template>
 
@@ -52,19 +48,19 @@ export default {
       tab: {
         index: true,
         edit: false,
-        add:false,
-        set:v=>{
-         v=typeof v !=="string"?"index":v;
+        add: false,
+        set: v => {
+          v = typeof v !== "string" ? "index" : v;
 
-          for(name in this.tab){
-               console.log(name)
-            if( typeof  this.tab[name]==="boolean"){
-              if(name==v){
-                this.tab[name]=true;
-                }else{
-                  this.tab[name]=false;
-                }
+          for (name in this.tab) {
+            console.log(name);
+            if (typeof this.tab[name] === "boolean") {
+              if (name == v) {
+                this.tab[name] = true;
+              } else {
+                this.tab[name] = false;
               }
+            }
           }
         }
       }
@@ -231,21 +227,22 @@ export default {
     addBtn() {
       this.tab.set("add");
     },
-    addCancel(){
+    addCancel() {
       this.tab.set();
     },
-     editCancel(){
+    editCancel() {
       this.tab.set();
     }
   },
   components: {
     vueList,
     vueEdit,
-     vueAdd
+    vueAdd
   }
 };
 </script>
 <style lang="scss">
+
 .user {
   padding-bottom: 20px;
   .btn-toolbar {

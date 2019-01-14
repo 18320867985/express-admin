@@ -6266,14 +6266,17 @@ select.form-control {
 
 .vue-checkbox {
   display: inline-block;
-  vertical-align: middle;
+  float: none;
   height: 22px;
-  width: 22px;
+  vertical-align: middle;
   cursor: pointer; }
   .vue-checkbox > * {
     vertical-align: middle; }
   .vue-checkbox .vue-checkbox-item {
-    font-size: 22px; }
+    font-size: 22px;
+    height: 22px;
+    width: 22px;
+    font-weight: 200; }
     .vue-checkbox .vue-checkbox-item:before {
       content: '\e602';
       color: #999; }
@@ -6634,27 +6637,33 @@ select.form-control {
     -webkit-transform: rotate(360deg);
             transform: rotate(360deg); } }
 
+/* tab animate*/
+.tab-slide {
+  display: none; }
+  .tab-slide.active {
+    display: block;
+    -webkit-animation: showIframe 0.5s linear both;
+            animation: showIframe 0.5s linear both; }
+
+@-webkit-keyframes showIframe {
+  0% {
+    opacity: 0;
+    -webkit-transform: translateX(50px);
+            transform: translateX(50px); }
+  100% {
+    opacity: 1;
+    -webkit-transform: translateX(0px);
+            transform: translateX(0px); } }
+
+@keyframes showIframe {
+  0% {
+    opacity: 0;
+    -webkit-transform: translateX(50px);
+            transform: translateX(50px); }
+  100% {
+    opacity: 1;
+    -webkit-transform: translateX(0px);
+            transform: translateX(0px); } }
+
 /*head*/
 /*footer*/
-/*index*/
-.login-cont {
-  width: 350px;
-  min-height: 300px;
-  padding: 30px 30px;
-  border-radius: 5px;
-  border: 1px  solid #ddd;
-  -webkit-box-shadow: 2px 2px 5px #ddd -2px -2px 5px #ddd;
-          box-shadow: 2px 2px 5px #ddd -2px -2px 5px #ddd;
-  margin: 0 auto;
-  margin-top: 60px; }
-
-.reg-cont {
-  width: 400px;
-  min-height: 300px;
-  padding: 30px 30px;
-  border-radius: 5px;
-  border: 1px  solid #ddd;
-  -webkit-box-shadow: 2px 2px 5px #ddd -2px -2px 5px #ddd;
-          box-shadow: 2px 2px 5px #ddd -2px -2px 5px #ddd;
-  margin: 0 auto;
-  margin-top: 60px; }

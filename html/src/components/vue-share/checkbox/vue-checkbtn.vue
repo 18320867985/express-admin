@@ -1,6 +1,6 @@
 <template>
 	 <div class="vue-checkbtn">
-		<div class="vue-checkbtn-item " :class="{active:value}" data-val="true" @click="ck">
+		<div class="vue-checkbtn-item " :class="{active:checkValue}" data-val="true" @click.prevent="ck">
 			<slot>爱心</slot>
 		</div>
 	</div>
@@ -15,7 +15,9 @@
 		props:{
 			value:{
 				type:Boolean,
-				default:false
+				default(){
+					return false;
+				}
 			},
 			callback:{
 				type:Function,
@@ -50,5 +52,6 @@
 <style lang="scss">
 
 </style>
+
 
 

@@ -19,5 +19,21 @@ export default {
 };
 </script>
 
+<style lang="scss">
+.login-cont{
+     width: 350px;
+     min-height: 300px;
+     padding: 30px 30px;
+    
+     border-radius: 5px;
+     border: 1px  solid #ddd;
+     box-shadow:  2px 2px 5px #ddd -2px -2px 5px #ddd;
+     margin: 0 auto;
+     margin-top: 60px;
+}
+
+</style>
+
+
 
 
