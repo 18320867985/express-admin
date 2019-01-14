@@ -26256,73 +26256,27 @@ var reg = {
     }
 };
 
-var App$3 = {
+var vueList = {
   render: function render() {
-    var _vm = this;var _h = _vm.$createElement;var _c = _vm._self._c || _h;return _c('div', { staticClass: "user" }, [_c('div', { staticClass: "container-fluid-12" }, [_c('div', { staticClass: "btn-toolbar clearfix" }, [_c('div', { staticClass: "btn-group pull-left" }), _vm._v(" "), _c('div', { staticClass: "btn-group pull-right" }, [_c('button', { staticClass: "btn btn-default btn-sm", on: { "click": function click($event) {
-          _vm.addBtn(_vm.item);
-        } } }, [_c('span', { staticClass: "text-primary glyphicon glyphicon-plus" }), _vm._v(" 添加\n        ")]), _vm._v(" "), _c('button', { staticClass: "btn btn-default btn-sm", on: { "click": function click($event) {
-          $event.preventDefault();_vm.delAll();
-        } } }, [_c('span', { staticClass: "glyphicon glyphicon-trash text-danger" }), _vm._v(" 删除\n        ")])])]), _vm._v(" "), _c('table', { staticClass: "table table-hover table-bordered" }, [_c('thead', [_c('tr', { staticClass: "text-center" }, [_c('th', [_c('vue-checkbtn', { attrs: { "callback": _vm.allChcek }, model: { value: _vm.allcheckBtn, callback: function callback($$v) {
+    var _vm = this;var _h = _vm.$createElement;var _c = _vm._self._c || _h;return _c('div', [_c('table', { staticClass: "table table-hover table-bordered" }, [_c('thead', [_c('tr', { staticClass: "text-center" }, [_c('th', [_c('vue-checkbtn', { attrs: { "callback": _vm.allChcek }, model: { value: _vm.allcheckBtn, callback: function callback($$v) {
           _vm.allcheckBtn = $$v;
-        }, expression: "allcheckBtn" } }, [_c('span', { staticClass: "glyphicon glyphicon-check" }), _vm._v(" 全选\n            ")])], 1), _vm._v(" "), _c('th', [_vm._v("编号")]), _vm._v(" "), _c('th', [_vm._v("用户名")]), _vm._v(" "), _c('th', [_vm._v("类型")]), _vm._v(" "), _c('th', [_vm._v("创建时间")]), _vm._v(" "), _c('th', [_vm._v("操作")])])]), _vm._v(" "), _c('tbody', _vm._l(_vm.users, function (item, index) {
+        }, expression: "allcheckBtn" } }, [_c('span', { staticClass: "glyphicon glyphicon-check" }), _vm._v(" 全选\n          ")])], 1), _vm._v(" "), _c('th', [_vm._v("编号")]), _vm._v(" "), _c('th', [_vm._v("用户名")]), _vm._v(" "), _c('th', [_vm._v("类型")]), _vm._v(" "), _c('th', [_vm._v("创建时间")])])]), _vm._v(" "), _c('tbody', _vm._l(_vm.users, function (item, index) {
       return _c('tr', { key: index }, [_c('td', [_c('vue-checkbox', { model: { value: item.bl, callback: function callback($$v) {
             _vm.$set(item, "bl", $$v);
-          }, expression: "item.bl" } })], 1), _vm._v(" "), _c('td', [_vm._v(_vm._s(item._id))]), _vm._v(" "), _c('td', [_vm._v(_vm._s(item.name))]), _vm._v(" "), _c('td', [_vm._v(_vm._s(item.roleId && item.roleId.name))]), _vm._v(" "), _c('td', [_vm._v(_vm._s(_vm._f("date")(item.createDate)))]), _vm._v(" "), _c('td', [_c('button', { staticClass: "btn btn-warning btn-xs", on: { "click": function click($event) {
-            _vm.editBtn(item);
-          } } }, [_vm._v("修改")])])]);
-    }), 0)])]), _vm._v(" "), _c('modal', { ref: "modal", attrs: { "title": "修改用户信息", "id": "modal-demo" }, model: { value: _vm.editOpen, callback: function callback($$v) {
-          _vm.editOpen = $$v;
-        }, expression: "editOpen" } }, [_c('h4', { staticClass: "text-muted" }, [_vm._v("用户名: " + _vm._s(_vm.editObj.name))]), _vm._v(" "), _c('form', [_c('div', { staticClass: "form-group" }, [_c('label', { attrs: { "for": "exampleInputEmail1" } }, [_vm._v("用户类型")]), _vm._v(" "), _c('select', { directives: [{ name: "model", rawName: "v-model", value: _vm.editObj.roleId, expression: "editObj.roleId" }], staticClass: "form-control", attrs: { "name": "", "id": "", "placeholder": "Email" }, on: { "change": function change($event) {
-          var $$selectedVal = Array.prototype.filter.call($event.target.options, function (o) {
-            return o.selected;
-          }).map(function (o) {
-            var val = "_value" in o ? o._value : o.value;return val;
-          });_vm.$set(_vm.editObj, "roleId", $event.target.multiple ? $$selectedVal : $$selectedVal[0]);
-        } } }, _vm._l(_vm.roles, function (item, index) {
-      return _c('option', { key: index, domProps: { "selected": _vm.editObj.roleId === _vm.item_id, "value": item._id } }, [_vm._v(_vm._s(item.name))]);
-    }), 0)])]), _vm._v(" "), _c('div', { attrs: { "slot": "footer" }, slot: "footer" }, [_c('button', { staticClass: "btn btn-defaul", attrs: { "type": "button" }, on: { "click": function click($event) {
-          $event.preventDefault();_vm.editOpen = false;
-        } } }, [_vm._v("取消")]), _vm._v(" "), _c('button', { staticClass: "btn btn-primary", attrs: { "type": "submit" }, on: { "click": function click($event) {
-          $event.preventDefault();return _vm.edit($event);
-        } } }, [_vm._v("修改")])])]), _vm._v(" "), _c('modal', { ref: "modal", attrs: { "title": "添加用户信息", "id": "modal-demo" }, model: { value: _vm.addOpen, callback: function callback($$v) {
-          _vm.addOpen = $$v;
-        }, expression: "addOpen" } }, [_c('div', [_c('form', [_c('div', { staticClass: "form-group has-feedback", class: { ' has-error': _vm.errors.has('user') } }, [_c('label', { staticClass: "control-label", attrs: { "for": "user" } }, [_vm._v("用户名:")]), _vm._v(" "), _c('input', { directives: [{ name: "validate", rawName: "v-validate", value: { required: true, min: 4 }, expression: "{required:true,min:4}" }], staticClass: "form-control", attrs: { "type": "text", "name": "user", "id": "user", "placeholder": "输入用户名" } }), _vm._v(" "), _c('p', { directives: [{ name: "show", rawName: "v-show", value: _vm.errors.has('user:required'), expression: "errors.has('user:required')" }], staticClass: "text-danger" }, [_vm._v("用户名不为空！")]), _vm._v(" "), _c('p', { directives: [{ name: "show", rawName: "v-show", value: _vm.errors.has('user:min'), expression: "errors.has('user:min')" }], staticClass: "text-danger" }, [_vm._v("用户名最小长度为4位！")]), _vm._v(" "), _c('span', { directives: [{ name: "show", rawName: "v-show", value: _vm.errors.has('user'), expression: "errors.has('user')" }], staticClass: "glyphicon glyphicon-remove form-control-feedback", attrs: { "aria-hidden": "true" } })]), _vm._v(" "), _c('div', { staticClass: "form-group has-feedback", class: { 'has-error': _vm.errors.has('pwd') } }, [_c('label', { staticClass: "control-label", attrs: { "for": "pwd" } }, [_vm._v("密码:")]), _vm._v(" "), _c('input', { directives: [{ name: "validate", rawName: "v-validate", value: { required: true, min: 8 }, expression: "{ required:true,min:8}" }], ref: "pwd", staticClass: "form-control", attrs: { "type": "password", "id": "pwd", "name": "pwd", "placeholder": "输入密码" } }), _vm._v(" "), _c('p', { directives: [{ name: "show", rawName: "v-show", value: _vm.errors.has('pwd:required'), expression: "errors.has('pwd:required')" }], staticClass: "text-danger" }, [_vm._v("密码不为空！")]), _vm._v(" "), _c('p', { directives: [{ name: "show", rawName: "v-show", value: _vm.errors.has('pwd:min'), expression: "errors.has('pwd:min')" }], staticClass: "text-danger" }, [_vm._v("密码最小长度为8位！")]), _vm._v(" "), _c('span', { directives: [{ name: "show", rawName: "v-show", value: _vm.errors.has('pwd'), expression: "errors.has('pwd')" }], staticClass: "glyphicon glyphicon-remove form-control-feedback", attrs: { "aria-hidden": "true" } })]), _vm._v(" "), _c('div', { staticClass: "form-group has-feedback", class: { 'has-error': _vm.errors.has('pwd2') } }, [_c('label', { staticClass: "control-label", attrs: { "for": "pwd2" } }, [_vm._v("确认密码:")]), _vm._v(" "), _c('input', { directives: [{ name: "validate", rawName: "v-validate", value: { required: true, confirmed: 'pwd' }, expression: "{ required:true,confirmed:'pwd'}" }], staticClass: "form-control", attrs: { "type": "password", "name": "pwd2", "id": "pwd2", "data-vv-as": "pwd", "placeholder": "输入确认密码" } }), _vm._v(" "), _c('p', { directives: [{ name: "show", rawName: "v-show", value: _vm.errors.has('pwd2:required'), expression: "errors.has('pwd2:required')" }], staticClass: "text-danger" }, [_vm._v("密码不为空！")]), _vm._v(" "), _c('p', { directives: [{ name: "show", rawName: "v-show", value: _vm.errors.has('pwd2:confirmed'), expression: "errors.has('pwd2:confirmed')" }], staticClass: "text-danger" }, [_vm._v("两次密码不相同！")]), _vm._v(" "), _c('span', { directives: [{ name: "show", rawName: "v-show", value: _vm.errors.has('pwd2'), expression: "errors.has('pwd2')" }], staticClass: "glyphicon glyphicon-remove form-control-feedback", attrs: { "aria-hidden": "true" } })]), _vm._v(" "), _c('div', { staticClass: "form-group" }, [_c('label', { attrs: { "for": "exampleInputEmail1" } }, [_vm._v("用户类型")]), _vm._v(" "), _c('select', { directives: [{ name: "model", rawName: "v-model", value: _vm.addObj.roleId, expression: "addObj.roleId" }], staticClass: "form-control", attrs: { "name": "", "id": "" }, on: { "change": function change($event) {
-          var $$selectedVal = Array.prototype.filter.call($event.target.options, function (o) {
-            return o.selected;
-          }).map(function (o) {
-            var val = "_value" in o ? o._value : o.value;return val;
-          });_vm.$set(_vm.addObj, "roleId", $event.target.multiple ? $$selectedVal : $$selectedVal[0]);
-        } } }, [_c('option', { attrs: { "value": "" } }, [_vm._v("==选择类型==")]), _vm._v(" "), _vm._l(_vm.roles, function (item, index) {
-      return _c('option', { key: index, domProps: { "value": item._id } }, [_vm._v(_vm._s(item.name))]);
-    })], 2)]), _vm._v(" "), _c('div', { staticClass: "form-group has-feedback", class: { 'has-error': _vm.errors.has('email') } }, [_c('label', { staticClass: "control-label", attrs: { "for": "email" } }, [_vm._v("邮箱:")]), _vm._v(" "), _c('input', { directives: [{ name: "validate", rawName: "v-validate", value: 'required|email', expression: "'required|email'" }], staticClass: "form-control", attrs: { "type": "text", "name": "email", "id": "email", "placeholder": "输入邮箱" } }), _vm._v(" "), _c('p', { directives: [{ name: "show", rawName: "v-show", value: _vm.errors.has('eamil:required'), expression: "errors.has('eamil:required')" }], staticClass: "text-danger" }, [_vm._v("邮箱不为空！")]), _vm._v(" "), _c('p', { directives: [{ name: "show", rawName: "v-show", value: _vm.errors.has('email:email'), expression: "errors.has('email:email')" }], staticClass: "text-danger" }, [_vm._v("邮箱格式不对！")]), _vm._v(" "), _c('span', { directives: [{ name: "show", rawName: "v-show", value: _vm.errors.has('email'), expression: "errors.has('email')" }], staticClass: "glyphicon glyphicon-remove form-control-feedback", attrs: { "aria-hidden": "true" } })]), _vm._v(" "), _c('div', { staticClass: "form-group" }, [_vm.show ? _c('alert', { attrs: { "type": "danger", "dismissible": "" }, on: { "dismissed": function dismissed($event) {
-          _vm.show = false;
-        } } }, [_vm._v(_vm._s(_vm.errText))]) : _vm._e()], 1)])]), _vm._v(" "), _c('div', { attrs: { "slot": "footer" }, slot: "footer" }, [_c('button', { staticClass: "btn btn-defaul", attrs: { "type": "button" }, on: { "click": function click($event) {
-          $event.preventDefault();_vm.addOpen = false;
-        } } }, [_vm._v("取消")]), _vm._v(" "), _c('button', { staticClass: "btn btn-primary", attrs: { "type": "submit" }, on: { "click": function click($event) {
-          $event.preventDefault();return _vm.edit($event);
-        } } }, [_vm._v("添加")])])]), _vm._v(" "), _c('vue-paging', { attrs: { "page-click": _vm.pageClick, "text-class": "text-center" } })], 1);
+          }, expression: "item.bl" } })], 1), _vm._v(" "), _c('td', [_vm._v(_vm._s(item._id))]), _vm._v(" "), _c('td', [_vm._v(_vm._s(item.name))]), _vm._v(" "), _c('td', [_vm._v(_vm._s(item.roleId && item.roleId.name))]), _vm._v(" "), _c('td', [_vm._v(_vm._s(_vm._f("date")(item.createDate)))])]);
+    }), 0)]), _vm._v(" "), _c('vue-paging', { attrs: { "page-click": _vm.pageClick, "text-class": "text-center" } })], 1);
   },
   staticRenderFns: [],
+  props: {
+    value: {
+      type: Array,
+      default: []
+    }
+  },
+
   data: function data() {
     return {
-      users: [],
-      editOpen: false,
-      addOpen: false,
-      editObj: {
-        _id: "",
-        name: "",
-        roleId: ""
-      },
-      addObj: {
-        name: "",
-        pwd: "",
-        pwd2: "",
-        email: "",
-        roleId: ""
-      },
-
-      roles: [],
-      allcheckBtn: false,
+      users: this.value,
       // 分页
       pageObj: {
         index: 1, //	当前页
@@ -26336,30 +26290,234 @@ var App$3 = {
       }
     };
   },
-  mounted: function mounted() {
-    var _this = this;
 
+  watch: {
+    value: {
+      deep: true,
+      handler: function handler(v) {
+        this.users = v;
+      }
+    }
+  },
+  mounted: function mounted() {
     // get users
     this.getUsers(1);
-    // get roles
-    this.$http.get("admin/userRole/data", {}).then(function (ok) {
-      var body = ok.body;
-      if (body.code) {
-        _this.roles = body.data;
-      } else {
+  },
+
+  methods: {
+    getUsers: function getUsers(i) {
+      var _this = this;
+
+      // 分页
+      this.$loading();
+      this.$http.get("admin/user/data/" + i + "/" + this.pageObj.pageItem, {}).then(function (ok) {
+        _this.$loading(false);
+        var body = ok.body;
+        if (body.code) {
+          _this.users = body.data;
+          // this.users =body.data.map((item)=>{
+          //   item.bl=false;
+          //   return item;
+          // });
+          _this.users.forEach(function (item) {
+            _this.$set(item, "bl", false);
+          });
+
+          _this.pageObj.index = Number(body.index);
+          _this.pageObj.pageItem = Number(body.pageItem);
+          _this.pageObj.allItem = Number(body.allItem);
+          _this.$emit("input", _this.users);
+          eventBus.$emit("initPage", _this.pageObj);
+          _this.allcheckBtn = false;
+        } else {
+          _this.$notify({
+            type: "danger",
+            content: body.data
+          });
+        }
+      }, function (err) {
+        _this.$loading(false);
         _this.$notify({
           type: "danger",
-          title: "error",
-          content: body.data
+          content: "连接失败"
+        });
+      });
+    },
+    pageClick: function pageClick(id, end) {
+      this.getUsers(id, end);
+    },
+    allChcek: function allChcek(bl) {
+
+      if (bl) {
+        this.users.forEach(function (element) {
+          element.bl = true;
+        });
+      } else {
+        this.users.forEach(function (element) {
+          element.bl = false;
         });
       }
-    }, function (err) {
-      _this.$notify({
-        type: "danger",
-        title: "连接失败",
-        content: "连接失败"
-      });
-    });
+    }
+  }
+};
+
+var vueEdit = {
+  render: function render() {
+    var _vm = this;var _h = _vm.$createElement;var _c = _vm._self._c || _h;return _c('div', { staticClass: "user-edit" }, [_c('form', [_vm._m(0), _vm._v(" "), _c('hr'), _vm._v(" "), _vm._m(1), _vm._v(" "), _c('div', { staticClass: "form-group" }, [_c('label', { attrs: { "for": "exampleInputEmail1" } }, [_vm._v("用户类型")]), _vm._v(" "), _c('select', { directives: [{ name: "model", rawName: "v-model", value: _vm.editObj.roleId, expression: "editObj.roleId" }], staticClass: "form-control", attrs: { "name": "", "id": "", "placeholder": "Email" }, on: { "change": function change($event) {
+          var $$selectedVal = Array.prototype.filter.call($event.target.options, function (o) {
+            return o.selected;
+          }).map(function (o) {
+            var val = "_value" in o ? o._value : o.value;return val;
+          });_vm.$set(_vm.editObj, "roleId", $event.target.multiple ? $$selectedVal : $$selectedVal[0]);
+        } } })]), _vm._v(" "), _c('div', { staticClass: "form-group" }, [_c('button', { staticClass: "btn btn-primary", attrs: { "type": "submit" } }, [_vm._v("保存")]), _vm._v(" "), _c('button', { staticClass: "btn btn-default pull-right", attrs: { "type": "button" }, on: { "click": _vm.cancelBtn } }, [_c('span', { staticClass: "glyphicon glyphicon-share-alt text-warning" }), _vm._v(" 返回\n      ")])])])]);
+  },
+  staticRenderFns: [function () {
+    var _vm = this;var _h = _vm.$createElement;var _c = _vm._self._c || _h;return _c('h4', { staticClass: "text-muted" }, [_c('em', [_vm._v("修改用户信息")])]);
+  }, function () {
+    var _vm = this;var _h = _vm.$createElement;var _c = _vm._self._c || _h;return _c('div', { staticClass: "form-group" }, [_c('label', { attrs: { "for": "exampleInputEmail1" } }, [_vm._v("用户名")])]);
+  }],
+  props: {
+    value: {
+      type: Object,
+      default: function _default() {
+        return {};
+      }
+    },
+    cancel: {
+      type: Function,
+      default: function _default() {}
+    }
+  },
+  data: function data() {
+    return {
+      editObj: this.value
+    };
+  },
+
+  methods: {
+    cancelBtn: function cancelBtn() {
+      this.cancel();
+    }
+  }
+};
+
+var vueAdd = {
+  render: function render() {
+    var _vm = this;var _h = _vm.$createElement;var _c = _vm._self._c || _h;return _c('div', { staticClass: "user-add" }, [_c('form', [_vm._m(0), _vm._v(" "), _c('hr'), _vm._v(" "), _c('div', { staticClass: "form-group has-feedback", class: { ' has-error': _vm.errors.has('user') } }, [_c('label', { staticClass: "control-label", attrs: { "for": "user" } }, [_vm._v("用户名:")]), _vm._v(" "), _c('input', { directives: [{ name: "validate", rawName: "v-validate", value: { required: true, min: 4 }, expression: "{required:true,min:4}" }], staticClass: "form-control", attrs: { "type": "text", "name": "user", "id": "user", "placeholder": "输入用户名" } }), _vm._v(" "), _c('p', { directives: [{ name: "show", rawName: "v-show", value: _vm.errors.has('user:required'), expression: "errors.has('user:required')" }], staticClass: "text-danger" }, [_vm._v("用户名不为空！")]), _vm._v(" "), _c('p', { directives: [{ name: "show", rawName: "v-show", value: _vm.errors.has('user:min'), expression: "errors.has('user:min')" }], staticClass: "text-danger" }, [_vm._v("用户名最小长度为4位！")]), _vm._v(" "), _c('span', { directives: [{ name: "show", rawName: "v-show", value: _vm.errors.has('user'), expression: "errors.has('user')" }], staticClass: "glyphicon glyphicon-remove form-control-feedback", attrs: { "aria-hidden": "true" } })]), _vm._v(" "), _c('div', { staticClass: "form-group has-feedback", class: { 'has-error': _vm.errors.has('pwd') } }, [_c('label', { staticClass: "control-label", attrs: { "for": "pwd" } }, [_vm._v("密码:")]), _vm._v(" "), _c('input', { directives: [{ name: "validate", rawName: "v-validate", value: { required: true, min: 8 }, expression: "{ required:true,min:8}" }], ref: "pwd", staticClass: "form-control", attrs: { "type": "password", "id": "pwd", "name": "pwd", "placeholder": "输入密码" } }), _vm._v(" "), _c('p', { directives: [{ name: "show", rawName: "v-show", value: _vm.errors.has('pwd:required'), expression: "errors.has('pwd:required')" }], staticClass: "text-danger" }, [_vm._v("密码不为空！")]), _vm._v(" "), _c('p', { directives: [{ name: "show", rawName: "v-show", value: _vm.errors.has('pwd:min'), expression: "errors.has('pwd:min')" }], staticClass: "text-danger" }, [_vm._v("密码最小长度为8位！")]), _vm._v(" "), _c('span', { directives: [{ name: "show", rawName: "v-show", value: _vm.errors.has('pwd'), expression: "errors.has('pwd')" }], staticClass: "glyphicon glyphicon-remove form-control-feedback", attrs: { "aria-hidden": "true" } })]), _vm._v(" "), _c('div', { staticClass: "form-group has-feedback", class: { 'has-error': _vm.errors.has('pwd2') } }, [_c('label', { staticClass: "control-label", attrs: { "for": "pwd2" } }, [_vm._v("确认密码:")]), _vm._v(" "), _c('input', { directives: [{ name: "validate", rawName: "v-validate", value: { required: true, confirmed: 'pwd' }, expression: "{ required:true,confirmed:'pwd'}" }], staticClass: "form-control", attrs: { "type": "password", "name": "pwd2", "id": "pwd2", "data-vv-as": "pwd", "placeholder": "输入确认密码" } }), _vm._v(" "), _c('p', { directives: [{ name: "show", rawName: "v-show", value: _vm.errors.has('pwd2:required'), expression: "errors.has('pwd2:required')" }], staticClass: "text-danger" }, [_vm._v("密码不为空！")]), _vm._v(" "), _c('p', { directives: [{ name: "show", rawName: "v-show", value: _vm.errors.has('pwd2:confirmed'), expression: "errors.has('pwd2:confirmed')" }], staticClass: "text-danger" }, [_vm._v("两次密码不相同！")]), _vm._v(" "), _c('span', { directives: [{ name: "show", rawName: "v-show", value: _vm.errors.has('pwd2'), expression: "errors.has('pwd2')" }], staticClass: "glyphicon glyphicon-remove form-control-feedback", attrs: { "aria-hidden": "true" } })]), _vm._v(" "), _c('div', { staticClass: "form-group" }, [_c('label', { attrs: { "for": "exampleInputEmail1" } }, [_vm._v("用户类型")]), _vm._v(" "), _c('select', { directives: [{ name: "model", rawName: "v-model", value: _vm.addObj.roleId, expression: "addObj.roleId" }], staticClass: "form-control", attrs: { "name": "", "id": "" }, on: { "change": function change($event) {
+          var $$selectedVal = Array.prototype.filter.call($event.target.options, function (o) {
+            return o.selected;
+          }).map(function (o) {
+            var val = "_value" in o ? o._value : o.value;return val;
+          });_vm.$set(_vm.addObj, "roleId", $event.target.multiple ? $$selectedVal : $$selectedVal[0]);
+        } } }, [_c('option', { attrs: { "value": "" } }, [_vm._v("==选择类型==")]), _vm._v(" "), _vm._l(_vm.roles, function (item, index) {
+      return _c('option', { key: index, domProps: { "value": item._id } }, [_vm._v(_vm._s(item.name))]);
+    })], 2)]), _vm._v(" "), _c('div', { staticClass: "form-group has-feedback", class: { 'has-error': _vm.errors.has('email') } }, [_c('label', { staticClass: "control-label", attrs: { "for": "email" } }, [_vm._v("邮箱:")]), _vm._v(" "), _c('input', { directives: [{ name: "validate", rawName: "v-validate", value: 'required|email', expression: "'required|email'" }], staticClass: "form-control", attrs: { "type": "text", "name": "email", "id": "email", "placeholder": "输入邮箱" } }), _vm._v(" "), _c('p', { directives: [{ name: "show", rawName: "v-show", value: _vm.errors.has('eamil:required'), expression: "errors.has('eamil:required')" }], staticClass: "text-danger" }, [_vm._v("邮箱不为空！")]), _vm._v(" "), _c('p', { directives: [{ name: "show", rawName: "v-show", value: _vm.errors.has('email:email'), expression: "errors.has('email:email')" }], staticClass: "text-danger" }, [_vm._v("邮箱格式不对！")]), _vm._v(" "), _c('span', { directives: [{ name: "show", rawName: "v-show", value: _vm.errors.has('email'), expression: "errors.has('email')" }], staticClass: "glyphicon glyphicon-remove form-control-feedback", attrs: { "aria-hidden": "true" } })]), _vm._v(" "), _c('div', { staticClass: "form-group" }, [_vm.show ? _c('alert', { attrs: { "type": "danger", "dismissible": "" }, on: { "dismissed": function dismissed($event) {
+          _vm.show = false;
+        } } }, [_vm._v(_vm._s(_vm.errText))]) : _vm._e()], 1), _vm._v(" "), _c('div', { staticClass: "form-group" }, [_c('button', { staticClass: "btn btn-primary", attrs: { "type": "submit" } }, [_vm._v("添加")]), _vm._v(" "), _c('button', { staticClass: "btn btn-default pull-right", attrs: { "type": "button" }, on: { "click": _vm.cancelBtn } }, [_c('span', { staticClass: "glyphicon glyphicon-share-alt text-warning" }), _vm._v(" 返回\n      ")])])])]);
+  },
+  staticRenderFns: [function () {
+    var _vm = this;var _h = _vm.$createElement;var _c = _vm._self._c || _h;return _c('h4', { staticClass: "text-muted" }, [_c('em', [_vm._v("添加用户信息")])]);
+  }],
+  props: {
+    value: {
+      type: Object,
+      default: function _default() {
+        return {};
+      }
+    },
+    cancel: {
+      type: Function,
+      default: function _default() {}
+    }
+  },
+  data: function data() {
+    return {
+      addObj: this.value
+    };
+  },
+
+  methods: {
+    cancelBtn: function cancelBtn() {
+      this.cancel();
+    }
+  }
+};
+
+var App$3 = {
+  render: function render() {
+    var _vm = this;var _h = _vm.$createElement;var _c = _vm._self._c || _h;return _c('div', { staticClass: "user" }, [_c('div', { staticClass: "container-fluid-12" }, [_c('div', { directives: [{ name: "show", rawName: "v-show", value: _vm.tab.index, expression: "tab.index" }] }, [_c('div', { staticClass: "btn-toolbar clearfix" }, [_c('div', { staticClass: "btn-group pull-left" }), _vm._v(" "), _c('div', { staticClass: "btn-group pull-right" }, [_c('button', { staticClass: "btn btn-default btn-sm", on: { "click": _vm.addBtn } }, [_c('span', { staticClass: "text-primary glyphicon glyphicon-plus" }), _vm._v(" 添加\n          ")]), _vm._v(" "), _c('button', { staticClass: "btn btn-default btn-sm", on: { "click": _vm.editBtn } }, [_c('span', { staticClass: "glyphicon glyphicon-edit text-warning" }), _vm._v(" 修改\n          ")]), _vm._v(" "), _c('button', { staticClass: "btn btn-default btn-sm", on: { "click": function click($event) {
+          $event.preventDefault();_vm.delAll();
+        } } }, [_c('span', { staticClass: "glyphicon glyphicon-trash text-danger" }), _vm._v(" 删除\n          ")])])]), _vm._v(" "), _c('vue-list', { model: { value: _vm.users, callback: function callback($$v) {
+          _vm.users = $$v;
+        }, expression: "users" } })], 1), _vm._v(" "), _c('div', { directives: [{ name: "show", rawName: "v-show", value: _vm.tab.edit, expression: "tab.edit" }] }, [_c('vue-edit', { attrs: { "cancel": _vm.editCancel } })], 1), _vm._v(" "), _c('div', { directives: [{ name: "show", rawName: "v-show", value: _vm.tab.add, expression: "tab.add" }] }, [_c('vue-add', { attrs: { "cancel": _vm.addCancel } })], 1)])]);
+  },
+  staticRenderFns: [],
+  data: function data() {
+    var _this = this;
+
+    return {
+      users: [],
+      editOpen: false,
+      addOpen: false,
+      editObj: {
+        _id: "",
+        name: "",
+        roleId: ""
+      },
+      tab: {
+        index: true,
+        edit: false,
+        add: false,
+        set: function set(v) {
+          v = typeof v !== "string" ? "index" : v;
+
+          for (name in _this.tab) {
+            console.log(name);
+            if (typeof _this.tab[name] === "boolean") {
+              if (name == v) {
+                _this.tab[name] = true;
+              } else {
+                _this.tab[name] = false;
+              }
+            }
+          }
+        }
+
+        // addObj: {
+        //   name: "",
+        //   pwd: "",
+        //   pwd2: "",
+        //   email: "",
+        //   roleId: ""
+        // },
+
+        // roles: [],
+        // allcheckBtn: false,
+      } };
+  },
+  mounted: function mounted() {
+    // get roles
+    // this.$http.get("admin/userRole/data", {}).then(
+    //   ok => {
+    //     var body = ok.body;
+    //     if (body.code) {
+    //       this.roles = body.data;
+    //     } else {
+    //       this.$notify({
+    //         type: "danger",
+    //         title: "error",
+    //         content: body.data
+    //       });
+    //     }
+    //   },
+    //   err => {
+    //     this.$notify({
+    //       type: "danger",
+    //       title: "连接失败",
+    //       content: "连接失败"
+    //     });
+    //   }
+    // );
   },
 
   methods: {
@@ -26396,10 +26554,7 @@ var App$3 = {
       });
     },
     editBtn: function editBtn(item) {
-      this.editObj._id = item._id;
-      this.editObj.name = item.name;
-      this.editObj.roleId = item.roleId && item.roleId._id || "";
-      this.editOpen = true;
+      this.tab.set("edit");
     },
     edit: function edit() {
       var _this3 = this;
@@ -26437,7 +26592,6 @@ var App$3 = {
           title: "提示",
           content: "<strong class='text-danger'>还没选择数据!</strong>",
           html: true
-
         }).catch(function (err) {});
         return;
       }
@@ -26449,12 +26603,12 @@ var App$3 = {
         }).map(function (item) {
           return item._id;
         });
-        _this4.$http.delete("admin/user/data/" + listId, { name: 123 }).then(function (ok) {
+        _this4.$http.delete("admin/user/data/" + listId.join(","), { name: 123 }).then(function (ok) {
           var body = ok.body;
           if (body.code) {
             _this4.users = _this4.users.filter(function (item) {
               return listId.some(function (v) {
-                return v == item._id;
+                return v != item._id;
               });
             });
             _this4.$notify({
@@ -26476,62 +26630,20 @@ var App$3 = {
       }).catch(function (err) {});
     },
     addBtn: function addBtn() {
-      this.addOpen = true;
+      this.tab.set("add");
     },
-    getUsers: function getUsers(i) {
-      var _this5 = this;
-
-      // 分页
-      this.$loading();
-      this.$http.get("admin/user/data/" + i + "/" + this.pageObj.pageItem, {}).then(function (ok) {
-        _this5.$loading(false);
-        var body = ok.body;
-        if (body.code) {
-          _this5.users = body.data;
-          // this.users =body.data.map((item)=>{
-          //   item.bl=false;
-          //   return item;
-          // });
-          _this5.users.forEach(function (item) {
-            _this5.$set(item, "bl", false);
-          });
-
-          _this5.pageObj.index = Number(body.index);
-          _this5.pageObj.pageItem = Number(body.pageItem);
-          _this5.pageObj.allItem = Number(body.allItem);
-
-          eventBus.$emit("initPage", _this5.pageObj);
-          _this5.allcheckBtn = false;
-        } else {
-          _this5.$notify({
-            type: "danger",
-            content: body.data
-          });
-        }
-      }, function (err) {
-        _this5.$loading(false);
-        _this5.$notify({
-          type: "danger",
-          content: "连接失败"
-        });
-      });
+    addCancel: function addCancel() {
+      this.tab.set();
     },
-    pageClick: function pageClick(id, end) {
-      this.getUsers(id, end);
-    },
-    allChcek: function allChcek(bl) {
-      if (bl) {
-        this.users.forEach(function (element) {
-          element.bl = true;
-        });
-      } else {
-        this.users.forEach(function (element) {
-          element.bl = false;
-        });
-      }
+    editCancel: function editCancel() {
+      this.tab.set();
     }
   },
-  components: {}
+  components: {
+    vueList: vueList,
+    vueEdit: vueEdit,
+    vueAdd: vueAdd
+  }
 };
 
 var user = {

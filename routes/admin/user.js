@@ -56,7 +56,7 @@ router.put("/user/data", async (req, res) => {
 });
 
 router.delete("/user/data/:listId", async (req, res) => {
-    let id = req.params.id;
+   // let id = req.params.id;
     let listId=req.params.listId||"";
     listId=listId.split(",")
     let obj = await mainModel.User.deleteMany({
