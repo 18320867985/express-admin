@@ -1,9 +1,26 @@
 <template>
   <div class="user">
     <div class="container-fluid-12">
+      <div class="btn-toolbar clearfix">
+        <div class="btn-group pull-left"></div>
+        <div class="btn-group pull-right">
+          <button class="btn btn-default btn-sm" @click="addBtn(item)">
+            <span class="text-primary glyphicon glyphicon-plus"></span> 添加
+          </button>
+          <button class="btn btn-default btn-sm" @click.prevent="delAll()">
+            <span class="glyphicon glyphicon-trash text-danger"></span> 删除
+          </button>
+        </div>
+      </div>
+
       <table class="table table-hover table-bordered">
         <thead>
           <tr class="text-center">
+            <th>
+              <vue-checkbtn :callback="allChcek" v-model="allcheckBtn">
+                <span class="glyphicon glyphicon-check"></span> 全选
+              </vue-checkbtn>
+            </th>
             <th>编号</th>
             <th>用户名</th>
             <th>类型</th>
@@ -12,15 +29,17 @@
           </tr>
         </thead>
         <tbody>
-          <tr v-for="(item, index)  of users" :key="item._id">
+          <tr v-for="(item, index)  of users" :key="index">
+            <td>
+              <vue-checkbox v-model="item.bl"></vue-checkbox>
+            </td>
             <td>{{ item._id}}</td>
             <td>{{ item.name}}</td>
             <td>{{ item.roleId&&item.roleId.name}}</td>
             <td>{{ item.createDate|date}}</td>
             <td>
-              <button class="btn btn-primary btn-xs" @click="addBtn(item)">添加</button>
               <button class="btn btn-warning btn-xs" @click="editBtn(item)">修改</button>
-              <button class="btn btn-danger btn-xs" @click.prevent="del(item._id,index)">删除</button>
+              <!-- <button class="btn btn-danger btn-xs" @click.prevent="del(item._id,index)">删除</button> -->
             </td>
           </tr>
         </tbody>
@@ -110,7 +129,6 @@
               aria-hidden="true"
             ></span>
           </div>
-
           <div class="form-group">
             <label for="exampleInputEmail1">用户类型</label>
             <select name id class="form-control" v-model="addObj.roleId">
@@ -173,8 +191,9 @@ export default {
         email: "",
         roleId: ""
       },
-      bl: false,
+
       roles: [],
+      allcheckBtn: false,
       // 分页
       pageObj: {
         index: 1, //	当前页
@@ -192,7 +211,6 @@ export default {
   mounted() {
     // get users
     this.getUsers(1);
-
     // get roles
     this.$http.get("admin/userRole/data", {}).then(
       ok => {
@@ -220,7 +238,6 @@ export default {
     // del
     del(id, index) {
       this.$confirm({
-        title: "删除数据",
         content: "确认删除数据？"
       })
         .then(ok => {
@@ -254,12 +271,9 @@ export default {
         });
     },
     editBtn(item) {
-      ({
-        _id: this.editObj._id,
-        name: this.editObj.name,
-        roleId,
-        roleId: { _id: this.editObj.roleId }
-      } = item);
+      this.editObj._id = item._id;
+      this.editObj.name = item.name;
+      this.editObj.roleId = (item.roleId && item.roleId._id) || "";
       this.editOpen = true;
     },
     edit() {
@@ -268,7 +282,7 @@ export default {
           var body = ok.body;
           this.editOpen = false;
           if (body.code) {
-            this.getUsers();
+            this.getUsers(this.pageObj.index);
             this.$notify({
               type: "success",
               content: "修改数据成功！"
@@ -276,7 +290,7 @@ export default {
           } else {
             this.$notify({
               type: "danger",
-              content: "修改数据失败！"
+              content: body.data
             });
           }
         },
@@ -287,6 +301,57 @@ export default {
           });
         }
       );
+    },
+
+    delAll() {
+      let fo = this.users.filter(item => {
+        return item.bl === true;
+      });
+      if (fo.length <= 0) {
+        this.$alert({
+          title:"提示",
+          content: "<strong class='text-danger'>还没选择数据!</strong>",
+          html:true
+          
+        }).catch(err=>{});
+        return;
+      }
+      this.$confirm({
+        content: "确认删除数据？"
+      })
+        .then(ok => {
+          let listId = this.users
+            .filter(item => {
+              return item.bl === true;
+            })
+            .map(item => {
+              return item._id;
+            });
+          this.$http.delete(`admin/user/data/${listId}`,{name:123}).then(
+            ok => {
+              var body = ok.body;
+              if (body.code) {
+                this.users= this.users.filter(item=>{return listId.some(v=>{ return v== item._id})})
+                this.$notify({
+                  type: "success",
+                  content: "删除数据成功！"
+                });
+              } else {
+                this.$notify({
+                  type: "danger",
+                  content: "删除数据失败！"
+                });
+              }
+            },
+            err => {
+              this.$notify({
+                type: "danger",
+                content: "连接失败"
+              });
+            }
+          );
+        })
+        .catch(err => {});
     },
 
     addBtn() {
@@ -301,11 +366,20 @@ export default {
           var body = ok.body;
           if (body.code) {
             this.users = body.data;
+            // this.users =body.data.map((item)=>{
+            //   item.bl=false;
+            //   return item;
+            // });
+            this.users.forEach(item => {
+              this.$set(item, "bl", false);
+            });
+
             this.pageObj.index = Number(body.index);
             this.pageObj.pageItem = Number(body.pageItem);
             this.pageObj.allItem = Number(body.allItem);
 
             eventBus.$emit("initPage", this.pageObj);
+            this.allcheckBtn = false;
           } else {
             this.$notify({
               type: "danger",
@@ -324,6 +398,17 @@ export default {
     },
     pageClick(id, end) {
       this.getUsers(id, end);
+    },
+    allChcek(bl) {
+      if (bl) {
+        this.users.forEach(element => {
+          element.bl = true;
+        });
+      } else {
+        this.users.forEach(element => {
+          element.bl = false;
+        });
+      }
     }
   },
   components: {}
@@ -331,6 +416,10 @@ export default {
 </script>
 <style lang="scss">
 .user {
+  .btn-toolbar {
+    margin-bottom: 10px;
+    padding-right: 10px;
+  }
   padding-top: 20px;
   .table {
     th,

@@ -6267,11 +6267,13 @@ select.form-control {
 .vue-checkbox {
   display: inline-block;
   vertical-align: middle;
+  height: 22px;
+  width: 22px;
   cursor: pointer; }
   .vue-checkbox > * {
     vertical-align: middle; }
   .vue-checkbox .vue-checkbox-item {
-    font-size: 24px; }
+    font-size: 22px; }
     .vue-checkbox .vue-checkbox-item:before {
       content: '\e602';
       color: #999; }
@@ -6342,12 +6344,13 @@ select.form-control {
   position: relative;
   display: inline-block;
   vertical-align: middle;
-  margin-left: 15px;
   cursor: pointer; }
+  .vue-checkbtn + .vue-checkbtn {
+    margin-left: 15px; }
   .vue-checkbtn .vue-checkbtn-item {
     padding: 5px 10px;
     color: #666;
-    background: #f0f0f0;
+    background: #ececec;
     border-radius: 10px;
     cursor: pointer; }
     .vue-checkbtn .vue-checkbtn-item.active {

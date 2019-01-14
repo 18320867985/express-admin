@@ -150,6 +150,9 @@
 
 .user {
   padding-top: 20px; }
+  .user .btn-toolbar {
+    margin-bottom: 10px;
+    padding-right: 10px; }
   .user .table th,
   .user .table td {
     text-align: center; }

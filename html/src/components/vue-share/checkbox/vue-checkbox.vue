@@ -1,6 +1,6 @@
 <template>
 		<div class="vue-checkbox"  >
-			<span class="vue-checkbox-item iconfont icon-vue-checkbox " :class="{'active':ck,disabled:disabled}" @click="checked"  :disabled="disabled">
+			<span class="vue-checkbox-item iconfont icon-vue-checkbox " :class="{'active':value,disabled:disabled}" @click="checked"  :disabled="disabled">
 			</span>
 			<span @click="checked"><slot ></slot></span>
 		</div>
@@ -19,14 +19,24 @@
 				type: Boolean,
 				default:false
 			},
+			callback:{
+				type:Function,
+				default:function(){}
+			}
+
 		},
 		data() {
 			return {
-				test:"test-slot",
-				ck:this.value
-				
-				
+			ck:this.value
 			};
+		},
+		watch: {
+			value:{
+				deep:true,
+				handler(v){
+					this.ck=v;
+				}
+			}
 		},
 		methods: {
 			checked() {
@@ -35,6 +45,7 @@
 				}
 				this.ck=!this.ck;
 				this.$emit("input",this.ck);
+				this.callback(this.ck);
 			}
 		},
 	}

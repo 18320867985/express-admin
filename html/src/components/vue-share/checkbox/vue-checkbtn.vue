@@ -1,6 +1,6 @@
 <template>
 	 <div class="vue-checkbtn">
-		<div class="vue-checkbtn-item " :class="{active:checkValue}" data-val="true" @click="ck">
+		<div class="vue-checkbtn-item " :class="{active:value}" data-val="true" @click="ck">
 			<slot>爱心</slot>
 		</div>
 	</div>
@@ -26,6 +26,14 @@
 			return {
 				  checkValue:this.value
 			};
+		},
+		watch: {
+			value:{
+				deep:true,
+				handler(v){
+					this.checkValue=v;	
+				}
+			}
 		},
 		methods:{
 			ck(){

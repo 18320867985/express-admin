@@ -18429,7 +18429,7 @@ if (typeof window !== 'undefined' && window.Vue) {
 
 var VueCheckbox = {
 	render: function render() {
-		var _vm = this;var _h = _vm.$createElement;var _c = _vm._self._c || _h;return _c('div', { staticClass: "vue-checkbox" }, [_c('span', { staticClass: "vue-checkbox-item iconfont icon-vue-checkbox ", class: { 'active': _vm.ck, disabled: _vm.disabled }, attrs: { "disabled": _vm.disabled }, on: { "click": _vm.checked } }), _vm._v(" "), _c('span', { on: { "click": _vm.checked } }, [_vm._t("default")], 2)]);
+		var _vm = this;var _h = _vm.$createElement;var _c = _vm._self._c || _h;return _c('div', { staticClass: "vue-checkbox" }, [_c('span', { staticClass: "vue-checkbox-item iconfont icon-vue-checkbox ", class: { 'active': _vm.value, disabled: _vm.disabled }, attrs: { "disabled": _vm.disabled }, on: { "click": _vm.checked } }), _vm._v(" "), _c('span', { on: { "click": _vm.checked } }, [_vm._t("default")], 2)]);
 	},
 	staticRenderFns: [],
 	name: "VueCheckbox",
@@ -18442,16 +18442,27 @@ var VueCheckbox = {
 		check: {
 			type: Boolean,
 			default: false
+		},
+		callback: {
+			type: Function,
+			default: function _default() {}
 		}
+
 	},
 	data: function data() {
 		return {
-			test: "test-slot",
 			ck: this.value
-
 		};
 	},
 
+	watch: {
+		value: {
+			deep: true,
+			handler: function handler(v) {
+				this.ck = v;
+			}
+		}
+	},
 	methods: {
 		checked: function checked() {
 			if (this.disabled) {
@@ -18459,6 +18470,7 @@ var VueCheckbox = {
 			}
 			this.ck = !this.ck;
 			this.$emit("input", this.ck);
+			this.callback(this.ck);
 		}
 	}
 };
@@ -18531,7 +18543,7 @@ callback(){}  // 回调函数
 */
 var VueCheckbtn = {
 	render: function render() {
-		var _vm = this;var _h = _vm.$createElement;var _c = _vm._self._c || _h;return _c('div', { staticClass: "vue-checkbtn" }, [_c('div', { staticClass: "vue-checkbtn-item ", class: { active: _vm.checkValue }, attrs: { "data-val": "true" }, on: { "click": _vm.ck } }, [_vm._t("default", [_vm._v("爱心")])], 2)]);
+		var _vm = this;var _h = _vm.$createElement;var _c = _vm._self._c || _h;return _c('div', { staticClass: "vue-checkbtn" }, [_c('div', { staticClass: "vue-checkbtn-item ", class: { active: _vm.value }, attrs: { "data-val": "true" }, on: { "click": _vm.ck } }, [_vm._t("default", [_vm._v("爱心")])], 2)]);
 	},
 	staticRenderFns: [],
 	name: "VueCheckbtn",
@@ -18551,6 +18563,14 @@ var VueCheckbtn = {
 		};
 	},
 
+	watch: {
+		value: {
+			deep: true,
+			handler: function handler(v) {
+				this.checkValue = v;
+			}
+		}
+	},
 	methods: {
 		ck: function ck() {
 			this.checkValue = !this.checkValue;
@@ -18742,7 +18762,7 @@ var VueRadiobtn = {
 
 var VueSwitch = {
     render: function render() {
-        var _vm = this;var _h = _vm.$createElement;var _c = _vm._self._c || _h;return _c('div', { staticClass: "vue-switch", class: { active: _vm.bl }, on: { "click": _vm.ck } }, [_c('div', { staticClass: "vue-switch-handler" })]);
+        var _vm = this;var _h = _vm.$createElement;var _c = _vm._self._c || _h;return _c('div', { staticClass: "vue-switch", class: { active: _vm.value }, on: { "click": _vm.ck } }, [_c('div', { staticClass: "vue-switch-handler" })]);
     },
     staticRenderFns: [],
     name: "VueSwitch",
@@ -18762,6 +18782,14 @@ var VueSwitch = {
         };
     },
 
+    watch: {
+        value: {
+            deep: true,
+            handler: function handler(v) {
+                this.bl = v;
+            }
+        }
+    },
     methods: {
         ck: function ck() {
             this.bl = !this.bl;
@@ -26230,14 +26258,18 @@ var reg = {
 
 var App$3 = {
   render: function render() {
-    var _vm = this;var _h = _vm.$createElement;var _c = _vm._self._c || _h;return _c('div', { staticClass: "user" }, [_c('div', { staticClass: "container-fluid-12" }, [_c('table', { staticClass: "table table-hover table-bordered" }, [_vm._m(0), _vm._v(" "), _c('tbody', _vm._l(_vm.users, function (item, index) {
-      return _c('tr', { key: item._id }, [_c('td', [_vm._v(_vm._s(item._id))]), _vm._v(" "), _c('td', [_vm._v(_vm._s(item.name))]), _vm._v(" "), _c('td', [_vm._v(_vm._s(item.roleId && item.roleId.name))]), _vm._v(" "), _c('td', [_vm._v(_vm._s(_vm._f("date")(item.createDate)))]), _vm._v(" "), _c('td', [_c('button', { staticClass: "btn btn-primary btn-xs", on: { "click": function click($event) {
-            _vm.addBtn(item);
-          } } }, [_vm._v("添加")]), _vm._v(" "), _c('button', { staticClass: "btn btn-warning btn-xs", on: { "click": function click($event) {
+    var _vm = this;var _h = _vm.$createElement;var _c = _vm._self._c || _h;return _c('div', { staticClass: "user" }, [_c('div', { staticClass: "container-fluid-12" }, [_c('div', { staticClass: "btn-toolbar clearfix" }, [_c('div', { staticClass: "btn-group pull-left" }), _vm._v(" "), _c('div', { staticClass: "btn-group pull-right" }, [_c('button', { staticClass: "btn btn-default btn-sm", on: { "click": function click($event) {
+          _vm.addBtn(_vm.item);
+        } } }, [_c('span', { staticClass: "text-primary glyphicon glyphicon-plus" }), _vm._v(" 添加\n        ")]), _vm._v(" "), _c('button', { staticClass: "btn btn-default btn-sm", on: { "click": function click($event) {
+          $event.preventDefault();_vm.delAll();
+        } } }, [_c('span', { staticClass: "glyphicon glyphicon-trash text-danger" }), _vm._v(" 删除\n        ")])])]), _vm._v(" "), _c('table', { staticClass: "table table-hover table-bordered" }, [_c('thead', [_c('tr', { staticClass: "text-center" }, [_c('th', [_c('vue-checkbtn', { attrs: { "callback": _vm.allChcek }, model: { value: _vm.allcheckBtn, callback: function callback($$v) {
+          _vm.allcheckBtn = $$v;
+        }, expression: "allcheckBtn" } }, [_c('span', { staticClass: "glyphicon glyphicon-check" }), _vm._v(" 全选\n            ")])], 1), _vm._v(" "), _c('th', [_vm._v("编号")]), _vm._v(" "), _c('th', [_vm._v("用户名")]), _vm._v(" "), _c('th', [_vm._v("类型")]), _vm._v(" "), _c('th', [_vm._v("创建时间")]), _vm._v(" "), _c('th', [_vm._v("操作")])])]), _vm._v(" "), _c('tbody', _vm._l(_vm.users, function (item, index) {
+      return _c('tr', { key: index }, [_c('td', [_c('vue-checkbox', { model: { value: item.bl, callback: function callback($$v) {
+            _vm.$set(item, "bl", $$v);
+          }, expression: "item.bl" } })], 1), _vm._v(" "), _c('td', [_vm._v(_vm._s(item._id))]), _vm._v(" "), _c('td', [_vm._v(_vm._s(item.name))]), _vm._v(" "), _c('td', [_vm._v(_vm._s(item.roleId && item.roleId.name))]), _vm._v(" "), _c('td', [_vm._v(_vm._s(_vm._f("date")(item.createDate)))]), _vm._v(" "), _c('td', [_c('button', { staticClass: "btn btn-warning btn-xs", on: { "click": function click($event) {
             _vm.editBtn(item);
-          } } }, [_vm._v("修改")]), _vm._v(" "), _c('button', { staticClass: "btn btn-danger btn-xs", on: { "click": function click($event) {
-            $event.preventDefault();_vm.del(item._id, index);
-          } } }, [_vm._v("删除")])])]);
+          } } }, [_vm._v("修改")])])]);
     }), 0)])]), _vm._v(" "), _c('modal', { ref: "modal", attrs: { "title": "修改用户信息", "id": "modal-demo" }, model: { value: _vm.editOpen, callback: function callback($$v) {
           _vm.editOpen = $$v;
         }, expression: "editOpen" } }, [_c('h4', { staticClass: "text-muted" }, [_vm._v("用户名: " + _vm._s(_vm.editObj.name))]), _vm._v(" "), _c('form', [_c('div', { staticClass: "form-group" }, [_c('label', { attrs: { "for": "exampleInputEmail1" } }, [_vm._v("用户类型")]), _vm._v(" "), _c('select', { directives: [{ name: "model", rawName: "v-model", value: _vm.editObj.roleId, expression: "editObj.roleId" }], staticClass: "form-control", attrs: { "name": "", "id": "", "placeholder": "Email" }, on: { "change": function change($event) {
@@ -26270,9 +26302,7 @@ var App$3 = {
           $event.preventDefault();return _vm.edit($event);
         } } }, [_vm._v("添加")])])]), _vm._v(" "), _c('vue-paging', { attrs: { "page-click": _vm.pageClick, "text-class": "text-center" } })], 1);
   },
-  staticRenderFns: [function () {
-    var _vm = this;var _h = _vm.$createElement;var _c = _vm._self._c || _h;return _c('thead', [_c('tr', { staticClass: "text-center" }, [_c('th', [_vm._v("编号")]), _vm._v(" "), _c('th', [_vm._v("用户名")]), _vm._v(" "), _c('th', [_vm._v("类型")]), _vm._v(" "), _c('th', [_vm._v("创建时间")]), _vm._v(" "), _c('th', [_vm._v("操作")])])]);
-  }],
+  staticRenderFns: [],
   data: function data() {
     return {
       users: [],
@@ -26290,8 +26320,9 @@ var App$3 = {
         email: "",
         roleId: ""
       },
-      bl: false,
+
       roles: [],
+      allcheckBtn: false,
       // 分页
       pageObj: {
         index: 1, //	当前页
@@ -26310,7 +26341,6 @@ var App$3 = {
 
     // get users
     this.getUsers(1);
-
     // get roles
     this.$http.get("admin/userRole/data", {}).then(function (ok) {
       var body = ok.body;
@@ -26338,7 +26368,6 @@ var App$3 = {
       var _this2 = this;
 
       this.$confirm({
-        title: "删除数据",
         content: "确认删除数据？"
       }).then(function (ok) {
         _this2.$http.delete("admin/user/data/" + id).then(function (ok) {
@@ -26369,9 +26398,7 @@ var App$3 = {
     editBtn: function editBtn(item) {
       this.editObj._id = item._id;
       this.editObj.name = item.name;
-      roleId = item.roleId;
-      this.editObj.roleId = item.roleId._id;
-
+      this.editObj.roleId = item.roleId && item.roleId._id || "";
       this.editOpen = true;
     },
     edit: function edit() {
@@ -26381,7 +26408,7 @@ var App$3 = {
         var body = ok.body;
         _this3.editOpen = false;
         if (body.code) {
-          _this3.getUsers();
+          _this3.getUsers(_this3.pageObj.index);
           _this3.$notify({
             type: "success",
             content: "修改数据成功！"
@@ -26389,7 +26416,7 @@ var App$3 = {
         } else {
           _this3.$notify({
             type: "danger",
-            content: "修改数据失败！"
+            content: body.data
           });
         }
       }, function (err) {
@@ -26399,33 +26426,91 @@ var App$3 = {
         });
       });
     },
+    delAll: function delAll() {
+      var _this4 = this;
+
+      var fo = this.users.filter(function (item) {
+        return item.bl === true;
+      });
+      if (fo.length <= 0) {
+        this.$alert({
+          title: "提示",
+          content: "<strong class='text-danger'>还没选择数据!</strong>",
+          html: true
+
+        }).catch(function (err) {});
+        return;
+      }
+      this.$confirm({
+        content: "确认删除数据？"
+      }).then(function (ok) {
+        var listId = _this4.users.filter(function (item) {
+          return item.bl === true;
+        }).map(function (item) {
+          return item._id;
+        });
+        _this4.$http.delete("admin/user/data/" + listId, { name: 123 }).then(function (ok) {
+          var body = ok.body;
+          if (body.code) {
+            _this4.users = _this4.users.filter(function (item) {
+              return listId.some(function (v) {
+                return v == item._id;
+              });
+            });
+            _this4.$notify({
+              type: "success",
+              content: "删除数据成功！"
+            });
+          } else {
+            _this4.$notify({
+              type: "danger",
+              content: "删除数据失败！"
+            });
+          }
+        }, function (err) {
+          _this4.$notify({
+            type: "danger",
+            content: "连接失败"
+          });
+        });
+      }).catch(function (err) {});
+    },
     addBtn: function addBtn() {
       this.addOpen = true;
     },
     getUsers: function getUsers(i) {
-      var _this4 = this;
+      var _this5 = this;
 
       // 分页
       this.$loading();
       this.$http.get("admin/user/data/" + i + "/" + this.pageObj.pageItem, {}).then(function (ok) {
-        _this4.$loading(false);
+        _this5.$loading(false);
         var body = ok.body;
         if (body.code) {
-          _this4.users = body.data;
-          _this4.pageObj.index = Number(body.index);
-          _this4.pageObj.pageItem = Number(body.pageItem);
-          _this4.pageObj.allItem = Number(body.allItem);
+          _this5.users = body.data;
+          // this.users =body.data.map((item)=>{
+          //   item.bl=false;
+          //   return item;
+          // });
+          _this5.users.forEach(function (item) {
+            _this5.$set(item, "bl", false);
+          });
 
-          eventBus.$emit("initPage", _this4.pageObj);
+          _this5.pageObj.index = Number(body.index);
+          _this5.pageObj.pageItem = Number(body.pageItem);
+          _this5.pageObj.allItem = Number(body.allItem);
+
+          eventBus.$emit("initPage", _this5.pageObj);
+          _this5.allcheckBtn = false;
         } else {
-          _this4.$notify({
+          _this5.$notify({
             type: "danger",
             content: body.data
           });
         }
       }, function (err) {
-        _this4.$loading(false);
-        _this4.$notify({
+        _this5.$loading(false);
+        _this5.$notify({
           type: "danger",
           content: "连接失败"
         });
@@ -26433,6 +26518,17 @@ var App$3 = {
     },
     pageClick: function pageClick(id, end) {
       this.getUsers(id, end);
+    },
+    allChcek: function allChcek(bl) {
+      if (bl) {
+        this.users.forEach(function (element) {
+          element.bl = true;
+        });
+      } else {
+        this.users.forEach(function (element) {
+          element.bl = false;
+        });
+      }
     }
   },
   components: {}

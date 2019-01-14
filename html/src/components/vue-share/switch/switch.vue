@@ -1,5 +1,5 @@
 <template>
-    <div class="vue-switch" @click="ck" :class="{active:bl}">
+    <div class="vue-switch" @click="ck" :class="{active:value}">
 		<div class="vue-switch-handler">
 		</div>
 	</div>
@@ -22,6 +22,14 @@ export default {
             bl:this.value
         }
     },
+    watch: {
+        value:{
+            deep:true,
+            handler(v){
+                this.bl=v;
+            }
+        }
+    },  
     methods:{
         ck(){
             this.bl=!this.bl;
