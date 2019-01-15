@@ -1,40 +1,6 @@
 <template>
   <div>
-   
-    <table class="table table-hover table-bordered">
-      <thead>
-        <tr class="text-center">
-          <th>
-             <vue-checkbtn :callback="allChcek" v-model="allcheckBtn">
-              <span class="glyphicon glyphicon-check"></span> 
-            </vue-checkbtn>
-
-            <!-- <vue-checkbox :callback="allChcek" v-model="allcheckBtn"> 选择
-            </vue-checkbox> -->
-          </th>
-          <th>编号</th>
-          <th>用户名</th>
-          <th>类型</th>
-          <th>创建时间</th>
-        
-        </tr>
-      </thead>
-      <tbody>
-        <tr v-for="(item, index)  of users" :key="index">
-          <td>
-            <vue-checkbox v-model="item.bl"></vue-checkbox>
-          </td>
-          <td>{{ item._id}}</td>
-          <td>{{ item.name}}</td>
-          <td>{{ item.roleId&&item.roleId.name}}</td>
-          <td>{{ item.createDate|date}}</td>
-          <!-- <td>
-            <button class="btn btn-warning btn-xs" @click="editBtn(item)">修改</button>
-            <button class="btn btn-danger btn-xs" @click.prevent="del(item._id,index)">删除</button>
-          </td> -->
-        </tr>
-      </tbody>
-    </table>
+    <slot :list="users" :allcheckBtn="allcheckBtn" :allChcek="allChcek"></slot>
     <!--分页-->
     <vue-paging :page-click="pageClick" text-class="text-center"></vue-paging>
   </div>
@@ -48,7 +14,11 @@ export default {
       default(){
         return [];
       }
-    }
+    },
+    url: {
+      type: String,
+      default:""
+    },
   },
 
   data() {
@@ -75,6 +45,11 @@ export default {
       }
     }
   },
+  created() {
+    eventBus.$on("pageList",()=>{
+        this.getUsers(this.pageObj.index);
+    })
+  },
   mounted() {
     // get users
     this.getUsers(1);
@@ -83,7 +58,7 @@ export default {
     getUsers(i) {
       // 分页
       this.$loading();
-      this.$http.get(`admin/user/data/${i}/${this.pageObj.pageItem}`, {}).then(
+      this.$http.get(`${this.url}/${i}/${this.pageObj.pageItem}`, {}).then(
         ok => {
           this.$loading(false);
           var body = ok.body;
@@ -109,15 +84,14 @@ export default {
               content: body.data
             });
           }
-        },
-        err => {
-          this.$loading(false);
+        }
+      ).catch(err=>{
+         this.$loading(false);
           this.$notify({
             type: "danger",
             content: "连接失败"
           });
-        }
-      );
+      });
     },
     pageClick(id, end) {
       this.getUsers(id, end);

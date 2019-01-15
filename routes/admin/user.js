@@ -7,11 +7,14 @@ router.get("/user", async (req, res) => {
     res.render("admin/user.html");
 });
 
-// router.get("/user/data", async (req, res) => {
-
-//    let list = await  mainModel.User.find().populate("roleId","name code");
-//     res.json(res.ok(list));
-// });
+router.get("/user/data/dtl/:ids", async (req, res) => {
+    let ids=req.params.ids||"";
+    ids=ids.split(",");
+   let list = await  mainModel.User.find({_id:{
+       $in:ids
+   }}).populate("roleId","name code");
+    res.json(res.ok(list));
+});
 
 router.get("/user/data/:index/:pageItem", async (req, res) => {
 

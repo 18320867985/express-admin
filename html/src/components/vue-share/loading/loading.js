@@ -2,31 +2,30 @@
 
 export default function (bl, el, loadingText) {
 
-   
-    if (typeof bl !== "boolean") {
-        bl = true;
-    }
-    
+   var bl2=true;
     var body="body";
     var _loadingText = "正在加载数据...";
 
     if(arguments.length===1){
-        body="body";
-        bl=bl;
+        if (typeof bl === "boolean") {
+            bl2=bl;
+        }else{
+            _loadingText=bl;
+            bl2=true;
+        }
    }
     if(arguments.length===2){
-        bl=bl;
-        body="body";
+        bl2=bl;
         _loadingText = el
     }
     if(arguments.length===3){
-        bl=bl;
+        bl2=bl;
         body=el;
         _loadingText=loadingText;
     }
   
 
-    if (bl) {
+    if (bl2) {
 
         var text = ` <div class="loading-box">
                <div class="loading-content">
