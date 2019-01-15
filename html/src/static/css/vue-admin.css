@@ -1,11 +1,7 @@
 @charset "UTF-8";
 .vue-file {
-  display: -webkit-box;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
+  align-items: center;
   height: 34px; }
 
 .v-hide-text {
@@ -158,8 +154,7 @@
   padding: 30px 30px;
   border-radius: 5px;
   border: 1px  solid #ddd;
-  -webkit-box-shadow: 2px 2px 5px #ddd -2px -2px 5px #ddd;
-          box-shadow: 2px 2px 5px #ddd -2px -2px 5px #ddd;
+  box-shadow: 2px 2px 5px #ddd -2px -2px 5px #ddd;
   margin: 0 auto;
   margin-top: 60px; }
 
@@ -169,8 +164,7 @@
   padding: 30px 30px;
   border-radius: 5px;
   border: 1px  solid #ddd;
-  -webkit-box-shadow: 2px 2px 5px #ddd -2px -2px 5px #ddd;
-          box-shadow: 2px 2px 5px #ddd -2px -2px 5px #ddd;
+  box-shadow: 2px 2px 5px #ddd -2px -2px 5px #ddd;
   margin: 0 auto;
   margin-top: 60px; }
 
@@ -185,7 +179,7 @@
     text-align: center; }
 
 .add {
-  width: 500px;
+  width: 600px;
   margin: 0 auto;
   padding: 10px 20px;
   margin-top: 30px;
@@ -201,3 +195,27 @@
   border-radius: 5px; }
   .edit .form-group .btn + .btn {
     margin-left: 30px; }
+
+.list form h4 {
+  font-size: 16px;
+  margin-bottom: 10px; }
+  .list form h4 em {
+    margin-left: 20px; }
+
+.edit form h4 {
+  font-size: 16px;
+  margin-bottom: 10px; }
+  .edit form h4 em {
+    margin-left: 20px; }
+
+.add form h4 {
+  font-size: 16px;
+  margin-bottom: 10px; }
+  .add form h4 em {
+    margin-left: 20px; }
+
+.dtl h4.text-muted {
+  font-size: 16px;
+  margin-bottom: 10px; }
+  .dtl h4.text-muted em {
+    margin-left: 20px; }

@@ -2,6 +2,9 @@
   <div class="add">
     <form>
       <h4 class="text-muted">
+        <a href="javascript:;" class="btn-link" title="返回上一级">
+          <span @click="cancelBtn" class="glyphicon glyphicon-circle-arrow-left "></span>
+        </a>
         <em>
           <slot name="title">添加用户信息</slot>
         </em>
@@ -15,9 +18,7 @@
         <slot name="footer-btn" :obj="obj" :cancelBtn="cancelBtn">
           <button type="submit" class="btn btn-primary">添加</button>
         </slot>
-        <button type="button" @click="cancelBtn" class="btn btn-default pull-right">
-          <span class="glyphicon glyphicon-share-alt text-warning"></span> 返回
-        </button>
+      
       </div>
     </form>
   </div>
@@ -32,9 +33,9 @@ export default {
         return {};
       }
     },
-      url: {
+    url: {
       type: String,
-      default:""
+      default: ""
     },
     cancel: {
       type: Function,
@@ -55,5 +56,16 @@ export default {
 </script>
 
 style:<style lang="scss">
+.add {
+  form {
+    h4 {
+      font-size: 16px;
+      margin-bottom: 10px;
+      em {
+        margin-left: 20px;
+      }
+    }
+  }
+}
 </style>
 

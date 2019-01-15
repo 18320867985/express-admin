@@ -2,7 +2,10 @@
   <div class="edit">
     <form>
        <h4 class="text-muted">
-            <em>
+         <a href="javascript:;" class="btn-link"  title="返回上一级">
+          <span  @click="cancelBtn" class="glyphicon glyphicon-circle-arrow-left "></span>
+          </a>
+            <em >
               <slot name="title">修改用户信息</slot>
               </em>
             <span @click="cancelBtn" class="close">&times;</span>
@@ -13,16 +16,14 @@
         <slot name="footer-btn">
           <button type="submit" class="btn btn-primary" @click.prevent="edit">保存</button>
         </slot>
-        <button type="button" @click="cancelBtn" class="btn btn-default pull-right">
-          <span class="glyphicon glyphicon-share-alt text-warning"></span> 返回
-        </button>
+     
       </div>
     </form>
   </div>
 </template>
 
 <script>
-import { eventBus } from "../../../components/eventBus.js";
+import { eventBus } from "../../components/eventBus.js";
 export default {
   props: {
     value: {
@@ -57,23 +58,18 @@ export default {
           var body = ok.body;
           if (body.code) {
             this.cancel();
-            this.$notify({
-              type: "success",
-              content: "修改数据成功！"
-            });
+            // this.$notify({
+            //   type: "success",
+            //   content: "修改数据成功！"
+            // });
+            this.$info("success","修改数据成功！")
              eventBus.$emit("pageList"); // 更新分页
           } else {
-            this.$notify({
-              type: "danger",
-              content: body.data
-            });
+            this.$info("danger","修改数据失败！");
           }
         }).catch(err=>{
            this.$loading(false);
-        this.$notify({
-            type: "danger",
-            content: "连接失败"
-          });
+           this.$info("danger","数据链接失败！");
       });
     }
   }
@@ -81,5 +77,17 @@ export default {
 </script>
 
 style:<style lang="scss">
+.edit{
+  form{
+    h4{
+      font-size: 16px;
+      margin-bottom: 10px;
+      em{
+        margin-left: 20px;
+      }
+    }
+  }
+}
+
 </style>
 

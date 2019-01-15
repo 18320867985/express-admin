@@ -1,12 +1,12 @@
 <template>
-  <div>
+  <div class="list">
     <slot :list="users" :allcheckBtn="allcheckBtn" :allChcek="allChcek"></slot>
     <!--分页-->
     <vue-paging :page-click="pageClick" text-class="text-center"></vue-paging>
   </div>
 </template>
 <script>
-import { eventBus } from "../../../components/eventBus.js";
+import { eventBus } from "../../components/eventBus.js";
 export default {
   props: {
     value: {
@@ -24,6 +24,9 @@ export default {
   data() {
     return {
       users: this.value,
+      allcheckBtn:{
+        ck:false
+      },
       // 分页
       pageObj: {
         index: 1, //	当前页
@@ -77,7 +80,7 @@ export default {
             this.pageObj.allItem = Number(body.allItem);
             this.$emit("input", this.users);
             eventBus.$emit("initPage", this.pageObj);
-            this.allcheckBtn = false;
+            this.allcheckBtn.ck = false;
           } else {
             this.$notify({
               type: "danger",
@@ -87,10 +90,7 @@ export default {
         }
       ).catch(err=>{
          this.$loading(false);
-          this.$notify({
-            type: "danger",
-            content: "连接失败"
-          });
+          this.$info("danger","数据链接失败！");
       });
     },
     pageClick(id, end) {
@@ -114,5 +114,16 @@ export default {
 </script>
 
 style:<style lang="scss">
+.list{
+  form{
+    h4{
+      font-size: 16px;
+      margin-bottom: 10px;
+      em{
+        margin-left: 20px;
+      }
+    }
+  }
+}
 </style>
 

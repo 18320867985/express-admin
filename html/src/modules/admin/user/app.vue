@@ -1,35 +1,41 @@
 <template>
   <div class="user">
-    <!-- 主列表-->
+    <!-- 主列表模块-->
     <div class="tab-slide" :class="{'active':tab.index}">
+
+      <!--操作按钮组-->
       <div class="btn-toolbar clearfix">
         <div class="btn-group pull-left"></div>
-        <div class="btn-group pull-right">
-          <button class="btn btn-default btn-sm" @click="readBtn">
-            <span class="text-info glyphicon glyphicon-list-alt"></span>
-            查看
-          </button>
+        <div class="btn-group  pull-right" >
           <button class="btn btn-default btn-sm" @click="addBtn">
             <span class="text-primary glyphicon glyphicon-plus"></span> 添加
+          </button>
+
+            <button class="btn btn-default btn-sm" @click="dtlBtn">
+            <span class="text-info glyphicon glyphicon-list-alt"></span> 查看
           </button>
           
           <button class="btn btn-default btn-sm" @click="editBtn">
             <span class="glyphicon glyphicon-edit text-warning"></span> 修改
           </button>
+
           <button class="btn btn-default btn-sm" @click.prevent="delBtn()">
             <span class="glyphicon glyphicon-trash text-danger"></span> 删除
           </button>
         </div>
       </div>
+
+      <!-- 组件-->
       <vue-list v-model="users" :url="httpUlr.list">
         <template slot-scope="scope">
           <table class="table table-hover table-bordered">
             <thead>
               <tr class="text-center">
                 <th>
-                  <vue-checkbtn :callback="scope.allChcek" v-model="scope.allcheckBtn">
+                  <!-- <vue-checkbtn :callback="scope.allChcek" v-model="scope.allcheckBtn">
                     <span class="glyphicon glyphicon-check"></span>
-                  </vue-checkbtn>
+                  </vue-checkbtn> -->
+                  <vue-checkbox v-model="scope.allcheckBtn.ck" :callback="scope.allChcek"></vue-checkbox>
                 </th>
                 <th>编号</th>
                 <th>用户名</th>
@@ -53,12 +59,11 @@
       </vue-list>
     </div>
 
-    <!--编辑-->
+    <!--编辑模块-->
     <div class="tab-slide" :class="{'active':tab.edit}">
+      <!--组件-->
       <vue-edit :cancel="editCancel" v-model="editObj" :url="httpUlr.edit">
-        <template slot="title">
-          修改用户信息2
-        </template>
+        <template slot="title">修改用户信息</template>
         <template slot-scope="scope">
           <div class="form-group">
             <label for="exampleInputEmail1">用户名:{{scope.obj.name}}</label>
@@ -78,24 +83,24 @@
       </vue-edit>
     </div>
 
-    <!--添加-->
+    <!--添加模块-->
     <div class="tab-slide" :class="{'active':tab.add}">
-      <vue-add :cancel="addCancel" :url="httpUlr.add">
-        <template slot="title">添加用户信息2
 
-        </template>
-          <template slot-scope="scope">
+       <!--组件-->
+      <vue-add :cancel="addCancel" :url="httpUlr.add">
+        <template slot="title">添加用户信息</template>
+        <template slot-scope="scope">
           <p>{{scope.obj}}</p>
         </template>
       </vue-add>
     </div>
 
-    <!--详细列表-->
-    <div class="tab-slide" :class="{'active':tab.read}">
+    <!--详细列表模块-->
+    <div class="tab-slide" :class="{'active':tab.dtl}">
+
+       <!--组件-->
       <vue-dtl :cancel="dtlCancel" :url="httpUlr.dtl">
-          <template slot="title">
-          查看详细用户信息2
-        </template>
+        <template slot="title">查看详细用户信息</template>
         <template slot-scope="scope">
           <div class="list-group" v-for="(item,index) of scope.list" :key="index">
             <div class="list-group-item clearfix">
@@ -126,10 +131,10 @@
 </template>
 
 <script>
-import vueList from "./list.vue";
-import vueEdit from "./edit.vue";
-import vueAdd from "./add.vue";
-import vueDtl from "./dtl.vue";
+import vueList from "../../share-template/list.vue";
+import vueEdit from "../../share-template/edit.vue";
+import vueAdd from "../../share-template/add.vue";
+import vueDtl from "../../share-template/dtl.vue";
 import { eventBus } from "../../../components/eventBus.js";
 
 export default {
@@ -139,7 +144,7 @@ export default {
         index: true,
         edit: false,
         add: false,
-        read: false,
+        dtl: false,
         set: v => {
           v = typeof v !== "string" ? "index" : v;
 
@@ -154,22 +159,26 @@ export default {
           }
         }
       },
-      httpUlr:{
-        list:"admin/user/data",
-        add:"admin/user/data",
-        edit:"admin/user/data",
-        del:"admin/user/data",
-        dtl:"admin/user/data/dtl"
+      httpUlr: {
+        list: "admin/user/data",
+        add: "admin/user/data",
+        edit: "admin/user/data",
+        del: "admin/user/data",
+        dtl: "admin/user/data/dtl"
       },
-      users: [],
+
+      // 修改的对象
       editObj: {
-          _id: "",
-          name: "",
-          roleId: ""
-  
+        _id: "",
+        name: "",
+        roleId: ""
       },
-      roles: [],
-      readIds: []
+
+      // 列表集合
+      users: [],
+      // 查看列表ids
+      dtlIds: [],
+      roles: []
     };
   },
 
@@ -272,10 +281,13 @@ export default {
             .map(item => {
               return item._id;
             });
+
+            this.$loading("正在删除数据中...");
           this.$http
             .delete(`${this.httpUlr.del}/${listId.join(",")}`, { name: 123 })
             .then(
               ok => {
+                this.$loading(false);
                 var body = ok.body;
                 if (body.code) {
                   this.users = this.users.filter(item => {
@@ -283,22 +295,15 @@ export default {
                       return v != item._id;
                     });
                   });
-                  this.$notify({
-                    type: "success",
-                    content: "删除数据成功！"
-                  });
+                  this.$info("success","删除数据成功！");
                 } else {
-                  this.$notify({
-                    type: "danger",
-                    content: "删除数据失败！"
-                  });
+               
+                   this.$info("danger","删除数据失败！");
                 }
               },
               err => {
-                this.$notify({
-                  type: "danger",
-                  content: "连接失败"
-                });
+                 this.$loading(false);
+                 this.$info("danger","数据链接失败！");
               }
             );
         })
@@ -306,7 +311,6 @@ export default {
     },
 
     // add
-    add() {},
     addBtn() {
       this.tab.set("add");
     },
@@ -314,9 +318,8 @@ export default {
       this.tab.set();
     },
 
-    // read
-    read() {},
-    readBtn() {
+    // dtl
+    dtlBtn() {
       let fo = this.users.filter(item => {
         return item.bl === true;
       });
@@ -328,11 +331,12 @@ export default {
         }).catch(err => {});
         return;
       }
-      this.tab.set("read");
-      this.readIds = fo.map(item => {
+    
+      this.dtlIds = fo.map(item => {
         return item._id;
       });
-      eventBus.$emit("readList", this.readIds);
+      eventBus.$emit("dtlList", this.dtlIds,this.tab);
+       //this.tab.set("dtl");
     },
     dtlCancel() {
       this.tab.set();
@@ -363,7 +367,7 @@ export default {
 }
 
 .add {
-  width: 500px;
+  width: 600px;
   margin: 0 auto;
   padding: 10px 20px;
   margin-top: 30px;
