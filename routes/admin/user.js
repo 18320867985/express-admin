@@ -36,7 +36,26 @@ router.get("/user/data/:index/:pageItem", async (req, res) => {
     }));
 });
 router.post("/user/data", async (req, res) => {
-    res.json(res.ok("post"));
+    let user= new mainModel.User({name:req.body.name,pwd:req.body.pwd,email:req.body.email,roleId:req.body.roleId});
+  
+        let isok= user.validateSync();
+         if(isok){
+            res.json(res.err(isok));
+            return;
+         }
+ // 检查用户是否存在
+ var count= await mainModel.User.countDocuments({name:user.name});
+ if(count>0){
+     res.json(res.err("用户名已存在！"));
+     return;
+ };
+
+    var  userinfo= await mainModel.User.create(user)
+     if(!userinfo){
+        res.json(res.err("添加失败"));
+        return;
+     }
+  res.json(res.ok(userinfo));
 });
 
 router.put("/user/data", async (req, res) => {

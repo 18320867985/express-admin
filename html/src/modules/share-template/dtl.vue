@@ -49,11 +49,10 @@ created() {
     },
     
     readList(ids,tab){
-      this.$loading("正在加载数据中...");
+    this.$loading("正在加载数据中...");
     this.$http.get(`${this.url}/${ids.join(',')}`).then(ok=>{
       let body=ok.body;
       tab.set("dtl");
-     // console.log(body)
       this.list=body.data;
        this.$loading(false);
 

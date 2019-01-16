@@ -26259,7 +26259,7 @@ var reg = {
 
 var vueList = {
   render: function render() {
-    var _vm = this;var _h = _vm.$createElement;var _c = _vm._self._c || _h;return _c('div', { staticClass: "list" }, [_vm._t("default", null, { list: _vm.users, allcheckBtn: _vm.allcheckBtn, allChcek: _vm.allChcek }), _vm._v(" "), _c('vue-paging', { attrs: { "page-click": _vm.pageClick, "text-class": "text-center" } })], 2);
+    var _vm = this;var _h = _vm.$createElement;var _c = _vm._self._c || _h;return _c('div', { staticClass: "list" }, [_vm._t("default", null, { list: _vm.list, allcheckBtn: _vm.allcheckBtn, allChcek: _vm.allChcek }), _vm._v(" "), _c('vue-paging', { attrs: { "page-click": _vm.pageClick, "text-class": "text-center" } })], 2);
   },
   staticRenderFns: [],
   props: {
@@ -26277,14 +26277,14 @@ var vueList = {
 
   data: function data() {
     return {
-      users: this.value,
+      list: this.value,
       allcheckBtn: {
         ck: false
       },
       // 分页
       pageObj: {
         index: 1, //	当前页
-        pageItem: 2, //  每页条数
+        pageItem: 3, //  每页条数
         allItem: 1, //  总条数
         showCount: 5, //  显示的页码数目
         isShowSkip: true, // 是否显示跳转页
@@ -26299,7 +26299,7 @@ var vueList = {
     value: {
       deep: true,
       handler: function handler(v) {
-        this.users = v;
+        this.list = v;
       }
     }
   },
@@ -26325,19 +26325,19 @@ var vueList = {
         _this2.$loading(false);
         var body = ok.body;
         if (body.code) {
-          _this2.users = body.data;
+          _this2.list = body.data;
           // this.users =body.data.map((item)=>{
           //   item.bl=false;
           //   return item;
           // });
-          _this2.users.forEach(function (item) {
+          _this2.list.forEach(function (item) {
             _this2.$set(item, "bl", false);
           });
 
           _this2.pageObj.index = Number(body.index);
           _this2.pageObj.pageItem = Number(body.pageItem);
           _this2.pageObj.allItem = Number(body.allItem);
-          _this2.$emit("input", _this2.users);
+          _this2.$emit("input", _this2.list);
           eventBus.$emit("initPage", _this2.pageObj);
           _this2.allcheckBtn.ck = false;
         } else {
@@ -26357,11 +26357,11 @@ var vueList = {
     allChcek: function allChcek(bl) {
 
       if (bl) {
-        this.users.forEach(function (element) {
+        this.list.forEach(function (element) {
           element.bl = true;
         });
       } else {
-        this.users.forEach(function (element) {
+        this.list.forEach(function (element) {
           element.bl = false;
         });
       }
@@ -26371,18 +26371,10 @@ var vueList = {
 
 var vueEdit = {
   render: function render() {
-    var _vm = this;var _h = _vm.$createElement;var _c = _vm._self._c || _h;return _c('div', { staticClass: "edit" }, [_c('form', [_c('h4', { staticClass: "text-muted" }, [_c('a', { staticClass: "btn-link", attrs: { "href": "javascript:;", "title": "返回上一级" } }, [_c('span', { staticClass: "glyphicon glyphicon-circle-arrow-left ", on: { "click": _vm.cancelBtn } })]), _vm._v(" "), _c('em', [_vm._t("title", [_vm._v("修改用户信息")])], 2), _vm._v(" "), _c('span', { staticClass: "close", on: { "click": _vm.cancelBtn } }, [_vm._v("×")])]), _vm._v(" "), _c('hr'), _vm._v(" "), _vm._t("default", null, { obj: _vm.obj }), _vm._v(" "), _c('div', { staticClass: "form-group" }, [_vm._t("footer-btn", [_c('button', { staticClass: "btn btn-primary", attrs: { "type": "submit" }, on: { "click": function click($event) {
-          $event.preventDefault();return _vm.edit($event);
-        } } }, [_vm._v("保存")])])], 2)], 2)]);
+    var _vm = this;var _h = _vm.$createElement;var _c = _vm._self._c || _h;return _c('div', { staticClass: "edit" }, [_c('h4', { staticClass: "text-muted" }, [_c('a', { staticClass: "btn-link", attrs: { "href": "javascript:;", "title": "返回上一级" } }, [_c('span', { staticClass: "glyphicon glyphicon-circle-arrow-left ", on: { "click": _vm.cancelBtn } })]), _vm._v(" "), _c('em', [_vm._t("title", [_vm._v("修改用户信息")])], 2), _vm._v(" "), _c('span', { staticClass: "close", on: { "click": _vm.cancelBtn } }, [_vm._v("×")])]), _vm._v(" "), _c('hr'), _vm._v(" "), _vm._t("default")], 2);
   },
   staticRenderFns: [],
   props: {
-    value: {
-      type: Object,
-      default: function _default() {
-        return {};
-      }
-    },
     url: {
       type: String,
       default: ""
@@ -26393,44 +26385,19 @@ var vueEdit = {
     }
   },
   data: function data() {
-    return {
-      obj: this.value
-    };
+    return {};
   },
 
   methods: {
     cancelBtn: function cancelBtn() {
       this.cancel();
-    },
-    edit: function edit() {
-      var _this = this;
-
-      this.$loading("正在保存中...");
-      this.$http.put("" + this.url, this.obj).then(function (ok) {
-        _this.$loading(false);
-        var body = ok.body;
-        if (body.code) {
-          _this.cancel();
-          // this.$notify({
-          //   type: "success",
-          //   content: "修改数据成功！"
-          // });
-          _this.$info("success", "修改数据成功！");
-          eventBus.$emit("pageList"); // 更新分页
-        } else {
-          _this.$info("danger", "修改数据失败！");
-        }
-      }).catch(function (err) {
-        _this.$loading(false);
-        _this.$info("danger", "数据链接失败！");
-      });
     }
   }
 };
 
 var vueAdd = {
   render: function render() {
-    var _vm = this;var _h = _vm.$createElement;var _c = _vm._self._c || _h;return _c('div', { staticClass: "add" }, [_c('form', [_c('h4', { staticClass: "text-muted" }, [_c('a', { staticClass: "btn-link", attrs: { "href": "javascript:;", "title": "返回上一级" } }, [_c('span', { staticClass: "glyphicon glyphicon-circle-arrow-left ", on: { "click": _vm.cancelBtn } })]), _vm._v(" "), _c('em', [_vm._t("title", [_vm._v("添加用户信息")])], 2), _vm._v(" "), _c('span', { staticClass: "close", on: { "click": _vm.cancelBtn } }, [_vm._v("×")])]), _vm._v(" "), _c('hr'), _vm._v(" "), _vm._t("default"), _vm._v(" "), _c('div', { staticClass: "form-group" }, [_vm._t("footer-btn", [_c('button', { staticClass: "btn btn-primary", attrs: { "type": "submit" } }, [_vm._v("添加")])], { obj: _vm.obj, cancelBtn: _vm.cancelBtn })], 2)], 2)]);
+    var _vm = this;var _h = _vm.$createElement;var _c = _vm._self._c || _h;return _c('div', { staticClass: "add" }, [_c('h4', { staticClass: "text-muted" }, [_c('a', { staticClass: "btn-link", attrs: { "href": "javascript:;", "title": "返回上一级" } }, [_c('span', { staticClass: "glyphicon glyphicon-circle-arrow-left", on: { "click": _vm.cancelBtn } })]), _vm._v(" "), _c('em', [_vm._t("title", [_vm._v("添加用户信息")])], 2), _vm._v(" "), _c('span', { staticClass: "close", on: { "click": _vm.cancelBtn } }, [_vm._v("×")])]), _vm._v(" "), _c('hr'), _vm._v(" "), _vm._t("default")], 2);
   },
   staticRenderFns: [],
   props: {
@@ -26448,6 +26415,7 @@ var vueAdd = {
       type: Function,
       default: function _default() {}
     }
+
   },
   data: function data() {
     return {
@@ -26501,7 +26469,6 @@ var vueDtl = {
       this.$http.get(this.url + "/" + ids.join(',')).then(function (ok) {
         var body = ok.body;
         tab.set("dtl");
-        // console.log(body)
         _this2.list = body.data;
         _this2.$loading(false);
       }).catch(function (err) {
@@ -26512,41 +26479,7 @@ var vueDtl = {
   }
 };
 
-var App$3 = {
-  render: function render() {
-    var _vm = this;var _h = _vm.$createElement;var _c = _vm._self._c || _h;return _c('div', { staticClass: "user" }, [_c('div', { staticClass: "tab-slide", class: { 'active': _vm.tab.index } }, [_c('div', { staticClass: "btn-toolbar clearfix" }, [_c('div', { staticClass: "btn-group pull-left" }), _vm._v(" "), _c('div', { staticClass: "btn-group  pull-right" }, [_c('button', { staticClass: "btn btn-default btn-sm", on: { "click": _vm.addBtn } }, [_c('span', { staticClass: "text-primary glyphicon glyphicon-plus" }), _vm._v(" 添加\n        ")]), _vm._v(" "), _c('button', { staticClass: "btn btn-default btn-sm", on: { "click": _vm.dtlBtn } }, [_c('span', { staticClass: "text-info glyphicon glyphicon-list-alt" }), _vm._v(" 查看\n        ")]), _vm._v(" "), _c('button', { staticClass: "btn btn-default btn-sm", on: { "click": _vm.editBtn } }, [_c('span', { staticClass: "glyphicon glyphicon-edit text-warning" }), _vm._v(" 修改\n        ")]), _vm._v(" "), _c('button', { staticClass: "btn btn-default btn-sm", on: { "click": function click($event) {
-          $event.preventDefault();_vm.delBtn();
-        } } }, [_c('span', { staticClass: "glyphicon glyphicon-trash text-danger" }), _vm._v(" 删除\n        ")])])]), _vm._v(" "), _c('vue-list', { attrs: { "url": _vm.httpUlr.list }, scopedSlots: _vm._u([{ key: "default", fn: function fn(scope) {
-          return [_c('table', { staticClass: "table table-hover table-bordered" }, [_c('thead', [_c('tr', { staticClass: "text-center" }, [_c('th', [_c('vue-checkbox', { attrs: { "callback": scope.allChcek }, model: { value: scope.allcheckBtn.ck, callback: function callback($$v) {
-                _vm.$set(scope.allcheckBtn, "ck", $$v);
-              }, expression: "scope.allcheckBtn.ck" } })], 1), _vm._v(" "), _c('th', [_vm._v("编号")]), _vm._v(" "), _c('th', [_vm._v("用户名")]), _vm._v(" "), _c('th', [_vm._v("类型")]), _vm._v(" "), _c('th', [_vm._v("创建时间")])])]), _vm._v(" "), _c('tbody', _vm._l(scope.list, function (item, index) {
-            return _c('tr', { key: index }, [_c('td', [_c('vue-checkbox', { model: { value: item.bl, callback: function callback($$v) {
-                  _vm.$set(item, "bl", $$v);
-                }, expression: "item.bl" } })], 1), _vm._v(" "), _c('td', [_vm._v(_vm._s(item._id))]), _vm._v(" "), _c('td', [_vm._v(_vm._s(item.name))]), _vm._v(" "), _c('td', [_vm._v(_vm._s(item.roleId && item.roleId.name))]), _vm._v(" "), _c('td', [_vm._v(_vm._s(_vm._f("date")(item.createDate)))])]);
-          }), 0)])];
-        } }]), model: { value: _vm.users, callback: function callback($$v) {
-          _vm.users = $$v;
-        }, expression: "users" } })], 1), _vm._v(" "), _c('div', { staticClass: "tab-slide", class: { 'active': _vm.tab.edit } }, [_c('vue-edit', { attrs: { "cancel": _vm.editCancel, "url": _vm.httpUlr.edit }, scopedSlots: _vm._u([{ key: "default", fn: function fn(scope) {
-          return [_c('div', { staticClass: "form-group" }, [_c('label', { attrs: { "for": "exampleInputEmail1" } }, [_vm._v("用户名:" + _vm._s(scope.obj.name))])]), _vm._v(" "), _c('div', { staticClass: "form-group" }, [_c('label', { attrs: { "for": "exampleInputEmail1" } }, [_vm._v("用户类型")]), _vm._v(" "), _c('select', { directives: [{ name: "model", rawName: "v-model", value: scope.obj.roleId, expression: "scope.obj.roleId" }], staticClass: "form-control", attrs: { "name": "", "id": "", "placeholder": "Email" }, on: { "change": function change($event) {
-                var $$selectedVal = Array.prototype.filter.call($event.target.options, function (o) {
-                  return o.selected;
-                }).map(function (o) {
-                  var val = "_value" in o ? o._value : o.value;return val;
-                });_vm.$set(scope.obj, "roleId", $event.target.multiple ? $$selectedVal : $$selectedVal[0]);
-              } } }, _vm._l(_vm.roles, function (item, index) {
-            return _c('option', { key: index, domProps: { "selected": scope.obj.roleId === _vm.item_id, "value": item._id } }, [_vm._v(_vm._s(item.name))]);
-          }), 0)])];
-        } }]), model: { value: _vm.editObj, callback: function callback($$v) {
-          _vm.editObj = $$v;
-        }, expression: "editObj" } }, [_c('template', { slot: "title" }, [_vm._v("修改用户信息")])], 2)], 1), _vm._v(" "), _c('div', { staticClass: "tab-slide", class: { 'active': _vm.tab.add } }, [_c('vue-add', { attrs: { "cancel": _vm.addCancel, "url": _vm.httpUlr.add }, scopedSlots: _vm._u([{ key: "default", fn: function fn(scope) {
-          return [_c('p', [_vm._v(_vm._s(scope.obj))])];
-        } }]) }, [_c('template', { slot: "title" }, [_vm._v("添加用户信息")])], 2)], 1), _vm._v(" "), _c('div', { staticClass: "tab-slide", class: { 'active': _vm.tab.dtl } }, [_c('vue-dtl', { attrs: { "cancel": _vm.dtlCancel, "url": _vm.httpUlr.dtl }, scopedSlots: _vm._u([{ key: "default", fn: function fn(scope) {
-          return _vm._l(scope.list, function (item, index) {
-            return _c('div', { key: index, staticClass: "list-group" }, [_c('div', { staticClass: "list-group-item clearfix" }, [_c('div', { staticClass: "col-xs-6 list-group-item-text" }, [_c('label', { attrs: { "for": "" } }, [_vm._v("用户Id:")]), _vm._v(" "), _c('span', [_vm._v(_vm._s(item._id))])]), _vm._v(" "), _c('div', { staticClass: "col-xs-6 list-group-item-text" }, [_c('label', { attrs: { "for": "" } }, [_vm._v("用户名:")]), _vm._v(" "), _c('span', [_vm._v(_vm._s(item.name))])])]), _vm._v(" "), _c('div', { staticClass: "list-group-item clearfix" }, [_c('div', { staticClass: "col-xs-6 list-group-item-text" }, [_c('label', { attrs: { "for": "" } }, [_vm._v("用户类型:")]), _vm._v(" "), _c('span', [_vm._v(_vm._s(item.roleId && item.roleId.name))])]), _vm._v(" "), _c('div', { staticClass: "col-xs-6 list-group-item-text" }, [_c('label', { attrs: { "for": "" } }, [_vm._v("创建时间:")]), _vm._v(" "), _c('span', [_vm._v(_vm._s(_vm._f("date")(item.createDate)))])])])]);
-          });
-        } }]) }, [_c('template', { slot: "title" }, [_vm._v("查看详细用户信息")])], 2)], 1)]);
-  },
-  staticRenderFns: [],
+var mixin$1 = {
   data: function data() {
     var _this = this;
 
@@ -26570,108 +26503,18 @@ var App$3 = {
           }
         }
       },
-      httpUlr: {
-        list: "admin/user/data",
-        add: "admin/user/data",
-        edit: "admin/user/data",
-        del: "admin/user/data",
-        dtl: "admin/user/data/dtl"
-      },
-
-      // 修改的对象
-      editObj: {
-        _id: "",
-        name: "",
-        roleId: ""
-      },
-
-      // 列表集合
-      users: [],
-      // 查看列表ids
-      dtlIds: [],
-      roles: []
+      //  dtl查看列表ids
+      dtlIds: []
     };
-  },
-  mounted: function mounted() {
-    var _this2 = this;
-
-    // get roles
-    this.$http.get("admin/userRole/data", {}).then(function (ok) {
-      var body = ok.body;
-      if (body.code) {
-        _this2.roles = body.data;
-      } else {
-        _this2.$notify({
-          type: "danger",
-          title: "error",
-          content: body.data
-        });
-      }
-    }, function (err) {
-      _this2.$notify({
-        type: "danger",
-        title: "连接失败",
-        content: "连接失败"
-      });
-    });
   },
 
   methods: {
-    // edit
-    edit: function edit() {
-      var _this3 = this;
-
-      this.$http.put("admin/user/data", this.editObj).then(function (ok) {
-        var body = ok.body;
-        _this3.editOpen = false;
-        if (body.code) {
-          _this3.getUsers(_this3.pageObj.index);
-          _this3.$notify({
-            type: "success",
-            content: "修改数据成功！"
-          });
-        } else {
-          _this3.$notify({
-            type: "danger",
-            content: body.data
-          });
-        }
-      }, function (err) {
-        _this3.$notify({
-          type: "danger",
-          content: "连接失败"
-        });
-      });
-    },
-    editBtn: function editBtn(item) {
-      var fo = this.users.filter(function (item) {
-        return item.bl === true;
-      });
-      if (fo.length <= 0) {
-        this.$alert({
-          title: "提示",
-          content: "<strong class='text-danger'>没选择数据!</strong>",
-          html: true
-        }).catch(function (err) {});
-        return;
-      }
-
-      var o = fo[0];
-      this.editObj._id = o._id;
-      this.editObj.name = o.name;
-      this.editObj.roleId = o.roleId && o.roleId._id || "";
-      this.tab.set("edit");
-    },
-    editCancel: function editCancel() {
-      this.tab.set();
-    },
-
 
     // del
     delBtn: function delBtn() {
-      var _this4 = this;
+      var _this2 = this;
 
-      var fo = this.users.filter(function (item) {
+      var fo = this.list.filter(function (item) {
         return item.bl === true;
       });
       if (fo.length <= 0) {
@@ -26685,36 +26528,87 @@ var App$3 = {
       this.$confirm({
         content: "确认删除数据？"
       }).then(function (ok) {
-        var listId = _this4.users.filter(function (item) {
+        var listId = _this2.list.filter(function (item) {
           return item.bl === true;
         }).map(function (item) {
           return item._id;
         });
 
-        _this4.$loading("正在删除数据中...");
-        _this4.$http.delete(_this4.httpUlr.del + "/" + listId.join(","), { name: 123 }).then(function (ok) {
-          _this4.$loading(false);
+        _this2.$loading("正在删除数据中...");
+        _this2.$http.delete(_this2.httpUlr.del + "/" + listId.join(","), { name: 123 }).then(function (ok) {
+          _this2.$loading(false);
           var body = ok.body;
           if (body.code) {
-            _this4.users = _this4.users.filter(function (item) {
-              return listId.some(function (v) {
-                return v != item._id;
-              });
-            });
-            _this4.$info("success", "删除数据成功！");
+
+            eventBus.$emit("pageList"); // 更新分页
+            _this2.$info("success", "删除数据成功！");
           } else {
 
-            _this4.$info("danger", "删除数据失败！");
+            _this2.$info("danger", "删除数据失败！");
           }
         }, function (err) {
-          _this4.$loading(false);
-          _this4.$info("danger", "数据链接失败！");
+          _this2.$loading(false);
+          _this2.$info("danger", "数据链接失败！");
         });
       }).catch(function (err) {});
     },
 
 
+    // edit
+    editCancel: function editCancel() {
+      this.tab.set();
+    },
+    edit: function edit(scope) {
+      var _this3 = this;
+
+      this.$validator.validateAll(scope).then(function (result) {
+        _this3.$loading("正在保存中...");
+        _this3.$http.put("" + _this3.httpUlr.edit, _this3.editObj).then(function (ok) {
+          _this3.$loading(false);
+          _this3.tab.set(); //  back index
+          // this.errors.clear('edit');
+          // this.editObj={};
+          var body = ok.body;
+          if (body.code) {
+            _this3.$info("success", "修改数据成功！");
+            eventBus.$emit("pageList"); // 更新分页
+          } else {
+            _this3.$info("danger", "修改数据失败！");
+          }
+        }).catch(function (err) {
+          _this3.$loading(false);
+          _this3.$info("danger", "数据链接失败！");
+        });
+      });
+    },
+
+
     // add
+    add: function add(scope) {
+      var _this4 = this;
+
+      this.$validator.validateAll(scope).then(function (result) {
+        if (result) {
+          _this4.$loading("正在添加中...");
+          _this4.$http.post("" + _this4.httpUlr.add, _this4.addObj).then(function (ok) {
+            _this4.$loading(false);
+            _this4.tab.set(); //  back index 
+            // this.errors.clear('add');
+            // this.addObj={};
+            var body = ok.body;
+            if (body.code) {
+              _this4.$info("success", "添加数据成功！");
+              eventBus.$emit("pageList"); // 更新分页
+            } else {
+              _this4.$info("danger", "添加数据失败！");
+            }
+          }).catch(function (err) {
+            _this4.$loading(false);
+            _this4.$info("danger", "数据链接失败！");
+          });
+        }
+      });
+    },
     addBtn: function addBtn() {
       this.tab.set("add");
     },
@@ -26725,7 +26619,7 @@ var App$3 = {
 
     // dtl
     dtlBtn: function dtlBtn() {
-      var fo = this.users.filter(function (item) {
+      var fo = this.list.filter(function (item) {
         return item.bl === true;
       });
       if (fo.length <= 0) {
@@ -26747,6 +26641,148 @@ var App$3 = {
       this.tab.set();
     }
   },
+  computed: {
+    editError: function editError(errors) {
+      return this.errors.items.filter(function (e) {
+        return e.scope == "edit";
+      }).length > 0;
+    },
+    addError: function addError(errors) {
+      return this.errors.items.filter(function (e) {
+        return e.scope == "add";
+      }).length > 0;
+    }
+  }
+
+};
+
+var App$3 = {
+  render: function render() {
+    var _vm = this;var _h = _vm.$createElement;var _c = _vm._self._c || _h;return _c('div', { staticClass: "user" }, [_c('div', { staticClass: "tab-slide", class: { 'active': _vm.tab.index } }, [_c('div', { staticClass: "btn-toolbar clearfix" }, [_c('div', { staticClass: "btn-group pull-left" }), _vm._v(" "), _c('div', { staticClass: "btn-group pull-right" }, [_c('button', { staticClass: "btn btn-default btn-sm", on: { "click": _vm.addBtn } }, [_c('span', { staticClass: "text-primary glyphicon glyphicon-plus" }), _vm._v(" 添加\n        ")]), _vm._v(" "), _c('button', { staticClass: "btn btn-default btn-sm", on: { "click": _vm.dtlBtn } }, [_c('span', { staticClass: "text-info glyphicon glyphicon-list-alt" }), _vm._v(" 查看\n        ")]), _vm._v(" "), _c('button', { staticClass: "btn btn-default btn-sm", on: { "click": _vm.editBtn } }, [_c('span', { staticClass: "glyphicon glyphicon-edit text-warning" }), _vm._v(" 修改\n        ")]), _vm._v(" "), _c('button', { staticClass: "btn btn-default btn-sm", on: { "click": function click($event) {
+          $event.preventDefault();_vm.delBtn();
+        } } }, [_c('span', { staticClass: "glyphicon glyphicon-trash text-danger" }), _vm._v(" 删除\n        ")])])]), _vm._v(" "), _c('vue-list', { attrs: { "url": _vm.httpUlr.list }, scopedSlots: _vm._u([{ key: "default", fn: function fn(scope) {
+          return [_c('table', { staticClass: "table table-hover table-bordered" }, [_c('thead', [_c('tr', { staticClass: "text-center" }, [_c('th', [_c('vue-checkbox', { attrs: { "callback": scope.allChcek }, model: { value: scope.allcheckBtn.ck, callback: function callback($$v) {
+                _vm.$set(scope.allcheckBtn, "ck", $$v);
+              }, expression: "scope.allcheckBtn.ck" } })], 1), _vm._v(" "), _c('th', [_vm._v("编号")]), _vm._v(" "), _c('th', [_vm._v("用户名")]), _vm._v(" "), _c('th', [_vm._v("类型")]), _vm._v(" "), _c('th', [_vm._v("创建时间")])])]), _vm._v(" "), _c('tbody', _vm._l(scope.list, function (item, index) {
+            return _c('tr', { key: index }, [_c('td', [_c('vue-checkbox', { model: { value: item.bl, callback: function callback($$v) {
+                  _vm.$set(item, "bl", $$v);
+                }, expression: "item.bl" } })], 1), _vm._v(" "), _c('td', [_vm._v(_vm._s(item._id))]), _vm._v(" "), _c('td', [_vm._v(_vm._s(item.name))]), _vm._v(" "), _c('td', [_vm._v(_vm._s(item.roleId && item.roleId.name))]), _vm._v(" "), _c('td', [_vm._v(_vm._s(_vm._f("date")(item.createDate)))])]);
+          }), 0)])];
+        } }]), model: { value: _vm.list, callback: function callback($$v) {
+          _vm.list = $$v;
+        }, expression: "list" } })], 1), _vm._v(" "), _c('div', { staticClass: "tab-slide", class: { 'active': _vm.tab.edit } }, [_c('vue-edit', { attrs: { "cancel": _vm.editCancel, "url": _vm.httpUlr.edit } }, [_c('template', { slot: "title" }, [_vm._v("修改用户信息")]), _vm._v(" "), [_c('form', { attrs: { "data-vv-scope": "edit" }, on: { "submit": function submit($event) {
+          $event.preventDefault();_vm.edit('edit');
+        } } }, [_c('div', { staticClass: "form-group" }, [_c('label', { attrs: { "for": "exampleInputEmail1" } }, [_vm._v("用户名:" + _vm._s(_vm.editObj.name))])]), _vm._v(" "), _c('div', { staticClass: "form-group" }, [_c('label', { attrs: { "for": "exampleInputEmail1" } }, [_vm._v("用户类型")]), _vm._v(" "), _c('select', { directives: [{ name: "model", rawName: "v-model", value: _vm.editObj.roleId, expression: "editObj.roleId" }], staticClass: "form-control", attrs: { "name": "", "id": "", "placeholder": "Email" }, on: { "change": function change($event) {
+          var $$selectedVal = Array.prototype.filter.call($event.target.options, function (o) {
+            return o.selected;
+          }).map(function (o) {
+            var val = "_value" in o ? o._value : o.value;return val;
+          });_vm.$set(_vm.editObj, "roleId", $event.target.multiple ? $$selectedVal : $$selectedVal[0]);
+        } } }, _vm._l(_vm.roles, function (item, index) {
+      return _c('option', { key: index, domProps: { "selected": _vm.editObj.roleId === _vm.item_id, "value": item._id } }, [_vm._v(_vm._s(item.name))]);
+    }), 0)]), _vm._v(" "), _c('div', { staticClass: "form-group" }, [_c('button', { staticClass: "btn btn-primary", attrs: { "type": "submit", "disabled": _vm.editError } }, [_vm._v("保存")])])])]], 2)], 1), _vm._v(" "), _c('div', { staticClass: "tab-slide", class: { 'active': _vm.tab.add } }, [_c('vue-add', { attrs: { "cancel": _vm.addCancel, "url": _vm.httpUlr.add } }, [_c('template', { slot: "title" }, [_vm._v("添加用户信息")]), _vm._v(" "), [_c('form', { attrs: { "data-vv-scope": "add" }, on: { "submit": function submit($event) {
+          $event.preventDefault();_vm.add('add');
+        } } }, [_c('div', { staticClass: "form-group has-feedback", class: { ' has-error': _vm.errors.has('add.name') } }, [_c('label', { staticClass: "control-label", attrs: { "for": "add.name" } }, [_vm._v("用户名:")]), _vm._v(" "), _c('input', { directives: [{ name: "validate", rawName: "v-validate", value: { required: true, min: 4 }, expression: "{required:true,min:4}" }, { name: "model", rawName: "v-model", value: _vm.addObj.name, expression: "addObj.name" }], staticClass: "form-control", attrs: { "type": "text", "name": "add.name", "id": "add.name", "placeholder": "输入用户名" }, domProps: { "value": _vm.addObj.name }, on: { "input": function input($event) {
+          if ($event.target.composing) {
+            return;
+          }_vm.$set(_vm.addObj, "name", $event.target.value);
+        } } }), _vm._v(" "), _c('p', { directives: [{ name: "show", rawName: "v-show", value: _vm.errors.has('add.name:required'), expression: "errors.has('add.name:required')" }], staticClass: "text-danger" }, [_vm._v("用户名不为空！")]), _vm._v(" "), _c('p', { directives: [{ name: "show", rawName: "v-show", value: _vm.errors.has('add.name:min'), expression: "errors.has('add.name:min')" }], staticClass: "text-danger" }, [_vm._v("用户名最小长度为4位！")]), _vm._v(" "), _c('span', { directives: [{ name: "show", rawName: "v-show", value: _vm.errors.has('add.name'), expression: "errors.has('add.name')" }], staticClass: "glyphicon glyphicon-remove form-control-feedback", attrs: { "aria-hidden": "true" } })]), _vm._v(" "), _c('div', { staticClass: "form-group has-feedback", class: { 'has-error': _vm.errors.has('add.pwd') } }, [_c('label', { staticClass: "control-label", attrs: { "for": "pwd" } }, [_vm._v("密码:")]), _vm._v(" "), _c('input', { directives: [{ name: "model", rawName: "v-model", value: _vm.addObj.pwd, expression: "addObj.pwd" }, { name: "validate", rawName: "v-validate", value: { required: true, min: 8 }, expression: "{ required:true,min:8}" }], ref: "add.pwd", staticClass: "form-control", attrs: { "type": "password", "id": "pwd", "name": "add.pwd", "placeholder": "输入密码" }, domProps: { "value": _vm.addObj.pwd }, on: { "input": function input($event) {
+          if ($event.target.composing) {
+            return;
+          }_vm.$set(_vm.addObj, "pwd", $event.target.value);
+        } } }), _vm._v(" "), _c('p', { directives: [{ name: "show", rawName: "v-show", value: _vm.errors.has('add.pwd:required'), expression: "errors.has('add.pwd:required')" }], staticClass: "text-danger" }, [_vm._v("密码不为空！")]), _vm._v(" "), _c('p', { directives: [{ name: "show", rawName: "v-show", value: _vm.errors.has('add.pwd:min'), expression: "errors.has('add.pwd:min')" }], staticClass: "text-danger" }, [_vm._v("密码最小长度为8位！")]), _vm._v(" "), _c('span', { directives: [{ name: "show", rawName: "v-show", value: _vm.errors.has('add.pwd'), expression: "errors.has('add.pwd')" }], staticClass: "glyphicon glyphicon-remove form-control-feedback", attrs: { "aria-hidden": "true" } })]), _vm._v(" "), _c('div', { staticClass: "form-group has-feedback", class: { 'has-error': _vm.errors.has('add.pwd2') } }, [_c('label', { staticClass: "control-label", attrs: { "for": "pwd2" } }, [_vm._v("确认密码:")]), _vm._v(" "), _c('input', { directives: [{ name: "model", rawName: "v-model", value: _vm.addObj.pwd2, expression: "addObj.pwd2" }, { name: "validate", rawName: "v-validate", value: { required: true, confirmed: 'add.pwd' }, expression: "{ required:true,confirmed:'add.pwd'}" }], staticClass: "form-control", attrs: { "type": "password", "name": "add.pwd2", "id": "pwd2", "data-vv-as": "pwd", "placeholder": "输入确认密码" }, domProps: { "value": _vm.addObj.pwd2 }, on: { "input": function input($event) {
+          if ($event.target.composing) {
+            return;
+          }_vm.$set(_vm.addObj, "pwd2", $event.target.value);
+        } } }), _vm._v(" "), _c('p', { directives: [{ name: "show", rawName: "v-show", value: _vm.errors.has('add.pwd2:required'), expression: "errors.has('add.pwd2:required')" }], staticClass: "text-danger" }, [_vm._v("密码不为空！")]), _vm._v(" "), _c('p', { directives: [{ name: "show", rawName: "v-show", value: _vm.errors.has('add.pwd2:confirmed'), expression: "errors.has('add.pwd2:confirmed')" }], staticClass: "text-danger" }, [_vm._v("两次密码不相同！")]), _vm._v(" "), _c('span', { directives: [{ name: "show", rawName: "v-show", value: _vm.errors.has('add.pwd2'), expression: "errors.has('add.pwd2')" }], staticClass: "glyphicon glyphicon-remove form-control-feedback", attrs: { "aria-hidden": "true" } })]), _vm._v(" "), _c('div', { staticClass: "form-group has-feedback", class: { 'has-error': _vm.errors.has('add.roleId') } }, [_c('label', { staticClass: "control-label", attrs: { "for": "roleId" } }, [_vm._v("用户类型:")]), _vm._v(" "), _c('select', { directives: [{ name: "model", rawName: "v-model", value: _vm.addObj.roleId, expression: "addObj.roleId" }, { name: "validate", rawName: "v-validate", value: 'required', expression: "'required'" }], staticClass: "form-control", attrs: { "name": "add.roleId", "id": "roleId" }, on: { "change": function change($event) {
+          var $$selectedVal = Array.prototype.filter.call($event.target.options, function (o) {
+            return o.selected;
+          }).map(function (o) {
+            var val = "_value" in o ? o._value : o.value;return val;
+          });_vm.$set(_vm.addObj, "roleId", $event.target.multiple ? $$selectedVal : $$selectedVal[0]);
+        } } }, [_c('option', { attrs: { "value": "" } }, [_vm._v("==选择类型==")]), _vm._v(" "), _vm._l(_vm.roles, function (item, index) {
+      return _c('option', { key: index, domProps: { "value": item._id } }, [_vm._v(_vm._s(item.name))]);
+    })], 2), _vm._v(" "), _c('p', { directives: [{ name: "show", rawName: "v-show", value: _vm.errors.has('add.roleId:required'), expression: "errors.has('add.roleId:required')" }], staticClass: "text-danger" }, [_vm._v("用户类型不为空！")]), _vm._v(" "), _c('span', { directives: [{ name: "show", rawName: "v-show", value: _vm.errors.has('add.roleId'), expression: "errors.has('add.roleId')" }], staticClass: "glyphicon glyphicon-remove form-control-feedback", attrs: { "aria-hidden": "true" } })]), _vm._v(" "), _c('div', { staticClass: "form-group has-feedback", class: { 'has-error': _vm.errors.has('add.email') } }, [_c('label', { staticClass: "control-label", attrs: { "for": "email" } }, [_vm._v("邮箱:")]), _vm._v(" "), _c('input', { directives: [{ name: "model", rawName: "v-model", value: _vm.addObj.email, expression: "addObj.email" }, { name: "validate", rawName: "v-validate", value: 'required|email', expression: "'required|email'" }], staticClass: "form-control", attrs: { "type": "text", "name": "add.email", "id": "email", "placeholder": "输入邮箱" }, domProps: { "value": _vm.addObj.email }, on: { "input": function input($event) {
+          if ($event.target.composing) {
+            return;
+          }_vm.$set(_vm.addObj, "email", $event.target.value);
+        } } }), _vm._v(" "), _c('p', { directives: [{ name: "show", rawName: "v-show", value: _vm.errors.has('add.eamil:required'), expression: "errors.has('add.eamil:required')" }], staticClass: "text-danger" }, [_vm._v("邮箱不为空！")]), _vm._v(" "), _c('p', { directives: [{ name: "show", rawName: "v-show", value: _vm.errors.has('add.email:email'), expression: "errors.has('add.email:email')" }], staticClass: "text-danger" }, [_vm._v("邮箱格式不对！")]), _vm._v(" "), _c('span', { directives: [{ name: "show", rawName: "v-show", value: _vm.errors.has('add.email'), expression: "errors.has('add.email')" }], staticClass: "glyphicon glyphicon-remove form-control-feedback", attrs: { "aria-hidden": "true" } })]), _vm._v(" "), _c('div', { staticClass: "form-group" }, [_c('button', { staticClass: "btn btn-primary", attrs: { "type": "submit", "disabled": _vm.addError } }, [_vm._v("添加")])])])]], 2)], 1), _vm._v(" "), _c('div', { staticClass: "tab-slide", class: { 'active': _vm.tab.dtl } }, [_c('vue-dtl', { attrs: { "cancel": _vm.dtlCancel, "url": _vm.httpUlr.dtl }, scopedSlots: _vm._u([{ key: "default", fn: function fn(scope) {
+          return _vm._l(scope.list, function (item, index) {
+            return _c('div', { key: index, staticClass: "list-group" }, [_c('div', { staticClass: "list-group-item clearfix" }, [_c('div', { staticClass: "col-xs-6 list-group-item-text" }, [_c('label', { attrs: { "for": "" } }, [_vm._v("用户Id:")]), _vm._v(" "), _c('span', [_vm._v(_vm._s(item._id))])]), _vm._v(" "), _c('div', { staticClass: "col-xs-6 list-group-item-text" }, [_c('label', { attrs: { "for": "" } }, [_vm._v("用户名:")]), _vm._v(" "), _c('span', [_vm._v(_vm._s(item.name))])])]), _vm._v(" "), _c('div', { staticClass: "list-group-item clearfix" }, [_c('div', { staticClass: "col-xs-6 list-group-item-text" }, [_c('label', { attrs: { "for": "" } }, [_vm._v("用户类型:")]), _vm._v(" "), _c('span', [_vm._v(_vm._s(item.roleId && item.roleId.name))])]), _vm._v(" "), _c('div', { staticClass: "col-xs-6 list-group-item-text" }, [_c('label', { attrs: { "for": "" } }, [_vm._v("创建时间:")]), _vm._v(" "), _c('span', [_vm._v(_vm._s(_vm._f("date")(item.createDate)))])])])]);
+          });
+        } }]) }, [_c('template', { slot: "title" }, [_vm._v("查看详细用户信息")])], 2)], 1)]);
+  },
+  staticRenderFns: [],
+  mixins: [mixin$1],
+  data: function data() {
+    return {
+      httpUlr: {
+        list: "admin/user/data",
+        add: "admin/user/data",
+        edit: "admin/user/data",
+        del: "admin/user/data",
+        dtl: "admin/user/data/dtl"
+      },
+      // inde列表集合
+      list: [],
+      //  edit修改的对象
+      editObj: {
+        _id: "",
+        name: "",
+        roleId: ""
+      },
+
+      // add 添加的对象
+      addObj: {
+        name: "",
+        pwd: "",
+        pwd2: "",
+        email: "",
+        roleId: ""
+      },
+
+      // 自定义
+      roles: []
+    };
+  },
+  mounted: function mounted() {
+    var _this = this;
+
+    // get roles
+    this.$http.get("admin/userRole/data", {}).then(function (ok) {
+      var body = ok.body;
+      if (body.code) {
+        _this.roles = body.data || [];
+      }
+    }, function (err) {
+      _this.$info("danger", "数据链接失败！");
+    });
+  },
+
+  methods: {
+    // edit
+    editBtn: function editBtn(item) {
+      var fo = this.list.filter(function (item) {
+        return item.bl === true;
+      });
+      if (fo.length <= 0) {
+        this.$alert({
+          title: "提示",
+          content: "<strong class='text-danger'>没选择数据!</strong>",
+          html: true
+        }).catch(function (err) {});
+        return;
+      }
+      this.tab.set("edit");
+      var o = fo[0];
+
+      // 修改内容
+      this.editObj._id = o._id;
+      this.editObj.name = o.name;
+      this.editObj.roleId = o.roleId && o.roleId._id || "";
+    }
+  },
+
   components: {
     vueList: vueList,
     vueEdit: vueEdit,

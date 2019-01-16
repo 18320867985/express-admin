@@ -1,6 +1,6 @@
 <template>
   <div class="list">
-    <slot :list="users" :allcheckBtn="allcheckBtn" :allChcek="allChcek"></slot>
+    <slot :list="list" :allcheckBtn="allcheckBtn" :allChcek="allChcek"></slot>
     <!--分页-->
     <vue-paging :page-click="pageClick" text-class="text-center"></vue-paging>
   </div>
@@ -23,14 +23,14 @@ export default {
 
   data() {
     return {
-      users: this.value,
+      list: this.value,
       allcheckBtn:{
         ck:false
       },
       // 分页
       pageObj: {
         index: 1, //	当前页
-        pageItem: 2, //  每页条数
+        pageItem: 3, //  每页条数
         allItem: 1, //  总条数
         showCount: 5, //  显示的页码数目
         isShowSkip: true, // 是否显示跳转页
@@ -44,7 +44,7 @@ export default {
     value: {
       deep: true,
       handler: function(v) {
-        this.users = v;
+        this.list = v;
       }
     }
   },
@@ -66,19 +66,19 @@ export default {
           this.$loading(false);
           var body = ok.body;
           if (body.code) {
-            this.users = body.data;
+            this.list = body.data;
             // this.users =body.data.map((item)=>{
             //   item.bl=false;
             //   return item;
             // });
-            this.users.forEach(item => {
+            this.list.forEach(item => {
               this.$set(item, "bl", false);
             });
 
             this.pageObj.index = Number(body.index);
             this.pageObj.pageItem = Number(body.pageItem);
             this.pageObj.allItem = Number(body.allItem);
-            this.$emit("input", this.users);
+            this.$emit("input", this.list);
             eventBus.$emit("initPage", this.pageObj);
             this.allcheckBtn.ck = false;
           } else {
@@ -100,11 +100,11 @@ export default {
     allChcek(bl) {
     
       if (bl) {
-        this.users.forEach(element => {
+        this.list.forEach(element => {
           element.bl = true;
         });
       } else {
-        this.users.forEach(element => {
+        this.list.forEach(element => {
           element.bl = false;
         });
       }

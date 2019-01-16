@@ -2,23 +2,22 @@
   <div class="user">
     <!-- 主列表模块-->
     <div class="tab-slide" :class="{'active':tab.index}">
-
       <!--操作按钮组-->
       <div class="btn-toolbar clearfix">
         <div class="btn-group pull-left"></div>
-        <div class="btn-group  pull-right" >
+        <div class="btn-group pull-right">
           <button class="btn btn-default btn-sm" @click="addBtn">
             <span class="text-primary glyphicon glyphicon-plus"></span> 添加
           </button>
-
-            <button class="btn btn-default btn-sm" @click="dtlBtn">
+          
+          <button class="btn btn-default btn-sm" @click="dtlBtn">
             <span class="text-info glyphicon glyphicon-list-alt"></span> 查看
           </button>
           
           <button class="btn btn-default btn-sm" @click="editBtn">
             <span class="glyphicon glyphicon-edit text-warning"></span> 修改
           </button>
-
+          
           <button class="btn btn-default btn-sm" @click.prevent="delBtn()">
             <span class="glyphicon glyphicon-trash text-danger"></span> 删除
           </button>
@@ -26,7 +25,7 @@
       </div>
 
       <!-- 组件-->
-      <vue-list v-model="users" :url="httpUlr.list">
+      <vue-list v-model="list" :url="httpUlr.list">
         <template slot-scope="scope">
           <table class="table table-hover table-bordered">
             <thead>
@@ -34,7 +33,7 @@
                 <th>
                   <!-- <vue-checkbtn :callback="scope.allChcek" v-model="scope.allcheckBtn">
                     <span class="glyphicon glyphicon-check"></span>
-                  </vue-checkbtn> -->
+                  </vue-checkbtn>-->
                   <vue-checkbox v-model="scope.allcheckBtn.ck" :callback="scope.allChcek"></vue-checkbox>
                 </th>
                 <th>编号</th>
@@ -62,43 +61,158 @@
     <!--编辑模块-->
     <div class="tab-slide" :class="{'active':tab.edit}">
       <!--组件-->
-      <vue-edit :cancel="editCancel" v-model="editObj" :url="httpUlr.edit">
+      <vue-edit :cancel="editCancel" :url="httpUlr.edit">
         <template slot="title">修改用户信息</template>
-        <template slot-scope="scope">
-          <div class="form-group">
-            <label for="exampleInputEmail1">用户名:{{scope.obj.name}}</label>
-          </div>
-          <div class="form-group">
-            <label for="exampleInputEmail1">用户类型</label>
-            <select name id class="form-control" v-model="scope.obj.roleId" placeholder="Email">
-              <option
-                v-for="(item ,index) of roles"
-                :key="index"
-                :selected="scope.obj.roleId===item_id"
-                :value="item._id"
-              >{{item.name}}</option>
-            </select>
-          </div>
+        <template>
+          <form @submit.prevent="edit('edit')" data-vv-scope="edit">
+            <!-- content start-->
+            <div class="form-group">
+              <label for="exampleInputEmail1">用户名:{{editObj.name}}</label>
+            </div>
+            <div class="form-group">
+              <label for="exampleInputEmail1">用户类型</label>
+              <select name id class="form-control" v-model="editObj.roleId" placeholder="Email">
+                <option
+                  v-for="(item ,index) of roles"
+                  :key="index"
+                  :selected="editObj.roleId===item_id"
+                  :value="item._id"
+                >{{item.name}}</option>
+              </select>
+            </div>
+
+            <!-- content end-->
+            <div class="form-group">
+              <button type="submit" class="btn btn-primary" :disabled="editError">保存</button>
+            </div>
+          </form>
         </template>
       </vue-edit>
     </div>
 
     <!--添加模块-->
     <div class="tab-slide" :class="{'active':tab.add}">
-
-       <!--组件-->
+      <!--组件 -->
       <vue-add :cancel="addCancel" :url="httpUlr.add">
         <template slot="title">添加用户信息</template>
-        <template slot-scope="scope">
-          <p>{{scope.obj}}</p>
+
+        <template>
+          <form @submit.prevent="add('add')" data-vv-scope="add">
+            <!-- content start-->
+            <div class="form-group has-feedback" :class="{' has-error':errors.has('add.name')}">
+              <label class="control-label" for="add.name">用户名:</label>
+              <input
+                class="form-control"
+                type="text"
+                name="add.name"
+                id="add.name"
+                v-validate="{required:true,min:4}"
+                v-model="addObj.name"
+                placeholder="输入用户名"
+              >
+              <p class="text-danger" v-show="errors.has('add.name:required')">用户名不为空！</p>
+              <p class="text-danger" v-show="errors.has('add.name:min')">用户名最小长度为4位！</p>
+              <span
+                v-show="errors.has('add.name')"
+                class="glyphicon glyphicon-remove form-control-feedback"
+                aria-hidden="true"
+              ></span>
+            </div>
+
+            <div class="form-group has-feedback" :class="{'has-error':errors.has('add.pwd')}">
+              <label class="control-label" for="pwd">密码:</label>
+              <input
+                class="form-control"
+                type="password"
+                id="pwd"
+                v-model="addObj.pwd"
+                name="add.pwd"
+                ref="add.pwd"
+                placeholder="输入密码"
+                v-validate="{ required:true,min:8}"
+              >
+              <p class="text-danger" v-show="errors.has('add.pwd:required')">密码不为空！</p>
+              <p class="text-danger" v-show="errors.has('add.pwd:min')">密码最小长度为8位！</p>
+              <span
+                v-show="errors.has('add.pwd')"
+                class="glyphicon glyphicon-remove form-control-feedback"
+                aria-hidden="true"
+              ></span>
+            </div>
+
+            <div class="form-group has-feedback" :class="{'has-error':errors.has('add.pwd2')}">
+              <label class="control-label" for="pwd2">确认密码:</label>
+              <input
+                class="form-control"
+                type="password"
+                name="add.pwd2"
+                id="pwd2"
+                v-model="addObj.pwd2"
+                v-validate="{ required:true,confirmed:'add.pwd'}"
+                data-vv-as="pwd"
+                placeholder="输入确认密码"
+              >
+              <p class="text-danger" v-show="errors.has('add.pwd2:required')">密码不为空！</p>
+              <p class="text-danger" v-show="errors.has('add.pwd2:confirmed')">两次密码不相同！</p>
+              <span
+                v-show="errors.has('add.pwd2')"
+                class="glyphicon glyphicon-remove form-control-feedback"
+                aria-hidden="true"
+              ></span>
+            </div>
+
+            <div class="form-group has-feedback" :class="{'has-error':errors.has('add.roleId')}">
+              <label class="control-label" for="roleId">用户类型:</label>
+              <select
+                class="form-control"
+                v-model="addObj.roleId"
+                name="add.roleId"
+                id="roleId"
+                v-validate="'required'"
+              >
+                <option value>==选择类型==</option>
+                <option :value="item._id" v-for="(item ,index) of roles" :key="index">{{item.name}}</option>
+              </select>
+              <p class="text-danger" v-show="errors.has('add.roleId:required')">用户类型不为空！</p>
+              <span
+                v-show="errors.has('add.roleId')"
+                class="glyphicon glyphicon-remove form-control-feedback"
+                aria-hidden="true"
+              ></span>
+            </div>
+
+            <div class="form-group has-feedback" :class="{'has-error':errors.has('add.email')}">
+              <label class="control-label" for="email">邮箱:</label>
+              <input
+                class="form-control"
+                type="text"
+                name="add.email"
+                id="email"
+                v-model="addObj.email"
+                v-validate="'required|email'"
+                placeholder="输入邮箱"
+              >
+              <p class="text-danger" v-show="errors.has('add.eamil:required')">邮箱不为空！</p>
+              <p class="text-danger" v-show="errors.has('add.email:email')">邮箱格式不对！</p>
+              <span
+                v-show="errors.has('add.email')"
+                class="glyphicon glyphicon-remove form-control-feedback"
+                aria-hidden="true"
+              ></span>
+            </div>
+
+            <!-- content end-->
+            <div class="form-group">
+              <button type="submit" class="btn btn-primary" :disabled="addError">添加</button>
+            </div>
+          </form>
         </template>
       </vue-add>
     </div>
 
     <!--详细列表模块-->
     <div class="tab-slide" :class="{'active':tab.dtl}">
-
-       <!--组件-->
+      <!--组件-->
       <vue-dtl :cancel="dtlCancel" :url="httpUlr.dtl">
         <template slot="title">查看详细用户信息</template>
         <template slot-scope="scope">
@@ -130,35 +244,19 @@
   </div>
 </template>
 
+
 <script>
 import vueList from "../../share-template/list.vue";
 import vueEdit from "../../share-template/edit.vue";
 import vueAdd from "../../share-template/add.vue";
 import vueDtl from "../../share-template/dtl.vue";
+import { mixin } from "../../share-template/mixin";
 import { eventBus } from "../../../components/eventBus.js";
 
 export default {
+  mixins: [mixin],
   data() {
     return {
-      tab: {
-        index: true,
-        edit: false,
-        add: false,
-        dtl: false,
-        set: v => {
-          v = typeof v !== "string" ? "index" : v;
-
-          for (name in this.tab) {
-            if (typeof this.tab[name] === "boolean") {
-              if (name == v) {
-                this.tab[name] = true;
-              } else {
-                this.tab[name] = false;
-              }
-            }
-          }
-        }
-      },
       httpUlr: {
         list: "admin/user/data",
         add: "admin/user/data",
@@ -166,18 +264,25 @@ export default {
         del: "admin/user/data",
         dtl: "admin/user/data/dtl"
       },
-
-      // 修改的对象
+      // inde列表集合
+      list: [],
+      //  edit修改的对象
       editObj: {
         _id: "",
         name: "",
         roleId: ""
       },
 
-      // 列表集合
-      users: [],
-      // 查看列表ids
-      dtlIds: [],
+      // add 添加的对象
+      addObj: {
+        name: "",
+        pwd: "",
+        pwd2: "",
+        email: "",
+        roleId: ""
+      },
+
+      // 自定义
       roles: []
     };
   },
@@ -188,54 +293,18 @@ export default {
       ok => {
         var body = ok.body;
         if (body.code) {
-          this.roles = body.data;
-        } else {
-          this.$notify({
-            type: "danger",
-            title: "error",
-            content: body.data
-          });
+          this.roles = body.data || [];
         }
       },
       err => {
-        this.$notify({
-          type: "danger",
-          title: "连接失败",
-          content: "连接失败"
-        });
+        this.$info("danger", "数据链接失败！");
       }
     );
   },
   methods: {
     // edit
-    edit() {
-      this.$http.put(`admin/user/data`, this.editObj).then(
-        ok => {
-          var body = ok.body;
-          this.editOpen = false;
-          if (body.code) {
-            this.getUsers(this.pageObj.index);
-            this.$notify({
-              type: "success",
-              content: "修改数据成功！"
-            });
-          } else {
-            this.$notify({
-              type: "danger",
-              content: body.data
-            });
-          }
-        },
-        err => {
-          this.$notify({
-            type: "danger",
-            content: "连接失败"
-          });
-        }
-      );
-    },
     editBtn(item) {
-      let fo = this.users.filter(item => {
+      let fo = this.list.filter(item => {
         return item.bl === true;
       });
       if (fo.length <= 0) {
@@ -246,102 +315,16 @@ export default {
         }).catch(err => {});
         return;
       }
-
+      this.tab.set("edit");
       let o = fo[0];
+
+      // 修改内容
       this.editObj._id = o._id;
       this.editObj.name = o.name;
       this.editObj.roleId = (o.roleId && o.roleId._id) || "";
-      this.tab.set("edit");
-    },
-    editCancel() {
-      this.tab.set();
-    },
-
-    // del
-    delBtn() {
-      let fo = this.users.filter(item => {
-        return item.bl === true;
-      });
-      if (fo.length <= 0) {
-        this.$alert({
-          title: "提示",
-          content: "<strong class='text-danger'>没选择数据!</strong>",
-          html: true
-        }).catch(err => {});
-        return;
-      }
-      this.$confirm({
-        content: "确认删除数据？"
-      })
-        .then(ok => {
-          let listId = this.users
-            .filter(item => {
-              return item.bl === true;
-            })
-            .map(item => {
-              return item._id;
-            });
-
-            this.$loading("正在删除数据中...");
-          this.$http
-            .delete(`${this.httpUlr.del}/${listId.join(",")}`, { name: 123 })
-            .then(
-              ok => {
-                this.$loading(false);
-                var body = ok.body;
-                if (body.code) {
-                  this.users = this.users.filter(item => {
-                    return listId.some(v => {
-                      return v != item._id;
-                    });
-                  });
-                  this.$info("success","删除数据成功！");
-                } else {
-               
-                   this.$info("danger","删除数据失败！");
-                }
-              },
-              err => {
-                 this.$loading(false);
-                 this.$info("danger","数据链接失败！");
-              }
-            );
-        })
-        .catch(err => {});
-    },
-
-    // add
-    addBtn() {
-      this.tab.set("add");
-    },
-    addCancel() {
-      this.tab.set();
-    },
-
-    // dtl
-    dtlBtn() {
-      let fo = this.users.filter(item => {
-        return item.bl === true;
-      });
-      if (fo.length <= 0) {
-        this.$alert({
-          title: "提示",
-          content: "<strong class='text-danger'>没选择数据!</strong>",
-          html: true
-        }).catch(err => {});
-        return;
-      }
-    
-      this.dtlIds = fo.map(item => {
-        return item._id;
-      });
-      eventBus.$emit("dtlList", this.dtlIds,this.tab);
-       //this.tab.set("dtl");
-    },
-    dtlCancel() {
-      this.tab.set();
     }
   },
+
   components: {
     vueList,
     vueEdit,
