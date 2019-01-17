@@ -62,9 +62,11 @@ import $ from "../dom.js";
 
 
     var setTimeoutId = setTimeout(function() {
-        $(".messageinfo").addClass("info-hide");
+       // $(".messageinfo").addClass("info-hide");
         clearTimeout(setTimeoutId);
-    
+        $(".messageinfo").remove();
+        
     }, 2000);
+
 
 }

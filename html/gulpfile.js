@@ -1,4 +1,5 @@
 var gulp = require('gulp');
+var watch=require("gulp-watch");
 var del = require("del");
 var minCss = require('gulp-clean-css'); //gulp-minify-css:压缩css文件 npm install gulp-clean-css
 var connect = require('gulp-connect'); //gulp-connect 创建服务器  npm install --save-dev gulp-connect
@@ -72,15 +73,23 @@ gulp.task('release', ["build-scss", "build"], function () {
 gulp.task("watch", ['build-scss', 'build', 'connect'], function () {
 
 	//合拼vue组件css和js文件
-	gulp.watch(paths.jspath, ["dev"]);
+	watch(paths.jspath, function(){
+		gulp.start("dev");
+	});
 
 	//全局sass的css文件
-	gulp.watch(paths.scssPath, ['dev-scss', function () {
-		gulp.src(paths.scssPath).pipe(connect.reload());
-	}]);
+	watch(paths.scssPath, function () {
+		gulp.start("dev-scss",function(){
+			gulp.src(paths.scssPath).pipe(connect.reload());
+		});
+
+	});
 
 	//监听html
-	gulp.watch(paths.htmlPath, ["html"]);
+	watch(paths.htmlPath, ["html"],function(){
+		gulp.start("html");
+	});
+
 
 });
 
@@ -88,15 +97,23 @@ gulp.task("html", function () {
 	gulp.src(paths.htmlPath).pipe(connect.reload());
 });
 
+
 //开启http服务器
-gulp.task('connect', function () {
+
+var sev=function(){
 	connect.server({
 		root: 'src',
 		livereload: true,
 		port: 8888,
 
+
 	});
+}
+gulp.task('connect',
+ function () {
+	sev();
 });
+
 
 
 // 全局的scss 

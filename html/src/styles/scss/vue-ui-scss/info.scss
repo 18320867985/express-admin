@@ -16,6 +16,7 @@
 @keyframes info-show{
     0%{
         opacity: 0;
+        display:block;
     }
     100%{
         opacity: 1;
@@ -26,8 +27,11 @@
     0%{
         opacity: 1;
     }
-    100%{
+    95%{
         opacity: 0;
+    }
+    100%{
+        display: none;
     }
 }
 .info-box {

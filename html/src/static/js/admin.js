@@ -21152,8 +21152,9 @@ var info = function (type, mess) {
     elm.appendChild(message);
 
     var setTimeoutId = setTimeout(function () {
-        dom(".messageinfo").addClass("info-hide");
+        // $(".messageinfo").addClass("info-hide");
         clearTimeout(setTimeoutId);
+        dom(".messageinfo").remove();
     }, 2000);
 };
 

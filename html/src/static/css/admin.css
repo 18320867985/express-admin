@@ -6512,27 +6512,33 @@ select.form-control {
 
 @-webkit-keyframes info-show {
   0% {
-    opacity: 0; }
+    opacity: 0;
+    display: block; }
   100% {
     opacity: 1; } }
 
 @keyframes info-show {
   0% {
-    opacity: 0; }
+    opacity: 0;
+    display: block; }
   100% {
     opacity: 1; } }
 
 @-webkit-keyframes info-hide {
   0% {
     opacity: 1; }
+  95% {
+    opacity: 0; }
   100% {
-    opacity: 0; } }
+    display: none; } }
 
 @keyframes info-hide {
   0% {
     opacity: 1; }
+  95% {
+    opacity: 0; }
   100% {
-    opacity: 0; } }
+    display: none; } }
 
 .info-box {
   position: fixed;
