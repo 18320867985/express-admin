@@ -1,5 +1,5 @@
 <template>
-  <div class="edit">
+  <div class="template-edit">
    
        <h4 class="text-muted">
          <a href="javascript:;" class="btn-link"  title="返回上一级">
@@ -43,7 +43,7 @@ export default {
 </script>
 
 style:<style lang="scss">
-.edit{
+.template-edit{
   form{
     h4{
       font-size: 16px;

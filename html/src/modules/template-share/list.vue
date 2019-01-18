@@ -1,5 +1,5 @@
 <template>
-  <div class="list">
+  <div class="template-list">
     <slot :list="list" :allcheckBtn="allcheckBtn" :allChcek="allChcek"></slot>
     <!--分页-->
     <vue-paging :page-click="pageClick" text-class="text-center"></vue-paging>
@@ -114,7 +114,7 @@ export default {
 </script>
 
 style:<style lang="scss">
-.list{
+.template-list{
   form{
     h4{
       font-size: 16px;

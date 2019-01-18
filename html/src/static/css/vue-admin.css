@@ -178,7 +178,7 @@
   .user .table td {
     text-align: center; }
 
-.add {
+.template-add {
   width: 600px;
   margin: 0 auto;
   padding: 10px 20px;
@@ -186,36 +186,36 @@
   border: 1px solid #ddd;
   border-radius: 5px; }
 
-.edit {
+.template-edit {
   width: 500px;
   margin: 0 auto;
   padding: 10px 20px;
   margin-top: 30px;
   border: 1px solid #ddd;
   border-radius: 5px; }
-  .edit .form-group .btn + .btn {
+  .template-edit .form-group .btn + .btn {
     margin-left: 30px; }
 
-.list form h4 {
+.template-list form h4 {
   font-size: 16px;
   margin-bottom: 10px; }
-  .list form h4 em {
+  .template-list form h4 em {
     margin-left: 20px; }
 
-.edit form h4 {
+.template-edit form h4 {
   font-size: 16px;
   margin-bottom: 10px; }
-  .edit form h4 em {
+  .template-edit form h4 em {
     margin-left: 20px; }
 
-.add form h4 {
+.template-add form h4 {
   font-size: 16px;
   margin-bottom: 10px; }
-  .add form h4 em {
+  .template-add form h4 em {
     margin-left: 20px; }
 
-.dtl h4.text-muted {
+.template-dtl h4.text-muted {
   font-size: 16px;
   margin-bottom: 10px; }
-  .dtl h4.text-muted em {
+  .template-dtl h4.text-muted em {
     margin-left: 20px; }

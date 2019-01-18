@@ -26260,7 +26260,7 @@ var reg = {
 
 var vueList = {
   render: function render() {
-    var _vm = this;var _h = _vm.$createElement;var _c = _vm._self._c || _h;return _c('div', { staticClass: "list" }, [_vm._t("default", null, { list: _vm.list, allcheckBtn: _vm.allcheckBtn, allChcek: _vm.allChcek }), _vm._v(" "), _c('vue-paging', { attrs: { "page-click": _vm.pageClick, "text-class": "text-center" } })], 2);
+    var _vm = this;var _h = _vm.$createElement;var _c = _vm._self._c || _h;return _c('div', { staticClass: "template-list" }, [_vm._t("default", null, { list: _vm.list, allcheckBtn: _vm.allcheckBtn, allChcek: _vm.allChcek }), _vm._v(" "), _c('vue-paging', { attrs: { "page-click": _vm.pageClick, "text-class": "text-center" } })], 2);
   },
   staticRenderFns: [],
   props: {
@@ -26372,7 +26372,7 @@ var vueList = {
 
 var vueEdit = {
   render: function render() {
-    var _vm = this;var _h = _vm.$createElement;var _c = _vm._self._c || _h;return _c('div', { staticClass: "edit" }, [_c('h4', { staticClass: "text-muted" }, [_c('a', { staticClass: "btn-link", attrs: { "href": "javascript:;", "title": "返回上一级" } }, [_c('span', { staticClass: "glyphicon glyphicon-circle-arrow-left ", on: { "click": _vm.cancelBtn } })]), _vm._v(" "), _c('em', [_vm._t("title", [_vm._v("修改用户信息")])], 2), _vm._v(" "), _c('span', { staticClass: "close", on: { "click": _vm.cancelBtn } }, [_vm._v("×")])]), _vm._v(" "), _c('hr'), _vm._v(" "), _vm._t("default")], 2);
+    var _vm = this;var _h = _vm.$createElement;var _c = _vm._self._c || _h;return _c('div', { staticClass: "template-edit" }, [_c('h4', { staticClass: "text-muted" }, [_c('a', { staticClass: "btn-link", attrs: { "href": "javascript:;", "title": "返回上一级" } }, [_c('span', { staticClass: "glyphicon glyphicon-circle-arrow-left ", on: { "click": _vm.cancelBtn } })]), _vm._v(" "), _c('em', [_vm._t("title", [_vm._v("修改用户信息")])], 2), _vm._v(" "), _c('span', { staticClass: "close", on: { "click": _vm.cancelBtn } }, [_vm._v("×")])]), _vm._v(" "), _c('hr'), _vm._v(" "), _vm._t("default")], 2);
   },
   staticRenderFns: [],
   props: {
@@ -26398,7 +26398,7 @@ var vueEdit = {
 
 var vueAdd = {
   render: function render() {
-    var _vm = this;var _h = _vm.$createElement;var _c = _vm._self._c || _h;return _c('div', { staticClass: "add" }, [_c('h4', { staticClass: "text-muted" }, [_c('a', { staticClass: "btn-link", attrs: { "href": "javascript:;", "title": "返回上一级" } }, [_c('span', { staticClass: "glyphicon glyphicon-circle-arrow-left", on: { "click": _vm.cancelBtn } })]), _vm._v(" "), _c('em', [_vm._t("title", [_vm._v("添加用户信息")])], 2), _vm._v(" "), _c('span', { staticClass: "close", on: { "click": _vm.cancelBtn } }, [_vm._v("×")])]), _vm._v(" "), _c('hr'), _vm._v(" "), _vm._t("default")], 2);
+    var _vm = this;var _h = _vm.$createElement;var _c = _vm._self._c || _h;return _c('div', { staticClass: "template-add" }, [_c('h4', { staticClass: "text-muted" }, [_c('a', { staticClass: "btn-link", attrs: { "href": "javascript:;", "title": "返回上一级" } }, [_c('span', { staticClass: "glyphicon glyphicon-circle-arrow-left", on: { "click": _vm.cancelBtn } })]), _vm._v(" "), _c('em', [_vm._t("title", [_vm._v("添加用户信息")])], 2), _vm._v(" "), _c('span', { staticClass: "close", on: { "click": _vm.cancelBtn } }, [_vm._v("×")])]), _vm._v(" "), _c('hr'), _vm._v(" "), _vm._t("default")], 2);
   },
   staticRenderFns: [],
   props: {
@@ -26433,7 +26433,7 @@ var vueAdd = {
 
 var vueDtl = {
   render: function render() {
-    var _vm = this;var _h = _vm.$createElement;var _c = _vm._self._c || _h;return _c('div', { staticClass: "dtl" }, [_c('h4', { staticClass: "text-muted" }, [_c('a', { staticClass: "btn-link", attrs: { "href": "javascript:;", "title": "返回上一级" } }, [_c('span', { staticClass: "glyphicon glyphicon-circle-arrow-left ", on: { "click": _vm.cancelBtn } })]), _vm._v(" "), _c('em', [_vm._t("title", [_vm._v("参考详细用户信息")])], 2), _vm._v(" "), _c('span', { staticClass: "close", on: { "click": _vm.cancelBtn } }, [_vm._v("×")])]), _vm._v(" "), _c('hr'), _vm._v(" "), _vm._t("default", null, { list: _vm.list }), _vm._v(" "), _c('button', { staticClass: "btn btn-default", attrs: { "type": "button" }, on: { "click": _vm.cancelBtn } }, [_c('span', { staticClass: "glyphicon glyphicon-circle-arrow-left " }), _vm._v(" 返回\n      ")])], 2);
+    var _vm = this;var _h = _vm.$createElement;var _c = _vm._self._c || _h;return _c('div', { staticClass: "template-dtl" }, [_c('h4', { staticClass: "text-muted" }, [_c('a', { staticClass: "btn-link", attrs: { "href": "javascript:;", "title": "返回上一级" } }, [_c('span', { staticClass: "glyphicon glyphicon-circle-arrow-left ", on: { "click": _vm.cancelBtn } })]), _vm._v(" "), _c('em', [_vm._t("title", [_vm._v("参考详细用户信息")])], 2), _vm._v(" "), _c('span', { staticClass: "close", on: { "click": _vm.cancelBtn } }, [_vm._v("×")])]), _vm._v(" "), _c('hr'), _vm._v(" "), _vm._t("default", null, { list: _vm.list }), _vm._v(" "), _c('button', { staticClass: "btn btn-default", attrs: { "type": "button" }, on: { "click": _vm.cancelBtn } }, [_c('span', { staticClass: "glyphicon glyphicon-circle-arrow-left " }), _vm._v(" 返回\n      ")])], 2);
   },
   staticRenderFns: [],
   props: {
@@ -26504,6 +26504,9 @@ var mixin$1 = {
           }
         }
       },
+      tempEdit: {}, // 恢复默认对象
+      tempAdd: {}, // 恢复默认对象
+
       //  dtl查看列表ids
       dtlIds: []
     };
@@ -26567,8 +26570,8 @@ var mixin$1 = {
         _this3.$http.put("" + _this3.httpUlr.edit, _this3.editObj).then(function (ok) {
           _this3.$loading(false);
           _this3.tab.set(); //  back index
-          // this.errors.clear('edit');
-          // this.editObj={};
+
+          _this3.resetEditObj(); // 恢复默认值
           var body = ok.body;
           if (body.code) {
             _this3.$info("success", "修改数据成功！");
@@ -26593,9 +26596,9 @@ var mixin$1 = {
           _this4.$loading("正在添加中...");
           _this4.$http.post("" + _this4.httpUlr.add, _this4.addObj).then(function (ok) {
             _this4.$loading(false);
-            _this4.tab.set(); //  back index 
-            // this.errors.clear('add');
-            // this.addObj={};
+            _this4.tab.set(); //  back index
+
+            _this4.resetAddObj(); // 恢复默认值
             var body = ok.body;
             if (body.code) {
               _this4.$info("success", "添加数据成功！");
@@ -26612,6 +26615,7 @@ var mixin$1 = {
     },
     addBtn: function addBtn() {
       this.tab.set("add");
+      this.errors.clear('add');
     },
     addCancel: function addCancel() {
       this.tab.set();
@@ -26640,8 +26644,34 @@ var mixin$1 = {
     },
     dtlCancel: function dtlCancel() {
       this.tab.set();
+    },
+    reseAddObj: function reseAddObj() {
+      for (name in this.tempAdd) {
+        this.addObj[name] = this.tempAdd[name];
+      }
+    },
+    resetAddObj: function resetAddObj() {
+      for (name in this.tempAdd) {
+        this.addObj[name] = this.tempAdd[name];
+      }
+    },
+    resetEditObj: function resetEditObj() {
+      for (name in this.tempEdit) {
+        this.editObj[name] = this.tempEdit[name];
+      }
     }
   },
+  mounted: function mounted() {
+
+    // 复制给临时的对象，验证成功之后重置默认值
+    for (name in this.editObj) {
+      this.tempEdit[name] = this.editObj[name];
+    }
+    for (name in this.addObj) {
+      this.tempAdd[name] = this.addObj[name];
+    }
+  },
+
   computed: {
     editError: function editError(errors) {
       return this.errors.items.filter(function (e) {
@@ -26707,7 +26737,7 @@ var App$3 = {
           if ($event.target.composing) {
             return;
           }_vm.$set(_vm.addObj, "email", $event.target.value);
-        } } }), _vm._v(" "), _c('p', { directives: [{ name: "show", rawName: "v-show", value: _vm.errors.has('add.eamil:required'), expression: "errors.has('add.eamil:required')" }], staticClass: "text-danger" }, [_vm._v("邮箱不为空！")]), _vm._v(" "), _c('p', { directives: [{ name: "show", rawName: "v-show", value: _vm.errors.has('add.email:email'), expression: "errors.has('add.email:email')" }], staticClass: "text-danger" }, [_vm._v("邮箱格式不对！")]), _vm._v(" "), _c('span', { directives: [{ name: "show", rawName: "v-show", value: _vm.errors.has('add.email'), expression: "errors.has('add.email')" }], staticClass: "glyphicon glyphicon-remove form-control-feedback", attrs: { "aria-hidden": "true" } })]), _vm._v(" "), _c('div', { staticClass: "form-group" }, [_c('button', { staticClass: "btn btn-primary", attrs: { "type": "submit", "disabled": _vm.addError } }, [_vm._v("添加")])])])]], 2)], 1), _vm._v(" "), _c('div', { staticClass: "tab-slide", class: { 'active': _vm.tab.dtl } }, [_c('vue-dtl', { attrs: { "cancel": _vm.dtlCancel, "url": _vm.httpUlr.dtl }, scopedSlots: _vm._u([{ key: "default", fn: function fn(scope) {
+        } } }), _vm._v(" "), _c('p', { directives: [{ name: "show", rawName: "v-show", value: _vm.errors.has('add.eamil:required'), expression: "errors.has('add.eamil:required')" }], staticClass: "text-danger" }, [_vm._v("邮箱不为空！")]), _vm._v(" "), _c('p', { directives: [{ name: "show", rawName: "v-show", value: _vm.errors.has('add.email:email'), expression: "errors.has('add.email:email')" }], staticClass: "text-danger" }, [_vm._v("邮箱格式不对！")]), _vm._v(" "), _c('span', { directives: [{ name: "show", rawName: "v-show", value: _vm.errors.has('add.email'), expression: "errors.has('add.email')" }], staticClass: "glyphicon glyphicon-remove form-control-feedback", attrs: { "aria-hidden": "true" } })]), _vm._v(" "), _c('div', { staticClass: "form-group" }, [_c('button', { staticClass: "btn btn-primary", attrs: { "type": "submit" } }, [_vm._v("添加")])])])]], 2)], 1), _vm._v(" "), _c('div', { staticClass: "tab-slide", class: { 'active': _vm.tab.dtl } }, [_c('vue-dtl', { attrs: { "cancel": _vm.dtlCancel, "url": _vm.httpUlr.dtl }, scopedSlots: _vm._u([{ key: "default", fn: function fn(scope) {
           return _vm._l(scope.list, function (item, index) {
             return _c('div', { key: index, staticClass: "list-group" }, [_c('div', { staticClass: "list-group-item clearfix" }, [_c('div', { staticClass: "col-xs-6 list-group-item-text" }, [_c('label', { attrs: { "for": "" } }, [_vm._v("用户Id:")]), _vm._v(" "), _c('span', [_vm._v(_vm._s(item._id))])]), _vm._v(" "), _c('div', { staticClass: "col-xs-6 list-group-item-text" }, [_c('label', { attrs: { "for": "" } }, [_vm._v("用户名:")]), _vm._v(" "), _c('span', [_vm._v(_vm._s(item.name))])])]), _vm._v(" "), _c('div', { staticClass: "list-group-item clearfix" }, [_c('div', { staticClass: "col-xs-6 list-group-item-text" }, [_c('label', { attrs: { "for": "" } }, [_vm._v("用户类型:")]), _vm._v(" "), _c('span', [_vm._v(_vm._s(item.roleId && item.roleId.name))])]), _vm._v(" "), _c('div', { staticClass: "col-xs-6 list-group-item-text" }, [_c('label', { attrs: { "for": "" } }, [_vm._v("创建时间:")]), _vm._v(" "), _c('span', [_vm._v(_vm._s(_vm._f("date")(item.createDate)))])])])]);
           });
@@ -26775,6 +26805,7 @@ var App$3 = {
         return;
       }
       this.tab.set("edit");
+      this.errors.clear('edit');
       var o = fo[0];
 
       // 修改内容

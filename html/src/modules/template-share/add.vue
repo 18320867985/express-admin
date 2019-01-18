@@ -1,5 +1,5 @@
 <template>
-  <div class="add">
+  <div class="template-add">
         <h4 class="text-muted">
           <a href="javascript:;" class="btn-link" title="返回上一级">
             <span @click="cancelBtn" class="glyphicon glyphicon-circle-arrow-left"></span>
@@ -49,7 +49,7 @@ export default {
 </script>
 
 style:<style lang="scss">
-.add {
+.template-add {
   form {
     h4 {
       font-size: 16px;

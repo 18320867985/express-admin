@@ -22,6 +22,9 @@ export const mixin = {
           }
         }
       },
+      tempEdit:{}, // 恢复默认对象
+      tempAdd:{},  // 恢复默认对象
+      
       //  dtl查看列表ids
       dtlIds: [],
     }
@@ -83,6 +86,7 @@ export const mixin = {
       this.tab.set();
     },
     edit(scope) {
+    
       this.$validator.validateAll(scope).then(result => {
         this.$loading("正在保存中...");
         this.$http
@@ -90,8 +94,8 @@ export const mixin = {
           .then(ok => {
             this.$loading(false);
             this.tab.set(); //  back index
-            // this.errors.clear('edit');
-            // this.editObj={};
+
+            this.resetEditObj();  // 恢复默认值
             var body = ok.body;
             if (body.code) {
               this.$info("success", "修改数据成功！");
@@ -109,14 +113,15 @@ export const mixin = {
 
     // add
     add(scope) {
+    
       this.$validator.validateAll(scope).then(result => {
         if (result) {
           this.$loading("正在添加中...");
           this.$http.post(`${this.httpUlr.add}`, this.addObj).then(ok => {
             this.$loading(false);
-            this.tab.set(); //  back index 
-            // this.errors.clear('add');
-            // this.addObj={};
+            this.tab.set(); //  back index
+            
+            this.resetAddObj();  // 恢复默认值
             var body = ok.body;
             if (body.code) {
               this.$info("success", "添加数据成功！");
@@ -131,10 +136,11 @@ export const mixin = {
           });
         }
       });
-    },
 
+    },
     addBtn() {
       this.tab.set("add");
+      this.errors.clear('add');
     },
     addCancel() {
       this.tab.set();
@@ -162,6 +168,31 @@ export const mixin = {
     },
     dtlCancel() {
       this.tab.set();
+    },
+    reseAddObj(){
+      for(name in this.tempAdd){
+        this.addObj[name]=this.tempAdd[name];
+      }
+    },
+    resetAddObj(){
+      for(name in this.tempAdd){
+        this.addObj[name]=this.tempAdd[name];
+      }
+    },
+    resetEditObj(){
+      for(name in this.tempEdit){
+        this.editObj[name]=this.tempEdit[name];
+      }
+    }
+  },
+  mounted() {
+  
+    // 复制给临时的对象，验证成功之后重置默认值
+    for(name in this.editObj){
+      this.tempEdit[name]=this.editObj[name];
+    }
+    for(name in this.addObj){
+      this.tempAdd[name]=this.addObj[name];
     }
   },
   computed: {

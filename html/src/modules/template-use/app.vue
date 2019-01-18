@@ -31,15 +31,10 @@
             <thead>
               <tr class="text-center">
                 <th>
-                  <!-- <vue-checkbtn :callback="scope.allChcek" v-model="scope.allcheckBtn">
-                    <span class="glyphicon glyphicon-check"></span>
-                  </vue-checkbtn>-->
                   <vue-checkbox v-model="scope.allcheckBtn.ck" :callback="scope.allChcek"></vue-checkbox>
                 </th>
                 <th>编号</th>
-                <th>用户名</th>
-                <th>类型</th>
-                <th>创建时间</th>
+               
               </tr>
             </thead>
             <tbody>
@@ -48,9 +43,7 @@
                   <vue-checkbox v-model="item.bl"></vue-checkbox>
                 </td>
                 <td>{{ item._id}}</td>
-                <td>{{ item.name}}</td>
-                <td>{{ item.roleId&&item.roleId.name}}</td>
-                <td>{{ item.createDate|date}}</td>
+               
               </tr>
             </tbody>
           </table>
@@ -66,8 +59,9 @@
         <template>
           <form @submit.prevent="edit('edit')" data-vv-scope="edit">
             <!-- content start-->
+
             <div class="form-group">
-              <label for="exampleInputEmail1">用户名:{{editObj.name}}</label>
+              <label >用户名:{{editObj.name}}</label>
             </div>
             <div class="form-group">
               <label for="exampleInputEmail1">用户类型</label>
@@ -84,7 +78,6 @@
             <!-- content end-->
             <div class="form-group">
               <button type="submit" class="btn btn-primary" :disabled="editError">保存</button>
-              
             </div>
           </form>
         </template>
@@ -106,7 +99,7 @@
                 class="form-control"
                 type="text"
                 name="add.name"
-                id="add.name" 
+                id="add.name"
                 v-validate="{required:true,min:4}"
                 v-model="addObj.name"
                 placeholder="输入用户名"
@@ -204,7 +197,7 @@
 
             <!-- content end-->
             <div class="form-group">
-              <button type="submit" class="btn btn-primary" >添加</button>
+              <button type="submit" class="btn btn-primary" :disabled="addError">添加</button>
             </div>
           </form>
         </template>
@@ -218,24 +211,11 @@
         <template slot="title">查看详细用户信息</template>
         <template slot-scope="scope">
           <div class="list-group" v-for="(item,index) of scope.list" :key="index">
+
             <div class="list-group-item clearfix">
               <div class="col-xs-6 list-group-item-text">
                 <label for>用户Id:</label>
                 <span>{{item._id}}</span>
-              </div>
-              <div class="col-xs-6 list-group-item-text">
-                <label for>用户名:</label>
-                <span>{{item.name}}</span>
-              </div>
-            </div>
-            <div class="list-group-item clearfix">
-              <div class="col-xs-6 list-group-item-text">
-                <label for>用户类型:</label>
-                <span>{{(item.roleId&&item.roleId.name)}}</span>
-              </div>
-              <div class="col-xs-6 list-group-item-text">
-                <label for>创建时间:</label>
-                <span>{{item.createDate|date}}</span>
               </div>
             </div>
           </div>
@@ -247,11 +227,11 @@
 
 
 <script>
-import vueList from "../../template-share/list.vue";
-import vueEdit from "../../template-share/edit.vue";
-import vueAdd from "../../template-share/add.vue";
-import vueDtl from "../../template-share/dtl.vue";
-import { mixin } from "../../template-share/mixin";
+import vueList from "../../share-template/list.vue";
+import vueEdit from "../../share-template/edit.vue";
+import vueAdd from "../../share-template/add.vue";
+import vueDtl from "../../share-template/dtl.vue";
+import { mixin } from "../../share-template/mixin";
 import { eventBus } from "../../../components/eventBus.js";
 
 export default {
@@ -317,7 +297,6 @@ export default {
         return;
       }
       this.tab.set("edit");
-      this.errors.clear('edit');
       let o = fo[0];
 
       // 修改内容
@@ -351,7 +330,7 @@ export default {
   }
 }
 
-.template-add {
+.add {
   width: 600px;
   margin: 0 auto;
   padding: 10px 20px;
@@ -359,7 +338,7 @@ export default {
   border: 1px solid #ddd;
   border-radius: 5px;
 }
-.template-edit {
+.edit {
   width: 500px;
   margin: 0 auto;
   padding: 10px 20px;

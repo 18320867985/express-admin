@@ -1,5 +1,5 @@
 <template>
-  <div class="dtl">
+  <div class="template-dtl">
       <h4 class="text-muted">
          <a href="javascript:;" class="btn-link"  title="返回上一级">
           <span  @click="cancelBtn" class="glyphicon glyphicon-circle-arrow-left "></span>
@@ -66,7 +66,7 @@ created() {
 </script>
 style:<style lang="scss">
 
-.dtl {
+.template-dtl {
     h4.text-muted{
       font-size: 16px;
       margin-bottom: 10px;
