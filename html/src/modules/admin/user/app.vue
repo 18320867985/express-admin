@@ -107,12 +107,13 @@
                 type="text"
                 name="add.name"
                 id="add.name" 
-                v-validate="{required:true,min:4}"
+                v-validate="{required:true,min:4,unique:'admin/user/data/unique'}"
                 v-model="addObj.name"
                 placeholder="输入用户名"
               >
               <p class="text-danger" v-show="errors.has('add.name:required')">用户名不为空！</p>
               <p class="text-danger" v-show="errors.has('add.name:min')">用户名最小长度为4位！</p>
+                <p class="text-danger" v-show="errors.has('add.name:unique')">用户名已存在！</p>
               <span
                 v-show="errors.has('add.name')"
                 class="glyphicon glyphicon-remove form-control-feedback"
@@ -201,10 +202,10 @@
                 aria-hidden="true"
               ></span>
             </div>
-
+                  {{errors}}
             <!-- content end-->
             <div class="form-group">
-              <button type="submit" class="btn btn-primary" >添加</button>
+              <button type="submit" class="btn btn-primary" :disabled="addError" >添加</button>
             </div>
           </form>
         </template>
@@ -245,12 +246,12 @@
   </div>
 </template>
 
-
 <script>
-import vueList from "../../template-share/list.vue";
-import vueEdit from "../../template-share/edit.vue";
-import vueAdd from "../../template-share/add.vue";
-import vueDtl from "../../template-share/dtl.vue";
+
+import VueList from "../../template-share/list.vue";
+import VueEdit from "../../template-share/edit.vue";
+import VueAdd from "../../template-share/add.vue";
+import VueDtl from "../../template-share/dtl.vue";
 import { mixin } from "../../template-share/mixin";
 import { eventBus } from "../../../components/eventBus.js";
 
@@ -328,10 +329,10 @@ export default {
   },
 
   components: {
-    vueList,
-    vueEdit,
-    vueAdd,
-    vueDtl
+    VueList,
+    VueEdit,
+    VueAdd,
+    VueDtl
   }
 };
 </script>

@@ -7,6 +7,18 @@ router.get("/user", async (req, res) => {
     res.render("admin/user.html");
 });
 
+// 检测用户是否存在
+router.get("/user/data/unique/:v", async (req, res) => {
+    let name=req.params.v||"";
+   let count = await  mainModel.User.countDocuments({name:name});
+   if(count>0){
+    res.json(false);
+   }else{
+    res.json(true);
+   }
+    
+});
+
 router.get("/user/data/dtl/:ids", async (req, res) => {
     let ids=req.params.ids||"";
     ids=ids.split(",");
