@@ -168,16 +168,6 @@
   margin: 0 auto;
   margin-top: 60px; }
 
-.user {
-  padding: 10px 10px;
-  padding-top: 20px; }
-  .user .btn-toolbar {
-    margin-bottom: 10px;
-    padding-right: 10px; }
-  .user .table th,
-  .user .table td {
-    text-align: center; }
-
 .template-add {
   width: 600px;
   margin: 0 auto;
@@ -196,11 +186,25 @@
   .template-edit .form-group .btn + .btn {
     margin-left: 30px; }
 
-.template-list form h4 {
-  font-size: 16px;
-  margin-bottom: 10px; }
-  .template-list form h4 em {
-    margin-left: 20px; }
+.template-share {
+  padding: 0 10px; }
+  .template-share .btn-toolbar {
+    margin-top: 15px;
+    margin-bottom: 10px;
+    padding-right: 10px; }
+
+.template-list {
+  padding-top: 10px; }
+  .template-list .table th,
+  .template-list .table td {
+    text-align: center; }
+  .template-list table th, .template-list table td {
+    text-align: center; }
+  .template-list form h4 {
+    font-size: 16px;
+    margin-bottom: 10px; }
+    .template-list form h4 em {
+      margin-left: 20px; }
 
 .template-edit form h4 {
   font-size: 16px;
@@ -219,3 +223,21 @@
   margin-bottom: 10px; }
   .template-dtl h4.text-muted em {
     margin-left: 20px; }
+
+.template-add {
+  width: 600px;
+  margin: 0 auto;
+  padding: 10px 20px;
+  margin-top: 30px;
+  border: 1px solid #ddd;
+  border-radius: 5px; }
+
+.template-edit {
+  width: 500px;
+  margin: 0 auto;
+  padding: 10px 20px;
+  margin-top: 30px;
+  border: 1px solid #ddd;
+  border-radius: 5px; }
+  .template-edit .form-group .btn + .btn {
+    margin-left: 30px; }

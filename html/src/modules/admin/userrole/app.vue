@@ -1,5 +1,6 @@
 <template>
-  <div class="template-share user ">
+  <div class="template-share userrole">
+    
     <!-- 主列表模块-->
     <div class="tab-slide" :class="{'active':tab.index}">
       <!--操作按钮组-->
@@ -37,25 +38,60 @@
                   <vue-checkbox v-model="scope.allcheckBtn.ck" :callback="scope.allChcek"></vue-checkbox>
                 </th>
                 <th>编号</th>
-                <th>用户名</th>
-                <th>类型</th>
+                <th>用户类型</th>
+                <th>CODE</th>
                 <th>创建时间</th>
+              
               </tr>
             </thead>
             <tbody>
-              <tr v-for="(item, index)  of scope.list" :key="index">
+              <tr v-for="item of scope.list" :key="item._id">
                 <td>
                   <vue-checkbox v-model="item.bl"></vue-checkbox>
                 </td>
                 <td>{{ item._id}}</td>
                 <td>{{ item.name}}</td>
-                <td>{{ item.roleId&&item.roleId.name}}</td>
+               <td>{{ item.code}}</td>
                 <td>{{ item.createDate|date}}</td>
+              
               </tr>
             </tbody>
           </table>
         </template>
       </vue-list>
+    </div>
+
+      <!--详细列表模块-->
+    <div class="tab-slide" :class="{'active':tab.dtl}">
+      <!--组件-->
+      <vue-dtl :cancel="dtlCancel" :url="httpUlr.dtl">
+        <template slot="title">查看详细用户信息</template>
+        <template slot-scope="scope">
+          <div class="list-group" v-for="(item,index) of scope.list" :key="index">
+            <div class="list-group-item clearfix">
+              <div class="col-xs-6 list-group-item-text">
+                <label for>用户Id:</label>
+                <span>{{item._id}}</span>
+              </div>
+              <div class="col-xs-6 list-group-item-text">
+                <label for>用户名:</label>
+                <span>{{item.name}}</span>
+              </div>
+            </div>
+            <div class="list-group-item clearfix">
+              <div class="col-xs-6 list-group-item-text">
+                <label for>CODE:</label>
+                <span>{{item.code}}</span>
+              </div>
+              <div class="col-xs-6 list-group-item-text">
+                <label for>创建时间:</label>
+                <span>{{item.createDate|date}}</span>
+              </div>
+            </div>
+          
+          </div>
+        </template>
+      </vue-dtl>
     </div>
 
     <!--编辑模块-->
@@ -212,37 +248,7 @@
       </vue-add>
     </div>
 
-    <!--详细列表模块-->
-    <div class="tab-slide" :class="{'active':tab.dtl}">
-      <!--组件-->
-      <vue-dtl :cancel="dtlCancel" :url="httpUlr.dtl">
-        <template slot="title">查看详细用户信息</template>
-        <template slot-scope="scope">
-          <div class="list-group" v-for="(item,index) of scope.list" :key="index">
-            <div class="list-group-item clearfix">
-              <div class="col-xs-6 list-group-item-text">
-                <label for>用户Id:</label>
-                <span>{{item._id}}</span>
-              </div>
-              <div class="col-xs-6 list-group-item-text">
-                <label for>用户名:</label>
-                <span>{{item.name}}</span>
-              </div>
-            </div>
-            <div class="list-group-item clearfix">
-              <div class="col-xs-6 list-group-item-text">
-                <label for>用户类型:</label>
-                <span>{{(item.roleId&&item.roleId.name)}}</span>
-              </div>
-              <div class="col-xs-6 list-group-item-text">
-                <label for>创建时间:</label>
-                <span>{{item.createDate|date}}</span>
-              </div>
-            </div>
-          </div>
-        </template>
-      </vue-dtl>
-    </div>
+  
   </div>
 </template>
 
@@ -260,11 +266,11 @@ export default {
   data() {
     return {
       httpUlr: {
-        list: "admin/user/data",
-        add: "admin/user/data",
-        edit: "admin/user/data",
-        del: "admin/user/data",
-        dtl: "admin/user/data/dtl"
+        list: "admin/userRole/data",
+        add: "admin/userRole/data",
+        edit: "admin/userRole/data",
+        del: "admin/userRole/data",
+        dtl: "admin/userRole/data/dtl"
       },
       // inde列表集合
       list: [],
@@ -285,23 +291,12 @@ export default {
       },
 
       // 自定义
-      roles: []
+   
     };
   },
 
   mounted() {
-    // get roles
-    this.$http.get("admin/userRole/data", {}).then(
-      ok => {
-        var body = ok.body;
-        if (body.code) {
-          this.roles = body.data || [];
-        }
-      },
-      err => {
-        this.$info("danger", "数据链接失败！");
-      }
-    );
+   
   },
   methods: {
     // edit
@@ -337,7 +332,6 @@ export default {
 };
 </script>
 <style lang="scss">
-
 
 .template-add {
   width: 600px;

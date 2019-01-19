@@ -42,6 +42,7 @@ export {index}  from "./index";
 export {login}  from "./login";
 export {reg}  from "./reg";
 export {user}  from "./user";
+export {userrole}  from "./userrole";
 
 export {file}  from "./file";
 

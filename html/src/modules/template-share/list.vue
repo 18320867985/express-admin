@@ -114,7 +114,28 @@ export default {
 </script>
 
 style:<style lang="scss">
+.template-share{
+ padding: 0 10px;
+ .btn-toolbar {
+    margin-top: 15px;
+    margin-bottom: 10px;
+    padding-right: 10px;
+  }
+}
 .template-list{
+  padding-top: 10px;
+  .table {
+    th,
+    td {
+      text-align: center;
+    }
+  }
+
+  table{
+    th,td{
+  text-align: center;
+    }
+  }
   form{
     h4{
       font-size: 16px;

@@ -26767,7 +26767,7 @@ var mixin$1 = {
 
 var App$3 = {
   render: function render() {
-    var _vm = this;var _h = _vm.$createElement;var _c = _vm._self._c || _h;return _c('div', { staticClass: "user" }, [_c('div', { staticClass: "tab-slide", class: { 'active': _vm.tab.index } }, [_c('div', { staticClass: "btn-toolbar clearfix" }, [_c('div', { staticClass: "btn-group pull-left" }), _vm._v(" "), _c('div', { staticClass: "btn-group pull-right" }, [_c('button', { staticClass: "btn btn-default btn-sm", on: { "click": _vm.addBtn } }, [_c('span', { staticClass: "text-primary glyphicon glyphicon-plus" }), _vm._v(" 添加\n        ")]), _vm._v(" "), _c('button', { staticClass: "btn btn-default btn-sm", on: { "click": _vm.dtlBtn } }, [_c('span', { staticClass: "text-info glyphicon glyphicon-list-alt" }), _vm._v(" 查看\n        ")]), _vm._v(" "), _c('button', { staticClass: "btn btn-default btn-sm", on: { "click": _vm.editBtn } }, [_c('span', { staticClass: "glyphicon glyphicon-edit text-warning" }), _vm._v(" 修改\n        ")]), _vm._v(" "), _c('button', { staticClass: "btn btn-default btn-sm", on: { "click": function click($event) {
+    var _vm = this;var _h = _vm.$createElement;var _c = _vm._self._c || _h;return _c('div', { staticClass: "template-share user " }, [_c('div', { staticClass: "tab-slide", class: { 'active': _vm.tab.index } }, [_c('div', { staticClass: "btn-toolbar clearfix" }, [_c('div', { staticClass: "btn-group pull-left" }), _vm._v(" "), _c('div', { staticClass: "btn-group pull-right" }, [_c('button', { staticClass: "btn btn-default btn-sm", on: { "click": _vm.addBtn } }, [_c('span', { staticClass: "text-primary glyphicon glyphicon-plus" }), _vm._v(" 添加\n        ")]), _vm._v(" "), _c('button', { staticClass: "btn btn-default btn-sm", on: { "click": _vm.dtlBtn } }, [_c('span', { staticClass: "text-info glyphicon glyphicon-list-alt" }), _vm._v(" 查看\n        ")]), _vm._v(" "), _c('button', { staticClass: "btn btn-default btn-sm", on: { "click": _vm.editBtn } }, [_c('span', { staticClass: "glyphicon glyphicon-edit text-warning" }), _vm._v(" 修改\n        ")]), _vm._v(" "), _c('button', { staticClass: "btn btn-default btn-sm", on: { "click": function click($event) {
           $event.preventDefault();_vm.delBtn();
         } } }, [_c('span', { staticClass: "glyphicon glyphicon-trash text-danger" }), _vm._v(" 删除\n        ")])])]), _vm._v(" "), _c('vue-list', { attrs: { "url": _vm.httpUlr.list }, scopedSlots: _vm._u([{ key: "default", fn: function fn(scope) {
           return [_c('table', { staticClass: "table table-hover table-bordered" }, [_c('thead', [_c('tr', { staticClass: "text-center" }, [_c('th', [_c('vue-checkbox', { attrs: { "callback": scope.allChcek }, model: { value: scope.allcheckBtn.ck, callback: function callback($$v) {
@@ -26815,7 +26815,7 @@ var App$3 = {
           if ($event.target.composing) {
             return;
           }_vm.$set(_vm.addObj, "email", $event.target.value);
-        } } }), _vm._v(" "), _c('p', { directives: [{ name: "show", rawName: "v-show", value: _vm.errors.has('add.eamil:required'), expression: "errors.has('add.eamil:required')" }], staticClass: "text-danger" }, [_vm._v("邮箱不为空！")]), _vm._v(" "), _c('p', { directives: [{ name: "show", rawName: "v-show", value: _vm.errors.has('add.email:email'), expression: "errors.has('add.email:email')" }], staticClass: "text-danger" }, [_vm._v("邮箱格式不对！")]), _vm._v(" "), _c('span', { directives: [{ name: "show", rawName: "v-show", value: _vm.errors.has('add.email'), expression: "errors.has('add.email')" }], staticClass: "glyphicon glyphicon-remove form-control-feedback", attrs: { "aria-hidden": "true" } })]), _vm._v("\n                " + _vm._s(_vm.errors) + "\n          "), _vm._v(" "), _c('div', { staticClass: "form-group" }, [_c('button', { staticClass: "btn btn-primary", attrs: { "type": "submit", "disabled": _vm.addError } }, [_vm._v("添加")])])])]], 2)], 1), _vm._v(" "), _c('div', { staticClass: "tab-slide", class: { 'active': _vm.tab.dtl } }, [_c('vue-dtl', { attrs: { "cancel": _vm.dtlCancel, "url": _vm.httpUlr.dtl }, scopedSlots: _vm._u([{ key: "default", fn: function fn(scope) {
+        } } }), _vm._v(" "), _c('p', { directives: [{ name: "show", rawName: "v-show", value: _vm.errors.has('add.eamil:required'), expression: "errors.has('add.eamil:required')" }], staticClass: "text-danger" }, [_vm._v("邮箱不为空！")]), _vm._v(" "), _c('p', { directives: [{ name: "show", rawName: "v-show", value: _vm.errors.has('add.email:email'), expression: "errors.has('add.email:email')" }], staticClass: "text-danger" }, [_vm._v("邮箱格式不对！")]), _vm._v(" "), _c('span', { directives: [{ name: "show", rawName: "v-show", value: _vm.errors.has('add.email'), expression: "errors.has('add.email')" }], staticClass: "glyphicon glyphicon-remove form-control-feedback", attrs: { "aria-hidden": "true" } })]), _vm._v(" "), _c('div', { staticClass: "form-group" }, [_c('button', { staticClass: "btn btn-primary", attrs: { "type": "submit", "disabled": _vm.addError } }, [_vm._v("添加")])])])]], 2)], 1), _vm._v(" "), _c('div', { staticClass: "tab-slide", class: { 'active': _vm.tab.dtl } }, [_c('vue-dtl', { attrs: { "cancel": _vm.dtlCancel, "url": _vm.httpUlr.dtl }, scopedSlots: _vm._u([{ key: "default", fn: function fn(scope) {
           return _vm._l(scope.list, function (item, index) {
             return _c('div', { key: index, staticClass: "list-group" }, [_c('div', { staticClass: "list-group-item clearfix" }, [_c('div', { staticClass: "col-xs-6 list-group-item-text" }, [_c('label', { attrs: { "for": "" } }, [_vm._v("用户Id:")]), _vm._v(" "), _c('span', [_vm._v(_vm._s(item._id))])]), _vm._v(" "), _c('div', { staticClass: "col-xs-6 list-group-item-text" }, [_c('label', { attrs: { "for": "" } }, [_vm._v("用户名:")]), _vm._v(" "), _c('span', [_vm._v(_vm._s(item.name))])])]), _vm._v(" "), _c('div', { staticClass: "list-group-item clearfix" }, [_c('div', { staticClass: "col-xs-6 list-group-item-text" }, [_c('label', { attrs: { "for": "" } }, [_vm._v("用户类型:")]), _vm._v(" "), _c('span', [_vm._v(_vm._s(item.roleId && item.roleId.name))])]), _vm._v(" "), _c('div', { staticClass: "col-xs-6 list-group-item-text" }, [_c('label', { attrs: { "for": "" } }, [_vm._v("创建时间:")]), _vm._v(" "), _c('span', [_vm._v(_vm._s(_vm._f("date")(item.createDate)))])])])]);
           });
@@ -26914,6 +26914,140 @@ var user = {
 
 var App$4 = {
   render: function render() {
+    var _vm = this;var _h = _vm.$createElement;var _c = _vm._self._c || _h;return _c('div', { staticClass: "template-share userrole" }, [_c('div', { staticClass: "tab-slide", class: { 'active': _vm.tab.index } }, [_c('div', { staticClass: "btn-toolbar clearfix" }, [_c('div', { staticClass: "btn-group pull-left" }), _vm._v(" "), _c('div', { staticClass: "btn-group pull-right" }, [_c('button', { staticClass: "btn btn-default btn-sm", on: { "click": _vm.addBtn } }, [_c('span', { staticClass: "text-primary glyphicon glyphicon-plus" }), _vm._v(" 添加\n        ")]), _vm._v(" "), _c('button', { staticClass: "btn btn-default btn-sm", on: { "click": _vm.dtlBtn } }, [_c('span', { staticClass: "text-info glyphicon glyphicon-list-alt" }), _vm._v(" 查看\n        ")]), _vm._v(" "), _c('button', { staticClass: "btn btn-default btn-sm", on: { "click": _vm.editBtn } }, [_c('span', { staticClass: "glyphicon glyphicon-edit text-warning" }), _vm._v(" 修改\n        ")]), _vm._v(" "), _c('button', { staticClass: "btn btn-default btn-sm", on: { "click": function click($event) {
+          $event.preventDefault();_vm.delBtn();
+        } } }, [_c('span', { staticClass: "glyphicon glyphicon-trash text-danger" }), _vm._v(" 删除\n        ")])])]), _vm._v(" "), _c('vue-list', { attrs: { "url": _vm.httpUlr.list }, scopedSlots: _vm._u([{ key: "default", fn: function fn(scope) {
+          return [_c('table', { staticClass: "table table-hover table-bordered" }, [_c('thead', [_c('tr', { staticClass: "text-center" }, [_c('th', [_c('vue-checkbox', { attrs: { "callback": scope.allChcek }, model: { value: scope.allcheckBtn.ck, callback: function callback($$v) {
+                _vm.$set(scope.allcheckBtn, "ck", $$v);
+              }, expression: "scope.allcheckBtn.ck" } })], 1), _vm._v(" "), _c('th', [_vm._v("编号")]), _vm._v(" "), _c('th', [_vm._v("用户类型")]), _vm._v(" "), _c('th', [_vm._v("CODE")]), _vm._v(" "), _c('th', [_vm._v("创建时间")])])]), _vm._v(" "), _c('tbody', _vm._l(scope.list, function (item) {
+            return _c('tr', { key: item._id }, [_c('td', [_c('vue-checkbox', { model: { value: item.bl, callback: function callback($$v) {
+                  _vm.$set(item, "bl", $$v);
+                }, expression: "item.bl" } })], 1), _vm._v(" "), _c('td', [_vm._v(_vm._s(item._id))]), _vm._v(" "), _c('td', [_vm._v(_vm._s(item.name))]), _vm._v(" "), _c('td', [_vm._v(_vm._s(item.code))]), _vm._v(" "), _c('td', [_vm._v(_vm._s(_vm._f("date")(item.createDate)))])]);
+          }), 0)])];
+        } }]), model: { value: _vm.list, callback: function callback($$v) {
+          _vm.list = $$v;
+        }, expression: "list" } })], 1), _vm._v(" "), _c('div', { staticClass: "tab-slide", class: { 'active': _vm.tab.dtl } }, [_c('vue-dtl', { attrs: { "cancel": _vm.dtlCancel, "url": _vm.httpUlr.dtl }, scopedSlots: _vm._u([{ key: "default", fn: function fn(scope) {
+          return _vm._l(scope.list, function (item, index) {
+            return _c('div', { key: index, staticClass: "list-group" }, [_c('div', { staticClass: "list-group-item clearfix" }, [_c('div', { staticClass: "col-xs-6 list-group-item-text" }, [_c('label', { attrs: { "for": "" } }, [_vm._v("用户Id:")]), _vm._v(" "), _c('span', [_vm._v(_vm._s(item._id))])]), _vm._v(" "), _c('div', { staticClass: "col-xs-6 list-group-item-text" }, [_c('label', { attrs: { "for": "" } }, [_vm._v("用户名:")]), _vm._v(" "), _c('span', [_vm._v(_vm._s(item.name))])])]), _vm._v(" "), _c('div', { staticClass: "list-group-item clearfix" }, [_c('div', { staticClass: "col-xs-6 list-group-item-text" }, [_c('label', { attrs: { "for": "" } }, [_vm._v("CODE:")]), _vm._v(" "), _c('span', [_vm._v(_vm._s(item.code))])]), _vm._v(" "), _c('div', { staticClass: "col-xs-6 list-group-item-text" }, [_c('label', { attrs: { "for": "" } }, [_vm._v("创建时间:")]), _vm._v(" "), _c('span', [_vm._v(_vm._s(_vm._f("date")(item.createDate)))])])])]);
+          });
+        } }]) }, [_c('template', { slot: "title" }, [_vm._v("查看详细用户信息")])], 2)], 1), _vm._v(" "), _c('div', { staticClass: "tab-slide", class: { 'active': _vm.tab.edit } }, [_c('vue-edit', { attrs: { "cancel": _vm.editCancel, "url": _vm.httpUlr.edit } }, [_c('template', { slot: "title" }, [_vm._v("修改用户信息")]), _vm._v(" "), [_c('form', { attrs: { "data-vv-scope": "edit" }, on: { "submit": function submit($event) {
+          $event.preventDefault();_vm.edit('edit');
+        } } }, [_c('div', { staticClass: "form-group" }, [_c('label', { attrs: { "for": "exampleInputEmail1" } }, [_vm._v("用户名:" + _vm._s(_vm.editObj.name))])]), _vm._v(" "), _c('div', { staticClass: "form-group" }, [_c('label', { attrs: { "for": "exampleInputEmail1" } }, [_vm._v("用户类型")]), _vm._v(" "), _c('select', { directives: [{ name: "model", rawName: "v-model", value: _vm.editObj.roleId, expression: "editObj.roleId" }], staticClass: "form-control", attrs: { "name": "", "id": "", "placeholder": "Email" }, on: { "change": function change($event) {
+          var $$selectedVal = Array.prototype.filter.call($event.target.options, function (o) {
+            return o.selected;
+          }).map(function (o) {
+            var val = "_value" in o ? o._value : o.value;return val;
+          });_vm.$set(_vm.editObj, "roleId", $event.target.multiple ? $$selectedVal : $$selectedVal[0]);
+        } } }, _vm._l(_vm.roles, function (item, index) {
+      return _c('option', { key: index, domProps: { "selected": _vm.editObj.roleId === _vm.item_id, "value": item._id } }, [_vm._v(_vm._s(item.name))]);
+    }), 0)]), _vm._v(" "), _c('div', { staticClass: "form-group" }, [_c('button', { staticClass: "btn btn-primary", attrs: { "type": "submit", "disabled": _vm.editError } }, [_vm._v("保存")])])])]], 2)], 1), _vm._v(" "), _c('div', { staticClass: "tab-slide", class: { 'active': _vm.tab.add } }, [_c('vue-add', { attrs: { "cancel": _vm.addCancel, "url": _vm.httpUlr.add } }, [_c('template', { slot: "title" }, [_vm._v("添加用户信息")]), _vm._v(" "), [_c('form', { attrs: { "data-vv-scope": "add" }, on: { "submit": function submit($event) {
+          $event.preventDefault();_vm.add('add');
+        } } }, [_c('div', { staticClass: "form-group has-feedback", class: { ' has-error': _vm.errors.has('add.name') } }, [_c('label', { staticClass: "control-label", attrs: { "for": "add.name" } }, [_vm._v("用户名:")]), _vm._v(" "), _c('input', { directives: [{ name: "validate", rawName: "v-validate", value: { required: true, min: 4, unique: 'admin/user/data/unique' }, expression: "{required:true,min:4,unique:'admin/user/data/unique'}" }, { name: "model", rawName: "v-model", value: _vm.addObj.name, expression: "addObj.name" }], staticClass: "form-control", attrs: { "type": "text", "name": "add.name", "id": "add.name", "placeholder": "输入用户名" }, domProps: { "value": _vm.addObj.name }, on: { "input": function input($event) {
+          if ($event.target.composing) {
+            return;
+          }_vm.$set(_vm.addObj, "name", $event.target.value);
+        } } }), _vm._v(" "), _c('p', { directives: [{ name: "show", rawName: "v-show", value: _vm.errors.has('add.name:required'), expression: "errors.has('add.name:required')" }], staticClass: "text-danger" }, [_vm._v("用户名不为空！")]), _vm._v(" "), _c('p', { directives: [{ name: "show", rawName: "v-show", value: _vm.errors.has('add.name:min'), expression: "errors.has('add.name:min')" }], staticClass: "text-danger" }, [_vm._v("用户名最小长度为4位！")]), _vm._v(" "), _c('p', { directives: [{ name: "show", rawName: "v-show", value: _vm.errors.has('add.name:unique'), expression: "errors.has('add.name:unique')" }], staticClass: "text-danger" }, [_vm._v("用户名已存在！")]), _vm._v(" "), _c('span', { directives: [{ name: "show", rawName: "v-show", value: _vm.errors.has('add.name'), expression: "errors.has('add.name')" }], staticClass: "glyphicon glyphicon-remove form-control-feedback", attrs: { "aria-hidden": "true" } })]), _vm._v(" "), _c('div', { staticClass: "form-group has-feedback", class: { 'has-error': _vm.errors.has('add.pwd') } }, [_c('label', { staticClass: "control-label", attrs: { "for": "pwd" } }, [_vm._v("密码:")]), _vm._v(" "), _c('input', { directives: [{ name: "model", rawName: "v-model", value: _vm.addObj.pwd, expression: "addObj.pwd" }, { name: "validate", rawName: "v-validate", value: { required: true, min: 8 }, expression: "{ required:true,min:8}" }], ref: "add.pwd", staticClass: "form-control", attrs: { "type": "password", "id": "pwd", "name": "add.pwd", "placeholder": "输入密码" }, domProps: { "value": _vm.addObj.pwd }, on: { "input": function input($event) {
+          if ($event.target.composing) {
+            return;
+          }_vm.$set(_vm.addObj, "pwd", $event.target.value);
+        } } }), _vm._v(" "), _c('p', { directives: [{ name: "show", rawName: "v-show", value: _vm.errors.has('add.pwd:required'), expression: "errors.has('add.pwd:required')" }], staticClass: "text-danger" }, [_vm._v("密码不为空！")]), _vm._v(" "), _c('p', { directives: [{ name: "show", rawName: "v-show", value: _vm.errors.has('add.pwd:min'), expression: "errors.has('add.pwd:min')" }], staticClass: "text-danger" }, [_vm._v("密码最小长度为8位！")]), _vm._v(" "), _c('span', { directives: [{ name: "show", rawName: "v-show", value: _vm.errors.has('add.pwd'), expression: "errors.has('add.pwd')" }], staticClass: "glyphicon glyphicon-remove form-control-feedback", attrs: { "aria-hidden": "true" } })]), _vm._v(" "), _c('div', { staticClass: "form-group has-feedback", class: { 'has-error': _vm.errors.has('add.pwd2') } }, [_c('label', { staticClass: "control-label", attrs: { "for": "pwd2" } }, [_vm._v("确认密码:")]), _vm._v(" "), _c('input', { directives: [{ name: "model", rawName: "v-model", value: _vm.addObj.pwd2, expression: "addObj.pwd2" }, { name: "validate", rawName: "v-validate", value: { required: true, confirmed: 'add.pwd' }, expression: "{ required:true,confirmed:'add.pwd'}" }], staticClass: "form-control", attrs: { "type": "password", "name": "add.pwd2", "id": "pwd2", "data-vv-as": "pwd", "placeholder": "输入确认密码" }, domProps: { "value": _vm.addObj.pwd2 }, on: { "input": function input($event) {
+          if ($event.target.composing) {
+            return;
+          }_vm.$set(_vm.addObj, "pwd2", $event.target.value);
+        } } }), _vm._v(" "), _c('p', { directives: [{ name: "show", rawName: "v-show", value: _vm.errors.has('add.pwd2:required'), expression: "errors.has('add.pwd2:required')" }], staticClass: "text-danger" }, [_vm._v("密码不为空！")]), _vm._v(" "), _c('p', { directives: [{ name: "show", rawName: "v-show", value: _vm.errors.has('add.pwd2:confirmed'), expression: "errors.has('add.pwd2:confirmed')" }], staticClass: "text-danger" }, [_vm._v("两次密码不相同！")]), _vm._v(" "), _c('span', { directives: [{ name: "show", rawName: "v-show", value: _vm.errors.has('add.pwd2'), expression: "errors.has('add.pwd2')" }], staticClass: "glyphicon glyphicon-remove form-control-feedback", attrs: { "aria-hidden": "true" } })]), _vm._v(" "), _c('div', { staticClass: "form-group has-feedback", class: { 'has-error': _vm.errors.has('add.roleId') } }, [_c('label', { staticClass: "control-label", attrs: { "for": "roleId" } }, [_vm._v("用户类型:")]), _vm._v(" "), _c('select', { directives: [{ name: "model", rawName: "v-model", value: _vm.addObj.roleId, expression: "addObj.roleId" }, { name: "validate", rawName: "v-validate", value: 'required', expression: "'required'" }], staticClass: "form-control", attrs: { "name": "add.roleId", "id": "roleId" }, on: { "change": function change($event) {
+          var $$selectedVal = Array.prototype.filter.call($event.target.options, function (o) {
+            return o.selected;
+          }).map(function (o) {
+            var val = "_value" in o ? o._value : o.value;return val;
+          });_vm.$set(_vm.addObj, "roleId", $event.target.multiple ? $$selectedVal : $$selectedVal[0]);
+        } } }, [_c('option', { attrs: { "value": "" } }, [_vm._v("==选择类型==")]), _vm._v(" "), _vm._l(_vm.roles, function (item, index) {
+      return _c('option', { key: index, domProps: { "value": item._id } }, [_vm._v(_vm._s(item.name))]);
+    })], 2), _vm._v(" "), _c('p', { directives: [{ name: "show", rawName: "v-show", value: _vm.errors.has('add.roleId:required'), expression: "errors.has('add.roleId:required')" }], staticClass: "text-danger" }, [_vm._v("用户类型不为空！")]), _vm._v(" "), _c('span', { directives: [{ name: "show", rawName: "v-show", value: _vm.errors.has('add.roleId'), expression: "errors.has('add.roleId')" }], staticClass: "glyphicon glyphicon-remove form-control-feedback", attrs: { "aria-hidden": "true" } })]), _vm._v(" "), _c('div', { staticClass: "form-group has-feedback", class: { 'has-error': _vm.errors.has('add.email') } }, [_c('label', { staticClass: "control-label", attrs: { "for": "email" } }, [_vm._v("邮箱:")]), _vm._v(" "), _c('input', { directives: [{ name: "model", rawName: "v-model", value: _vm.addObj.email, expression: "addObj.email" }, { name: "validate", rawName: "v-validate", value: 'required|email', expression: "'required|email'" }], staticClass: "form-control", attrs: { "type": "text", "name": "add.email", "id": "email", "placeholder": "输入邮箱" }, domProps: { "value": _vm.addObj.email }, on: { "input": function input($event) {
+          if ($event.target.composing) {
+            return;
+          }_vm.$set(_vm.addObj, "email", $event.target.value);
+        } } }), _vm._v(" "), _c('p', { directives: [{ name: "show", rawName: "v-show", value: _vm.errors.has('add.eamil:required'), expression: "errors.has('add.eamil:required')" }], staticClass: "text-danger" }, [_vm._v("邮箱不为空！")]), _vm._v(" "), _c('p', { directives: [{ name: "show", rawName: "v-show", value: _vm.errors.has('add.email:email'), expression: "errors.has('add.email:email')" }], staticClass: "text-danger" }, [_vm._v("邮箱格式不对！")]), _vm._v(" "), _c('span', { directives: [{ name: "show", rawName: "v-show", value: _vm.errors.has('add.email'), expression: "errors.has('add.email')" }], staticClass: "glyphicon glyphicon-remove form-control-feedback", attrs: { "aria-hidden": "true" } })]), _vm._v(" "), _c('div', { staticClass: "form-group" }, [_c('button', { staticClass: "btn btn-primary", attrs: { "type": "submit", "disabled": _vm.addError } }, [_vm._v("添加")])])])]], 2)], 1)]);
+  },
+  staticRenderFns: [],
+  mixins: [mixin$1],
+  data: function data() {
+    return {
+      httpUlr: {
+        list: "admin/userRole/data",
+        add: "admin/userRole/data",
+        edit: "admin/userRole/data",
+        del: "admin/userRole/data",
+        dtl: "admin/userRole/data/dtl"
+      },
+      // inde列表集合
+      list: [],
+      //  edit修改的对象
+      editObj: {
+        _id: "",
+        name: "",
+        roleId: ""
+      },
+
+      // add 添加的对象
+      addObj: {
+        name: "",
+        pwd: "",
+        pwd2: "",
+        email: "",
+        roleId: ""
+      }
+
+      // 自定义
+
+    };
+  },
+  mounted: function mounted() {},
+
+  methods: {
+    // edit
+    editBtn: function editBtn(item) {
+      var fo = this.list.filter(function (item) {
+        return item.bl === true;
+      });
+      if (fo.length <= 0) {
+        this.$alert({
+          title: "提示",
+          content: "<strong class='text-danger'>没选择数据!</strong>",
+          html: true
+        }).catch(function (err) {});
+        return;
+      }
+      this.tab.set("edit");
+      this.errors.clear('edit');
+      var o = fo[0];
+
+      // 修改内容
+      this.editObj._id = o._id;
+      this.editObj.name = o.name;
+      this.editObj.roleId = o.roleId && o.roleId._id || "";
+    }
+  },
+
+  components: {
+    VueList: VueList,
+    VueEdit: VueEdit,
+    VueAdd: VueAdd,
+    VueDtl: VueDtl
+  }
+};
+
+var userrole = {
+    init: function init() {
+        var vm = new Vue({
+            render: function render(h) {
+                return h(App$4);
+            }
+        }).$mount("#app");
+    }
+};
+
+var App$5 = {
+  render: function render() {
     var _vm = this;var _h = _vm.$createElement;var _c = _vm._self._c || _h;return _c('div', { staticClass: "file" }, [_c('hr'), _vm._v(" "), _c('div', { staticClass: "form-group" }, [_c('div', { staticClass: "col-sm-6" }, [_c('input', { directives: [{ name: "model", rawName: "v-model", value: _vm.file.data, expression: "file.data" }], staticClass: "form-control", attrs: { "type": "text", "name": "", "id": "" }, domProps: { "value": _vm.file.data }, on: { "input": function input($event) {
           if ($event.target.composing) {
             return;
@@ -26945,7 +27079,7 @@ var file$1 = {
 
         var vm = new Vue({
             render: function render(h) {
-                return h(App$4);
+                return h(App$5);
             }
         }).$mount("#app");
     }
@@ -26986,6 +27120,7 @@ exports.index = index$1;
 exports.login = login;
 exports.reg = reg;
 exports.user = user;
+exports.userrole = userrole;
 exports.file = file$1;
 
 Object.defineProperty(exports, '__esModule', { value: true });

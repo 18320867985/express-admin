@@ -51,6 +51,25 @@
       </vue-list>
     </div>
 
+    <!--详细列表模块-->
+    <div class="tab-slide" :class="{'active':tab.dtl}">
+      <!--组件-->
+      <vue-dtl :cancel="dtlCancel" :url="httpUlr.dtl">
+        <template slot="title">查看详细用户信息</template>
+        <template slot-scope="scope">
+          <div class="list-group" v-for="(item,index) of scope.list" :key="index">
+
+            <div class="list-group-item clearfix">
+              <div class="col-xs-6 list-group-item-text">
+                <label for>用户Id:</label>
+                <span>{{item._id}}</span>
+              </div>
+            </div>
+          </div>
+        </template>
+      </vue-dtl>
+    </div>
+
     <!--编辑模块-->
     <div class="tab-slide" :class="{'active':tab.edit}">
       <!--组件-->
@@ -204,24 +223,6 @@
       </vue-add>
     </div>
 
-    <!--详细列表模块-->
-    <div class="tab-slide" :class="{'active':tab.dtl}">
-      <!--组件-->
-      <vue-dtl :cancel="dtlCancel" :url="httpUlr.dtl">
-        <template slot="title">查看详细用户信息</template>
-        <template slot-scope="scope">
-          <div class="list-group" v-for="(item,index) of scope.list" :key="index">
-
-            <div class="list-group-item clearfix">
-              <div class="col-xs-6 list-group-item-text">
-                <label for>用户Id:</label>
-                <span>{{item._id}}</span>
-              </div>
-            </div>
-          </div>
-        </template>
-      </vue-dtl>
-    </div>
   </div>
 </template>
 
