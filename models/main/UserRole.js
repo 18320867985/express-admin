@@ -8,6 +8,10 @@ var schema = new orm.mongoose.Schema({
         unique:true  },
     createDate:{
         type:Date,default:Date.now
+    },
+    order:{
+        type:Number,
+        default:1
     }
 
 });

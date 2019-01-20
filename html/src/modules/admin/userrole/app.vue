@@ -41,6 +41,7 @@
                 <th>用户类型</th>
                 <th>CODE</th>
                 <th>创建时间</th>
+               <th>排序</th>
               
               </tr>
             </thead>
@@ -53,6 +54,7 @@
                 <td>{{ item.name}}</td>
                <td>{{ item.code}}</td>
                 <td>{{ item.createDate|date}}</td>
+                <td>{{ item.order}}</td>
               
               </tr>
             </tbody>
@@ -80,7 +82,7 @@
             </div>
             <div class="list-group-item clearfix">
               <div class="col-xs-6 list-group-item-text">
-                <label for>CODE:</label>
+                <label for>code:</label>
                 <span>{{item.code}}</span>
               </div>
               <div class="col-xs-6 list-group-item-text">
@@ -103,20 +105,27 @@
           <form @submit.prevent="edit('edit')" data-vv-scope="edit">
             <!-- content start-->
             <div class="form-group">
-              <label for="exampleInputEmail1">用户名:{{editObj.name}}</label>
-            </div>
-            <div class="form-group">
-              <label for="exampleInputEmail1">用户类型</label>
-              <select name id class="form-control" v-model="editObj.roleId" placeholder="Email">
-                <option
-                  v-for="(item ,index) of roles"
-                  :key="index"
-                  :selected="editObj.roleId===item_id"
-                  :value="item._id"
-                >{{item.name}}</option>
-              </select>
-            </div>
+              <label >编号：{{editObj._idss}}</label>
+            </div> 
+            <div class="form-group" :class="{' has-error':errors.has('edit.name')}">
+              <label class="control-label" for="name">用户名</label>
+              <input class="form-control " type="text" name="name" v-model="editObj.name" 
+                v-validate="{required:true}"
+              id="name">
+               <p class="text-danger" v-show="errors.has('edit.name:required')">名称不为空！</p>
 
+            </div> 
+
+             <div class="form-group" :class="{' has-error':errors.has('edit.order')}">
+              <label class="control-label" for="name">排序</label>
+              <input class="form-control " type="text" name="order" v-model="editObj.order" 
+                v-validate="{required:true,min_value:1}"
+              id="name">
+               <p class="text-danger" v-show="errors.has('edit.order:required')">排序不为空！</p>
+              <p class="text-danger" v-show="errors.has('edit.order:min_value')">最小值不能为小于1！</p>
+
+            </div> 
+             
             <!-- content end-->
             <div class="form-group">
               <button type="submit" class="btn btn-primary" :disabled="editError">保存</button>
@@ -131,114 +140,61 @@
     <div class="tab-slide" :class="{'active':tab.add}">
       <!--组件 -->
       <vue-add :cancel="addCancel" :url="httpUlr.add">
-        <template slot="title">添加用户信息</template>
+        <template slot="title">添加用户类型</template>
 
         <template>
           <form @submit.prevent="add('add')" data-vv-scope="add">
             <!-- content start-->
             <div class="form-group has-feedback" :class="{' has-error':errors.has('add.name')}">
-              <label class="control-label" for="add.name">用户名:</label>
+              <label class="control-label" for="add.name">名称:</label>
               <input
                 class="form-control"
                 type="text"
                 name="add.name"
                 id="add.name" 
-                v-validate="{required:true,min:4,unique:'admin/user/data/unique'}"
+                v-validate="{required:true,min:2}"
                 v-model="addObj.name"
                 placeholder="输入用户名"
               >
               <p class="text-danger" v-show="errors.has('add.name:required')">用户名不为空！</p>
-              <p class="text-danger" v-show="errors.has('add.name:min')">用户名最小长度为4位！</p>
-                <p class="text-danger" v-show="errors.has('add.name:unique')">用户名已存在！</p>
-              <span
-                v-show="errors.has('add.name')"
-                class="glyphicon glyphicon-remove form-control-feedback"
-                aria-hidden="true"
-              ></span>
+              <p class="text-danger" v-show="errors.has('add.name:min')">用户名最小长度为2位！</p>
+               
             </div>
 
-            <div class="form-group has-feedback" :class="{'has-error':errors.has('add.pwd')}">
-              <label class="control-label" for="pwd">密码:</label>
-              <input
-                class="form-control"
-                type="password"
-                id="pwd"
-                v-model="addObj.pwd"
-                name="add.pwd"
-                ref="add.pwd"
-                placeholder="输入密码"
-                v-validate="{ required:true,min:8}"
-              >
-              <p class="text-danger" v-show="errors.has('add.pwd:required')">密码不为空！</p>
-              <p class="text-danger" v-show="errors.has('add.pwd:min')">密码最小长度为8位！</p>
-              <span
-                v-show="errors.has('add.pwd')"
-                class="glyphicon glyphicon-remove form-control-feedback"
-                aria-hidden="true"
-              ></span>
-            </div>
-
-            <div class="form-group has-feedback" :class="{'has-error':errors.has('add.pwd2')}">
-              <label class="control-label" for="pwd2">确认密码:</label>
-              <input
-                class="form-control"
-                type="password"
-                name="add.pwd2"
-                id="pwd2"
-                v-model="addObj.pwd2"
-                v-validate="{ required:true,confirmed:'add.pwd'}"
-                data-vv-as="pwd"
-                placeholder="输入确认密码"
-              >
-              <p class="text-danger" v-show="errors.has('add.pwd2:required')">密码不为空！</p>
-              <p class="text-danger" v-show="errors.has('add.pwd2:confirmed')">两次密码不相同！</p>
-              <span
-                v-show="errors.has('add.pwd2')"
-                class="glyphicon glyphicon-remove form-control-feedback"
-                aria-hidden="true"
-              ></span>
-            </div>
-
-            <div class="form-group has-feedback" :class="{'has-error':errors.has('add.roleId')}">
-              <label class="control-label" for="roleId">用户类型:</label>
-              <select
-                class="form-control"
-                v-model="addObj.roleId"
-                name="add.roleId"
-                id="roleId"
-                v-validate="'required'"
-              >
-                <option value>==选择类型==</option>
-                <option :value="item._id" v-for="(item ,index) of roles" :key="index">{{item.name}}</option>
-              </select>
-              <p class="text-danger" v-show="errors.has('add.roleId:required')">用户类型不为空！</p>
-              <span
-                v-show="errors.has('add.roleId')"
-                class="glyphicon glyphicon-remove form-control-feedback"
-                aria-hidden="true"
-              ></span>
-            </div>
-
-            <div class="form-group has-feedback" :class="{'has-error':errors.has('add.email')}">
-              <label class="control-label" for="email">邮箱:</label>
+             <div class="form-group has-feedback" :class="{' has-error':errors.has('add.code')}">
+              <label class="control-label" for="add.code">code:</label>
               <input
                 class="form-control"
                 type="text"
-                name="add.email"
-                id="email"
-                v-model="addObj.email"
-                v-validate="'required|email'"
-                placeholder="输入邮箱"
+                name="add.code"
+                id="add.code" 
+                v-validate="{required:true,min_value:0,unique:'admin/userrole/data/unique'}"
+                v-model="addObj.code"
+                placeholder="输入数值"
               >
-              <p class="text-danger" v-show="errors.has('add.eamil:required')">邮箱不为空！</p>
-              <p class="text-danger" v-show="errors.has('add.email:email')">邮箱格式不对！</p>
-              <span
-                v-show="errors.has('add.email')"
-                class="glyphicon glyphicon-remove form-control-feedback"
-                aria-hidden="true"
-              ></span>
+              <p class="text-danger" v-show="errors.has('add.code:required')">code不为空！</p>
+              <p class="text-danger" v-show="errors.has('add.code:min_value')">code最小值0！</p>
+              <p class="text-danger" v-show="errors.has('add.code:unique')">code值已存在！</p>
+               
             </div>
-       
+
+             <div class="form-group has-feedback" :class="{' has-error':errors.has('add.order')}">
+              <label class="control-label" for="add.order">排序:</label>
+              <input
+                class="form-control"
+                type="text"
+                name="add.order"
+                id="add.order" 
+                v-validate="{required:true,min_value:1}"
+                v-model="addObj.order"
+                placeholder="输入数值"
+              >
+              <p class="text-danger" v-show="errors.has('add.order:required')">排序不为空！</p>
+              <p class="text-danger" v-show="errors.has('add.order:min_value')">排序值不能小于1！</p>
+               
+            </div>
+
+          
             <!-- content end-->
             <div class="form-group">
               <button type="submit" class="btn btn-primary" :disabled="addError" >添加</button>
@@ -278,16 +234,14 @@ export default {
       editObj: {
         _id: "",
         name: "",
-        roleId: ""
+        order:1
       },
 
       // add 添加的对象
       addObj: {
         name: "",
-        pwd: "",
-        pwd2: "",
-        email: "",
-        roleId: ""
+        code:"",
+        order:""
       },
 
       // 自定义
@@ -319,7 +273,7 @@ export default {
       // 修改内容
       this.editObj._id = o._id;
       this.editObj.name = o.name;
-      this.editObj.roleId = (o.roleId && o.roleId._id) || "";
+      this.editObj.order=o.order;
     }
   },
 

@@ -58,6 +58,38 @@
       </vue-list>
     </div>
 
+     <!--详细列表模块-->
+    <div class="tab-slide" :class="{'active':tab.dtl}">
+      <!--组件-->
+      <vue-dtl :cancel="dtlCancel" :url="httpUlr.dtl">
+        <template slot="title">查看详细用户信息</template>
+        <template slot-scope="scope">
+          <div class="list-group" v-for="(item,index) of scope.list" :key="index">
+            <div class="list-group-item clearfix">
+              <div class="col-xs-6 list-group-item-text">
+                <label for>用户Id:</label>
+                <span>{{item._id}}</span>
+              </div>
+              <div class="col-xs-6 list-group-item-text">
+                <label for>用户名:</label>
+                <span>{{item.name}}</span>
+              </div>
+            </div>
+            <div class="list-group-item clearfix">
+              <div class="col-xs-6 list-group-item-text">
+                <label for>用户类型:</label>
+                <span>{{(item.roleId&&item.roleId.name)}}</span>
+              </div>
+              <div class="col-xs-6 list-group-item-text">
+                <label for>创建时间:</label>
+                <span>{{item.createDate|date}}</span>
+              </div>
+            </div>
+          </div>
+        </template>
+      </vue-dtl>
+    </div>
+
     <!--编辑模块-->
     <div class="tab-slide" :class="{'active':tab.edit}">
       <!--组件-->
@@ -114,11 +146,7 @@
               <p class="text-danger" v-show="errors.has('add.name:required')">用户名不为空！</p>
               <p class="text-danger" v-show="errors.has('add.name:min')">用户名最小长度为4位！</p>
                 <p class="text-danger" v-show="errors.has('add.name:unique')">用户名已存在！</p>
-              <span
-                v-show="errors.has('add.name')"
-                class="glyphicon glyphicon-remove form-control-feedback"
-                aria-hidden="true"
-              ></span>
+              
             </div>
 
             <div class="form-group has-feedback" :class="{'has-error':errors.has('add.pwd')}">
@@ -156,11 +184,7 @@
               >
               <p class="text-danger" v-show="errors.has('add.pwd2:required')">密码不为空！</p>
               <p class="text-danger" v-show="errors.has('add.pwd2:confirmed')">两次密码不相同！</p>
-              <span
-                v-show="errors.has('add.pwd2')"
-                class="glyphicon glyphicon-remove form-control-feedback"
-                aria-hidden="true"
-              ></span>
+              
             </div>
 
             <div class="form-group has-feedback" :class="{'has-error':errors.has('add.roleId')}">
@@ -176,11 +200,7 @@
                 <option :value="item._id" v-for="(item ,index) of roles" :key="index">{{item.name}}</option>
               </select>
               <p class="text-danger" v-show="errors.has('add.roleId:required')">用户类型不为空！</p>
-              <span
-                v-show="errors.has('add.roleId')"
-                class="glyphicon glyphicon-remove form-control-feedback"
-                aria-hidden="true"
-              ></span>
+             
             </div>
 
             <div class="form-group has-feedback" :class="{'has-error':errors.has('add.email')}">
@@ -196,11 +216,7 @@
               >
               <p class="text-danger" v-show="errors.has('add.eamil:required')">邮箱不为空！</p>
               <p class="text-danger" v-show="errors.has('add.email:email')">邮箱格式不对！</p>
-              <span
-                v-show="errors.has('add.email')"
-                class="glyphicon glyphicon-remove form-control-feedback"
-                aria-hidden="true"
-              ></span>
+             
             </div>
        
             <!-- content end-->
@@ -212,37 +228,7 @@
       </vue-add>
     </div>
 
-    <!--详细列表模块-->
-    <div class="tab-slide" :class="{'active':tab.dtl}">
-      <!--组件-->
-      <vue-dtl :cancel="dtlCancel" :url="httpUlr.dtl">
-        <template slot="title">查看详细用户信息</template>
-        <template slot-scope="scope">
-          <div class="list-group" v-for="(item,index) of scope.list" :key="index">
-            <div class="list-group-item clearfix">
-              <div class="col-xs-6 list-group-item-text">
-                <label for>用户Id:</label>
-                <span>{{item._id}}</span>
-              </div>
-              <div class="col-xs-6 list-group-item-text">
-                <label for>用户名:</label>
-                <span>{{item.name}}</span>
-              </div>
-            </div>
-            <div class="list-group-item clearfix">
-              <div class="col-xs-6 list-group-item-text">
-                <label for>用户类型:</label>
-                <span>{{(item.roleId&&item.roleId.name)}}</span>
-              </div>
-              <div class="col-xs-6 list-group-item-text">
-                <label for>创建时间:</label>
-                <span>{{item.createDate|date}}</span>
-              </div>
-            </div>
-          </div>
-        </template>
-      </vue-dtl>
-    </div>
+   
   </div>
 </template>
 

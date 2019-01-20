@@ -7,7 +7,7 @@ router.get("/userRole",(req,res)=>{
 
 router.get("/userRole/data",async (req,res)=>{
   
-  let userRoles= await mainModel.UserRole.find().sort({_id:-1}).catch(err=>{});
+  let userRoles= await mainModel.UserRole.find().sort({order:-1}).catch(err=>{});
   if(!userRoles){
     userRoles=[];
   }
@@ -17,8 +17,8 @@ router.get("/userRole/data",async (req,res)=>{
 
 // 检测是否存在
 router.get("/userRole/data/unique/:v", async (req, res) => {
-  let name = req.params.v || "";
-  let count = await mainModel.UserRole.countDocuments({ name: name });
+  let code = req.params.v || "";
+  let count = await mainModel.UserRole.countDocuments({ code: code });
   if (count > 0) {
       res.json(false);
   } else {
@@ -51,7 +51,7 @@ router.get("/userRole/data/:index/:pageItem", async (req, res) => {
   let index2 = (index - 1) * pageItem;
   // paging end
 
-  let list = await mainModel.UserRole.find({}).skip(index2).limit(pageItem);
+  let list = await mainModel.UserRole.find({}).sort({order:-1}).skip(index2).limit(pageItem);
 
   res.json(res.ok(list, {
       index: index, //	当前页
@@ -62,26 +62,22 @@ router.get("/userRole/data/:index/:pageItem", async (req, res) => {
 
 //  添加
 router.post("/userRole/data", async (req, res) => {
-  let user = new mainModel.User({ name: req.body.name, pwd: req.body.pwd, email: req.body.email, roleId: req.body.roleId });
-
-  let isok = user.validateSync();
+ let name=req.body.name;
+ let code=Number(req.body.code)||1;
+ let order=Number(req.body.order)||1;
+  let o = new mainModel.UserRole({ name,code,order});
+  let isok = o.validateSync();
   if (isok) {
       res.json(res.err(isok));
       return;
   }
 
-  var count = await mainModel.User.countDocuments({ name: user.name });
-  if (count > 0) {
-      res.json(res.err("用户名已存在！"));
-      return;
-  };
-
-  var userinfo = await mainModel.User.create(user)
-  if (!userinfo) {
+  var  rt = await mainModel.UserRole.create(o)
+  if (!rt) {
       res.json(res.err("添加失败"));
       return;
   }
-  res.json(res.ok(userinfo));
+  res.json(res.ok(rt));
 });
 
 
@@ -89,14 +85,10 @@ router.post("/userRole/data", async (req, res) => {
 router.put("/userRole/data", async (req, res) => {
 
   let id = req.body._id;
-  let roleId = req.body.roleId;
-  try {
-      roleId = mainModel.orm.mongoose.Types.ObjectId(roleId).toHexString();
-  } catch (error) {
-      res.json(res.err("用户类型 roleId 有误！"));
-      return;
-  }
-  let v = await mainModel.User.findByIdAndUpdate(id, { $set: { roleId } }, { new: true });
+  let name = req.body.name||"";
+  let order = req.body.order||"";
+
+  let v = await mainModel.UserRole.findByIdAndUpdate(id, { $set: { name,order } }, { new: true });
   if (!v) {
       res.json(res.err("修改失败"));
       return;
@@ -111,7 +103,7 @@ router.delete("/userRole/data/:listId", async (req, res) => {
   // let id = req.params.id;
   let listId = req.params.listId || "";
   listId = listId.split(",")
-  let obj = await mainModel.User.deleteMany({
+  let obj = await mainModel.UserRole.deleteMany({
       _id: {
           $in: listId
       }
