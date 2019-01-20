@@ -105,7 +105,7 @@
           <form @submit.prevent="edit('edit')" data-vv-scope="edit">
             <!-- content start-->
             <div class="form-group">
-              <label >编号：{{editObj._idss}}</label>
+              <label >编号：{{editObj._id}}</label>
             </div> 
             <div class="form-group" :class="{' has-error':errors.has('edit.name')}">
               <label class="control-label" for="name">用户名</label>

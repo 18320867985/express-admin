@@ -163,11 +163,7 @@
               >
               <p class="text-danger" v-show="errors.has('add.pwd:required')">密码不为空！</p>
               <p class="text-danger" v-show="errors.has('add.pwd:min')">密码最小长度为8位！</p>
-              <span
-                v-show="errors.has('add.pwd')"
-                class="glyphicon glyphicon-remove form-control-feedback"
-                aria-hidden="true"
-              ></span>
+           
             </div>
 
             <div class="form-group has-feedback" :class="{'has-error':errors.has('add.pwd2')}">

@@ -35,10 +35,18 @@ router.get("/user/data/dtl/:ids", async (req, res) => {
 router.get("/user/data/:index/:pageItem", async (req, res) => {
 
     // paging start
-    let index = Number(req.params.index) || 1;
+    let index = Number(req.params.index) || 0;
     let pageItem = Number(req.params.pageItem) || 10;
     let count = await mainModel.User.countDocuments(); //edit line
-    let maxIndex = Math.ceil(count / pageItem);
+    if (count <= 0) {
+        // 没有相关数据
+        res.json(res.ok([], {
+            index: 0, //	当前页
+            pageItem: pageItem, //  每页条数
+            allItem: count, //  总条数
+        }));
+    }
+    let maxIndex = Math.ceil(count / pageItem) || 0;
     index = index > maxIndex ? maxIndex : index;
     let index2 = (index - 1) * pageItem;
     // paging end

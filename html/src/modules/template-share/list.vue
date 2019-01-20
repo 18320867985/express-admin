@@ -30,7 +30,7 @@ export default {
       // 分页
       pageObj: {
         index: 1, //	当前页
-        pageItem: 3, //  每页条数
+        pageItem: 10, //  每页条数
         allItem: 1, //  总条数
         showCount: 5, //  显示的页码数目
         isShowSkip: true, // 是否显示跳转页
@@ -50,7 +50,7 @@ export default {
   },
   created() {
     eventBus.$on("pageList",()=>{
-        this.getUsers(this.pageObj.index);
+        this.getUsers(this.pageObj.index||1);
     })
   },
   mounted() {

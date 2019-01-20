@@ -26363,7 +26363,7 @@ var VueList = {
       // 分页
       pageObj: {
         index: 1, //	当前页
-        pageItem: 3, //  每页条数
+        pageItem: 10, //  每页条数
         allItem: 1, //  总条数
         showCount: 5, //  显示的页码数目
         isShowSkip: true, // 是否显示跳转页
@@ -26386,7 +26386,7 @@ var VueList = {
     var _this = this;
 
     eventBus.$on("pageList", function () {
-      _this.getUsers(_this.pageObj.index);
+      _this.getUsers(_this.pageObj.index || 1);
     });
   },
   mounted: function mounted() {
@@ -26803,7 +26803,7 @@ var App$3 = {
           if ($event.target.composing) {
             return;
           }_vm.$set(_vm.addObj, "pwd", $event.target.value);
-        } } }), _vm._v(" "), _c('p', { directives: [{ name: "show", rawName: "v-show", value: _vm.errors.has('add.pwd:required'), expression: "errors.has('add.pwd:required')" }], staticClass: "text-danger" }, [_vm._v("密码不为空！")]), _vm._v(" "), _c('p', { directives: [{ name: "show", rawName: "v-show", value: _vm.errors.has('add.pwd:min'), expression: "errors.has('add.pwd:min')" }], staticClass: "text-danger" }, [_vm._v("密码最小长度为8位！")]), _vm._v(" "), _c('span', { directives: [{ name: "show", rawName: "v-show", value: _vm.errors.has('add.pwd'), expression: "errors.has('add.pwd')" }], staticClass: "glyphicon glyphicon-remove form-control-feedback", attrs: { "aria-hidden": "true" } })]), _vm._v(" "), _c('div', { staticClass: "form-group has-feedback", class: { 'has-error': _vm.errors.has('add.pwd2') } }, [_c('label', { staticClass: "control-label", attrs: { "for": "pwd2" } }, [_vm._v("确认密码:")]), _vm._v(" "), _c('input', { directives: [{ name: "model", rawName: "v-model", value: _vm.addObj.pwd2, expression: "addObj.pwd2" }, { name: "validate", rawName: "v-validate", value: { required: true, confirmed: 'add.pwd' }, expression: "{ required:true,confirmed:'add.pwd'}" }], staticClass: "form-control", attrs: { "type": "password", "name": "add.pwd2", "id": "pwd2", "data-vv-as": "pwd", "placeholder": "输入确认密码" }, domProps: { "value": _vm.addObj.pwd2 }, on: { "input": function input($event) {
+        } } }), _vm._v(" "), _c('p', { directives: [{ name: "show", rawName: "v-show", value: _vm.errors.has('add.pwd:required'), expression: "errors.has('add.pwd:required')" }], staticClass: "text-danger" }, [_vm._v("密码不为空！")]), _vm._v(" "), _c('p', { directives: [{ name: "show", rawName: "v-show", value: _vm.errors.has('add.pwd:min'), expression: "errors.has('add.pwd:min')" }], staticClass: "text-danger" }, [_vm._v("密码最小长度为8位！")])]), _vm._v(" "), _c('div', { staticClass: "form-group has-feedback", class: { 'has-error': _vm.errors.has('add.pwd2') } }, [_c('label', { staticClass: "control-label", attrs: { "for": "pwd2" } }, [_vm._v("确认密码:")]), _vm._v(" "), _c('input', { directives: [{ name: "model", rawName: "v-model", value: _vm.addObj.pwd2, expression: "addObj.pwd2" }, { name: "validate", rawName: "v-validate", value: { required: true, confirmed: 'add.pwd' }, expression: "{ required:true,confirmed:'add.pwd'}" }], staticClass: "form-control", attrs: { "type": "password", "name": "add.pwd2", "id": "pwd2", "data-vv-as": "pwd", "placeholder": "输入确认密码" }, domProps: { "value": _vm.addObj.pwd2 }, on: { "input": function input($event) {
           if ($event.target.composing) {
             return;
           }_vm.$set(_vm.addObj, "pwd2", $event.target.value);
@@ -26932,7 +26932,7 @@ var App$4 = {
           });
         } }]) }, [_c('template', { slot: "title" }, [_vm._v("查看详细用户信息")])], 2)], 1), _vm._v(" "), _c('div', { staticClass: "tab-slide", class: { 'active': _vm.tab.edit } }, [_c('vue-edit', { attrs: { "cancel": _vm.editCancel, "url": _vm.httpUlr.edit } }, [_c('template', { slot: "title" }, [_vm._v("修改用户信息")]), _vm._v(" "), [_c('form', { attrs: { "data-vv-scope": "edit" }, on: { "submit": function submit($event) {
           $event.preventDefault();_vm.edit('edit');
-        } } }, [_c('div', { staticClass: "form-group" }, [_c('label', [_vm._v("编号：" + _vm._s(_vm.editObj._idss))])]), _vm._v(" "), _c('div', { staticClass: "form-group", class: { ' has-error': _vm.errors.has('edit.name') } }, [_c('label', { staticClass: "control-label", attrs: { "for": "name" } }, [_vm._v("用户名")]), _vm._v(" "), _c('input', { directives: [{ name: "model", rawName: "v-model", value: _vm.editObj.name, expression: "editObj.name" }, { name: "validate", rawName: "v-validate", value: { required: true }, expression: "{required:true}" }], staticClass: "form-control ", attrs: { "type": "text", "name": "name", "id": "name" }, domProps: { "value": _vm.editObj.name }, on: { "input": function input($event) {
+        } } }, [_c('div', { staticClass: "form-group" }, [_c('label', [_vm._v("编号：" + _vm._s(_vm.editObj._id))])]), _vm._v(" "), _c('div', { staticClass: "form-group", class: { ' has-error': _vm.errors.has('edit.name') } }, [_c('label', { staticClass: "control-label", attrs: { "for": "name" } }, [_vm._v("用户名")]), _vm._v(" "), _c('input', { directives: [{ name: "model", rawName: "v-model", value: _vm.editObj.name, expression: "editObj.name" }, { name: "validate", rawName: "v-validate", value: { required: true }, expression: "{required:true}" }], staticClass: "form-control ", attrs: { "type": "text", "name": "name", "id": "name" }, domProps: { "value": _vm.editObj.name }, on: { "input": function input($event) {
           if ($event.target.composing) {
             return;
           }_vm.$set(_vm.editObj, "name", $event.target.value);
