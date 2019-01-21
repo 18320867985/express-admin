@@ -16,7 +16,7 @@ router.get("/userRole/data", async (req, res) => {
 
 
 // 检测是否存在
-router.get("/userRole/data/unique/:v", async (req, res) => {
+router.get("/userRole/data-unique/:v", async (req, res) => {
     let code = req.params.v || "";
     let count = await mainModel.UserRole.countDocuments({ code: code });
     if (count > 0) {
@@ -45,6 +45,15 @@ router.get("/userRole/data/:index/:pageItem", async (req, res) => {
     // paging start
     let index = Number(req.params.index) || 1;
     let pageItem = Number(req.params.pageItem) || 10;
+    if(!mainModel.UserRole){
+        // 没有相关数据
+        res.json(res.ok([], {
+            index: 0, //	当前页
+            pageItem: pageItem, //  每页条数
+            allItem: 0, //  总条数
+     }));
+     return;
+    }
     let count = await mainModel.UserRole.countDocuments(); //edit line
     if (count <= 0) {
         // 没有相关数据

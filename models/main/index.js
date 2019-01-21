@@ -2,5 +2,6 @@
 exports.orm = require("./_mongoose");
 
 // models
-exports.User = require("./user");
+exports.User = require("./User");
 exports.UserRole = require("./UserRole");
+exports.Rotation = require("./Rotation");

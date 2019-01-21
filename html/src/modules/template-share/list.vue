@@ -65,7 +65,7 @@ export default {
         ok => {
           this.$loading(false);
           var body = ok.body;
-          if (body.code) {
+            if (body.code) {
             this.list = body.data;
             // this.users =body.data.map((item)=>{
             //   item.bl=false;

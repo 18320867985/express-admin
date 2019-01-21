@@ -11,8 +11,8 @@
           btn-class="btn-primary"
           v-model="file"
           url="http://localhost:3000/file"
-          @ok="ok"
-          @err="err"
+          :ok="ok"
+          :err="err"
           file-type="image/*"
           :size="300"
           :timeout="30"
@@ -20,13 +20,14 @@
           btn-text="上传图片"
         ></vue-file>
       </div>
-       <div class="form-group">
+       
+    </div>
+    <div class="form-group">
          <div class="col-xs-6">
             <img :src="file.data" alt="" style="max-width:100%; max-height:100%; margin:20px; " >
          </div>
         
        </div>
-    </div>
   </div>
 </template>
 

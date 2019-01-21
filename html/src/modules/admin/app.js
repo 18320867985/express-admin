@@ -8,8 +8,7 @@ Vue.use(VeeValidate);
 import { Validator } from 'vee-validate';
 // remote 异步验证 例如： v-validate="{required:true,min:4,unique:'admin/user/data/unique'}"
 Validator.extend('unique', (value, [httpUlr]) => {
-  console.log("value",value);
-    console.log("httpUlr",httpUlr);
+  
      return new Promise((resolve,reject)=>{
        Vue.http.get(`${httpUlr}/${value}`).then(ok=>{
          let body=ok.body;
@@ -41,8 +40,10 @@ Vue.use(filter);
 export {index}  from "./index";
 export {login}  from "./login";
 export {reg}  from "./reg";
+
 export {user}  from "./user";
 export {userrole}  from "./userrole";
+export {rotation}  from "./rotation";
 
 export {file}  from "./file";
 

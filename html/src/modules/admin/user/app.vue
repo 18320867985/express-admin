@@ -139,13 +139,13 @@
                 type="text"
                 name="add.name"
                 id="add.name" 
-                v-validate="{required:true,min:4,unique:'admin/user/data/unique'}"
+                v-validate="{required:true,min:4,unique:'admin/user/data-unique'}"
                 v-model="addObj.name"
                 placeholder="输入用户名"
               >
               <p class="text-danger" v-show="errors.has('add.name:required')">用户名不为空！</p>
               <p class="text-danger" v-show="errors.has('add.name:min')">用户名最小长度为4位！</p>
-                <p class="text-danger" v-show="errors.has('add.name:unique')">用户名已存在！</p>
+              <p class="text-danger" v-show="errors.has('add.name:unique')">用户名已存在！</p>
               
             </div>
 

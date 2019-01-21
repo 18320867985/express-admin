@@ -26,5 +26,7 @@ require("./user");
 // userRule
 require("./userRole");
 
+// rotation
+require("./rotation");
 
 module.exports = router;

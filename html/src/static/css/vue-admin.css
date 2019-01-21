@@ -241,3 +241,37 @@
   border-radius: 5px; }
   .template-edit .form-group .btn + .btn {
     margin-left: 30px; }
+
+.template-add {
+  width: 600px;
+  margin: 0 auto;
+  padding: 10px 20px;
+  margin-top: 30px;
+  border: 1px solid #ddd;
+  border-radius: 5px; }
+
+.template-edit {
+  width: 500px;
+  margin: 0 auto;
+  padding: 10px 20px;
+  margin-top: 30px;
+  border: 1px solid #ddd;
+  border-radius: 5px; }
+  .template-edit .form-group .btn + .btn {
+    margin-left: 30px; }
+
+.upload-img {
+  margin: 10px 0;
+  width: 100%;
+  position: relative;
+  border: 1px solid #ddd;
+  padding: 0 5px 5px 5px;
+  border-radius: 5px; }
+  .upload-img .close {
+    color: red;
+    font-size: 24px; }
+  .upload-img img {
+    width: 100%;
+    height: 180px; }
+  .upload-img .form-control {
+    margin-top: 10px; }

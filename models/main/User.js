@@ -1,6 +1,6 @@
 const  orm= require("./_mongoose");
 
-// var childSchema = new dbHelp.mongoose.Schema({
+// var childSchema = new orm.mongoose.Schema({
   
 // });
 

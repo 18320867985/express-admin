@@ -2,15 +2,54 @@
 const router = require("./_router");
 const mainModel = require("../../models/main");
 
-router.get("/user", async (req, res) => {
-
-    res.render("admin/user.html");
+router.get("/rotation", async (req, res) => {
+    res.render("admin/rotation.html");
 });
 
+// 分页
+router.get("/rotation/data/:index/:pageItem", async (req, res) => {
+
+    // paging start
+    let index = Number(req.params.index) || 0;
+    let pageItem = Number(req.params.pageItem) || 10;
+    if(!mainModel.Rotation){
+        // 没有相关数据
+        res.json(res.ok([], {
+            index: 0, //	当前页
+            pageItem: pageItem, //  每页条数
+            allItem: 0, //  总条数
+     }));
+     return;
+    }
+    let count = await mainModel.Rotation.countDocuments(); //edit line
+    if (count <= 0) {
+        // 没有相关数据
+        res.json(res.ok([], {
+            index: 0, //	当前页
+            pageItem: pageItem, //  每页条数
+            allItem: count, //  总条数
+        }));
+        return;
+    }
+    let maxIndex = Math.ceil(count / pageItem) || 0;
+    index = index > maxIndex ? maxIndex : index;
+    let index2 = (index - 1) * pageItem;
+    // paging end
+
+    let list = await mainModel.Rotation.find({}).skip(index2).limit(pageItem);
+
+    res.json(res.ok(list, {
+        index: index, //	当前页
+        pageItem: pageItem, //  每页条数
+        allItem: count, //  总条数
+    }));
+});
+
+
 // 检测是否存在
-router.get("/user/data-unique/:v", async (req, res) => {
-    let name = req.params.v || "";
-    let count = await mainModel.User.countDocuments({ name: name });
+router.get("/rotation/data-unique/:v", async (req, res) => {
+    let code = req.params.v || "";
+    let count = await mainModel.Rotation.countDocuments({ code });
     if (count > 0) {
         res.json(false);
     } else {
@@ -20,7 +59,7 @@ router.get("/user/data-unique/:v", async (req, res) => {
 });
 
 // 获取ids数组获取详细信息
-router.get("/user/data/dtl/:ids", async (req, res) => {
+router.get("/rotation/data/dtl/:ids", async (req, res) => {
     let ids = req.params.ids || "";
     ids = ids.split(",");
     let list = await mainModel.User.find({
@@ -31,71 +70,35 @@ router.get("/user/data/dtl/:ids", async (req, res) => {
     res.json(res.ok(list));
 });
 
-// 分页
-router.get("/user/data/:index/:pageItem", async (req, res) => {
-
-    // paging start
-    let index = Number(req.params.index) || 0;
-    let pageItem = Number(req.params.pageItem) || 10;
-    if(!mainModel.User){
-        // 没有相关数据
-        res.json(res.ok([], {
-            index: 0, //	当前页
-            pageItem: pageItem, //  每页条数
-            allItem: 0, //  总条数
-     }));
-     return;
-    }
-    let count = await mainModel.User.countDocuments(); //edit line
-    if (count <= 0) {
-        // 没有相关数据
-        res.json(res.ok([], {
-            index: 0, //	当前页
-            pageItem: pageItem, //  每页条数
-            allItem: count, //  总条数
-        }));
-    }
-    let maxIndex = Math.ceil(count / pageItem) || 0;
-    index = index > maxIndex ? maxIndex : index;
-    let index2 = (index - 1) * pageItem;
-    // paging end
-
-    let list = await mainModel.User.find({}).populate("roleId", "name code").skip(index2).limit(pageItem);
-
-    res.json(res.ok(list, {
-        index: index, //	当前页
-        pageItem: pageItem, //  每页条数
-        allItem: count, //  总条数
-    }));
-});
 
 //  添加
-router.post("/user/data", async (req, res) => {
-    let user = new mainModel.User({ name: req.body.name, pwd: req.body.pwd, email: req.body.email, roleId: req.body.roleId });
+router.post("/rotation/data", async (req, res) => {
+  
+    let o = new mainModel.Rotation({ 
+        name: req.body.name, 
+        code: req.body.code,
+        order: req.body.order,
+        imgs:req.body.imgs||[],
+    });
 
-    let isok = user.validateSync();
+    let isok = o.validateSync();
     if (isok) {
         res.json(res.err(isok));
         return;
     }
 
-    var count = await mainModel.User.countDocuments({ name: user.name });
-    if (count > 0) {
-        res.json(res.err("用户名已存在！"));
-        return;
-    };
 
-    var userinfo = await mainModel.User.create(user)
-    if (!userinfo) {
+    var  rt = await mainModel.Rotation.create(o)
+    if (!rt) {
         res.json(res.err("添加失败"));
         return;
     }
-    res.json(res.ok(userinfo));
+     res.json(res.ok(rt));
 });
 
 
 // 修改
-router.put("/user/data", async (req, res) => {
+router.put("/rotation/data", async (req, res) => {
 
     let id = req.body._id;
     let roleId = req.body.roleId;
@@ -116,11 +119,11 @@ router.put("/user/data", async (req, res) => {
 
 
 // 删除
-router.delete("/user/data/:listId", async (req, res) => {
+router.delete("/rotation/data/:listId", async (req, res) => {
     // let id = req.params.id;
     let listId = req.params.listId || "";
     listId = listId.split(",")
-    let obj = await mainModel.User.deleteMany({
+    let obj = await mainModel.Rotation.deleteMany({
         _id: {
             $in: listId
         }
