@@ -62,7 +62,7 @@
     <div class="tab-slide" :class="{'active':tab.dtl}">
       <!--组件-->
       <vue-dtl :cancel="dtlCancel" :url="httpUlr.dtl">
-        <template slot="title">查看详细轮播图信息</template>
+        <template slot="title">查看页面Banner大图</template>
         <template slot-scope="scope">
           <div class="list-group" v-for="(item,index) of scope.list" :key="index">
             <div class="list-group-item clearfix">
@@ -109,7 +109,7 @@
     <div class="tab-slide" :class="{'active':tab.add}">
       <!--组件 -->
       <vue-add :cancel="addCancel" :url="httpUlr.add">
-        <template slot="title">添加轮播图</template>
+        <template slot="title">添加页面Banner大图</template>
 
         <template>
           <form @submit.prevent="add('add')" data-vv-scope="add">
@@ -136,12 +136,12 @@
                 type="text"
                 name="add.code"
                 id="add.code"
-                v-validate="{required:true,unique:'admin/rotation/data-unique'}"
+                v-validate="{required:true,unique:'admin/banner/data-unique'}"
                 v-model="addObj.code"
                 placeholder="输入唯一标识"
               >
-              <p class="text-danger" v-show="errors.has('add.code:required')">标识不为空！</p>
-              <p class="text-danger" v-show="errors.has('add.code:unique')">标识值已存在！</p>
+              <p class="text-danger" v-show="errors.has('add.code:required')">code不为空！</p>
+              <p class="text-danger" v-show="errors.has('add.code:unique')">code值已存在！</p>
             </div>
 
             <div class="form-group has-feedback" :class="{' has-error':errors.has('add.order')}">
@@ -222,7 +222,7 @@
     <div class="tab-slide" :class="{'active':tab.edit}">
       <!--组件-->
       <vue-edit :cancel="editCancel" :url="httpUlr.edit">
-        <template slot="title">修改轮播图信息</template>
+        <template slot="title">修改页面Banner大图</template>
         <template>
           <form @submit.prevent="edit('edit')" data-vv-scope="edit">
             <!-- content start-->
@@ -344,11 +344,11 @@ export default {
   data() {
     return {
       httpUlr: {
-        list: "admin/rotation/data",
-        add: "admin/rotation/data",
-        edit: "admin/rotation/data",
-        del: "admin/rotation/data",
-        dtl: "admin/rotation/data-dtl"
+        list: "admin/banner/data",
+        add: "admin/banner/data",
+        edit: "admin/banner/data",
+        del: "admin/banner/data",
+        dtl: "admin/banner/data-dtl"
       },
       // inde列表集合
       list: [],
@@ -380,7 +380,7 @@ export default {
       this.tab.set("add");
       this.errors.clear('add');
       // 修改内容
-     
+     this.addObj.imgs=[];
     },
     // edit btn
     editBtn(item) {

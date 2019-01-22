@@ -44,6 +44,7 @@ export {reg}  from "./reg";
 export {user}  from "./user";
 export {userrole}  from "./userrole";
 export {rotation}  from "./rotation";
+export {banner}  from "./banner";
 
 export {file}  from "./file";
 

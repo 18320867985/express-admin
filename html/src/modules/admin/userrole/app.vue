@@ -38,7 +38,7 @@
                 </th>
                 <th>编号</th>
                 <th>用户类型</th>
-                <th>CODE</th>
+                <th>唯一标识</th>
                 <th>创建时间</th>
                 <th>排序</th>
               </tr>
@@ -79,7 +79,7 @@
             </div>
             <div class="list-group-item clearfix">
               <div class="col-xs-6 list-group-item-text">
-                <label for>code:</label>
+                <label for>唯一标识:</label>
                 <span>{{item.code}}</span>
               </div>
               <div class="col-xs-6 list-group-item-text">
@@ -164,7 +164,7 @@
             </div>
 
             <div class="form-group has-feedback" :class="{' has-error':errors.has('add.code')}">
-              <label class="control-label" for="add.code">code:</label>
+              <label class="control-label" for="add.code">唯一标识:</label>
               <input
                 class="form-control"
                 type="text"
@@ -174,9 +174,9 @@
                 v-model="addObj.code"
                 placeholder="输入数值"
               >
-              <p class="text-danger" v-show="errors.has('add.code:required')">code不为空！</p>
-              <p class="text-danger" v-show="errors.has('add.code:min_value')">code最小值0！</p>
-              <p class="text-danger" v-show="errors.has('add.code:unique')">code值已存在！</p>
+              <p class="text-danger" v-show="errors.has('add.code:required')">标识不为空！</p>
+              <p class="text-danger" v-show="errors.has('add.code:min_value')">标识最小值0！</p>
+              <p class="text-danger" v-show="errors.has('add.code:unique')">标识值已存在！</p>
             </div>
 
             <div class="form-group has-feedback" :class="{' has-error':errors.has('add.order')}">

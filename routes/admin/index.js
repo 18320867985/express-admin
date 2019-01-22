@@ -29,4 +29,7 @@ require("./userRole");
 // rotation
 require("./rotation");
 
+// banner
+require("./banner");
+
 module.exports = router;

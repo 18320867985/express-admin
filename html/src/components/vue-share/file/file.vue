@@ -28,7 +28,7 @@ export default {
     },
      name: {
        type:String,
-       default:"vue-file"+new Date().getTime()
+       default:"vue-file-upload"
      },
      url: {
       type: String,
