@@ -1,6 +1,6 @@
 
 <template>
-  <div class="vue-file">
+  <div class="vue-file" :class="name">
     <a class="vue-file-btn btn" :class="btnClass" name="up" href="javascript:">
       <span class="glyphicon glyphicon-upload"></span>
       {{btnText}}
@@ -19,9 +19,17 @@ import $ from "../dom.js";
 import file from "./file.js";
 file($);
 export default {
-  	name:"VueFile",
+	name:"VueFile",
   props: {
     value: {},
+     url: {
+      type: String,
+      default: ""
+    },
+     name: {
+       type:String,
+       default:"vue-file"+new Date().getTime()
+     },
      url: {
       type: String,
       default: ""
@@ -59,7 +67,7 @@ export default {
   },
   mounted() {
     /***文件上传  start***/
-    $(".vue-file").VueFile({
+    $("."+this.name).VueFile({
       url: this.url, //上传网址
       outTime: this.timeout*1000,
       size: this.size*1024, // 大小 m

@@ -8,6 +8,7 @@
       <div class="col-sm-4">
         <!-- size=300 默认单位为M ; timeout=30 默认单位为秒-->
         <vue-file
+           name="vue-file-up"
           btn-class="btn-primary"
           v-model="file"
           url="http://localhost:3000/file"

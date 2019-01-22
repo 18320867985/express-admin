@@ -1,5 +1,5 @@
 <template>
-  <div class="template-share user ">
+  <div class="template-share user">
     <!-- 主列表模块-->
     <div class="tab-slide" :class="{'active':tab.index}">
       <!--操作按钮组-->
@@ -58,7 +58,7 @@
       </vue-list>
     </div>
 
-     <!--详细列表模块-->
+    <!--详细列表模块-->
     <div class="tab-slide" :class="{'active':tab.dtl}">
       <!--组件-->
       <vue-dtl :cancel="dtlCancel" :url="httpUlr.dtl">
@@ -116,7 +116,6 @@
             <!-- content end-->
             <div class="form-group">
               <button type="submit" class="btn btn-primary" :disabled="editError">保存</button>
-              
             </div>
           </form>
         </template>
@@ -138,7 +137,7 @@
                 class="form-control"
                 type="text"
                 name="add.name"
-                id="add.name" 
+                id="add.name"
                 v-validate="{required:true,min:4,unique:'admin/user/data-unique'}"
                 v-model="addObj.name"
                 placeholder="输入用户名"
@@ -146,7 +145,6 @@
               <p class="text-danger" v-show="errors.has('add.name:required')">用户名不为空！</p>
               <p class="text-danger" v-show="errors.has('add.name:min')">用户名最小长度为4位！</p>
               <p class="text-danger" v-show="errors.has('add.name:unique')">用户名已存在！</p>
-              
             </div>
 
             <div class="form-group has-feedback" :class="{'has-error':errors.has('add.pwd')}">
@@ -163,7 +161,6 @@
               >
               <p class="text-danger" v-show="errors.has('add.pwd:required')">密码不为空！</p>
               <p class="text-danger" v-show="errors.has('add.pwd:min')">密码最小长度为8位！</p>
-           
             </div>
 
             <div class="form-group has-feedback" :class="{'has-error':errors.has('add.pwd2')}">
@@ -180,7 +177,6 @@
               >
               <p class="text-danger" v-show="errors.has('add.pwd2:required')">密码不为空！</p>
               <p class="text-danger" v-show="errors.has('add.pwd2:confirmed')">两次密码不相同！</p>
-              
             </div>
 
             <div class="form-group has-feedback" :class="{'has-error':errors.has('add.roleId')}">
@@ -196,7 +192,6 @@
                 <option :value="item._id" v-for="(item ,index) of roles" :key="index">{{item.name}}</option>
               </select>
               <p class="text-danger" v-show="errors.has('add.roleId:required')">用户类型不为空！</p>
-             
             </div>
 
             <div class="form-group has-feedback" :class="{'has-error':errors.has('add.email')}">
@@ -212,24 +207,20 @@
               >
               <p class="text-danger" v-show="errors.has('add.eamil:required')">邮箱不为空！</p>
               <p class="text-danger" v-show="errors.has('add.email:email')">邮箱格式不对！</p>
-             
             </div>
-       
+
             <!-- content end-->
             <div class="form-group">
-              <button type="submit" class="btn btn-primary" :disabled="addError" >添加</button>
+              <button type="submit" class="btn btn-primary" :disabled="addError">添加</button>
             </div>
           </form>
         </template>
       </vue-add>
     </div>
-
-   
   </div>
 </template>
 
 <script>
-
 import VueList from "../../template-share/list.vue";
 import VueEdit from "../../template-share/edit.vue";
 import VueAdd from "../../template-share/add.vue";
@@ -246,7 +237,7 @@ export default {
         add: "admin/user/data",
         edit: "admin/user/data",
         del: "admin/user/data",
-        dtl: "admin/user/data/dtl"
+        dtl: "admin/user/data-dtl"
       },
       // inde列表集合
       list: [],
@@ -286,6 +277,12 @@ export default {
     );
   },
   methods: {
+    // add btn
+    addBtn() {
+      this.tab.set("add");
+      this.errors.clear("add");
+      // 修改内容
+    },
     // edit
     editBtn(item) {
       let fo = this.list.filter(item => {
@@ -300,7 +297,7 @@ export default {
         return;
       }
       this.tab.set("edit");
-      this.errors.clear('edit');
+      this.errors.clear("edit");
       let o = fo[0];
 
       // 修改内容
@@ -319,28 +316,9 @@ export default {
 };
 </script>
 <style lang="scss">
-
-
 .template-add {
-  width: 600px;
-  margin: 0 auto;
-  padding: 10px 20px;
-  margin-top: 30px;
-  border: 1px solid #ddd;
-  border-radius: 5px;
 }
 .template-edit {
-  width: 500px;
-  margin: 0 auto;
-  padding: 10px 20px;
-  margin-top: 30px;
-  border: 1px solid #ddd;
-  border-radius: 5px;
-  .form-group {
-    .btn + .btn {
-      margin-left: 30px;
-    }
-  }
 }
 </style>
 

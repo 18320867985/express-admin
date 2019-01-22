@@ -67,6 +67,7 @@ created() {
 style:<style lang="scss">
 
 .template-dtl {
+ margin-bottom: 15px;
     h4.text-muted{
       font-size: 16px;
       margin-bottom: 10px;

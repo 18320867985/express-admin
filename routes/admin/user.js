@@ -20,7 +20,7 @@ router.get("/user/data-unique/:v", async (req, res) => {
 });
 
 // 获取ids数组获取详细信息
-router.get("/user/data/dtl/:ids", async (req, res) => {
+router.get("/user/data-dtl/:ids", async (req, res) => {
     let ids = req.params.ids || "";
     ids = ids.split(",");
     let list = await mainModel.User.find({

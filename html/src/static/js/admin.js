@@ -18888,7 +18888,20 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
 
 
 
+var defineProperty = function (obj, key, value) {
+  if (key in obj) {
+    Object.defineProperty(obj, key, {
+      value: value,
+      enumerable: true,
+      configurable: true,
+      writable: true
+    });
+  } else {
+    obj[key] = value;
+  }
 
+  return obj;
+};
 
 
 
@@ -20667,8 +20680,8 @@ var file = function ($) {
     };
 
     $.fn.VueFile = function (option) {
-
-        $(document).on("click", ".vue-file-btn", function (e) {
+        var $this = this;
+        $($this).on("click", ".vue-file-btn", function (e) {
             e.stopPropagation();
             e.preventDefault();
             var p = $(this).parents(".vue-file");
@@ -20677,7 +20690,7 @@ var file = function ($) {
         });
 
         // 文件上传框值变化
-        $(document).on("change", ".fileUp", function () {
+        $($this).on("change", ".fileUp", function (e) {
             fileupff(this);
         });
 
@@ -20722,53 +20735,54 @@ var file = function ($) {
     };
 };
 
+var _props;
+
 file(dom);
 var VueFile = {
   render: function render() {
-    var _vm = this;var _h = _vm.$createElement;var _c = _vm._self._c || _h;return _c('div', { staticClass: "vue-file" }, [_c('a', { staticClass: "vue-file-btn btn", class: _vm.btnClass, attrs: { "name": "up", "href": "javascript:" } }, [_c('span', { staticClass: "glyphicon glyphicon-upload" }), _vm._v("\n    " + _vm._s(_vm.btnText) + "\n  ")]), _vm._v(" "), _c('input', { staticClass: "fileUp v-hide-text", attrs: { "type": "file", "id": "fileUp", "value": "", "name": "file", "accept": _vm.fileType } }), _vm._v(" "), _c('div', { staticClass: "progress-all v-hide" }, [_c('div', { staticClass: "progress-now", class: _vm.lineClass }), _vm._v(" "), _c('div', { staticClass: "progress-num" }, [_vm._v("0%")])])]);
+    var _vm = this;var _h = _vm.$createElement;var _c = _vm._self._c || _h;return _c('div', { staticClass: "vue-file", class: _vm.name }, [_c('a', { staticClass: "vue-file-btn btn", class: _vm.btnClass, attrs: { "name": "up", "href": "javascript:" } }, [_c('span', { staticClass: "glyphicon glyphicon-upload" }), _vm._v("\n    " + _vm._s(_vm.btnText) + "\n  ")]), _vm._v(" "), _c('input', { staticClass: "fileUp v-hide-text", attrs: { "type": "file", "id": "fileUp", "value": "", "name": "file", "accept": _vm.fileType } }), _vm._v(" "), _c('div', { staticClass: "progress-all v-hide" }, [_c('div', { staticClass: "progress-now", class: _vm.lineClass }), _vm._v(" "), _c('div', { staticClass: "progress-num" }, [_vm._v("0%")])])]);
   },
   staticRenderFns: [],
   name: "VueFile",
-  props: {
+  props: (_props = {
     value: {},
     url: {
       type: String,
       default: ""
     },
-    fileType: {
+    name: {
       type: String,
-      default: "*.*"
-    },
-    size: {
-      type: Number,
-      default: 100
-    },
-    timeout: {
-      type: Number,
-      default: 30
-    },
-    btnClass: {
-      type: String,
-      default: "btn-primary"
-    },
-    lineClass: {
-      type: String,
-      default: "text-primary"
-    },
-    btnText: {
-      type: String,
-      default: "上传图片"
-    },
-    ok: {
-      type: Function,
-      default: function _default() {}
-    },
-    err: { type: Function,
-      default: function _default() {} }
-  },
+      default: "vue-file" + new Date().getTime()
+    }
+  }, defineProperty(_props, "url", {
+    type: String,
+    default: ""
+  }), defineProperty(_props, "fileType", {
+    type: String,
+    default: "*.*"
+  }), defineProperty(_props, "size", {
+    type: Number,
+    default: 100
+  }), defineProperty(_props, "timeout", {
+    type: Number,
+    default: 30
+  }), defineProperty(_props, "btnClass", {
+    type: String,
+    default: "btn-primary"
+  }), defineProperty(_props, "lineClass", {
+    type: String,
+    default: "text-primary"
+  }), defineProperty(_props, "btnText", {
+    type: String,
+    default: "上传图片"
+  }), defineProperty(_props, "ok", {
+    type: Function,
+    default: function _default() {}
+  }), defineProperty(_props, "err", { type: Function,
+    default: function _default() {} }), _props),
   mounted: function mounted() {
     /***文件上传  start***/
-    dom(".vue-file").VueFile({
+    dom("." + this.name).VueFile({
       url: this.url, //上传网址
       outTime: this.timeout * 1000,
       size: this.size * 1024, // 大小 m
@@ -26691,10 +26705,8 @@ var mixin$1 = {
         }
       });
     },
-    addBtn: function addBtn() {
-      this.tab.set("add");
-      this.errors.clear('add');
-    },
+
+    // add
     addCancel: function addCancel() {
       this.tab.set();
     },
@@ -26767,7 +26779,7 @@ var mixin$1 = {
 
 var App$3 = {
   render: function render() {
-    var _vm = this;var _h = _vm.$createElement;var _c = _vm._self._c || _h;return _c('div', { staticClass: "template-share user " }, [_c('div', { staticClass: "tab-slide", class: { 'active': _vm.tab.index } }, [_c('div', { staticClass: "btn-toolbar clearfix" }, [_c('div', { staticClass: "btn-group pull-left" }), _vm._v(" "), _c('div', { staticClass: "btn-group pull-right" }, [_c('button', { staticClass: "btn btn-default btn-sm", on: { "click": _vm.addBtn } }, [_c('span', { staticClass: "text-primary glyphicon glyphicon-plus" }), _vm._v(" 添加\n        ")]), _vm._v(" "), _c('button', { staticClass: "btn btn-default btn-sm", on: { "click": _vm.dtlBtn } }, [_c('span', { staticClass: "text-info glyphicon glyphicon-list-alt" }), _vm._v(" 查看\n        ")]), _vm._v(" "), _c('button', { staticClass: "btn btn-default btn-sm", on: { "click": _vm.editBtn } }, [_c('span', { staticClass: "glyphicon glyphicon-edit text-warning" }), _vm._v(" 修改\n        ")]), _vm._v(" "), _c('button', { staticClass: "btn btn-default btn-sm", on: { "click": function click($event) {
+    var _vm = this;var _h = _vm.$createElement;var _c = _vm._self._c || _h;return _c('div', { staticClass: "template-share user" }, [_c('div', { staticClass: "tab-slide", class: { 'active': _vm.tab.index } }, [_c('div', { staticClass: "btn-toolbar clearfix" }, [_c('div', { staticClass: "btn-group pull-left" }), _vm._v(" "), _c('div', { staticClass: "btn-group pull-right" }, [_c('button', { staticClass: "btn btn-default btn-sm", on: { "click": _vm.addBtn } }, [_c('span', { staticClass: "text-primary glyphicon glyphicon-plus" }), _vm._v(" 添加\n        ")]), _vm._v(" "), _c('button', { staticClass: "btn btn-default btn-sm", on: { "click": _vm.dtlBtn } }, [_c('span', { staticClass: "text-info glyphicon glyphicon-list-alt" }), _vm._v(" 查看\n        ")]), _vm._v(" "), _c('button', { staticClass: "btn btn-default btn-sm", on: { "click": _vm.editBtn } }, [_c('span', { staticClass: "glyphicon glyphicon-edit text-warning" }), _vm._v(" 修改\n        ")]), _vm._v(" "), _c('button', { staticClass: "btn btn-default btn-sm", on: { "click": function click($event) {
           $event.preventDefault();_vm.delBtn();
         } } }, [_c('span', { staticClass: "glyphicon glyphicon-trash text-danger" }), _vm._v(" 删除\n        ")])])]), _vm._v(" "), _c('vue-list', { attrs: { "url": _vm.httpUlr.list }, scopedSlots: _vm._u([{ key: "default", fn: function fn(scope) {
           return [_c('table', { staticClass: "table table-hover table-bordered" }, [_c('thead', [_c('tr', { staticClass: "text-center" }, [_c('th', [_c('vue-checkbox', { attrs: { "callback": scope.allChcek }, model: { value: scope.allcheckBtn.ck, callback: function callback($$v) {
@@ -26830,7 +26842,7 @@ var App$3 = {
         add: "admin/user/data",
         edit: "admin/user/data",
         del: "admin/user/data",
-        dtl: "admin/user/data/dtl"
+        dtl: "admin/user/data-dtl"
       },
       // inde列表集合
       list: [],
@@ -26869,6 +26881,13 @@ var App$3 = {
   },
 
   methods: {
+    // add btn
+    addBtn: function addBtn() {
+      this.tab.set("add");
+      this.errors.clear("add");
+      // 修改内容
+    },
+
     // edit
     editBtn: function editBtn(item) {
       var fo = this.list.filter(function (item) {
@@ -26883,7 +26902,7 @@ var App$3 = {
         return;
       }
       this.tab.set("edit");
-      this.errors.clear('edit');
+      this.errors.clear("edit");
       var o = fo[0];
 
       // 修改内容
@@ -26932,11 +26951,11 @@ var App$4 = {
           });
         } }]) }, [_c('template', { slot: "title" }, [_vm._v("查看详细用户信息")])], 2)], 1), _vm._v(" "), _c('div', { staticClass: "tab-slide", class: { 'active': _vm.tab.edit } }, [_c('vue-edit', { attrs: { "cancel": _vm.editCancel, "url": _vm.httpUlr.edit } }, [_c('template', { slot: "title" }, [_vm._v("修改用户信息")]), _vm._v(" "), [_c('form', { attrs: { "data-vv-scope": "edit" }, on: { "submit": function submit($event) {
           $event.preventDefault();_vm.edit('edit');
-        } } }, [_c('div', { staticClass: "form-group" }, [_c('label', [_vm._v("编号：" + _vm._s(_vm.editObj._id))])]), _vm._v(" "), _c('div', { staticClass: "form-group", class: { ' has-error': _vm.errors.has('edit.name') } }, [_c('label', { staticClass: "control-label", attrs: { "for": "name" } }, [_vm._v("用户名")]), _vm._v(" "), _c('input', { directives: [{ name: "model", rawName: "v-model", value: _vm.editObj.name, expression: "editObj.name" }, { name: "validate", rawName: "v-validate", value: { required: true }, expression: "{required:true}" }], staticClass: "form-control ", attrs: { "type": "text", "name": "name", "id": "name" }, domProps: { "value": _vm.editObj.name }, on: { "input": function input($event) {
+        } } }, [_c('div', { staticClass: "form-group" }, [_c('label', [_vm._v("编号：" + _vm._s(_vm.editObj._id))])]), _vm._v(" "), _c('div', { staticClass: "form-group", class: { ' has-error': _vm.errors.has('edit.name') } }, [_c('label', { staticClass: "control-label", attrs: { "for": "name" } }, [_vm._v("用户名")]), _vm._v(" "), _c('input', { directives: [{ name: "model", rawName: "v-model", value: _vm.editObj.name, expression: "editObj.name" }, { name: "validate", rawName: "v-validate", value: { required: true }, expression: "{required:true}" }], staticClass: "form-control", attrs: { "type": "text", "name": "name", "id": "name" }, domProps: { "value": _vm.editObj.name }, on: { "input": function input($event) {
           if ($event.target.composing) {
             return;
           }_vm.$set(_vm.editObj, "name", $event.target.value);
-        } } }), _vm._v(" "), _c('p', { directives: [{ name: "show", rawName: "v-show", value: _vm.errors.has('edit.name:required'), expression: "errors.has('edit.name:required')" }], staticClass: "text-danger" }, [_vm._v("名称不为空！")])]), _vm._v(" "), _c('div', { staticClass: "form-group", class: { ' has-error': _vm.errors.has('edit.order') } }, [_c('label', { staticClass: "control-label", attrs: { "for": "name" } }, [_vm._v("排序")]), _vm._v(" "), _c('input', { directives: [{ name: "model", rawName: "v-model", value: _vm.editObj.order, expression: "editObj.order" }, { name: "validate", rawName: "v-validate", value: { required: true, min_value: 1 }, expression: "{required:true,min_value:1}" }], staticClass: "form-control ", attrs: { "type": "text", "name": "order", "id": "name" }, domProps: { "value": _vm.editObj.order }, on: { "input": function input($event) {
+        } } }), _vm._v(" "), _c('p', { directives: [{ name: "show", rawName: "v-show", value: _vm.errors.has('edit.name:required'), expression: "errors.has('edit.name:required')" }], staticClass: "text-danger" }, [_vm._v("名称不为空！")])]), _vm._v(" "), _c('div', { staticClass: "form-group", class: { ' has-error': _vm.errors.has('edit.order') } }, [_c('label', { staticClass: "control-label", attrs: { "for": "name" } }, [_vm._v("排序")]), _vm._v(" "), _c('input', { directives: [{ name: "model", rawName: "v-model", value: _vm.editObj.order, expression: "editObj.order" }, { name: "validate", rawName: "v-validate", value: { required: true, min_value: 1 }, expression: "{required:true,min_value:1}" }], staticClass: "form-control", attrs: { "type": "text", "name": "order", "id": "name" }, domProps: { "value": _vm.editObj.order }, on: { "input": function input($event) {
           if ($event.target.composing) {
             return;
           }_vm.$set(_vm.editObj, "order", $event.target.value);
@@ -26965,7 +26984,7 @@ var App$4 = {
         add: "admin/userRole/data",
         edit: "admin/userRole/data",
         del: "admin/userRole/data",
-        dtl: "admin/userRole/data/dtl"
+        dtl: "admin/userRole/data-dtl"
       },
       // inde列表集合
       list: [],
@@ -26981,15 +27000,20 @@ var App$4 = {
         name: "",
         code: "",
         order: ""
-      }
 
-      // 自定义
-
-    };
+        // 自定义
+      } };
   },
   mounted: function mounted() {},
 
   methods: {
+    // add btn
+    addBtn: function addBtn() {
+      this.tab.set("add");
+      this.errors.clear("add");
+      // 修改内容
+    },
+
     // edit
     editBtn: function editBtn(item) {
       var fo = this.list.filter(function (item) {
@@ -27004,7 +27028,7 @@ var App$4 = {
         return;
       }
       this.tab.set("edit");
-      this.errors.clear('edit');
+      this.errors.clear("edit");
       var o = fo[0];
 
       // 修改内容
@@ -27034,33 +27058,25 @@ var userrole = {
 
 var App$5 = {
   render: function render() {
-    var _vm = this;var _h = _vm.$createElement;var _c = _vm._self._c || _h;return _c('div', { staticClass: "template-share user" }, [_c('div', { staticClass: "tab-slide", class: { 'active': _vm.tab.index } }, [_c('div', { staticClass: "btn-toolbar clearfix" }, [_c('div', { staticClass: "btn-group pull-left" }), _vm._v(" "), _c('div', { staticClass: "btn-group pull-right" }, [_c('button', { staticClass: "btn btn-default btn-sm", on: { "click": _vm.addBtn } }, [_c('span', { staticClass: "text-primary glyphicon glyphicon-plus" }), _vm._v(" 添加\n        ")]), _vm._v(" "), _c('button', { staticClass: "btn btn-default btn-sm", on: { "click": _vm.dtlBtn } }, [_c('span', { staticClass: "text-info glyphicon glyphicon-list-alt" }), _vm._v(" 查看\n        ")]), _vm._v(" "), _c('button', { staticClass: "btn btn-default btn-sm", on: { "click": _vm.editBtn } }, [_c('span', { staticClass: "glyphicon glyphicon-edit text-warning" }), _vm._v(" 修改\n        ")]), _vm._v(" "), _c('button', { staticClass: "btn btn-default btn-sm", on: { "click": function click($event) {
+    var _vm = this;var _h = _vm.$createElement;var _c = _vm._self._c || _h;return _c('div', { staticClass: "template-share rotation" }, [_c('div', { staticClass: "tab-slide", class: { 'active': _vm.tab.index } }, [_c('div', { staticClass: "btn-toolbar clearfix" }, [_c('div', { staticClass: "btn-group pull-left" }), _vm._v(" "), _c('div', { staticClass: "btn-group pull-right" }, [_c('button', { staticClass: "btn btn-default btn-sm", on: { "click": _vm.addBtn } }, [_c('span', { staticClass: "text-primary glyphicon glyphicon-plus" }), _vm._v(" 添加\n        ")]), _vm._v(" "), _c('button', { staticClass: "btn btn-default btn-sm", on: { "click": _vm.dtlBtn } }, [_c('span', { staticClass: "text-info glyphicon glyphicon-list-alt" }), _vm._v(" 查看\n        ")]), _vm._v(" "), _c('button', { staticClass: "btn btn-default btn-sm", on: { "click": _vm.editBtn } }, [_c('span', { staticClass: "glyphicon glyphicon-edit text-warning" }), _vm._v(" 修改\n        ")]), _vm._v(" "), _c('button', { staticClass: "btn btn-default btn-sm", on: { "click": function click($event) {
           $event.preventDefault();_vm.delBtn();
         } } }, [_c('span', { staticClass: "glyphicon glyphicon-trash text-danger" }), _vm._v(" 删除\n        ")])])]), _vm._v(" "), _c('vue-list', { attrs: { "url": _vm.httpUlr.list }, scopedSlots: _vm._u([{ key: "default", fn: function fn(scope) {
           return [_c('table', { staticClass: "table table-hover table-bordered" }, [_c('thead', [_c('tr', { staticClass: "text-center" }, [_c('th', [_c('vue-checkbox', { attrs: { "callback": scope.allChcek }, model: { value: scope.allcheckBtn.ck, callback: function callback($$v) {
                 _vm.$set(scope.allcheckBtn, "ck", $$v);
-              }, expression: "scope.allcheckBtn.ck" } })], 1), _vm._v(" "), _c('th', [_vm._v("编号")]), _vm._v(" "), _c('th', [_vm._v("用户名")]), _vm._v(" "), _c('th', [_vm._v("code")]), _vm._v(" "), _c('th', [_vm._v("创建时间")])])]), _vm._v(" "), _c('tbody', _vm._l(scope.list, function (item, index) {
+              }, expression: "scope.allcheckBtn.ck" } })], 1), _vm._v(" "), _c('th', [_vm._v("编号")]), _vm._v(" "), _c('th', [_vm._v("名称")]), _vm._v(" "), _c('th', [_vm._v("code")]), _vm._v(" "), _c('th', [_vm._v("图片")]), _vm._v(" "), _c('th', [_vm._v("创建时间")])])]), _vm._v(" "), _c('tbody', _vm._l(scope.list, function (item, index) {
             return _c('tr', { key: index }, [_c('td', [_c('vue-checkbox', { model: { value: item.bl, callback: function callback($$v) {
                   _vm.$set(item, "bl", $$v);
-                }, expression: "item.bl" } })], 1), _vm._v(" "), _c('td', [_vm._v(_vm._s(item._id))]), _vm._v(" "), _c('td', [_vm._v(_vm._s(item.name))]), _vm._v(" "), _c('td', [_vm._v(_vm._s(item.code))]), _vm._v(" "), _c('td', [_vm._v(_vm._s(_vm._f("date")(item.createdt)))])]);
+                }, expression: "item.bl" } })], 1), _vm._v(" "), _c('td', [_vm._v(_vm._s(item._id))]), _vm._v(" "), _c('td', [_vm._v(_vm._s(item.name))]), _vm._v(" "), _c('td', [_vm._v(_vm._s(item.code))]), _vm._v(" "), _c('td', [_vm._v(_vm._s(item.imgs.length > 0 ? item.imgs.length + "张图片" : "没有图片"))]), _vm._v(" "), _c('td', [_vm._v(_vm._s(_vm._f("date")(item.createdt)))])]);
           }), 0)])];
         } }]), model: { value: _vm.list, callback: function callback($$v) {
           _vm.list = $$v;
         }, expression: "list" } })], 1), _vm._v(" "), _c('div', { staticClass: "tab-slide", class: { 'active': _vm.tab.dtl } }, [_c('vue-dtl', { attrs: { "cancel": _vm.dtlCancel, "url": _vm.httpUlr.dtl }, scopedSlots: _vm._u([{ key: "default", fn: function fn(scope) {
           return _vm._l(scope.list, function (item, index) {
-            return _c('div', { key: index, staticClass: "list-group" }, [_c('div', { staticClass: "list-group-item clearfix" }, [_c('div', { staticClass: "col-xs-6 list-group-item-text" }, [_c('label', { attrs: { "for": "" } }, [_vm._v("用户Id:")]), _vm._v(" "), _c('span', [_vm._v(_vm._s(item._id))])]), _vm._v(" "), _c('div', { staticClass: "col-xs-6 list-group-item-text" }, [_c('label', { attrs: { "for": "" } }, [_vm._v("用户名:")]), _vm._v(" "), _c('span', [_vm._v(_vm._s(item.name))])])]), _vm._v(" "), _c('div', { staticClass: "list-group-item clearfix" }, [_c('div', { staticClass: "col-xs-6 list-group-item-text" }, [_c('label', { attrs: { "for": "" } }, [_vm._v("用户类型:")]), _vm._v(" "), _c('span', [_vm._v(_vm._s(item.roleId && item.roleId.name))])]), _vm._v(" "), _c('div', { staticClass: "col-xs-6 list-group-item-text" }, [_c('label', { attrs: { "for": "" } }, [_vm._v("创建时间:")]), _vm._v(" "), _c('span', [_vm._v(_vm._s(_vm._f("date")(item.createDate)))])])])]);
+            return _c('div', { key: index, staticClass: "list-group" }, [_c('div', { staticClass: "list-group-item clearfix" }, [_c('div', { staticClass: "col-xs-6 list-group-item-text" }, [_c('label', { attrs: { "for": "" } }, [_vm._v("Id:")]), _vm._v(" "), _c('span', [_vm._v(_vm._s(item._id))])]), _vm._v(" "), _c('div', { staticClass: "col-xs-6 list-group-item-text" }, [_c('label', { attrs: { "for": "" } }, [_vm._v("名称:")]), _vm._v(" "), _c('span', [_vm._v(_vm._s(item.name))])])]), _vm._v(" "), _c('div', { staticClass: "list-group-item clearfix" }, [_c('div', { staticClass: "col-xs-6 list-group-item-text" }, [_c('label', { attrs: { "for": "" } }, [_vm._v("唯一标识:")]), _vm._v(" "), _c('span', [_vm._v(_vm._s(item.code))])]), _vm._v(" "), _c('div', { staticClass: "col-xs-6 list-group-item-text" }, [_c('label', { attrs: { "for": "" } }, [_vm._v("排序:")]), _vm._v(" "), _c('span', [_vm._v(_vm._s(item.order))])])]), _vm._v(" "), _c('div', { staticClass: "list-group-item clearfix" }, _vm._l(item.imgs, function (item2, index2) {
+              return _c('div', { key: index2, staticClass: "col-xs-3", staticStyle: { "margin-bottom": "10px" } }, [_c('div', { staticClass: "img-thumbnail" }, [_c('img', { staticClass: " img-rounded", attrs: { "src": item2.src, "alt": "" } }), _vm._v(" "), _c('div', { staticClass: "caption" }, [_c('h5', [_vm._v("url:" + _vm._s(item2.url))])])])]);
+            }), 0)]);
           });
-        } }]) }, [_c('template', { slot: "title" }, [_vm._v("查看详细用户信息")])], 2)], 1), _vm._v(" "), _c('div', { staticClass: "tab-slide", class: { 'active': _vm.tab.edit } }, [_c('vue-edit', { attrs: { "cancel": _vm.editCancel, "url": _vm.httpUlr.edit } }, [_c('template', { slot: "title" }, [_vm._v("修改用户信息")]), _vm._v(" "), [_c('form', { attrs: { "data-vv-scope": "edit" }, on: { "submit": function submit($event) {
-          $event.preventDefault();_vm.edit('edit');
-        } } }, [_c('div', { staticClass: "form-group" }, [_c('label', { attrs: { "for": "exampleInputEmail1" } }, [_vm._v("用户名:" + _vm._s(_vm.editObj.name))])]), _vm._v(" "), _c('div', { staticClass: "form-group" }, [_c('label', { attrs: { "for": "exampleInputEmail1" } }, [_vm._v("用户类型")]), _vm._v(" "), _c('select', { directives: [{ name: "model", rawName: "v-model", value: _vm.editObj.roleId, expression: "editObj.roleId" }], staticClass: "form-control", attrs: { "name": "", "id": "", "placeholder": "Email" }, on: { "change": function change($event) {
-          var $$selectedVal = Array.prototype.filter.call($event.target.options, function (o) {
-            return o.selected;
-          }).map(function (o) {
-            var val = "_value" in o ? o._value : o.value;return val;
-          });_vm.$set(_vm.editObj, "roleId", $event.target.multiple ? $$selectedVal : $$selectedVal[0]);
-        } } }, _vm._l(_vm.roles, function (item, index) {
-      return _c('option', { key: index, domProps: { "selected": _vm.editObj.roleId === _vm.item_id, "value": item._id } }, [_vm._v(_vm._s(item.name))]);
-    }), 0)]), _vm._v(" "), _c('div', { staticClass: "form-group" }, [_c('button', { staticClass: "btn btn-primary", attrs: { "type": "submit", "disabled": _vm.editError } }, [_vm._v("保存")])])])]], 2)], 1), _vm._v(" "), _c('div', { staticClass: "tab-slide", class: { 'active': _vm.tab.add } }, [_c('vue-add', { attrs: { "cancel": _vm.addCancel, "url": _vm.httpUlr.add } }, [_c('template', { slot: "title" }, [_vm._v("添加轮播图")]), _vm._v(" "), [_c('form', { attrs: { "data-vv-scope": "add" }, on: { "submit": function submit($event) {
+        } }]) }, [_c('template', { slot: "title" }, [_vm._v("查看详细轮播图信息")])], 2)], 1), _vm._v(" "), _c('div', { staticClass: "tab-slide", class: { 'active': _vm.tab.add } }, [_c('vue-add', { attrs: { "cancel": _vm.addCancel, "url": _vm.httpUlr.add } }, [_c('template', { slot: "title" }, [_vm._v("添加轮播图")]), _vm._v(" "), [_c('form', { attrs: { "data-vv-scope": "add" }, on: { "submit": function submit($event) {
           $event.preventDefault();_vm.add('add');
         } } }, [_c('div', { staticClass: "form-group has-feedback", class: { ' has-error': _vm.errors.has('add.name') } }, [_c('label', { staticClass: "control-label", attrs: { "for": "add.name" } }, [_vm._v("名称:")]), _vm._v(" "), _c('input', { directives: [{ name: "validate", rawName: "v-validate", value: { required: true, min: 4 }, expression: "{required:true,min:4}" }, { name: "model", rawName: "v-model", value: _vm.addObj.name, expression: "addObj.name" }], staticClass: "form-control", attrs: { "type": "text", "name": "add.name", "id": "add.name", "placeholder": "输入名称" }, domProps: { "value": _vm.addObj.name }, on: { "input": function input($event) {
           if ($event.target.composing) {
@@ -27074,19 +27090,41 @@ var App$5 = {
           if ($event.target.composing) {
             return;
           }_vm.$set(_vm.addObj, "order", $event.target.value);
-        } } }), _vm._v(" "), _c('p', { directives: [{ name: "show", rawName: "v-show", value: _vm.errors.has('add.order:required'), expression: "errors.has('add.order:required')" }], staticClass: "text-danger" }, [_vm._v("排序不为空！")]), _vm._v(" "), _c('p', { directives: [{ name: "show", rawName: "v-show", value: _vm.errors.has('add.order:min_value'), expression: "errors.has('add.order:min_value')" }], staticClass: "text-danger" }, [_vm._v("排序值不能小于1！")])]), _vm._v(" "), _c('div', { staticClass: "form-group clearfix" }, [_c('div', { staticClass: "col-xs-12 padding-lr-no" }, [_c('label', { staticClass: "control-label", attrs: { "for": "add.code" } }, [_vm._v("上传图片:")])]), _vm._v(" "), _c('div', { staticClass: "col-sm-6 padding-lr-no" }, [_c('input', { directives: [{ name: "model", rawName: "v-model", value: _vm.uploadImgs, expression: " uploadImgs" }], staticClass: "form-control ", attrs: { "type": "text", "disabled": "", "name": "", "id": "", "placeholder": "上传图片" }, domProps: { "value": _vm.uploadImgs }, on: { "input": function input($event) {
+        } } }), _vm._v(" "), _c('p', { directives: [{ name: "show", rawName: "v-show", value: _vm.errors.has('add.order:required'), expression: "errors.has('add.order:required')" }], staticClass: "text-danger" }, [_vm._v("排序不为空！")]), _vm._v(" "), _c('p', { directives: [{ name: "show", rawName: "v-show", value: _vm.errors.has('add.order:min_value'), expression: "errors.has('add.order:min_value')" }], staticClass: "text-danger" }, [_vm._v("排序值不能小于1！")])]), _vm._v(" "), _c('div', { staticClass: "form-group clearfix" }, [_c('div', { staticClass: "col-xs-12 padding-lr-no" }, [_c('label', { staticClass: "control-label", attrs: { "for": "add.code" } }, [_vm._v("上传图片:")])]), _vm._v(" "), _c('div', { staticClass: "col-sm-6 padding-lr-no" }, [_c('input', { directives: [{ name: "model", rawName: "v-model", value: _vm.addFileUpload, expression: "addFileUpload" }], staticClass: "form-control", attrs: { "type": "text", "disabled": "", "name": "", "id": "", "placeholder": "上传图片" }, domProps: { "value": _vm.addFileUpload }, on: { "input": function input($event) {
           if ($event.target.composing) {
             return;
-          }_vm.uploadImgs = $event.target.value;
-        } } })]), _vm._v(" "), _c('div', { staticClass: "col-sm-4" }, [_c('vue-file', { attrs: { "btn-class": "btn-primary", "url": "http://localhost:3000/file", "ok": _vm.ok, "file-type": "image/*", "size": 300, "timeout": 30, "line-class": "text-primary", "btn-text": "上传图片" } })], 1)]), _vm._v(" "), _c('div', { staticClass: "form-group clearfix" }, [_c('div', { staticClass: "col-xs-6 clearfix" }, _vm._l(_vm.addObj.imgs, function (item, index) {
+          }_vm.addFileUpload = $event.target.value;
+        } } })]), _vm._v(" "), _c('div', { staticClass: "col-sm-4" }, [_c('vue-file', { attrs: { "name": "vue-file-add", "btn-class": "btn-primary", "url": "http://localhost:3000/file", "ok": _vm.addFileOk, "file-type": "image/*", "size": 300, "timeout": 30, "line-class": "text-primary", "btn-text": "上传图片" } })], 1)]), _vm._v(" "), _c('div', { staticClass: "form-group clearfix" }, [_c('div', { staticClass: "col-xs-6 clearfix" }, _vm._l(_vm.addObj.imgs, function (item, index) {
       return _c('div', { key: index, staticClass: "upload-img clearfix" }, [_c('span', { staticClass: "close", on: { "click": function click($event) {
-            _vm.delImg(index);
-          } } }, [_vm._v("×")]), _vm._v(" "), _c('img', { attrs: { "src": item.src, "alt": "" } }), _vm._v(" "), _c('input', { directives: [{ name: "model", rawName: "v-model", value: item.url, expression: "item.url" }], staticClass: "form-control ", attrs: { "placeholder": "输入url链接", "type": "text", "name": "", "id": "" }, domProps: { "value": item.url }, on: { "input": function input($event) {
+            _vm.addFileDel(index);
+          } } }, [_vm._v("×")]), _vm._v(" "), _c('img', { attrs: { "src": item.src, "alt": "" } }), _vm._v(" "), _c('input', { directives: [{ name: "model", rawName: "v-model", value: item.url, expression: "item.url" }], staticClass: "form-control", attrs: { "placeholder": "输入url链接", "type": "text", "name": "", "id": "" }, domProps: { "value": item.url }, on: { "input": function input($event) {
             if ($event.target.composing) {
               return;
             }_vm.$set(item, "url", $event.target.value);
           } } })]);
-    }), 0)]), _vm._v(" "), _c('div', { staticClass: "form-group" }, [_c('button', { staticClass: "btn btn-primary", attrs: { "type": "submit", "disabled": _vm.addError } }, [_vm._v("添加")])])])]], 2)], 1)]);
+    }), 0)]), _vm._v(" "), _c('div', { staticClass: "form-group" }, [_c('button', { staticClass: "btn btn-primary", attrs: { "type": "submit", "disabled": _vm.addError } }, [_vm._v("添加")])])])]], 2)], 1), _vm._v(" "), _c('div', { staticClass: "tab-slide", class: { 'active': _vm.tab.edit } }, [_c('vue-edit', { attrs: { "cancel": _vm.editCancel, "url": _vm.httpUlr.edit } }, [_c('template', { slot: "title" }, [_vm._v("修改轮播图信息")]), _vm._v(" "), [_c('form', { attrs: { "data-vv-scope": "edit" }, on: { "submit": function submit($event) {
+          $event.preventDefault();_vm.edit('edit');
+        } } }, [_c('div', { staticClass: "form-group has-feedback", class: { ' has-error': _vm.errors.has('edit.name') } }, [_c('label', { staticClass: "control-label", attrs: { "for": "edit.name" } }, [_vm._v("名称:")]), _vm._v(" "), _c('input', { directives: [{ name: "validate", rawName: "v-validate", value: { required: true, min: 4 }, expression: "{required:true,min:4}" }, { name: "model", rawName: "v-model", value: _vm.editObj.name, expression: "editObj.name" }], staticClass: "form-control", attrs: { "type": "text", "name": "edit.name", "id": "edit.name", "placeholder": "输入名称" }, domProps: { "value": _vm.editObj.name }, on: { "input": function input($event) {
+          if ($event.target.composing) {
+            return;
+          }_vm.$set(_vm.editObj, "name", $event.target.value);
+        } } }), _vm._v(" "), _c('p', { directives: [{ name: "show", rawName: "v-show", value: _vm.errors.has('edit.name:required'), expression: "errors.has('edit.name:required')" }], staticClass: "text-danger" }, [_vm._v("用户名不为空！")]), _vm._v(" "), _c('p', { directives: [{ name: "show", rawName: "v-show", value: _vm.errors.has('edit.name:min'), expression: "errors.has('edit.name:min')" }], staticClass: "text-danger" }, [_vm._v("用户名最小长度为4位！")])]), _vm._v(" "), _c('div', { staticClass: "form-group has-feedback", class: { ' has-error': _vm.errors.has('edit.order') } }, [_c('label', { staticClass: "control-label", attrs: { "for": "edit.order" } }, [_vm._v("排序:")]), _vm._v(" "), _c('input', { directives: [{ name: "validate", rawName: "v-validate", value: { required: true, min_value: 1 }, expression: "{required:true,min_value:1}" }, { name: "model", rawName: "v-model", value: _vm.editObj.order, expression: "editObj.order" }], staticClass: "form-control", attrs: { "type": "text", "name": "edit.order", "id": "edit.order", "placeholder": "输入数值" }, domProps: { "value": _vm.editObj.order }, on: { "input": function input($event) {
+          if ($event.target.composing) {
+            return;
+          }_vm.$set(_vm.editObj, "order", $event.target.value);
+        } } }), _vm._v(" "), _c('p', { directives: [{ name: "show", rawName: "v-show", value: _vm.errors.has('edit.order:required'), expression: "errors.has('edit.order:required')" }], staticClass: "text-danger" }, [_vm._v("排序不为空！")]), _vm._v(" "), _c('p', { directives: [{ name: "show", rawName: "v-show", value: _vm.errors.has('edit.order:min_value'), expression: "errors.has('edit.order:min_value')" }], staticClass: "text-danger" }, [_vm._v("排序值不能小于1！")])]), _vm._v(" "), _c('div', { staticClass: "form-group clearfix" }, [_c('div', { staticClass: "col-xs-12 padding-lr-no" }, [_c('label', { staticClass: "control-label", attrs: { "for": "edit.code" } }, [_vm._v("上传图片:")])]), _vm._v(" "), _c('div', { staticClass: "col-sm-6 padding-lr-no" }, [_c('input', { directives: [{ name: "model", rawName: "v-model", value: _vm.editdFileUpload, expression: "editdFileUpload" }], staticClass: "form-control", attrs: { "type": "text", "disabled": "", "name": "", "id": "", "placeholder": "上传图片" }, domProps: { "value": _vm.editdFileUpload }, on: { "input": function input($event) {
+          if ($event.target.composing) {
+            return;
+          }_vm.editdFileUpload = $event.target.value;
+        } } })]), _vm._v(" "), _c('div', { staticClass: "col-sm-4" }, [_c('vue-file', { attrs: { "name": "vue-file-edit", "btn-class": "btn-primary", "url": "http://localhost:3000/file", "ok": _vm.editFileOk, "file-type": "image/*", "size": 300, "timeout": 30, "line-class": "text-primary", "btn-text": "上传图片" } })], 1)]), _vm._v(" "), _c('div', { staticClass: "form-group clearfix" }, [_c('div', { staticClass: "col-xs-6 clearfix" }, _vm._l(_vm.editObj.imgs, function (item, index) {
+      return _c('div', { key: index, staticClass: "upload-img clearfix" }, [_c('span', { staticClass: "close", on: { "click": function click($event) {
+            _vm.editFileDel(index);
+          } } }, [_vm._v("×")]), _vm._v(" "), _c('img', { attrs: { "src": item.src, "alt": "" } }), _vm._v(" "), _c('input', { directives: [{ name: "model", rawName: "v-model", value: item.url, expression: "item.url" }], staticClass: "form-control", attrs: { "placeholder": "输入url链接", "type": "text", "name": "", "id": "" }, domProps: { "value": item.url }, on: { "input": function input($event) {
+            if ($event.target.composing) {
+              return;
+            }_vm.$set(item, "url", $event.target.value);
+          } } })]);
+    }), 0)]), _vm._v(" "), _c('div', { staticClass: "form-group" }, [_c('button', { staticClass: "btn btn-primary", attrs: { "type": "submit", "disabled": _vm.editError } }, [_vm._v("保存")])])])]], 2)], 1)]);
   },
   staticRenderFns: [],
   mixins: [mixin$1],
@@ -27097,7 +27135,7 @@ var App$5 = {
         add: "admin/rotation/data",
         edit: "admin/rotation/data",
         del: "admin/rotation/data",
-        dtl: "admin/rotation/data/dtl"
+        dtl: "admin/rotation/data-dtl"
       },
       // inde列表集合
       list: [],
@@ -27105,7 +27143,9 @@ var App$5 = {
       editObj: {
         _id: "",
         name: "",
-        roleId: ""
+        code: "",
+        order: "",
+        imgs: []
       },
 
       // add 添加的对象
@@ -27114,16 +27154,21 @@ var App$5 = {
         code: "",
         order: "",
         imgs: []
-      }
 
-      // 自定义
-
-    };
+        // 自定义
+      } };
   },
   mounted: function mounted() {},
 
   methods: {
-    // edit
+    // add btn
+    addBtn: function addBtn() {
+      this.tab.set("add");
+      this.errors.clear('add');
+      // 修改内容
+    },
+
+    // edit btn
     editBtn: function editBtn(item) {
       var fo = this.list.filter(function (item) {
         return item.bl === true;
@@ -27143,23 +27188,41 @@ var App$5 = {
       // 修改内容
       this.editObj._id = o._id;
       this.editObj.name = o.name;
-      this.editObj.roleId = o.roleId && o.roleId._id || "";
+      this.editObj.code = o.code;
+      this.editObj.order = o.order;
+      this.editObj.imgs = Array.prototype.slice.call(o.imgs);
     },
 
     // 图片上传成功
-    ok: function ok(data, el) {
+    addFileOk: function addFileOk(data, el) {
       var body = data;
       this.addObj.imgs.unshift({ url: "", src: body.data });
     },
 
     // 删除图片
-    delImg: function delImg(index) {
+    addFileDel: function addFileDel(index) {
       this.addObj.imgs.splice(index, 1);
+    },
+
+    // 图片上传成功
+    editFileOk: function editFileOk(data, el) {
+      var body = data;
+      this.editObj.imgs.unshift({ url: "", src: body.data });
+    },
+
+    // 删除图片
+    editFileDel: function editFileDel(index) {
+      this.editObj.imgs.splice(index, 1);
     }
   },
   computed: {
-    uploadImgs: function uploadImgs() {
+    addFileUpload: function addFileUpload() {
       return this.addObj.imgs.map(function (e) {
+        return e.src;
+      });
+    },
+    editdFileUpload: function editdFileUpload() {
+      return this.editObj.imgs.map(function (e) {
         return e.src;
       });
     }
@@ -27190,7 +27253,7 @@ var App$6 = {
           if ($event.target.composing) {
             return;
           }_vm.$set(_vm.file, "data", $event.target.value);
-        } } })]), _vm._v(" "), _c('div', { staticClass: "col-sm-4" }, [_c('vue-file', { attrs: { "btn-class": "btn-primary", "url": "http://localhost:3000/file", "ok": _vm.ok, "err": _vm.err, "file-type": "image/*", "size": 300, "timeout": 30, "line-class": "text-primary", "btn-text": "上传图片" }, model: { value: _vm.file, callback: function callback($$v) {
+        } } })]), _vm._v(" "), _c('div', { staticClass: "col-sm-4" }, [_c('vue-file', { attrs: { "name": "vue-file-up", "btn-class": "btn-primary", "url": "http://localhost:3000/file", "ok": _vm.ok, "err": _vm.err, "file-type": "image/*", "size": 300, "timeout": 30, "line-class": "text-primary", "btn-text": "上传图片" }, model: { value: _vm.file, callback: function callback($$v) {
           _vm.file = $$v;
         }, expression: "file" } })], 1)]), _vm._v(" "), _c('div', { staticClass: "form-group" }, [_c('div', { staticClass: "col-xs-6" }, [_c('img', { staticStyle: { "max-width": "100%", "max-height": "100%", "margin": "20px" }, attrs: { "src": _vm.file.data, "alt": "" } })])])]);
   },

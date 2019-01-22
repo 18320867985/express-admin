@@ -168,24 +168,6 @@
   margin: 0 auto;
   margin-top: 60px; }
 
-.template-add {
-  width: 600px;
-  margin: 0 auto;
-  padding: 10px 20px;
-  margin-top: 30px;
-  border: 1px solid #ddd;
-  border-radius: 5px; }
-
-.template-edit {
-  width: 500px;
-  margin: 0 auto;
-  padding: 10px 20px;
-  margin-top: 30px;
-  border: 1px solid #ddd;
-  border-radius: 5px; }
-  .template-edit .form-group .btn + .btn {
-    margin-left: 30px; }
-
 .template-share {
   padding: 0 10px; }
   .template-share .btn-toolbar {
@@ -206,59 +188,43 @@
     .template-list form h4 em {
       margin-left: 20px; }
 
-.template-edit form h4 {
-  font-size: 16px;
-  margin-bottom: 10px; }
-  .template-edit form h4 em {
-    margin-left: 20px; }
-
-.template-add form h4 {
-  font-size: 16px;
-  margin-bottom: 10px; }
-  .template-add form h4 em {
-    margin-left: 20px; }
-
-.template-dtl h4.text-muted {
-  font-size: 16px;
-  margin-bottom: 10px; }
-  .template-dtl h4.text-muted em {
-    margin-left: 20px; }
+.template-edit {
+  width: 500px;
+  margin: 0 auto;
+  padding: 10px 20px;
+  margin-top: 20px;
+  margin-bottom: 20px;
+  border: 1px solid #ddd;
+  border-radius: 5px; }
+  .template-edit .form-group .btn + .btn {
+    margin-left: 30px; }
+  .template-edit form h4 {
+    font-size: 16px;
+    margin-bottom: 10px; }
+    .template-edit form h4 em {
+      margin-left: 20px; }
 
 .template-add {
   width: 600px;
   margin: 0 auto;
   padding: 10px 20px;
-  margin-top: 30px;
+  margin-top: 20px;
+  margin-bottom: 20px;
   border: 1px solid #ddd;
   border-radius: 5px; }
+  .template-add form h4 {
+    font-size: 16px;
+    margin-bottom: 10px; }
+    .template-add form h4 em {
+      margin-left: 20px; }
 
-.template-edit {
-  width: 500px;
-  margin: 0 auto;
-  padding: 10px 20px;
-  margin-top: 30px;
-  border: 1px solid #ddd;
-  border-radius: 5px; }
-  .template-edit .form-group .btn + .btn {
-    margin-left: 30px; }
-
-.template-add {
-  width: 600px;
-  margin: 0 auto;
-  padding: 10px 20px;
-  margin-top: 30px;
-  border: 1px solid #ddd;
-  border-radius: 5px; }
-
-.template-edit {
-  width: 500px;
-  margin: 0 auto;
-  padding: 10px 20px;
-  margin-top: 30px;
-  border: 1px solid #ddd;
-  border-radius: 5px; }
-  .template-edit .form-group .btn + .btn {
-    margin-left: 30px; }
+.template-dtl {
+  margin-bottom: 15px; }
+  .template-dtl h4.text-muted {
+    font-size: 16px;
+    margin-bottom: 10px; }
+    .template-dtl h4.text-muted em {
+      margin-left: 20px; }
 
 .upload-img {
   margin: 10px 0;
@@ -275,3 +241,7 @@
     height: 180px; }
   .upload-img .form-control {
     margin-top: 10px; }
+
+.rotation .list-group .img-thumbnail img {
+  width: 100%;
+  height: 200px; }

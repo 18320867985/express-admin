@@ -115,6 +115,7 @@ export default {
 
 style:<style lang="scss">
 .template-share{
+ 
  padding: 0 10px;
  .btn-toolbar {
     margin-top: 15px;

@@ -59,14 +59,14 @@ router.get("/rotation/data-unique/:v", async (req, res) => {
 });
 
 // 获取ids数组获取详细信息
-router.get("/rotation/data/dtl/:ids", async (req, res) => {
+router.get("/rotation/data-dtl/:ids", async (req, res) => {
     let ids = req.params.ids || "";
     ids = ids.split(",");
-    let list = await mainModel.User.find({
+    let list = await mainModel.Rotation.find({
         _id: {
             $in: ids
         }
-    }).populate("roleId", "name code");
+    });
     res.json(res.ok(list));
 });
 
@@ -101,14 +101,19 @@ router.post("/rotation/data", async (req, res) => {
 router.put("/rotation/data", async (req, res) => {
 
     let id = req.body._id;
-    let roleId = req.body.roleId;
+    let name= req.body.name;
+    let code= req.body.code;
+    let  order= req.body.order;
+    let  imgs=req.body.imgs||[];
+
     try {
-        roleId = mainModel.orm.mongoose.Types.ObjectId(roleId).toHexString();
+        id = mainModel.orm.mongoose.Types.ObjectId(id).toHexString();
     } catch (error) {
-        res.json(res.err("用户类型 roleId 有误！"));
+        res.json(res.err("_id 有误！"));
         return;
     }
-    let v = await mainModel.User.findByIdAndUpdate(id, { $set: { roleId } }, { new: true });
+
+    let v = await mainModel.Rotation.findByIdAndUpdate(id, { $set: { name,code,order ,imgs} }, { new: true });
     if (!v) {
         res.json(res.err("修改失败"));
         return;

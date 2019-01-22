@@ -44,6 +44,18 @@ export default {
 
 style:<style lang="scss">
 .template-edit{
+  width: 500px;
+  margin: 0 auto;
+  padding: 10px 20px;
+  margin-top: 20px;
+  margin-bottom: 20px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  .form-group {
+    .btn + .btn {
+      margin-left: 30px;
+    }
+  }
   form{
     h4{
       font-size: 16px;

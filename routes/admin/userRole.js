@@ -28,7 +28,7 @@ router.get("/userRole/data-unique/:v", async (req, res) => {
 });
 
 // 获取ids数组获取详细信息
-router.get("/userRole/data/dtl/:ids", async (req, res) => {
+router.get("/userRole/data-dtl/:ids", async (req, res) => {
     let ids = req.params.ids || "";
     ids = ids.split(",");
     let list = await mainModel.UserRole.find({

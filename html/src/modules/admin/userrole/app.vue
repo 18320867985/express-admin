@@ -1,6 +1,5 @@
 <template>
   <div class="template-share userrole">
-    
     <!-- 主列表模块-->
     <div class="tab-slide" :class="{'active':tab.index}">
       <!--操作按钮组-->
@@ -41,8 +40,7 @@
                 <th>用户类型</th>
                 <th>CODE</th>
                 <th>创建时间</th>
-               <th>排序</th>
-              
+                <th>排序</th>
               </tr>
             </thead>
             <tbody>
@@ -52,19 +50,17 @@
                 </td>
                 <td>{{ item._id}}</td>
                 <td>{{ item.name}}</td>
-               <td>{{ item.code}}</td>
+                <td>{{ item.code}}</td>
                 <td>{{ item.createDate|date}}</td>
                 <td>{{ item.order}}</td>
-              
               </tr>
             </tbody>
           </table>
-           
         </template>
       </vue-list>
     </div>
 
-      <!--详细列表模块-->
+    <!--详细列表模块-->
     <div class="tab-slide" :class="{'active':tab.dtl}">
       <!--组件-->
       <vue-dtl :cancel="dtlCancel" :url="httpUlr.dtl">
@@ -91,7 +87,6 @@
                 <span>{{item.createDate|date}}</span>
               </div>
             </div>
-          
           </div>
         </template>
       </vue-dtl>
@@ -106,31 +101,38 @@
           <form @submit.prevent="edit('edit')" data-vv-scope="edit">
             <!-- content start-->
             <div class="form-group">
-              <label >编号：{{editObj._id}}</label>
-            </div> 
+              <label>编号：{{editObj._id}}</label>
+            </div>
             <div class="form-group" :class="{' has-error':errors.has('edit.name')}">
               <label class="control-label" for="name">用户名</label>
-              <input class="form-control " type="text" name="name" v-model="editObj.name" 
+              <input
+                class="form-control"
+                type="text"
+                name="name"
+                v-model="editObj.name"
                 v-validate="{required:true}"
-              id="name">
-               <p class="text-danger" v-show="errors.has('edit.name:required')">名称不为空！</p>
+                id="name"
+              >
+              <p class="text-danger" v-show="errors.has('edit.name:required')">名称不为空！</p>
+            </div>
 
-            </div> 
-
-             <div class="form-group" :class="{' has-error':errors.has('edit.order')}">
+            <div class="form-group" :class="{' has-error':errors.has('edit.order')}">
               <label class="control-label" for="name">排序</label>
-              <input class="form-control " type="text" name="order" v-model="editObj.order" 
+              <input
+                class="form-control"
+                type="text"
+                name="order"
+                v-model="editObj.order"
                 v-validate="{required:true,min_value:1}"
-              id="name">
-               <p class="text-danger" v-show="errors.has('edit.order:required')">排序不为空！</p>
+                id="name"
+              >
+              <p class="text-danger" v-show="errors.has('edit.order:required')">排序不为空！</p>
               <p class="text-danger" v-show="errors.has('edit.order:min_value')">最小值不能为小于1！</p>
+            </div>
 
-            </div> 
-             
             <!-- content end-->
             <div class="form-group">
               <button type="submit" class="btn btn-primary" :disabled="editError">保存</button>
-              
             </div>
           </form>
         </template>
@@ -152,23 +154,22 @@
                 class="form-control"
                 type="text"
                 name="add.name"
-                id="add.name" 
+                id="add.name"
                 v-validate="{required:true,min:2}"
                 v-model="addObj.name"
                 placeholder="输入用户名"
               >
               <p class="text-danger" v-show="errors.has('add.name:required')">用户名不为空！</p>
               <p class="text-danger" v-show="errors.has('add.name:min')">用户名最小长度为2位！</p>
-               
             </div>
 
-             <div class="form-group has-feedback" :class="{' has-error':errors.has('add.code')}">
+            <div class="form-group has-feedback" :class="{' has-error':errors.has('add.code')}">
               <label class="control-label" for="add.code">code:</label>
               <input
                 class="form-control"
                 type="text"
                 name="add.code"
-                id="add.code" 
+                id="add.code"
                 v-validate="{required:true,min_value:0,unique:'admin/userrole/data-unique'}"
                 v-model="addObj.code"
                 placeholder="输入数值"
@@ -176,41 +177,35 @@
               <p class="text-danger" v-show="errors.has('add.code:required')">code不为空！</p>
               <p class="text-danger" v-show="errors.has('add.code:min_value')">code最小值0！</p>
               <p class="text-danger" v-show="errors.has('add.code:unique')">code值已存在！</p>
-               
             </div>
 
-             <div class="form-group has-feedback" :class="{' has-error':errors.has('add.order')}">
+            <div class="form-group has-feedback" :class="{' has-error':errors.has('add.order')}">
               <label class="control-label" for="add.order">排序:</label>
               <input
                 class="form-control"
                 type="text"
                 name="add.order"
-                id="add.order" 
+                id="add.order"
                 v-validate="{required:true,min_value:1}"
                 v-model="addObj.order"
                 placeholder="输入数值"
               >
               <p class="text-danger" v-show="errors.has('add.order:required')">排序不为空！</p>
               <p class="text-danger" v-show="errors.has('add.order:min_value')">排序值不能小于1！</p>
-               
             </div>
 
-          
             <!-- content end-->
             <div class="form-group">
-              <button type="submit" class="btn btn-primary" :disabled="addError" >添加</button>
+              <button type="submit" class="btn btn-primary" :disabled="addError">添加</button>
             </div>
           </form>
         </template>
       </vue-add>
     </div>
-
-  
   </div>
 </template>
 
 <script>
-
 import VueList from "../../template-share/list.vue";
 import VueEdit from "../../template-share/edit.vue";
 import VueAdd from "../../template-share/add.vue";
@@ -227,7 +222,7 @@ export default {
         add: "admin/userRole/data",
         edit: "admin/userRole/data",
         del: "admin/userRole/data",
-        dtl: "admin/userRole/data/dtl"
+        dtl: "admin/userRole/data-dtl"
       },
       // inde列表集合
       list: [],
@@ -235,25 +230,28 @@ export default {
       editObj: {
         _id: "",
         name: "",
-        order:1
+        order: 1
       },
 
       // add 添加的对象
       addObj: {
         name: "",
-        code:"",
-        order:""
-      },
+        code: "",
+        order: ""
+      }
 
       // 自定义
-   
     };
   },
 
-  mounted() {
-   
-  },
+  mounted() {},
   methods: {
+    // add btn
+    addBtn() {
+      this.tab.set("add");
+      this.errors.clear("add");
+      // 修改内容
+    },
     // edit
     editBtn(item) {
       let fo = this.list.filter(item => {
@@ -268,13 +266,13 @@ export default {
         return;
       }
       this.tab.set("edit");
-      this.errors.clear('edit');
+      this.errors.clear("edit");
       let o = fo[0];
 
       // 修改内容
       this.editObj._id = o._id;
       this.editObj.name = o.name;
-      this.editObj.order=o.order;
+      this.editObj.order = o.order;
     }
   },
 
@@ -287,27 +285,9 @@ export default {
 };
 </script>
 <style lang="scss">
-
 .template-add {
-  width: 600px;
-  margin: 0 auto;
-  padding: 10px 20px;
-  margin-top: 30px;
-  border: 1px solid #ddd;
-  border-radius: 5px;
 }
 .template-edit {
-  width: 500px;
-  margin: 0 auto;
-  padding: 10px 20px;
-  margin-top: 30px;
-  border: 1px solid #ddd;
-  border-radius: 5px;
-  .form-group {
-    .btn + .btn {
-      margin-left: 30px;
-    }
-  }
 }
 </style>
 
