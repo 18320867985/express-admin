@@ -37,8 +37,8 @@
                   <vue-checkbox v-model="scope.allcheckBtn.ck" :callback="scope.allChcek"></vue-checkbox>
                 </th>
                 <th>编号</th>
-                <th>用户类型</th>
-                <th>标识</th>
+                <th>系列类型名称</th>
+                <th>唯一标识</th>
                 <th>创建时间</th>
                 <th>排序</th>
               </tr>
@@ -51,7 +51,7 @@
                 <td>{{ item._id}}</td>
                 <td>{{ item.name}}</td>
                 <td>{{ item.code}}</td>
-                <td>{{ item.createDate|date}}</td>
+                <td>{{ item.createdt|date}}</td>
                 <td>{{ item.order}}</td>
               </tr>
             </tbody>
@@ -64,27 +64,27 @@
     <div class="tab-slide" :class="{'active':tab.dtl}">
       <!--组件-->
       <vue-dtl :cancel="dtlCancel" :url="httpUlr.dtl">
-        <template slot="title">查看详细用户信息</template>
+        <template slot="title">查看详细系列类型</template>
         <template slot-scope="scope">
           <div class="list-group" v-for="(item,index) of scope.list" :key="index">
             <div class="list-group-item clearfix">
               <div class="col-xs-6 list-group-item-text">
-                <label for>用户Id:</label>
+                <label for>系列类型Id:</label>
                 <span>{{item._id}}</span>
               </div>
               <div class="col-xs-6 list-group-item-text">
-                <label for>用户名:</label>
+                <label for>系列类型名称:</label>
                 <span>{{item.name}}</span>
               </div>
             </div>
             <div class="list-group-item clearfix">
               <div class="col-xs-6 list-group-item-text">
-                <label for>标识:</label>
+                <label for>唯一标识:</label>
                 <span>{{item.code}}</span>
               </div>
               <div class="col-xs-6 list-group-item-text">
                 <label for>创建时间:</label>
-                <span>{{item.createDate|date}}</span>
+                <span>{{item.createdt|date}}</span>
               </div>
             </div>
           </div>
@@ -96,7 +96,7 @@
     <div class="tab-slide" :class="{'active':tab.edit}">
       <!--组件-->
       <vue-edit :cancel="editCancel" :url="httpUlr.edit">
-        <template slot="title">修改用户信息</template>
+        <template slot="title">修改系列类型</template>
         <template>
           <form @submit.prevent="edit('edit')" data-vv-scope="edit">
             <!-- content start-->
@@ -104,7 +104,7 @@
               <label>编号：{{editObj._id}}</label>
             </div>
             <div class="form-group" :class="{' has-error':errors.has('edit.name')}">
-              <label class="control-label" for="name">用户名</label>
+              <label class="control-label" for="name">类型名称</label>
               <input
                 class="form-control"
                 type="text"
@@ -113,7 +113,7 @@
                 v-validate="{required:true}"
                 id="name"
               >
-              <p class="text-danger" v-show="errors.has('edit.name:required')">名称不为空！</p>
+              <p class="text-danger" v-show="errors.has('edit.name:required')">类型名称不为空！</p>
             </div>
 
             <div class="form-group" :class="{' has-error':errors.has('edit.order')}">
@@ -143,7 +143,7 @@
     <div class="tab-slide" :class="{'active':tab.add}">
       <!--组件 -->
       <vue-add :cancel="addCancel" :url="httpUlr.add">
-        <template slot="title">添加用户类型</template>
+        <template slot="title">添加系列类型</template>
 
         <template>
           <form @submit.prevent="add('add')" data-vv-scope="add">
@@ -157,25 +157,25 @@
                 id="add.name"
                 v-validate="{required:true,min:2}"
                 v-model="addObj.name"
-                placeholder="输入用户名"
+                placeholder="输入系列类型名称"
               >
-              <p class="text-danger" v-show="errors.has('add.name:required')">用户名不为空！</p>
-              <p class="text-danger" v-show="errors.has('add.name:min')">用户名最小长度为2位！</p>
+              <p class="text-danger" v-show="errors.has('add.name:required')">系列类型名称不为空！</p>
+              <p class="text-danger" v-show="errors.has('add.name:min')">系列类型名称最小长度为2位！</p>
             </div>
 
             <div class="form-group has-feedback" :class="{' has-error':errors.has('add.code')}">
-              <label class="control-label" for="add.code">标识:</label>
+              <label class="control-label" for="add.code">唯一标识:</label>
               <input
                 class="form-control"
                 type="text"
                 name="add.code"
                 id="add.code"
-                v-validate="{required:true,min_value:0,unique:'admin/userrole/data-unique'}"
+                v-validate="{required:true,unique:'admin/seriestype/data-unique'}"
                 v-model="addObj.code"
                 placeholder="输入数值"
               >
               <p class="text-danger" v-show="errors.has('add.code:required')">标识不为空！</p>
-              <p class="text-danger" v-show="errors.has('add.code:min_value')">标识最小值0！</p>
+      
               <p class="text-danger" v-show="errors.has('add.code:unique')">标识值已存在！</p>
             </div>
 
@@ -218,11 +218,11 @@ export default {
   data() {
     return {
       httpUlr: {
-        list: "admin/userRole/data",
-        add: "admin/userRole/data",
-        edit: "admin/userRole/data",
-        del: "admin/userRole/data",
-        dtl: "admin/userRole/data-dtl"
+        list: "admin/seriestype/data",
+        add: "admin/seriestype/data",
+        edit: "admin/seriestype/data",
+        del: "admin/seriestype/data",
+        dtl: "admin/seriestype/data-dtl"
       },
       // inde列表集合
       list: [],

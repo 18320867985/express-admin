@@ -8,6 +8,12 @@ router.get("/login", async (req, res) => {
 
 });
 
+router.get("/login/not", async (req, res) => {
+    
+    res.render("/admin/not");
+
+});
+
 router.post("/login/data", async (req, res) => {
 
       // 多文档事务 

@@ -2,7 +2,7 @@
 import Vue from "vue";
 import App from './app.vue';
 
-const user = {
+const series = {
     init() {
 
       var vm=  new Vue({
@@ -13,6 +13,6 @@ const user = {
 }
 
 export {
-    user
+    series
 }
 

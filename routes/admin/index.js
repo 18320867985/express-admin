@@ -32,4 +32,13 @@ require("./rotation");
 // banner
 require("./banner");
 
+// seriestype
+require("./seriestype");
+
+// series
+require("./series");
+
+// contact
+require("./contact");
+
 module.exports = router;

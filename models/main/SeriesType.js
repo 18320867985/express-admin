@@ -1,11 +1,15 @@
-// 用户类型
+
+// 系列类型
 const  orm= require("./_mongoose");
 var schema = new orm.mongoose.Schema({
-    name:{type:String},
-    code:{type:Number,
+    name:{
+        type:String,
+        default:""
+    },
+    code:{type:String,
         index:true,
         unique:true  },
-    createDate:{
+    createdt:{
         type:Date,default:Date.now
     },
     order:{
@@ -16,6 +20,6 @@ var schema = new orm.mongoose.Schema({
 });
 
 
-var UserRole =orm.db.model("UserRole", schema);
+var SeriesType =orm.db.model("SeriesType", schema);
 
-module.exports = UserRole;
+module.exports = SeriesType;

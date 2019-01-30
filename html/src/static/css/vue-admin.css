@@ -158,16 +158,6 @@
   margin: 0 auto;
   margin-top: 60px; }
 
-.reg-cont {
-  width: 400px;
-  min-height: 300px;
-  padding: 30px 30px;
-  border-radius: 5px;
-  border: 1px  solid #ddd;
-  box-shadow: 2px 2px 5px #ddd -2px -2px 5px #ddd;
-  margin: 0 auto;
-  margin-top: 60px; }
-
 .template-share {
   padding: 0 10px; }
   .template-share .btn-toolbar {
@@ -198,10 +188,11 @@
   border-radius: 5px; }
   .template-edit .form-group .btn + .btn {
     margin-left: 30px; }
-  .template-edit form h4 {
-    font-size: 16px;
-    margin-bottom: 10px; }
-    .template-edit form h4 em {
+  .template-edit hr {
+    margin: 10px 0 10px 0; }
+  .template-edit h4 {
+    font-size: 15px; }
+    .template-edit h4 em {
       margin-left: 20px; }
 
 .template-add {
@@ -212,19 +203,61 @@
   margin-bottom: 20px;
   border: 1px solid #ddd;
   border-radius: 5px; }
-  .template-add form h4 {
-    font-size: 16px;
-    margin-bottom: 10px; }
-    .template-add form h4 em {
+  .template-add hr {
+    margin: 10px 0 10px 0; }
+  .template-add h4 {
+    font-size: 15px; }
+    .template-add h4 em {
       margin-left: 20px; }
 
 .template-dtl {
   margin-bottom: 15px; }
+  .template-dtl hr {
+    margin: 10px 0 10px 0; }
   .template-dtl h4.text-muted {
-    font-size: 16px;
-    margin-bottom: 10px; }
+    font-size: 15px; }
     .template-dtl h4.text-muted em {
       margin-left: 20px; }
+
+.upload-img {
+  margin: 10px 0;
+  width: 100%;
+  position: relative;
+  border: 1px solid #ddd;
+  padding: 0 5px 5px 5px;
+  border-radius: 5px; }
+  .upload-img .close {
+    color: red;
+    font-size: 24px; }
+  .upload-img img {
+    width: 100%;
+    height: 180px; }
+  .upload-img .form-control {
+    margin-top: 10px; }
+
+.rotation .list-group .img-thumbnail img {
+  width: 100%;
+  height: 200px; }
+
+.upload-img {
+  margin: 10px 0;
+  width: 100%;
+  position: relative;
+  border: 1px solid #ddd;
+  padding: 0 5px 5px 5px;
+  border-radius: 5px; }
+  .upload-img .close {
+    color: red;
+    font-size: 24px; }
+  .upload-img img {
+    width: 100%;
+    height: 180px; }
+  .upload-img .form-control {
+    margin-top: 10px; }
+
+.rotation .list-group .img-thumbnail img {
+  width: 100%;
+  height: 200px; }
 
 .upload-img {
   margin: 10px 0;

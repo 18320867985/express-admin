@@ -23,7 +23,6 @@ var childSchema = new orm.mongoose.Schema({
 var schema = new orm.mongoose.Schema({
     name:{type:String,
        index:true,
-
       },
       code:{
           type:String,
