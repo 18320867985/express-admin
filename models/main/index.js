@@ -15,3 +15,5 @@ exports.Series = require("./Series"); //  系列series
 exports.SeriesType = require("./SeriesType"); //  系列SeriesType
 
 exports.Contact = require("./Contact"); //  联系我们
+
+exports.Svcnet = require("./Svcnet"); //  联系我们

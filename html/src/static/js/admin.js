@@ -27729,7 +27729,7 @@ var App$8 = {
           if ($event.target.composing) {
             return;
           }_vm.$set(_vm.addObj, "addr", $event.target.value);
-        } } }), _vm._v(" "), _c('p', { directives: [{ name: "show", rawName: "v-show", value: _vm.errors.has('add.tel:required'), expression: "errors.has('add.tel:required')" }], staticClass: "text-danger" }, [_vm._v("地址不能为空！")])]), _vm._v(" "), _c('div', { staticClass: "form-group" }, [_c('button', { staticClass: "btn btn-primary", attrs: { "type": "submit", "disabled": _vm.addError } }, [_vm._v("添加")])])])]], 2)], 1), _vm._v(" "), _c('div', { staticClass: "tab-slide", class: { 'active': _vm.tab.edit } }, [_c('vue-edit', { attrs: { "cancel": _vm.editCancel, "url": _vm.httpUlr.edit } }, [_c('template', { slot: "title" }, [_vm._v("修改联系我们")]), _vm._v(" "), [_c('form', { attrs: { "data-vv-scope": "edit" }, on: { "submit": function submit($event) {
+        } } }), _vm._v(" "), _c('p', { directives: [{ name: "show", rawName: "v-show", value: _vm.errors.has('add.addr:required'), expression: "errors.has('add.addr:required')" }], staticClass: "text-danger" }, [_vm._v("地址不能为空！")])]), _vm._v(" "), _c('div', { staticClass: "form-group" }, [_c('button', { staticClass: "btn btn-primary", attrs: { "type": "submit", "disabled": _vm.addError } }, [_vm._v("添加")])])])]], 2)], 1), _vm._v(" "), _c('div', { staticClass: "tab-slide", class: { 'active': _vm.tab.edit } }, [_c('vue-edit', { attrs: { "cancel": _vm.editCancel, "url": _vm.httpUlr.edit } }, [_c('template', { slot: "title" }, [_vm._v("修改联系我们")]), _vm._v(" "), [_c('form', { attrs: { "data-vv-scope": "edit" }, on: { "submit": function submit($event) {
           $event.preventDefault();_vm.edit('edit');
         } } }, [_c('div', { staticClass: " form-group" }, [_c('h5', [_vm._v("标识：" + _vm._s(_vm.editObj.code))])]), _vm._v(" "), _c('div', { staticClass: "form-group has-feedback", class: { ' has-error': _vm.errors.has('edit.name') } }, [_c('label', { staticClass: "control-label", attrs: { "for": "edit.name" } }, [_vm._v("公司名称:")]), _vm._v(" "), _c('input', { directives: [{ name: "validate", rawName: "v-validate", value: { required: true, min: 2 }, expression: "{required:true,min:2}" }, { name: "model", rawName: "v-model", value: _vm.editObj.name, expression: "editObj.name" }], staticClass: "form-control", attrs: { "type": "text", "name": "edit.name", "id": "edit.name", "placeholder": "输入名称" }, domProps: { "value": _vm.editObj.name }, on: { "input": function input($event) {
           if ($event.target.composing) {
@@ -27755,7 +27755,7 @@ var App$8 = {
           if ($event.target.composing) {
             return;
           }_vm.$set(_vm.editObj, "addr", $event.target.value);
-        } } }), _vm._v(" "), _c('p', { directives: [{ name: "show", rawName: "v-show", value: _vm.errors.has('edit.tel:required'), expression: "errors.has('edit.tel:required')" }], staticClass: "text-danger" }, [_vm._v("地址不能为空！")])]), _vm._v(" "), _c('div', { staticClass: "form-group" }, [_c('button', { staticClass: "btn btn-primary", attrs: { "type": "submit", "disabled": _vm.editError } }, [_vm._v("保存")])])])]], 2)], 1)]);
+        } } }), _vm._v(" "), _c('p', { directives: [{ name: "show", rawName: "v-show", value: _vm.errors.has('edit.addr:required'), expression: "errors.has('edit.addr:required')" }], staticClass: "text-danger" }, [_vm._v("地址不能为空！")])]), _vm._v(" "), _c('div', { staticClass: "form-group" }, [_c('button', { staticClass: "btn btn-primary", attrs: { "type": "submit", "disabled": _vm.editError } }, [_vm._v("保存")])])])]], 2)], 1)]);
   },
   staticRenderFns: [],
   mixins: [mixin$1],
@@ -27887,6 +27887,220 @@ var contact = {
 
 var App$9 = {
   render: function render() {
+    var _vm = this;var _h = _vm.$createElement;var _c = _vm._self._c || _h;return _c('div', { staticClass: "template-share rotation" }, [_c('div', { staticClass: "tab-slide", class: { 'active': _vm.tab.index } }, [_c('div', { staticClass: "btn-toolbar clearfix" }, [_c('div', { staticClass: "btn-group pull-left" }), _vm._v(" "), _c('div', { staticClass: "btn-group pull-right" }, [_c('button', { staticClass: "btn btn-default btn-sm", on: { "click": _vm.addBtn } }, [_c('span', { staticClass: "text-primary glyphicon glyphicon-plus" }), _vm._v(" 添加\n        ")]), _vm._v(" "), _c('button', { staticClass: "btn btn-default btn-sm", on: { "click": _vm.dtlBtn } }, [_c('span', { staticClass: "text-info glyphicon glyphicon-list-alt" }), _vm._v(" 查看\n        ")]), _vm._v(" "), _c('button', { staticClass: "btn btn-default btn-sm", on: { "click": _vm.editBtn } }, [_c('span', { staticClass: "glyphicon glyphicon-edit text-warning" }), _vm._v(" 修改\n        ")]), _vm._v(" "), _c('button', { staticClass: "btn btn-default btn-sm", on: { "click": function click($event) {
+          $event.preventDefault();_vm.delBtn();
+        } } }, [_c('span', { staticClass: "glyphicon glyphicon-trash text-danger" }), _vm._v(" 删除\n        ")])])]), _vm._v(" "), _c('vue-list', { attrs: { "url": _vm.httpUlr.list }, scopedSlots: _vm._u([{ key: "default", fn: function fn(scope) {
+          return [_c('table', { staticClass: "table table-hover table-bordered" }, [_c('thead', [_c('tr', { staticClass: "text-center" }, [_c('th', [_c('vue-checkbox', { attrs: { "callback": scope.allChcek }, model: { value: scope.allcheckBtn.ck, callback: function callback($$v) {
+                _vm.$set(scope.allcheckBtn, "ck", $$v);
+              }, expression: "scope.allcheckBtn.ck" } })], 1), _vm._v(" "), _c('th', [_vm._v("编号")]), _vm._v(" "), _c('th', [_vm._v("名称")]), _vm._v(" "), _c('th', [_vm._v("标识")]), _vm._v(" "), _c('th', [_vm._v("图片")]), _vm._v(" "), _c('th', [_vm._v("创建时间")])])]), _vm._v(" "), _c('tbody', _vm._l(scope.list, function (item, index) {
+            return _c('tr', { key: index }, [_c('td', [_c('vue-checkbox', { model: { value: item.bl, callback: function callback($$v) {
+                  _vm.$set(item, "bl", $$v);
+                }, expression: "item.bl" } })], 1), _vm._v(" "), _c('td', [_vm._v(_vm._s(item._id))]), _vm._v(" "), _c('td', [_vm._v(_vm._s(item.name))]), _vm._v(" "), _c('td', [_vm._v(_vm._s(item.code))]), _vm._v(" "), _c('td', [_vm._v(_vm._s(item.imgs.length > 0 ? item.imgs.length + "张图片" : "没有图片"))]), _vm._v(" "), _c('td', [_vm._v(_vm._s(_vm._f("date")(item.createdt)))])]);
+          }), 0)])];
+        } }]), model: { value: _vm.list, callback: function callback($$v) {
+          _vm.list = $$v;
+        }, expression: "list" } })], 1), _vm._v(" "), _c('div', { staticClass: "tab-slide", class: { 'active': _vm.tab.dtl } }, [_c('vue-dtl', { attrs: { "cancel": _vm.dtlCancel, "url": _vm.httpUlr.dtl }, scopedSlots: _vm._u([{ key: "default", fn: function fn(scope) {
+          return _vm._l(scope.list, function (item, index) {
+            return _c('div', { key: index, staticClass: "list-group" }, [_c('div', { staticClass: "list-group-item clearfix" }, [_c('div', { staticClass: "col-xs-6 list-group-item-text" }, [_c('label', { attrs: { "for": "" } }, [_vm._v("Id:")]), _vm._v(" "), _c('span', [_vm._v(_vm._s(item._id))])]), _vm._v(" "), _c('div', { staticClass: "col-xs-6 list-group-item-text" }, [_c('label', { attrs: { "for": "" } }, [_vm._v("名称:")]), _vm._v(" "), _c('span', [_vm._v(_vm._s(item.name))])])]), _vm._v(" "), _c('div', { staticClass: "list-group-item clearfix" }, [_c('div', { staticClass: "col-xs-6 list-group-item-text" }, [_c('label', { attrs: { "for": "" } }, [_vm._v("标识:")]), _vm._v(" "), _c('span', [_vm._v(_vm._s(item.code))])]), _vm._v(" "), _c('div', { staticClass: "col-xs-6 list-group-item-text" }, [_c('label', { attrs: { "for": "" } }, [_vm._v("排序:")]), _vm._v(" "), _c('span', [_vm._v(_vm._s(item.order))])])]), _vm._v(" "), _c('div', { staticClass: "list-group-item clearfix" }, [_c('div', { staticClass: "col-xs-6 list-group-item-text" }, [_c('label', { attrs: { "for": "" } }, [_vm._v("联系电话:")]), _vm._v(" "), _c('span', [_vm._v(_vm._s(item.tel))])]), _vm._v(" "), _c('div', { staticClass: "col-xs-6 list-group-item-text" }, [_c('label', { attrs: { "for": "" } }, [_vm._v("地址:")]), _vm._v(" "), _c('span', [_vm._v(_vm._s(item.addr))])])]), _vm._v(" "), _c('div', { staticClass: "list-group-item clearfix" }, _vm._l(item.imgs, function (item2, index2) {
+              return _c('div', { key: index2, staticClass: "col-xs-3", staticStyle: { "margin-bottom": "10px" } }, [_c('div', { staticClass: "img-thumbnail" }, [_c('img', { staticClass: " img-rounded", attrs: { "src": item2.src, "alt": "" } }), _vm._v(" "), _c('div', { staticClass: "caption" }, [_c('h5', [_vm._v("url:" + _vm._s(item2.url))])])])]);
+            }), 0)]);
+          });
+        } }]) }, [_c('template', { slot: "title" }, [_vm._v("查看详细服务网点")])], 2)], 1), _vm._v(" "), _c('div', { staticClass: "tab-slide", class: { 'active': _vm.tab.add } }, [_c('vue-add', { attrs: { "cancel": _vm.addCancel, "url": _vm.httpUlr.add } }, [_c('template', { slot: "title" }, [_vm._v("添加服务网点")]), _vm._v(" "), [_c('form', { attrs: { "data-vv-scope": "add" }, on: { "submit": function submit($event) {
+          $event.preventDefault();_vm.add('add');
+        } } }, [_c('div', { staticClass: "form-group has-feedback", class: { ' has-error': _vm.errors.has('add.name') } }, [_c('label', { staticClass: "control-label", attrs: { "for": "add.name" } }, [_vm._v("公司名称:")]), _vm._v(" "), _c('input', { directives: [{ name: "validate", rawName: "v-validate", value: { required: true, min: 4 }, expression: "{required:true,min:4}" }, { name: "model", rawName: "v-model", value: _vm.addObj.name, expression: "addObj.name" }], staticClass: "form-control", attrs: { "type": "text", "name": "add.name", "id": "add.name", "placeholder": "输入名称" }, domProps: { "value": _vm.addObj.name }, on: { "input": function input($event) {
+          if ($event.target.composing) {
+            return;
+          }_vm.$set(_vm.addObj, "name", $event.target.value);
+        } } }), _vm._v(" "), _c('p', { directives: [{ name: "show", rawName: "v-show", value: _vm.errors.has('add.name:required'), expression: "errors.has('add.name:required')" }], staticClass: "text-danger" }, [_vm._v("公司名称不能为空！")]), _vm._v(" "), _c('p', { directives: [{ name: "show", rawName: "v-show", value: _vm.errors.has('add.name:min'), expression: "errors.has('add.name:min')" }], staticClass: "text-danger" }, [_vm._v("公司名称最小长度为4位！")])]), _vm._v(" "), _c('div', { staticClass: "form-group has-feedback", class: { ' has-error': _vm.errors.has('add.code') } }, [_c('label', { staticClass: "control-label", attrs: { "for": "add.code" } }, [_vm._v("标识:")]), _vm._v(" "), _c('input', { directives: [{ name: "validate", rawName: "v-validate", value: { required: true, unique: 'admin/svcnet/data-unique' }, expression: "{required:true,unique:'admin/svcnet/data-unique'}" }, { name: "model", rawName: "v-model", value: _vm.addObj.code, expression: "addObj.code" }], staticClass: "form-control", attrs: { "type": "text", "name": "add.code", "id": "add.code", "placeholder": "输入标识" }, domProps: { "value": _vm.addObj.code }, on: { "input": function input($event) {
+          if ($event.target.composing) {
+            return;
+          }_vm.$set(_vm.addObj, "code", $event.target.value);
+        } } }), _vm._v(" "), _c('p', { directives: [{ name: "show", rawName: "v-show", value: _vm.errors.has('add.code:required'), expression: "errors.has('add.code:required')" }], staticClass: "text-danger" }, [_vm._v("code不能为空！")]), _vm._v(" "), _c('p', { directives: [{ name: "show", rawName: "v-show", value: _vm.errors.has('add.code:unique'), expression: "errors.has('add.code:unique')" }], staticClass: "text-danger" }, [_vm._v("code值已存在！")])]), _vm._v(" "), _c('div', { staticClass: "form-group has-feedback", class: { ' has-error': _vm.errors.has('add.order') } }, [_c('label', { staticClass: "control-label", attrs: { "for": "add.order" } }, [_vm._v("排序:")]), _vm._v(" "), _c('input', { directives: [{ name: "validate", rawName: "v-validate", value: { required: true, min_value: 1 }, expression: "{required:true,min_value:1}" }, { name: "model", rawName: "v-model", value: _vm.addObj.order, expression: "addObj.order" }], staticClass: "form-control", attrs: { "type": "text", "name": "add.order", "id": "add.order", "placeholder": "输入数值" }, domProps: { "value": _vm.addObj.order }, on: { "input": function input($event) {
+          if ($event.target.composing) {
+            return;
+          }_vm.$set(_vm.addObj, "order", $event.target.value);
+        } } }), _vm._v(" "), _c('p', { directives: [{ name: "show", rawName: "v-show", value: _vm.errors.has('add.order:required'), expression: "errors.has('add.order:required')" }], staticClass: "text-danger" }, [_vm._v("排序不能为空！")]), _vm._v(" "), _c('p', { directives: [{ name: "show", rawName: "v-show", value: _vm.errors.has('add.order:min_value'), expression: "errors.has('add.order:min_value')" }], staticClass: "text-danger" }, [_vm._v("排序值不能小于1！")])]), _vm._v(" "), _c('div', { staticClass: "form-group has-feedback", class: { ' has-error': _vm.errors.has('add.tel') } }, [_c('label', { staticClass: "control-label", attrs: { "for": "add.tel" } }, [_vm._v("联系电话:")]), _vm._v(" "), _c('input', { directives: [{ name: "validate", rawName: "v-validate", value: { required: true, regex: /^\d[0-9-]{4,}$/ }, expression: "{required:true,regex:/^\\d[0-9-]{4,}$/}" }, { name: "model", rawName: "v-model", value: _vm.addObj.tel, expression: "addObj.tel" }], staticClass: "form-control", attrs: { "type": "text", "name": "add.tel", "id": "add.tel", "placeholder": "输入数值" }, domProps: { "value": _vm.addObj.tel }, on: { "input": function input($event) {
+          if ($event.target.composing) {
+            return;
+          }_vm.$set(_vm.addObj, "tel", $event.target.value);
+        } } }), _vm._v(" "), _c('p', { directives: [{ name: "show", rawName: "v-show", value: _vm.errors.has('add.tel:required'), expression: "errors.has('add.tel:required')" }], staticClass: "text-danger" }, [_vm._v("联系电话不能为空！")]), _vm._v(" "), _c('p', { directives: [{ name: "show", rawName: "v-show", value: _vm.errors.has('add.tel:regex'), expression: "errors.has('add.tel:regex')" }], staticClass: "text-danger" }, [_vm._v("联系电话格式不对！")])]), _vm._v(" "), _c('div', { staticClass: "form-group has-feedback", class: { ' has-error': _vm.errors.has('add.addr') } }, [_c('label', { staticClass: "control-label", attrs: { "for": "add.addr" } }, [_vm._v("地址:")]), _vm._v(" "), _c('input', { directives: [{ name: "validate", rawName: "v-validate", value: { required: true }, expression: "{required:true}" }, { name: "model", rawName: "v-model", value: _vm.addObj.addr, expression: "addObj.addr" }], staticClass: "form-control", attrs: { "type": "text", "name": "add.addr", "id": "add.addr", "placeholder": "输入地址" }, domProps: { "value": _vm.addObj.addr }, on: { "input": function input($event) {
+          if ($event.target.composing) {
+            return;
+          }_vm.$set(_vm.addObj, "addr", $event.target.value);
+        } } }), _vm._v(" "), _c('p', { directives: [{ name: "show", rawName: "v-show", value: _vm.errors.has('add.addr:required'), expression: "errors.has('add.addr:required')" }], staticClass: "text-danger" }, [_vm._v("地址不能为空！")])]), _vm._v(" "), _c('div', { staticClass: "form-group clearfix" }, [_c('div', { staticClass: "col-xs-12 padding-lr-no" }, [_c('label', { staticClass: "control-label", attrs: { "for": "add.code" } }, [_vm._v("上传图片:")])]), _vm._v(" "), _c('div', { staticClass: "col-sm-6 padding-lr-no" }, [_c('input', { directives: [{ name: "model", rawName: "v-model", value: _vm.addFileUpload, expression: "addFileUpload" }], staticClass: "form-control", attrs: { "type": "text", "disabled": "", "name": "", "id": "", "placeholder": "上传图片" }, domProps: { "value": _vm.addFileUpload }, on: { "input": function input($event) {
+          if ($event.target.composing) {
+            return;
+          }_vm.addFileUpload = $event.target.value;
+        } } })]), _vm._v(" "), _c('div', { staticClass: "col-sm-4" }, [_c('vue-file', { attrs: { "name": "vue-file-add", "btn-class": "btn-primary", "url": "http://localhost:3000/file", "ok": _vm.addFileOk, "file-type": "image/*", "size": 300, "timeout": 30, "line-class": "text-primary", "btn-text": "上传图片" } })], 1)]), _vm._v(" "), _c('div', { staticClass: "form-group clearfix" }, [_c('div', { staticClass: "col-xs-6 clearfix" }, _vm._l(_vm.addObj.imgs, function (item, index) {
+      return _c('div', { key: index, staticClass: "upload-img clearfix" }, [_c('span', { staticClass: "close", on: { "click": function click($event) {
+            _vm.addFileDel(index);
+          } } }, [_vm._v("×")]), _vm._v(" "), _c('img', { attrs: { "src": item.src, "alt": "" } }), _vm._v(" "), _c('input', { directives: [{ name: "model", rawName: "v-model", value: item.url, expression: "item.url" }], staticClass: "form-control", attrs: { "placeholder": "输入url链接", "type": "text", "name": "", "id": "" }, domProps: { "value": item.url }, on: { "input": function input($event) {
+            if ($event.target.composing) {
+              return;
+            }_vm.$set(item, "url", $event.target.value);
+          } } })]);
+    }), 0)]), _vm._v(" "), _c('div', { staticClass: "form-group" }, [_c('button', { staticClass: "btn btn-primary", attrs: { "type": "submit", "disabled": _vm.addError } }, [_vm._v("添加")])])])]], 2)], 1), _vm._v(" "), _c('div', { staticClass: "tab-slide", class: { 'active': _vm.tab.edit } }, [_c('vue-edit', { attrs: { "cancel": _vm.editCancel, "url": _vm.httpUlr.edit } }, [_c('template', { slot: "title" }, [_vm._v("修改服务网点")]), _vm._v(" "), [_c('form', { attrs: { "data-vv-scope": "edit" }, on: { "submit": function submit($event) {
+          $event.preventDefault();_vm.edit('edit');
+        } } }, [_c('div', { staticClass: "form-group" }, [_c('h5', [_vm._v("标识：" + _vm._s(_vm.editObj.code))])]), _vm._v(" "), _c('div', { staticClass: "form-group has-feedback", class: { ' has-error': _vm.errors.has('edit.name') } }, [_c('label', { staticClass: "control-label", attrs: { "for": "edit.name" } }, [_vm._v("公司名称:")]), _vm._v(" "), _c('input', { directives: [{ name: "validate", rawName: "v-validate", value: { required: true, min: 2 }, expression: "{required:true,min:2}" }, { name: "model", rawName: "v-model", value: _vm.editObj.name, expression: "editObj.name" }], staticClass: "form-control", attrs: { "type": "text", "name": "edit.name", "id": "edit.name", "placeholder": "输入名称" }, domProps: { "value": _vm.editObj.name }, on: { "input": function input($event) {
+          if ($event.target.composing) {
+            return;
+          }_vm.$set(_vm.editObj, "name", $event.target.value);
+        } } }), _vm._v(" "), _c('p', { directives: [{ name: "show", rawName: "v-show", value: _vm.errors.has('edit.name:required'), expression: "errors.has('edit.name:required')" }], staticClass: "text-danger" }, [_vm._v("公司名称不能为空！")]), _vm._v(" "), _c('p', { directives: [{ name: "show", rawName: "v-show", value: _vm.errors.has('edit.name:min'), expression: "errors.has('edit.name:min')" }], staticClass: "text-danger" }, [_vm._v("公司名称最小长度为2位！")])]), _vm._v(" "), _c('div', { staticClass: "form-group has-feedback", class: { ' has-error': _vm.errors.has('edit.order') } }, [_c('label', { staticClass: "control-label", attrs: { "for": "edit.order" } }, [_vm._v("排序:")]), _vm._v(" "), _c('input', { directives: [{ name: "validate", rawName: "v-validate", value: { required: true, min_value: 1 }, expression: "{required:true,min_value:1}" }, { name: "model", rawName: "v-model", value: _vm.editObj.order, expression: "editObj.order" }], staticClass: "form-control", attrs: { "type": "text", "name": "edit.order", "id": "edit.order", "placeholder": "输入数值" }, domProps: { "value": _vm.editObj.order }, on: { "input": function input($event) {
+          if ($event.target.composing) {
+            return;
+          }_vm.$set(_vm.editObj, "order", $event.target.value);
+        } } }), _vm._v(" "), _c('p', { directives: [{ name: "show", rawName: "v-show", value: _vm.errors.has('edit.order:required'), expression: "errors.has('edit.order:required')" }], staticClass: "text-danger" }, [_vm._v("排序不为空！")]), _vm._v(" "), _c('p', { directives: [{ name: "show", rawName: "v-show", value: _vm.errors.has('edit.order:min_value'), expression: "errors.has('edit.order:min_value')" }], staticClass: "text-danger" }, [_vm._v("排序值不能小于1！")])]), _vm._v(" "), _c('div', { staticClass: "form-group has-feedback", class: { ' has-error': _vm.errors.has('edit.tel') } }, [_c('label', { staticClass: "control-label", attrs: { "for": "edit.tel" } }, [_vm._v("联系电话:")]), _vm._v(" "), _c('input', { directives: [{ name: "validate", rawName: "v-validate", value: { required: true, regex: /^\d[0-9-]{4,}$/ }, expression: "{required:true,regex:/^\\d[0-9-]{4,}$/}" }, { name: "model", rawName: "v-model", value: _vm.editObj.tel, expression: "editObj.tel" }], staticClass: "form-control", attrs: { "type": "text", "name": "edit.tel", "id": "edit.tel", "placeholder": "输入数值" }, domProps: { "value": _vm.editObj.tel }, on: { "input": function input($event) {
+          if ($event.target.composing) {
+            return;
+          }_vm.$set(_vm.editObj, "tel", $event.target.value);
+        } } }), _vm._v(" "), _c('p', { directives: [{ name: "show", rawName: "v-show", value: _vm.errors.has('edit.tel:required'), expression: "errors.has('edit.tel:required')" }], staticClass: "text-danger" }, [_vm._v("联系电话不能为空！")]), _vm._v(" "), _c('p', { directives: [{ name: "show", rawName: "v-show", value: _vm.errors.has('edit.tel:regex'), expression: "errors.has('edit.tel:regex')" }], staticClass: "text-danger" }, [_vm._v("联系电话格式不对！")])]), _vm._v(" "), _c('div', { staticClass: "form-group has-feedback", class: { ' has-error': _vm.errors.has('edit.addr') } }, [_c('label', { staticClass: "control-label", attrs: { "for": "edit.addr" } }, [_vm._v("地址:")]), _vm._v(" "), _c('input', { directives: [{ name: "validate", rawName: "v-validate", value: { required: true }, expression: "{required:true}" }, { name: "model", rawName: "v-model", value: _vm.editObj.addr, expression: "editObj.addr" }], staticClass: "form-control", attrs: { "type": "text", "name": "edit.addr", "id": "edit.addr", "placeholder": "输入地址" }, domProps: { "value": _vm.editObj.addr }, on: { "input": function input($event) {
+          if ($event.target.composing) {
+            return;
+          }_vm.$set(_vm.editObj, "addr", $event.target.value);
+        } } }), _vm._v(" "), _c('p', { directives: [{ name: "show", rawName: "v-show", value: _vm.errors.has('edit.addr:required'), expression: "errors.has('edit.addr:required')" }], staticClass: "text-danger" }, [_vm._v("地址不能为空！")])]), _vm._v(" "), _c('div', { staticClass: "form-group clearfix" }, [_c('div', { staticClass: "col-xs-12 padding-lr-no" }, [_c('label', { staticClass: "control-label", attrs: { "for": "edit.code" } }, [_vm._v("上传图片:")])]), _vm._v(" "), _c('div', { staticClass: "col-sm-6 padding-lr-no" }, [_c('input', { directives: [{ name: "model", rawName: "v-model", value: _vm.editdFileUpload, expression: "editdFileUpload" }], staticClass: "form-control", attrs: { "type": "text", "disabled": "", "name": "", "id": "", "placeholder": "上传图片" }, domProps: { "value": _vm.editdFileUpload }, on: { "input": function input($event) {
+          if ($event.target.composing) {
+            return;
+          }_vm.editdFileUpload = $event.target.value;
+        } } })]), _vm._v(" "), _c('div', { staticClass: "col-sm-4" }, [_c('vue-file', { attrs: { "name": "vue-file-edit", "btn-class": "btn-primary", "url": "http://localhost:3000/file", "ok": _vm.editFileOk, "file-type": "image/*", "size": 300, "timeout": 30, "line-class": "text-primary", "btn-text": "上传图片" } })], 1)]), _vm._v(" "), _c('div', { staticClass: "form-group clearfix" }, [_c('div', { staticClass: "col-xs-6 clearfix" }, _vm._l(_vm.editObj.imgs, function (item, index) {
+      return _c('div', { key: index, staticClass: "upload-img clearfix" }, [_c('span', { staticClass: "close", on: { "click": function click($event) {
+            _vm.editFileDel(index);
+          } } }, [_vm._v("×")]), _vm._v(" "), _c('img', { attrs: { "src": item.src, "alt": "" } }), _vm._v(" "), _c('input', { directives: [{ name: "model", rawName: "v-model", value: item.url, expression: "item.url" }], staticClass: "form-control", attrs: { "placeholder": "输入url链接", "type": "text", "name": "", "id": "" }, domProps: { "value": item.url }, on: { "input": function input($event) {
+            if ($event.target.composing) {
+              return;
+            }_vm.$set(item, "url", $event.target.value);
+          } } })]);
+    }), 0)]), _vm._v(" "), _c('div', { staticClass: "form-group" }, [_c('button', { staticClass: "btn btn-primary", attrs: { "type": "submit", "disabled": _vm.editError } }, [_vm._v("保存")])])])]], 2)], 1)]);
+  },
+  staticRenderFns: [],
+  mixins: [mixin$1],
+  data: function data() {
+    return {
+      httpUlr: {
+        list: "admin/svcnet/data",
+        add: "admin/svcnet/data",
+        edit: "admin/svcnet/data",
+        del: "admin/svcnet/data",
+        dtl: "admin/svcnet/data-dtl"
+      },
+      // inde列表集合
+      list: [],
+      //  edit修改的对象
+      editObj: {
+        _id: "",
+        name: "",
+        code: "",
+        order: "",
+        tel: "",
+        addr: "",
+        imgs: []
+      },
+
+      // add 添加的对象
+      addObj: {
+        name: "",
+        code: "",
+        order: "",
+        tel: "",
+        addr: "",
+        imgs: []
+
+        // 自定义
+      } };
+  },
+  mounted: function mounted() {},
+
+  methods: {
+    // add btn
+    addBtn: function addBtn() {
+      this.tab.set("add");
+      this.errors.clear('add');
+      // 修改内容
+      this.addObj.imgs = [];
+    },
+
+    // edit btn
+    editBtn: function editBtn(item) {
+      var fo = this.list.filter(function (item) {
+        return item.bl === true;
+      });
+      if (fo.length <= 0) {
+        this.$alert({
+          title: "提示",
+          content: "<strong class='text-danger'>没选择数据!</strong>",
+          html: true
+        }).catch(function (err) {});
+        return;
+      }
+      this.tab.set("edit");
+      this.errors.clear("edit");
+      var o = fo[0];
+
+      // 修改内容
+      this.editObj._id = o._id;
+      this.editObj.name = o.name;
+      this.editObj.code = o.code;
+      this.editObj.order = o.order;
+      this.editObj.tel = o.tel;
+      this.editObj.addr = o.addr;
+      this.editObj.imgs = Array.prototype.slice.call(o.imgs);
+    },
+
+    // 图片上传成功
+    addFileOk: function addFileOk(data, el) {
+      var body = data;
+      this.addObj.imgs.unshift({ url: "", src: body.data });
+    },
+
+    // 删除图片
+    addFileDel: function addFileDel(index) {
+      this.addObj.imgs.splice(index, 1);
+    },
+
+    // 图片上传成功
+    editFileOk: function editFileOk(data, el) {
+      var body = data;
+      this.editObj.imgs.unshift({ url: "", src: body.data });
+    },
+
+    // 删除图片
+    editFileDel: function editFileDel(index) {
+      this.editObj.imgs.splice(index, 1);
+    }
+  },
+  computed: {
+    addFileUpload: function addFileUpload() {
+      return this.addObj.imgs.map(function (e) {
+        return e.src;
+      });
+    },
+    editdFileUpload: function editdFileUpload() {
+      return this.editObj.imgs.map(function (e) {
+        return e.src;
+      });
+    }
+  },
+
+  components: {
+    VueList: VueList,
+    VueEdit: VueEdit,
+    VueAdd: VueAdd,
+    VueDtl: VueDtl
+  }
+};
+
+var svcnet = {
+    init: function init() {
+
+        var vm = new Vue({
+            render: function render(h) {
+                return h(App$9);
+            }
+        }).$mount("#app");
+    }
+};
+
+var App$10 = {
+  render: function render() {
     var _vm = this;var _h = _vm.$createElement;var _c = _vm._self._c || _h;return _c('div', { staticClass: "file" }, [_c('hr'), _vm._v(" "), _c('div', { staticClass: "form-group" }, [_c('div', { staticClass: "col-sm-6" }, [_c('input', { directives: [{ name: "model", rawName: "v-model", value: _vm.file.data, expression: "file.data" }], staticClass: "form-control", attrs: { "type": "text", "name": "", "id": "" }, domProps: { "value": _vm.file.data }, on: { "input": function input($event) {
           if ($event.target.composing) {
             return;
@@ -27918,7 +28132,7 @@ var file$1 = {
 
         var vm = new Vue({
             render: function render(h) {
-                return h(App$9);
+                return h(App$10);
             }
         }).$mount("#app");
     }
@@ -27962,6 +28176,7 @@ exports.banner = banner;
 exports.seriestype = seriestype;
 exports.series = series;
 exports.contact = contact;
+exports.svcnet = svcnet;
 exports.file = file$1;
 
 Object.defineProperty(exports, '__esModule', { value: true });

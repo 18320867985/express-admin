@@ -41,4 +41,7 @@ require("./series");
 // contact
 require("./contact");
 
+// svcnet
+require("./svcnet");
+
 module.exports = router;

@@ -2,30 +2,28 @@
 // 服务网点
 const orm = require("./_mongoose");
 
-// var childSchema = new orm.mongoose.Schema({
-//     ttl: {
-//         type: String,
-//         default: ""
-//     },
-//     url: {
-//         type: String,
-//         default: ""
-//     },
-//     src: {
-//         type: String,
-//         default: ""
-//     },
-//     order: {
-//         type: Number,
-//         default: 1
-//     }
-// });
+var childSchema = new orm.mongoose.Schema({
+    ttl: {
+        type: String,
+        default: ""
+    },
+    url: {
+        type: String,
+        default: ""
+    },
+    src: {
+        type: String,
+        default: ""
+    },
+    order: {
+        type: Number,
+        default: 1
+    }
+});
 
 var schema = new orm.mongoose.Schema({
     name: {
         type: String,
-        index: true,
-        unique: true
     },
     code:{
         type:String,
@@ -44,10 +42,6 @@ var schema = new orm.mongoose.Schema({
         type: Date,
         default: Date.now
     },
-    compna:{
-        type:String,
-        default:""
-    },
     addr:{
         type:String,
         default:""
@@ -55,12 +49,13 @@ var schema = new orm.mongoose.Schema({
     tel:{
         type:String,
         default:""
-    }
+    },
+    imgs:[childSchema]
 
    
 });
 
 
-var Contact = orm.db.model("Contact", schema);
+var Svcnet = orm.db.model("Svcnet", schema);
 
-module.exports = Contact;
+module.exports = Svcnet;

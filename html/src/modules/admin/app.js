@@ -48,6 +48,7 @@ export {banner}  from "./banner";
 export {seriestype}  from "./seriestype";
 export {series}  from "./series";
 export {contact}  from "./contact";
+export {svcnet}  from "./svcnet";
 
 export {file}  from "./file";
 

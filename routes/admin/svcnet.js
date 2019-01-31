@@ -2,17 +2,17 @@
 const router = require("./_router");
 const mainModel = require("../../models/main");
 
-router.get("/contact", async (req, res) => {
-    res.render("admin/contact.html");
+router.get("/svcnet", async (req, res) => {
+    res.render("admin/svcnet.html");
 });
 
 // 分页
-router.get("/contact/data/:index/:pageItem", async (req, res) => {
+router.get("/svcnet/data/:index/:pageItem", async (req, res) => {
 
     // paging start
     let index = Number(req.params.index) || 0;
     let pageItem = Number(req.params.pageItem) || 10;
-    if(!mainModel.Contact){
+    if(!mainModel.Svcnet){
         // 没有相关数据
         res.json(res.ok([], {
             index: 0, //	当前页
@@ -21,7 +21,7 @@ router.get("/contact/data/:index/:pageItem", async (req, res) => {
      }));
      return;
     }
-    let count = await mainModel.Contact.countDocuments(); //edit line
+    let count = await mainModel.Svcnet.countDocuments(); //edit line
     if (count <= 0) {
         // 没有相关数据
         res.json(res.ok([], {
@@ -36,7 +36,7 @@ router.get("/contact/data/:index/:pageItem", async (req, res) => {
     let index2 = (index - 1) * pageItem;
     // paging end
 
-    let list = await mainModel.Contact.find({}).skip(index2).limit(pageItem).sort({order:-1});
+    let list = await mainModel.Svcnet.find({}).skip(index2).limit(pageItem);
 
     res.json(res.ok(list, {
         index: index, //	当前页
@@ -47,9 +47,9 @@ router.get("/contact/data/:index/:pageItem", async (req, res) => {
 
 
 // 检测是否存在
-router.get("/contact/data-unique/:v", async (req, res) => {
+router.get("/svcnet/data-unique/:v", async (req, res) => {
     let code = req.params.v || "";
-    let count = await mainModel.Contact.countDocuments({ code });
+    let count = await mainModel.Svcnet.countDocuments({ code });
     if (count > 0) {
         res.json(false);
     } else {
@@ -59,10 +59,10 @@ router.get("/contact/data-unique/:v", async (req, res) => {
 });
 
 // 获取ids数组获取详细信息
-router.get("/contact/data-dtl/:ids", async (req, res) => {
+router.get("/svcnet/data-dtl/:ids", async (req, res) => {
     let ids = req.params.ids || "";
     ids = ids.split(",");
-    let list = await mainModel.Contact.find({
+    let list = await mainModel.Svcnet.find({
         _id: {
             $in: ids
         }
@@ -72,17 +72,15 @@ router.get("/contact/data-dtl/:ids", async (req, res) => {
 
 
 //  添加
-router.post("/contact/data", async (req, res) => {
+router.post("/svcnet/data", async (req, res) => {
   
-    let o = new mainModel.Contact({ 
+    let o = new mainModel.Svcnet({ 
         name: req.body.name, 
         code: req.body.code,
         order: req.body.order,
-        x:req.body.x,
-        y:req.body.y,
-        addr:req.body.addr,
-        tel:req.body.tel,
-   
+        tel: req.body.tel,
+        addr: req.body.addr,
+        imgs:req.body.imgs||[],
     });
 
     let isok = o.validateSync();
@@ -92,7 +90,7 @@ router.post("/contact/data", async (req, res) => {
     }
 
 
-    var  rt = await mainModel.Contact.create(o)
+    var  rt = await mainModel.Svcnet.create(o)
     if (!rt) {
         res.json(res.err("添加失败"));
         return;
@@ -102,15 +100,16 @@ router.post("/contact/data", async (req, res) => {
 
 
 // 修改
-router.put("/contact/data", async (req, res) => {
+router.put("/svcnet/data", async (req, res) => {
 
     let id = req.body._id;
     let name= req.body.name;
-    let order= req.body.order;
-    let x= req.body.x;
-    let y= req.body.y;
+    let code= req.body.code;
+    let  order= req.body.order;
     let tel= req.body.tel;
     let addr= req.body.addr;
+    let  imgs=req.body.imgs||[];
+
     try {
         id = mainModel.orm.mongoose.Types.ObjectId(id).toHexString();
     } catch (error) {
@@ -118,22 +117,22 @@ router.put("/contact/data", async (req, res) => {
         return;
     }
 
-    let v = await mainModel.Contact.findByIdAndUpdate(id, { $set: { name,order,x,y,tel,addr} }, { new: true });
+    let v = await mainModel.Svcnet.findByIdAndUpdate(id, { $set: { name,code,order ,imgs,tel,addr} }, { new: true });
     if (!v) {
         res.json(res.err("修改失败"));
         return;
     } else {
-        res.json(res.ok(v))/*  */
+        res.json(res.ok(v))
     }
 });
 
 
 // 删除
-router.delete("/contact/data/:listId", async (req, res) => {
+router.delete("/svcnet/data/:listId", async (req, res) => {
     // let id = req.params.id;
     let listId = req.params.listId || "";
     listId = listId.split(",")
-    let obj = await mainModel.Contact.deleteMany({
+    let obj = await mainModel.Svcnet.deleteMany({
         _id: {
             $in: listId
         }
