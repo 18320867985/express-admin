@@ -107,10 +107,10 @@ router.put("/contact/data", async (req, res) => {
     let id = req.body._id;
     let name= req.body.name;
     let order= req.body.order;
-    let desc= req.body.desc;
-    let seriestypeId= req.body.seriestypeId;
-    let  imgs=req.body.imgs||[];
-
+    let x= req.body.x;
+    let y= req.body.y;
+    let tel= req.body.tel;
+    let addr= req.body.addr;
     try {
         id = mainModel.orm.mongoose.Types.ObjectId(id).toHexString();
     } catch (error) {
@@ -118,7 +118,7 @@ router.put("/contact/data", async (req, res) => {
         return;
     }
 
-    let v = await mainModel.Contact.findByIdAndUpdate(id, { $set: { name,order,desc,imgs,seriestypeId} }, { new: true });
+    let v = await mainModel.Contact.findByIdAndUpdate(id, { $set: { name,order,x,y,tel,addr} }, { new: true });
     if (!v) {
         res.json(res.err("修改失败"));
         return;

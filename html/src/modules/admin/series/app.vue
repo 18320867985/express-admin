@@ -35,7 +35,7 @@
                 </th>
                 <th>编号</th>
                 <th>名称</th>
-                <th>唯一标识</th>
+                <th>标识</th>
                 <th>排序</th>
                 <th>图片</th>
                 <th>创建时间</th>
@@ -78,7 +78,7 @@
             </div>
              <div class="list-group-item clearfix">
               <div class="col-xs-6 list-group-item-text">
-                <label for>唯一标识:</label>
+                <label for>标识:</label>
                 <span>{{item.code}}</span>
               </div>
               <div class="col-xs-6 list-group-item-text">
@@ -148,7 +148,7 @@
             </div>
 
             <div class="form-group has-feedback" :class="{' has-error':errors.has('add.code')}">
-              <label class="control-label" for="add.code">唯一标识:</label>
+              <label class="control-label" for="add.code">标识:</label>
               <input
                 class="form-control"
                 type="text"
@@ -246,7 +246,7 @@
 
             <!-- content start-->
              <div class="form-group" >
-              <h5>唯一标识:{{editObj.code}}</h5>
+              <h5>标识:{{editObj.code}}</h5>
              </div>
              <div class="form-group has-feedback" :class="{' has-error':errors.has('edit.name')}">
               <label class="control-label" for="edit.name">系列名称:</label>

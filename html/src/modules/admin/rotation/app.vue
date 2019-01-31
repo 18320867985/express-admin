@@ -36,7 +36,7 @@
                 </th>
                 <th>编号</th>
                 <th>名称</th>
-                <th>唯一标识</th>
+                <th>标识</th>
                 <th>图片</th>
                 <th>创建时间</th>
               </tr>
@@ -77,7 +77,7 @@
             </div>
              <div class="list-group-item clearfix">
               <div class="col-xs-6 list-group-item-text">
-                <label for>唯一标识:</label>
+                <label for>标识:</label>
                 <span>{{item.code}}</span>
               </div>
               <div class="col-xs-6 list-group-item-text">
@@ -130,7 +130,7 @@
             </div>
 
             <div class="form-group has-feedback" :class="{' has-error':errors.has('add.code')}">
-              <label class="control-label" for="add.code">唯一标识:</label>
+              <label class="control-label" for="add.code">标识:</label>
               <input
                 class="form-control"
                 type="text"

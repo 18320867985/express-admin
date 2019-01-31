@@ -34,10 +34,13 @@
                   <vue-checkbox v-model="scope.allcheckBtn.ck" :callback="scope.allChcek"></vue-checkbox>
                 </th>
                 <th>编号</th>
-                <th>名称</th>
-                <th>唯一标识</th>
+                <th>公司名称</th>
+                <th>标识</th>
                 <th>排序</th>
-                <th>图片</th>
+                <th>X坐标</th>
+                <th>Y坐标</th>
+                <th>地址</th>
+
                 <th>创建时间</th>
               </tr>
             </thead>
@@ -50,7 +53,9 @@
                 <td>{{ item.name}}</td>
                 <td>{{ item.code}}</td>
                 <td>{{ item.order}}</td>
-                <td>{{ item.imgs.length>0?`${item.imgs.length}张图片`:`没有图片`}}</td>
+                <td>{{ item.x}}</td>
+                <td>{{ item.y}}</td>
+                <td>{{ item.addr}}</td>
                 <td>{{ item.createdt|date}}</td>
               </tr>
             </tbody>
@@ -76,9 +81,9 @@
                 <span>{{item.name}}</span>
               </div>
             </div>
-             <div class="list-group-item clearfix">
+            <div class="list-group-item clearfix">
               <div class="col-xs-6 list-group-item-text">
-                <label for>唯一标识:</label>
+                <label for>标识:</label>
                 <span>{{item.code}}</span>
               </div>
               <div class="col-xs-6 list-group-item-text">
@@ -86,21 +91,26 @@
                 <span>{{item.order}}</span>
               </div>
             </div>
-
              <div class="list-group-item clearfix">
-               <div class="col-xs-3" style="margin-bottom:10px;" v-for="(item2 ,index2) in item.imgs" :key="index2">
-                 <div class="img-thumbnail">
-                       <img class=" img-rounded" :src="item2.src" alt="">
-                       <div class="caption">
-                           <h5>url:{{item2.url}}</h5>
-                       </div>
-                      
-                 </div>
-              
-               </div>
+              <div class="col-xs-6 list-group-item-text">
+                <label for>X坐标:</label>
+                <span>{{item.x}}</span>
+              </div>
+              <div class="col-xs-6 list-group-item-text">
+                <label for>Y坐标:</label>
+                <span>{{item.y}}</span>
+              </div>
             </div>
-           
-
+             <div class="list-group-item clearfix">
+              <div class="col-xs-6 list-group-item-text">
+                <label for>地址:</label>
+                <span>{{item.addr}}</span>
+              </div>
+              <div class="col-xs-6 list-group-item-text">
+                <label for>联系电话:</label>
+                <span>{{item.tel}}</span>
+              </div>
+            </div>
           </div>
         </template>
       </vue-dtl>
@@ -115,6 +125,7 @@
         <template>
           <form @submit.prevent="add('add')" data-vv-scope="add">
             <!-- content start-->
+
             <div class="form-group has-feedback" :class="{' has-error':errors.has('add.name')}">
               <label class="control-label" for="add.name">公司名称:</label>
               <input
@@ -130,7 +141,6 @@
               <p class="text-danger" v-show="errors.has('add.name:min')">公司名称最小长度为2位！</p>
             </div>
 
-           
             <div class="form-group has-feedback" :class="{' has-error':errors.has('add.code')}">
               <label class="control-label" for="add.code">标识:</label>
               <input
@@ -161,7 +171,7 @@
               <p class="text-danger" v-show="errors.has('add.order:min_value')">排序值不能小于1！</p>
             </div>
 
-              <div class="form-group has-feedback" :class="{' has-error':errors.has('add.x')}">
+            <div class="form-group has-feedback" :class="{' has-error':errors.has('add.x')}">
               <label class="control-label" for="add.x">X坐标:</label>
               <input
                 class="form-control"
@@ -175,8 +185,8 @@
               <p class="text-danger" v-show="errors.has('add.x:required')">X坐标不为空！</p>
               <p class="text-danger" v-show="errors.has('add.x:decimal')">不是有效的数值！</p>
             </div>
-            
-              <div class="form-group has-feedback" :class="{' has-error':errors.has('add.y')}">
+
+            <div class="form-group has-feedback" :class="{' has-error':errors.has('add.y')}">
               <label class="control-label" for="add.y">Y坐标:</label>
               <input
                 class="form-control"
@@ -191,7 +201,7 @@
               <p class="text-danger" v-show="errors.has('add.y:decimal')">不是有效的数值！</p>
             </div>
 
-             <div class="form-group has-feedback" :class="{' has-error':errors.has('add.tel')}">
+            <div class="form-group has-feedback" :class="{' has-error':errors.has('add.tel')}">
               <label class="control-label" for="add.tel">联系电话:</label>
               <input
                 class="form-control"
@@ -202,12 +212,23 @@
                 v-model="addObj.tel"
                 placeholder="输入数值"
               >
-              <p class="text-danger" v-show="errors.has('add.tel:required')">联系电话不为空！</p>
+              <p class="text-danger" v-show="errors.has('add.tel:required')">联系电话不能为空！</p>
               <p class="text-danger" v-show="errors.has('add.tel:regex')">联系电话格式不对！</p>
             </div>
 
-
-
+            <div class="form-group has-feedback" :class="{' has-error':errors.has('add.addr')}">
+              <label class="control-label" for="add.addr">地址:</label>
+              <input
+                class="form-control"
+                type="text"
+                name="add.addr"
+                id="add.addr"
+                v-validate="{required:true}"
+                v-model="addObj.addr"
+                placeholder="输入地址"
+              >
+              <p class="text-danger" v-show="errors.has('add.tel:required')">地址不能为空！</p>
+            </div>
 
             <!-- content end-->
             <div class="form-group">
@@ -222,16 +243,16 @@
     <div class="tab-slide" :class="{'active':tab.edit}">
       <!--组件-->
       <vue-edit :cancel="editCancel" :url="httpUlr.edit">
-        <template slot="title">修改产品系列</template>
+        <template slot="title">修改联系我们</template>
         <template>
           <form @submit.prevent="edit('edit')" data-vv-scope="edit">
-
             <!-- content start-->
-             <div class="form-group" >
-              <h5>唯一标识:{{editObj.code}}</h5>
-             </div>
-             <div class="form-group has-feedback" :class="{' has-error':errors.has('edit.name')}">
-              <label class="control-label" for="edit.name">系列名称:</label>
+            <div class=" form-group">
+                <h5>标识：{{editObj.code}}</h5>
+            </div>
+             
+            <div class="form-group has-feedback" :class="{' has-error':errors.has('edit.name')}">
+              <label class="control-label" for="edit.name">公司名称:</label>
               <input
                 class="form-control"
                 type="text"
@@ -241,29 +262,12 @@
                 v-model="editObj.name"
                 placeholder="输入名称"
               >
-              <p class="text-danger" v-show="errors.has('edit.name:required')">系列名称不为空！</p>
-              <p class="text-danger" v-show="errors.has('edit.name:min')">系列名称最小长度为2位！</p>
+              <p class="text-danger" v-show="errors.has('edit.name:required')">公司名称不为空！</p>
+              <p class="text-danger" v-show="errors.has('edit.name:min')">公司名称最小长度为2位！</p>
             </div>
 
-            <div class="form-group" :class="{' has-error':errors.has('edit.seriestypeId')}">
-              <label for="exampleInputEmail1" class="control-label">系列类型</label>
-              <select name="edit.seriestypeId" 
-              id class="form-control" 
-              v-validate="{required:true}"
-              v-model="editObj.seriestypeId"
-              >
-               
-                <option
-                  v-for="(item ,index) of seriesTypes"
-                  :key="index"
-                  :value="item._id"
-                  :selected="item._id===editObj.seriestypeId"
-                >{{item.name}}</option>
-              </select>
-               <p class="text-danger" v-show="errors.has('edit.seriestypeId:required')">系列类型不为空！</p>
-            </div>
-         
-            <div class="form-group has-feedback" :class="{' has-error':errors.has('add.order')}">
+    
+            <div class="form-group has-feedback" :class="{' has-error':errors.has('edit.order')}">
               <label class="control-label" for="edit.order">排序:</label>
               <input
                 class="form-control"
@@ -278,55 +282,65 @@
               <p class="text-danger" v-show="errors.has('edit.order:min_value')">排序值不能小于1！</p>
             </div>
 
-            <div class="form-group clearfix">
-              <div class="col-xs-12 padding-lr-no">
-                <label class="control-label" for="edit.code">上传图片:</label>
-              </div>
-
-              <div class="col-sm-6 padding-lr-no">
-                <input
-                  class="form-control"
-                  type="text"
-                  disabled
-                  name
-                  id
-                  v-model="addFileUpload"
-                  placeholder="上传图片"
-                >
-              </div>
-              <div class="col-sm-4">
-                <!-- size=300 默认单位为M ; timeout=30 默认单位为秒-->
-                <vue-file
-                name="vue-file-edit"
-                  btn-class="btn-primary"
-                  url="http://localhost:3000/file"
-                  :ok="editFileOk"
-                  file-type="image/*"
-                  :size="300"
-                  :timeout="30"
-                  line-class="text-primary"
-                  btn-text="上传图片"
-                ></vue-file>
-              </div>
+            <div class="form-group has-feedback" :class="{' has-error':errors.has('edit.x')}">
+              <label class="control-label" for="edit.x">X坐标:</label>
+              <input
+                class="form-control"
+                type="text"
+                name="edit.x"
+                id="edit.x"
+                v-validate="{required:true,decimal:true}"
+                v-model="editObj.x"
+                placeholder="输入数值"
+              >
+              <p class="text-danger" v-show="errors.has('edit.x:required')">X坐标不为空！</p>
+              <p class="text-danger" v-show="errors.has('edit.x:decimal')">不是有效的数值！</p>
             </div>
 
-            <div class="form-group clearfix">
-              <div class="col-xs-6 clearfix">
-                <div class="upload-img clearfix" v-for="(item,index) in editObj.imgs" :key="index">
-                  <span class="close" @click="editFileDel(index)">&times;</span>
-                  <img :src="item.src" alt>
-                  
-                  <input
-                    class="form-control"
-                    placeholder="输入url链接"
-                    type="text"
-                    name
-                    id
-                    v-model="item.url"
-                  >
-                </div>
-              </div>
+            <div class="form-group has-feedback" :class="{' has-error':errors.has('edit.y')}">
+              <label class="control-label" for="edit.y">Y坐标:</label>
+              <input
+                class="form-control"
+                type="text"
+                name="edit.y"
+                id="edit.y"
+                v-validate="{required:true,decimal:true}"
+                v-model="editObj.y"
+                placeholder="输入数值"
+              >
+              <p class="text-danger" v-show="errors.has('edit.y:required')">Y坐标不为空！</p>
+              <p class="text-danger" v-show="errors.has('edit.y:decimal')">不是有效的数值！</p>
             </div>
+
+            <div class="form-group has-feedback" :class="{' has-error':errors.has('edit.tel')}">
+              <label class="control-label" for="edit.tel">联系电话:</label>
+              <input
+                class="form-control"
+                type="text"
+                name="edit.tel"
+                id="edit.tel"
+                v-validate="{required:true,regex:/^\d[0-9-]{4,}$/}"
+                v-model="editObj.tel"
+                placeholder="输入数值"
+              >
+              <p class="text-danger" v-show="errors.has('edit.tel:required')">联系电话不能为空！</p>
+              <p class="text-danger" v-show="errors.has('edit.tel:regex')">联系电话格式不对！</p>
+            </div>
+
+            <div class="form-group has-feedback" :class="{' has-error':errors.has('edit.addr')}">
+              <label class="control-label" for="edit.addr">地址:</label>
+              <input
+                class="form-control"
+                type="text"
+                name="edit.addr"
+                id="edit.addr"
+                v-validate="{required:true}"
+                v-model="editObj.addr"
+                placeholder="输入地址"
+              >
+              <p class="text-danger" v-show="errors.has('edit.tel:required')">地址不能为空！</p>
+            </div>
+
             <!-- content end-->
             <div class="form-group">
               <button type="submit" class="btn btn-primary" :disabled="editError">保存</button>
@@ -335,7 +349,6 @@
         </template>
       </vue-edit>
     </div>
-
   </div>
 </template>
 
@@ -363,10 +376,13 @@ export default {
       //  edit修改的对象
       editObj: {
         _id: "",
-        name: "",
+         name: "",
+        code: "",
         order: "",
-        seriestypeId:"",
-        imgs: []
+        addr: "",
+        tel: "",
+        x: "",
+        y: ""
       },
 
       // add 添加的对象
@@ -374,25 +390,24 @@ export default {
         name: "",
         code: "",
         order: "",
-        seriestypeId:"",
-        imgs: []
+        addr: "",
+        tel: "",
+        x: "",
+        y: ""
       },
 
       // 自定义
-      seriesTypes:[],
+      seriesTypes: []
     };
   },
 
-  mounted() {
-    
-  },
+  mounted() {},
   methods: {
-      // add btn
-      addBtn() {
+    // add btn
+    addBtn() {
       this.tab.set("add");
-      this.errors.clear('add');
+      this.errors.clear("add");
       // 修改内容
-     this.addObj.imgs=[];
     },
     // edit btn
     editBtn(item) {
@@ -416,9 +431,11 @@ export default {
       this.editObj.name = o.name;
       this.editObj.code = o.code;
       this.editObj.order = o.order;
-      this.editObj.desc = o.desc;
-      this.editObj.seriestypeId = o.seriestypeId;
-      this.editObj.imgs =Array.prototype.slice.call(o.imgs);
+      this.editObj.x = o.x;
+      this.editObj.y = o.y;
+      this.editObj.tel = o.tel;
+      this.editObj.addr = o.addr;
+       
     },
     // 图片上传成功
     addFileOk(data, el) {
@@ -441,10 +458,10 @@ export default {
   },
   computed: {
     addFileUpload() {
-      return this.addObj.imgs.map(e => e.src);
+      // return this.addObj.imgs.map(e => e.src);
     },
     editdFileUpload() {
-      return this.editObj.imgs.map(e => e.src);
+      //return this.editObj.imgs.map(e => e.src);
     }
   },
 
@@ -482,12 +499,12 @@ export default {
   }
 }
 
-.rotation{
-  .list-group{
-    .img-thumbnail{
-      img{
+.rotation {
+  .list-group {
+    .img-thumbnail {
+      img {
         width: 100%;
-        height:  200px;
+        height: 200px;
       }
     }
   }
