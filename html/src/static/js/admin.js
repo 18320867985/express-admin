@@ -26551,6 +26551,12 @@ var mixin$1 = {
 
       this.$validator.validateAll(scope).then(function (result) {
         _this3.$loading("正在保存中...");
+
+        // ueditor
+        var ue = UE.getEditor('edit-editor');
+        if ("content" in _this3.editObj) {
+          _this3.editObj.content = ue.getContent();
+        }
         _this3.$http.put("" + _this3.httpUlr.edit, _this3.editObj).then(function (ok) {
           _this3.$loading(false);
           _this3.tab.set(); //  back index
@@ -26578,6 +26584,12 @@ var mixin$1 = {
       this.$validator.validateAll(scope).then(function (result) {
         if (result) {
           _this4.$loading("正在添加中...");
+          var ue = UE.getEditor('add-editor');
+          // ueditor
+          if ("content" in _this4.addObj) {
+            _this4.addObj.content = ue.getContent();
+          }
+
           _this4.$http.post("" + _this4.httpUlr.add, _this4.addObj).then(function (ok) {
             _this4.$loading(false);
             _this4.tab.set(); //  back index
@@ -28101,6 +28113,187 @@ var svcnet = {
 
 var App$10 = {
   render: function render() {
+    var _vm = this;var _h = _vm.$createElement;var _c = _vm._self._c || _h;return _c('div', { staticClass: "template-share rotation" }, [_c('div', { staticClass: "tab-slide", class: { 'active': _vm.tab.index } }, [_c('div', { staticClass: "btn-toolbar clearfix" }, [_c('div', { staticClass: "btn-group pull-left" }), _vm._v(" "), _c('div', { staticClass: "btn-group pull-right" }, [_c('button', { staticClass: "btn btn-default btn-sm", on: { "click": _vm.addBtn } }, [_c('span', { staticClass: "text-primary glyphicon glyphicon-plus" }), _vm._v(" 添加\n          ")]), _vm._v(" "), _c('button', { staticClass: "btn btn-default btn-sm", on: { "click": _vm.dtlBtn } }, [_c('span', { staticClass: "text-info glyphicon glyphicon-list-alt" }), _vm._v(" 查看\n          ")]), _vm._v(" "), _c('button', { staticClass: "btn btn-default btn-sm", on: { "click": _vm.editBtn } }, [_c('span', { staticClass: "glyphicon glyphicon-edit text-warning" }), _vm._v(" 修改\n          ")]), _vm._v(" "), _c('button', { staticClass: "btn btn-default btn-sm", on: { "click": function click($event) {
+          $event.preventDefault();_vm.delBtn();
+        } } }, [_c('span', { staticClass: "glyphicon glyphicon-trash text-danger" }), _vm._v(" 删除\n          ")])])]), _vm._v(" "), _c('vue-list', { attrs: { "url": _vm.httpUlr.list }, scopedSlots: _vm._u([{ key: "default", fn: function fn(scope) {
+          return [_c('table', { staticClass: "table table-hover table-bordered" }, [_c('thead', [_c('tr', { staticClass: "text-center" }, [_c('th', [_c('vue-checkbox', { attrs: { "callback": scope.allChcek }, model: { value: scope.allcheckBtn.ck, callback: function callback($$v) {
+                _vm.$set(scope.allcheckBtn, "ck", $$v);
+              }, expression: "scope.allcheckBtn.ck" } })], 1), _vm._v(" "), _c('th', [_vm._v("编号")]), _vm._v(" "), _c('th', [_vm._v("名称")]), _vm._v(" "), _c('th', [_vm._v("标识")]), _vm._v(" "), _c('th', [_vm._v("描述")]), _vm._v(" "), _c('th', [_vm._v("创建时间")])])]), _vm._v(" "), _c('tbody', _vm._l(scope.list, function (item, index) {
+            return _c('tr', { key: index }, [_c('td', [_c('vue-checkbox', { model: { value: item.bl, callback: function callback($$v) {
+                  _vm.$set(item, "bl", $$v);
+                }, expression: "item.bl" } })], 1), _vm._v(" "), _c('td', [_vm._v(_vm._s(item._id))]), _vm._v(" "), _c('td', [_vm._v(_vm._s(item.title))]), _vm._v(" "), _c('td', [_vm._v(_vm._s(item.code))]), _vm._v(" "), _c('td', [_vm._v(_vm._s(item.desc))]), _vm._v(" "), _c('td', [_vm._v(_vm._s(_vm._f("date")(item.createdt)))])]);
+          }), 0)])];
+        } }]), model: { value: _vm.list, callback: function callback($$v) {
+          _vm.list = $$v;
+        }, expression: "list" } })], 1), _vm._v(" "), _c('div', { staticClass: "tab-slide", class: { 'active': _vm.tab.dtl } }, [_c('vue-dtl', { attrs: { "cancel": _vm.dtlCancel, "url": _vm.httpUlr.dtl }, scopedSlots: _vm._u([{ key: "default", fn: function fn(scope) {
+          return _vm._l(scope.list, function (item, index) {
+            return _c('div', { key: index, staticClass: "list-group" }, [_c('div', { staticClass: "list-group-item clearfix" }, [_c('div', { staticClass: "col-xs-4 list-group-item-text" }, [_c('label', { attrs: { "for": "" } }, [_vm._v("Id:")]), _vm._v(" "), _c('span', [_vm._v(_vm._s(item._id))])]), _vm._v(" "), _c('div', { staticClass: "col-xs-4 list-group-item-text" }, [_c('label', { attrs: { "for": "" } }, [_vm._v("标识:")]), _vm._v(" "), _c('span', [_vm._v(_vm._s(item.code))])]), _vm._v(" "), _c('div', { staticClass: "col-xs-4 list-group-item-text" }, [_c('label', { attrs: { "for": "" } }, [_vm._v("排序:")]), _vm._v(" "), _c('span', [_vm._v(_vm._s(item.order))])])]), _vm._v(" "), _c('div', { staticClass: "list-group-item clearfix" }, [_c('div', { staticClass: "col-xs-12 list-group-item-text" }, [_c('label', { attrs: { "for": "" } }, [_vm._v("名称:")]), _vm._v(" "), _c('span', [_vm._v(_vm._s(item.title))])]), _vm._v(" "), _c('div', { staticClass: "col-xs-12 list-group-item-text" }, [_c('label', { attrs: { "for": "" } }, [_vm._v("描述:")]), _vm._v(" "), _c('span', [_vm._v(_vm._s(item.desc))])]), _vm._v(" "), _c('div', { staticClass: "col-xs-12 list-group-item-text" }, [_c('label', { attrs: { "for": "" } }, [_vm._v("文章内容:")]), _vm._v(" "), _c('div', { domProps: { "innerHTML": _vm._s(item.content) } })])])]);
+          });
+        } }]) }, [_c('template', { slot: "title" }, [_vm._v("查看详细服务网点")])], 2)], 1), _vm._v(" "), _c('div', { staticClass: "tab-slide", class: { 'active': _vm.tab.add } }, [_c('vue-add', { attrs: { "cancel": _vm.addCancel, "url": _vm.httpUlr.add } }, [_c('template', { slot: "title" }, [_vm._v("添加文章")]), _vm._v(" "), [_c('form', { attrs: { "data-vv-scope": "add" }, on: { "submit": function submit($event) {
+          $event.preventDefault();_vm.add('add');
+        } } }, [_c('div', { staticClass: "form-group has-feedback", class: { ' has-error': _vm.errors.has('add.title') } }, [_c('label', { staticClass: "control-label", attrs: { "for": "add.name" } }, [_vm._v("标题:")]), _vm._v(" "), _c('input', { directives: [{ name: "validate", rawName: "v-validate", value: { required: true, min: 4 }, expression: "{required:true,min:4}" }, { name: "model", rawName: "v-model", value: _vm.addObj.title, expression: "addObj.title" }], staticClass: "form-control", attrs: { "type": "text", "name": "add.title", "id": "add.title", "placeholder": "输入名称" }, domProps: { "value": _vm.addObj.title }, on: { "input": function input($event) {
+          if ($event.target.composing) {
+            return;
+          }_vm.$set(_vm.addObj, "title", $event.target.value);
+        } } }), _vm._v(" "), _c('p', { directives: [{ name: "show", rawName: "v-show", value: _vm.errors.has('add.title:required'), expression: "errors.has('add.title:required')" }], staticClass: "text-danger" }, [_vm._v("标题不能为空！")]), _vm._v(" "), _c('p', { directives: [{ name: "show", rawName: "v-show", value: _vm.errors.has('add.title:min'), expression: "errors.has('add.title:min')" }], staticClass: "text-danger" }, [_vm._v("标题最小长度为4位！")])]), _vm._v(" "), _c('div', { staticClass: "form-group has-feedback", class: { ' has-error': _vm.errors.has('add.code') } }, [_c('label', { staticClass: "control-label", attrs: { "for": "add.code" } }, [_vm._v("标识:")]), _vm._v(" "), _c('input', { directives: [{ name: "validate", rawName: "v-validate", value: { required: true, unique: 'admin/article/data-unique' }, expression: "{required:true,unique:'admin/article/data-unique'}" }, { name: "model", rawName: "v-model", value: _vm.addObj.code, expression: "addObj.code" }], staticClass: "form-control", attrs: { "type": "text", "name": "add.code", "id": "add.code", "placeholder": "输入标识" }, domProps: { "value": _vm.addObj.code }, on: { "input": function input($event) {
+          if ($event.target.composing) {
+            return;
+          }_vm.$set(_vm.addObj, "code", $event.target.value);
+        } } }), _vm._v(" "), _c('p', { directives: [{ name: "show", rawName: "v-show", value: _vm.errors.has('add.code:required'), expression: "errors.has('add.code:required')" }], staticClass: "text-danger" }, [_vm._v("标识不能为空！")]), _vm._v(" "), _c('p', { directives: [{ name: "show", rawName: "v-show", value: _vm.errors.has('add.code:unique'), expression: "errors.has('add.code:unique')" }], staticClass: "text-danger" }, [_vm._v("标识值已存在！")])]), _vm._v(" "), _c('div', { staticClass: "form-group has-feedback", class: { ' has-error': _vm.errors.has('add.order') } }, [_c('label', { staticClass: "control-label", attrs: { "for": "add.order" } }, [_vm._v("排序:")]), _vm._v(" "), _c('input', { directives: [{ name: "validate", rawName: "v-validate", value: { required: true, min_value: 1 }, expression: "{required:true,min_value:1}" }, { name: "model", rawName: "v-model", value: _vm.addObj.order, expression: "addObj.order" }], staticClass: "form-control", attrs: { "type": "text", "name": "add.order", "id": "add.order", "placeholder": "输入数值" }, domProps: { "value": _vm.addObj.order }, on: { "input": function input($event) {
+          if ($event.target.composing) {
+            return;
+          }_vm.$set(_vm.addObj, "order", $event.target.value);
+        } } }), _vm._v(" "), _c('p', { directives: [{ name: "show", rawName: "v-show", value: _vm.errors.has('add.order:required'), expression: "errors.has('add.order:required')" }], staticClass: "text-danger" }, [_vm._v("排序不能为空！")]), _vm._v(" "), _c('p', { directives: [{ name: "show", rawName: "v-show", value: _vm.errors.has('add.order:min_value'), expression: "errors.has('add.order:min_value')" }], staticClass: "text-danger" }, [_vm._v("排序值不能小于1！")])]), _vm._v(" "), _c('div', { staticClass: "form-group has-feedback", class: { ' has-error': _vm.errors.has('add.desc') } }, [_c('label', { staticClass: "control-label", attrs: { "for": "add.desc" } }, [_vm._v("描述:")]), _vm._v(" "), _c('input', { directives: [{ name: "validate", rawName: "v-validate", value: { required: true, min: 4 }, expression: "{required:true,min:4}" }, { name: "model", rawName: "v-model", value: _vm.addObj.desc, expression: "addObj.desc" }], staticClass: "form-control", attrs: { "type": "text", "name": "add.desc", "id": "add.desc", "placeholder": "输入名称" }, domProps: { "value": _vm.addObj.desc }, on: { "input": function input($event) {
+          if ($event.target.composing) {
+            return;
+          }_vm.$set(_vm.addObj, "desc", $event.target.value);
+        } } }), _vm._v(" "), _c('p', { directives: [{ name: "show", rawName: "v-show", value: _vm.errors.has('add.desc:required'), expression: "errors.has('add.desc:required')" }], staticClass: "text-danger" }, [_vm._v("描述不能为空！")]), _vm._v(" "), _c('p', { directives: [{ name: "show", rawName: "v-show", value: _vm.errors.has('add.desc:min'), expression: "errors.has('add.desc:min')" }], staticClass: "text-danger" }, [_vm._v("描述最小长度为4位！")])]), _vm._v(" "), _c('div', { staticClass: "form-group has-feedback" }, [_c('label', { staticClass: "control-label", attrs: { "for": "add.content" } }, [_vm._v("文章内容:")]), _vm._v(" "), _c('script', { staticStyle: { "width": "100%", "height": "250px" }, attrs: { "id": "add-editor", "type": "text/plain" } })]), _vm._v(" "), _c('div', { staticClass: "form-group" }, [_c('button', { staticClass: "btn btn-primary", attrs: { "type": "submit", "disabled": _vm.addError } }, [_vm._v("添加")])])])]], 2)], 1), _vm._v(" "), _c('div', { staticClass: "tab-slide", class: { 'active': _vm.tab.edit } }, [_c('vue-edit', { attrs: { "cancel": _vm.editCancel, "url": _vm.httpUlr.edit } }, [_c('template', { slot: "title" }, [_vm._v("修改文章")]), _vm._v(" "), [_c('form', { attrs: { "data-vv-scope": "edit" }, on: { "submit": function submit($event) {
+          $event.preventDefault();_vm.edit('edit');
+        } } }, [_c('div', { staticClass: "form-group" }, [_c('h5', [_vm._v("标识：" + _vm._s(_vm.editObj.code))])]), _vm._v(" "), _c('div', { staticClass: "form-group has-feedback", class: { ' has-error': _vm.errors.has('edit.title') } }, [_c('label', { staticClass: "control-label", attrs: { "for": "edit.title" } }, [_vm._v("标题:")]), _vm._v(" "), _c('input', { directives: [{ name: "validate", rawName: "v-validate", value: { required: true, min: 2 }, expression: "{required:true,min:2}" }, { name: "model", rawName: "v-model", value: _vm.editObj.title, expression: "editObj.title" }], staticClass: "form-control", attrs: { "type": "text", "name": "edit.title", "id": "edit.title", "placeholder": "输入名称" }, domProps: { "value": _vm.editObj.title }, on: { "input": function input($event) {
+          if ($event.target.composing) {
+            return;
+          }_vm.$set(_vm.editObj, "title", $event.target.value);
+        } } }), _vm._v(" "), _c('p', { directives: [{ name: "show", rawName: "v-show", value: _vm.errors.has('edit.title:required'), expression: "errors.has('edit.title:required')" }], staticClass: "text-danger" }, [_vm._v("标题不能为空！")]), _vm._v(" "), _c('p', { directives: [{ name: "show", rawName: "v-show", value: _vm.errors.has('edit.title:min'), expression: "errors.has('edit.title:min')" }], staticClass: "text-danger" }, [_vm._v("标题最小长度为2位！")])]), _vm._v(" "), _c('div', { staticClass: "form-group has-feedback", class: { ' has-error': _vm.errors.has('edit.order') } }, [_c('label', { staticClass: "control-label", attrs: { "for": "edit.order" } }, [_vm._v("排序:")]), _vm._v(" "), _c('input', { directives: [{ name: "validate", rawName: "v-validate", value: { required: true, min_value: 1 }, expression: "{required:true,min_value:1}" }, { name: "model", rawName: "v-model", value: _vm.editObj.order, expression: "editObj.order" }], staticClass: "form-control", attrs: { "type": "text", "name": "edit.order", "id": "edit.order", "placeholder": "输入数值" }, domProps: { "value": _vm.editObj.order }, on: { "input": function input($event) {
+          if ($event.target.composing) {
+            return;
+          }_vm.$set(_vm.editObj, "order", $event.target.value);
+        } } }), _vm._v(" "), _c('p', { directives: [{ name: "show", rawName: "v-show", value: _vm.errors.has('edit.order:required'), expression: "errors.has('edit.order:required')" }], staticClass: "text-danger" }, [_vm._v("排序不为空！")]), _vm._v(" "), _c('p', { directives: [{ name: "show", rawName: "v-show", value: _vm.errors.has('edit.order:min_value'), expression: "errors.has('edit.order:min_value')" }], staticClass: "text-danger" }, [_vm._v("排序值不能小于1！")])]), _vm._v(" "), _c('div', { staticClass: "form-group has-feedback", class: { ' has-error': _vm.errors.has('edit.desc') } }, [_c('label', { staticClass: "control-label", attrs: { "for": "edit.desc" } }, [_vm._v("描述:")]), _vm._v(" "), _c('input', { directives: [{ name: "validate", rawName: "v-validate", value: { required: true, min: 4 }, expression: "{required:true,min:4}" }, { name: "model", rawName: "v-model", value: _vm.editObj.desc, expression: "editObj.desc" }], staticClass: "form-control", attrs: { "type": "text", "name": "edit.desc", "id": "edit.desc", "placeholder": "输入名称" }, domProps: { "value": _vm.editObj.desc }, on: { "input": function input($event) {
+          if ($event.target.composing) {
+            return;
+          }_vm.$set(_vm.editObj, "desc", $event.target.value);
+        } } }), _vm._v(" "), _c('p', { directives: [{ name: "show", rawName: "v-show", value: _vm.errors.has('edit.desc:required'), expression: "errors.has('edit.desc:required')" }], staticClass: "text-danger" }, [_vm._v("描述不能为空！")]), _vm._v(" "), _c('p', { directives: [{ name: "show", rawName: "v-show", value: _vm.errors.has('edit.desc:min'), expression: "errors.has('edit.desc:min')" }], staticClass: "text-danger" }, [_vm._v("描述最小长度为4位！")])]), _vm._v(" "), _c('div', { staticClass: "form-group has-feedback" }, [_c('label', { staticClass: "control-label", attrs: { "for": "edit.content" } }, [_vm._v("文章内容:")]), _vm._v(" "), _c('script', { staticStyle: { "width": "100%", "height": "250px" }, attrs: { "id": "edit-editor", "type": "text/plain" } })]), _vm._v(" "), _c('div', { staticClass: "form-group" }, [_c('button', { staticClass: "btn btn-primary", attrs: { "type": "submit", "disabled": _vm.editError } }, [_vm._v("保存")])])])]], 2)], 1)]);
+  },
+  staticRenderFns: [],
+  mixins: [mixin$1],
+  data: function data() {
+    return {
+      httpUlr: {
+        list: "admin/article/data",
+        add: "admin/article/data",
+        edit: "admin/article/data",
+        del: "admin/article/data",
+        dtl: "admin/article/data-dtl"
+      },
+      // inde列表集合
+      list: [],
+      //  edit修改的对象
+      editObj: {
+        _id: "",
+        name: "",
+        code: "",
+        order: "",
+        desc: "",
+        content: ""
+      },
+
+      // add 添加的对象
+      addObj: {
+        title: "",
+        code: "",
+        order: "",
+        desc: "",
+        content: ""
+
+        // 自定义
+      } };
+  },
+  mounted: function mounted() {
+    UE.getEditor('add-editor');
+    UE.getEditor('edit-editor');
+  },
+
+  methods: {
+    // add btn
+    addBtn: function addBtn() {
+      this.tab.set("add");
+      this.errors.clear('add');
+      // 修改内容
+      // this.addObj.imgs=[];
+    },
+
+    // edit btn
+    editBtn: function editBtn(item) {
+      var fo = this.list.filter(function (item) {
+        return item.bl === true;
+      });
+      if (fo.length <= 0) {
+        this.$alert({
+          title: "提示",
+          content: "<strong class='text-danger'>没选择数据!</strong>",
+          html: true
+        }).catch(function (err) {});
+        return;
+      }
+      this.tab.set("edit");
+      this.errors.clear("edit");
+      var o = fo[0];
+
+      // 修改内容
+      this.editObj._id = o._id;
+      this.editObj.title = o.title;
+      this.editObj.code = o.code;
+      this.editObj.order = o.order;
+      this.editObj.desc = o.desc;
+      this.editObj.content = o.content;
+      UE.getEditor('edit-editor').setContent(this.editObj.content);
+    },
+
+    // 图片上传成功
+    addFileOk: function addFileOk(data, el) {
+      var body = data;
+      this.addObj.imgs.unshift({ url: "", src: body.data });
+    },
+
+    // 删除图片
+    addFileDel: function addFileDel(index) {
+      this.addObj.imgs.splice(index, 1);
+    },
+
+    // 图片上传成功
+    editFileOk: function editFileOk(data, el) {
+      var body = data;
+      this.editObj.imgs.unshift({ url: "", src: body.data });
+    },
+
+    // 删除图片
+    editFileDel: function editFileDel(index) {
+      this.editObj.imgs.splice(index, 1);
+    }
+  },
+  computed: {
+    addFileUpload: function addFileUpload() {
+      return this.addObj.imgs.map(function (e) {
+        return e.src;
+      });
+    },
+    editdFileUpload: function editdFileUpload() {
+      return this.editObj.imgs.map(function (e) {
+        return e.src;
+      });
+    }
+  },
+
+  components: {
+    VueList: VueList,
+    VueEdit: VueEdit,
+    VueAdd: VueAdd,
+    VueDtl: VueDtl
+  }
+};
+
+var article = {
+    init: function init() {
+
+        var vm = new Vue({
+            render: function render(h) {
+                return h(App$10);
+            }
+        }).$mount("#app");
+    }
+};
+
+var App$11 = {
+  render: function render() {
     var _vm = this;var _h = _vm.$createElement;var _c = _vm._self._c || _h;return _c('div', { staticClass: "file" }, [_c('hr'), _vm._v(" "), _c('div', { staticClass: "form-group" }, [_c('div', { staticClass: "col-sm-6" }, [_c('input', { directives: [{ name: "model", rawName: "v-model", value: _vm.file.data, expression: "file.data" }], staticClass: "form-control", attrs: { "type": "text", "name": "", "id": "" }, domProps: { "value": _vm.file.data }, on: { "input": function input($event) {
           if ($event.target.composing) {
             return;
@@ -28132,7 +28325,7 @@ var file$1 = {
 
         var vm = new Vue({
             render: function render(h) {
-                return h(App$10);
+                return h(App$11);
             }
         }).$mount("#app");
     }
@@ -28177,6 +28370,7 @@ exports.seriestype = seriestype;
 exports.series = series;
 exports.contact = contact;
 exports.svcnet = svcnet;
+exports.article = article;
 exports.file = file$1;
 
 Object.defineProperty(exports, '__esModule', { value: true });

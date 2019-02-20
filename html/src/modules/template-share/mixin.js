@@ -89,6 +89,12 @@ export const mixin = {
 
       this.$validator.validateAll(scope).then(result => {
         this.$loading("正在保存中...");
+
+        // ueditor
+        var ue = UE.getEditor('edit-editor');
+        if("content" in this.editObj){
+          this.editObj.content=ue.getContent();
+        }
         this.$http
           .put(`${this.httpUlr.edit}`, this.editObj)
           .then(ok => {
@@ -117,6 +123,12 @@ export const mixin = {
       this.$validator.validateAll(scope).then(result => {
         if (result) {
           this.$loading("正在添加中...");
+          var ue = UE.getEditor('add-editor');
+          // ueditor
+          if("content" in this.addObj){
+            this.addObj.content=ue.getContent();
+          }
+         
           this.$http.post(`${this.httpUlr.add}`, this.addObj).then(ok => {
             this.$loading(false);
             this.tab.set(); //  back index
