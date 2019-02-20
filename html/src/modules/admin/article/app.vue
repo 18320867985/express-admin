@@ -62,7 +62,7 @@
     <div class="tab-slide" :class="{'active':tab.dtl}">
       <!--组件-->
       <vue-dtl :cancel="dtlCancel" :url="httpUlr.dtl">
-        <template slot="title">查看详细服务网点</template>
+        <template slot="title">查看文章详情</template>
         <template slot-scope="scope">
           <div class="list-group" v-for="(item,index) of scope.list" :key="index">
             <div class="list-group-item clearfix">
@@ -94,9 +94,6 @@
                 <div v-html="item.content"> </div>
               </div>
               
-
-             
-
           </div>
         </template>
       </vue-dtl>
@@ -171,15 +168,31 @@
               <p class="text-danger" v-show="errors.has('add.desc:min')">描述最小长度为4位！</p>
             </div>
 
-            <div class="form-group has-feedback">
+            <div class="form-group has-feedback"  :class="{' has-error':errors.has('add.content')}">
                <label class="control-label" for="add.content">文章内容:</label>
-		          <script id="add-editor" type="text/plain" style="width:100%;height:250px;"></script>
+               <input
+                class="form-control v-hide"
+                type="text"
+                name="add.content"
+                id="add.content"
+                v-validate="{required:true}"
+                v-model="addObj.content"
+                placeholder="输入数值"
+              >
+        
+		          <script id="add-editor" type="text/plain" style="width:100%;height:200px;"></script>
+
+               <p class="text-danger" v-show="errors.has('add.content:required')">文章内容不能为空！</p>
 	        </div>
+         
        
             <!-- content end-->
             <div class="form-group">
               <button type="submit" class="btn btn-primary" :disabled="addError">添加</button>
             </div>
+        
+         
+         
           </form>
         </template>
       </vue-add>
@@ -241,9 +254,20 @@
               <p class="text-danger" v-show="errors.has('edit.desc:min')">描述最小长度为4位！</p>
             </div>
 
-            <div class="form-group has-feedback">
+            <div class="form-group has-feedback" :class="{' has-error':errors.has('edit.content')}">
                <label class="control-label" for="edit.content">文章内容:</label>
-		          <script id="edit-editor" type="text/plain" style="width:100%;height:250px;"></script>
+		          <script id="edit-editor" type="text/plain" style="width:100%;height:200px;"></script>
+           
+               <input
+                class="form-control v-hide"
+                type="text"
+                name="edit.content"
+                id="edit.content"
+                v-validate="{required:true}"
+                v-model="editObj.content"
+                placeholder="输入数值"
+              >
+              <p class="text-danger" v-show="errors.has('edit.content:required')">文章内容不能为空！</p>
 	        </div>
 
             <!-- content end-->
@@ -303,14 +327,24 @@ export default {
   },
 
   mounted() {
-  UE.getEditor('add-editor');
-  UE.getEditor('edit-editor');
+    let add=UE.getEditor('add-editor');
+    let edit=UE.getEditor('edit-editor');
+  var self= this;
+   add.addListener( 'selectionchange', function( editor ) {
+     self.addObj.content=this.getContent()
+  });
+
+   edit.addListener( 'selectionchange', function( editor ) {
+     self.editObj.content=this.getContent()
+  });
+
   },
   methods: {
       // add btn
       addBtn() {
       this.tab.set("add");
       this.errors.clear('add');
+      UE.getEditor('add-editor').setContent("");
       // 修改内容
     // this.addObj.imgs=[];
     },
