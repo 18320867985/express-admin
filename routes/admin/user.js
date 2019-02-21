@@ -1,6 +1,7 @@
 
 const router = require("./_router");
 const mainModel = require("../../models/main");
+const cpy = require("../../lib/crypto");
 
 router.get("/user", async (req, res) => {
 
@@ -37,14 +38,14 @@ router.get("/user/data/:index/:pageItem", async (req, res) => {
     // paging start
     let index = Number(req.params.index) || 0;
     let pageItem = Number(req.params.pageItem) || 10;
-    if(!mainModel.User){
+    if (!mainModel.User) {
         // 没有相关数据
         res.json(res.ok([], {
             index: 0, //	当前页
             pageItem: pageItem, //  每页条数
             allItem: 0, //  总条数
-     }));
-     return;
+        }));
+        return;
     }
     let count = await mainModel.User.countDocuments(); //edit line
     if (count <= 0) {
@@ -71,7 +72,12 @@ router.get("/user/data/:index/:pageItem", async (req, res) => {
 
 //  添加
 router.post("/user/data", async (req, res) => {
-    let user = new mainModel.User({ name: req.body.name, pwd: req.body.pwd, email: req.body.email, roleId: req.body.roleId });
+    let user = new mainModel.User({
+        name: req.body.name,
+        pwd: cpy.md5(req.body.pwd),
+        email: req.body.email,
+        roleId: req.body.roleId
+    });
 
     let isok = user.validateSync();
     if (isok) {

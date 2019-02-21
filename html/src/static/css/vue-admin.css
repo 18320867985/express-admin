@@ -1,7 +1,11 @@
 @charset "UTF-8";
 .vue-file {
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
-  align-items: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
   height: 34px; }
 
 .v-hide-text {
@@ -154,7 +158,8 @@
   padding: 30px 30px;
   border-radius: 5px;
   border: 1px  solid #ddd;
-  box-shadow: 2px 2px 5px #ddd -2px -2px 5px #ddd;
+  -webkit-box-shadow: 2px 2px 5px #ddd -2px -2px 5px #ddd;
+          box-shadow: 2px 2px 5px #ddd -2px -2px 5px #ddd;
   margin: 0 auto;
   margin-top: 60px; }
 
