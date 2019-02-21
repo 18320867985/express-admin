@@ -52,8 +52,9 @@ gulp.task('release', ["build-scss", "build"], function () {
 		.pipe(minHtml({ collapseWhitespace: true }))  // 压缩html
 		.pipe(gulp.dest('./dist/'));                  //复制html
 
-	gulp.src('./src/static/css/**/*.*')
-		.pipe(minCss()).pipe(gulp.dest('./dist/static/css')); //复制css
+	gulp.src(['./src/static/css/**/*.css']).pipe(minCss()).pipe(gulp.dest('./dist/static/css')); //复制css
+
+
 
 	gulp.src('./src/static/js/**/*.*')
 		.pipe(gulp.dest('./dist/static/js/')); //复制js
@@ -65,7 +66,7 @@ gulp.task('release', ["build-scss", "build"], function () {
 		gulp.src(['./src/ueditor/**/*.*'])  // ueditor 富文本编辑器
 		.pipe(gulp.dest('./dist/ueditor'));  
 
-	gulp.src(['./src/static/**/*.*', '!./src/static/css/**/*.*', '!./src/static/js/**/*.*', '!./src/static/images/**/*.*']).pipe(gulp.dest('./dist/static'));
+	gulp.src(['./src/static/**/*.*', '!./src/static/css/**/*.css', '!./src/static/js/**/*.*', '!./src/static/images/**/*.*']).pipe(gulp.dest('./dist/static'));
 
 });
 

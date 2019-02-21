@@ -6,6 +6,7 @@ var session = require('express-session');
 var logger = require('morgan');
 var nunjucks = require('nunjucks');
 var app = express();
+var isdev=true;
 
 app.use(logger('dev'));
 app.use(express.json());                           // for parsing application/json
@@ -30,17 +31,18 @@ app.use("/public",express.static(path.join(__dirname, 'public')));
 let ueditorDir, ueditorUpload, htmlStatic, nunjucksDir;
 
 // dev
+if(isdev){
 ueditorUpload = path.join(__dirname, 'html/src');
 ueditorDir = path.join(__dirname, 'html/src/ueditor');
 htmlStatic = path.join(__dirname, 'html/src/static');
 nunjucksDir = path.join(__dirname, 'html/src/views');
-
+}else{
 // release
-//  ueditorUpload=path.join(__dirname, 'html/dist');
-//  ueditorDir=path.join(__dirname, 'html/dist/ueditor');
-//  htmlStatic=path.join(__dirname, 'html/dist/static');
-//  nunjucksDir=path.join(__dirname, 'html/dist/views');
-
+ ueditorUpload=path.join(__dirname, 'html/dist');
+ ueditorDir=path.join(__dirname, 'html/dist/ueditor');
+ htmlStatic=path.join(__dirname, 'html/dist/static');
+ nunjucksDir=path.join(__dirname, 'html/dist/views');
+}
 
 app.set('view engine', 'html'); //   设置扩展名
 nunjucks.configure(nunjucksDir, {
