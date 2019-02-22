@@ -52,9 +52,8 @@ gulp.task('release', ["build-scss", "build"], function () {
 		.pipe(minHtml({ collapseWhitespace: true }))  // 压缩html
 		.pipe(gulp.dest('./dist/'));                  //复制html
 
-	gulp.src(['./src/static/css/**/*.css']).pipe(minCss()).pipe(gulp.dest('./dist/static/css')); //复制css
-
-
+	gulp.src(['./src/static/css/**/*.css','!./src/static/css/iframe/**/*.css']).pipe(minCss()).pipe(gulp.dest('./dist/static/css')); //复制css
+	gulp.src(['./src/static/css/iframe/**/*.css']).pipe(gulp.dest('./dist/static/css/iframe')); //兼容iframe框架 已有的css 不压缩css
 
 	gulp.src('./src/static/js/**/*.*')
 		.pipe(gulp.dest('./dist/static/js/')); //复制js

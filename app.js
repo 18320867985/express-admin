@@ -43,6 +43,8 @@ nunjucksDir = path.join(__dirname, 'html/src/views');
  htmlStatic=path.join(__dirname, 'html/dist/static');
  nunjucksDir=path.join(__dirname, 'html/dist/views');
 }
+app.use("/static", express.static(htmlStatic));
+app.use("/ueditor", express.static(ueditorDir));
 
 app.set('view engine', 'html'); //   设置扩展名
 nunjucks.configure(nunjucksDir, {
@@ -50,10 +52,6 @@ nunjucks.configure(nunjucksDir, {
     express: app,
     //throwOnUndefined :true
 });
-
-app.use("/static", express.static(htmlStatic));
-app.use("/ueditor", express.static(ueditorDir));
-
 
 
 // 跨域CORS
