@@ -1,0 +1,9 @@
+服务器运行在 localhost:\\.\pipe\bc98fae4-04c9-4a1d-809d-1ba1588b8c1b 端口上...
+processId:5716
+[0mGET /static/js/admin.js [36m304 [0m11.119 ms - -[0m
+[0mGET /static/css/cstFonts/iconfont.css [32m200 [0m22.674 ms - 2967[0m
+[0mGET /static/css/vue-admin.css [32m200 [0m25.103 ms - 6895[0m
+[0mGET /static/css/admin.css [32m200 [0m26.369 ms - 167382[0m
+[0mGET /static/css/fonts/glyphicons-halflings-regular.woff2 [36m304 [0m1.143 ms - -[0m
+mongodb connection success 
+[0mGET /admin/seriestype/data/1/10 [32m200 [0m4076.361 ms - 757[0m

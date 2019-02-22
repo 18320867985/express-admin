@@ -1,0 +1,21 @@
+服务器运行在 localhost:\\.\pipe\2863a1a6-a32f-40b5-befc-7be36fa910aa 端口上...
+processId:8976
+[0mGET /static/js/admin.js [36m304 [0m12.960 ms - -[0m
+[0mGET /static/css/admin.css [36m304 [0m14.216 ms - -[0m
+[0mGET /static/css/cstFonts/iconfont.css [36m304 [0m14.127 ms - -[0m
+[0mGET /static/css/vue-admin.css [36m304 [0m13.998 ms - -[0m
+[0mGET /ueditor/ueditor.config.js [32m200 [0m33.657 ms - 12859[0m
+[0mGET /ueditor/lang/zh-cn/zh-cn.js [32m200 [0m31.262 ms - 30020[0m
+[0mGET /ueditor/ueditor.all.min.js [32m200 [0m30.889 ms - 314079[0m
+[0mGET /ueditor/themes/default/css/ueditor.css [32m200 [0m1.419 ms - 45662[0m
+[0mGET /static/css/fonts/glyphicons-halflings-regular.woff2 [36m304 [0m0.847 ms - -[0m
+[0mGET /ueditor/themes/iframe.css [32m200 [0m0.992 ms - 42[0m
+[0mGET /ueditor/themes/iframe.css [32m200 [0m0.955 ms - 42[0m
+[0mGET /ueditor/ue?action=config&&noCache=1550835680992 [36m302 [0m7.220 ms - 49[0m
+[0mGET /ueditor/ue?action=config&&noCache=1550835681002 [36m302 [0m3.098 ms - 49[0m
+[0mGET /ueditor/third-party/codemirror/codemirror.js [32m200 [0m2.805 ms - 162186[0m
+[0mGET /ueditor/third-party/codemirror/codemirror.css [32m200 [0m0.981 ms - 2992[0m
+[0mGET /ueditor/nodejs/config.json [32m200 [0m2.061 ms - 6268[0m
+[0mGET /ueditor/nodejs/config.json [32m200 [0m1.528 ms - 6268[0m
+mongodb connection success 
+[0mGET /admin/article/data/1/10 [32m200 [0m3961.163 ms - 3108[0m
