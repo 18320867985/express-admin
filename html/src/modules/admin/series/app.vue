@@ -317,7 +317,7 @@
                 <vue-file
                 name="vue-file-edit"
                   btn-class="btn-primary"
-                  url="http://localhost:3000/file"
+                  url="/file"
                   :ok="editFileOk"
                   file-type="image/*"
                   :size="300"
