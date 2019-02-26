@@ -153,3 +153,9 @@ mongoexport -d admin -c  users -o  e:\mongodb\export\user.json
 
 8.2  数据导入
 mongoimport -d admin -c  users --file  e:\mongodb\export\user.json
+
+
+
+
+//git保持本地仓库代码跟远程代码一致:
+git fetch --all && git reset --hard origin/master && git pull  
