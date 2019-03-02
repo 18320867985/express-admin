@@ -13,14 +13,14 @@ router.post("/", (req, res) => {
 
     try {
 
-        let _url = "./public/upload";
+        let _url = "public/upload";
         if(!fs.existsSync(path.resolve( _url))){
             fs.mkdirSync(path.resolve( _url));
         }
         let form = new formidable.IncomingForm();
         form.keepExtensions = true;
-        form.uploadDir = path.resolve(_url);
-        form.multiples = false;
+        form.uploadDir = _url;
+        form.multiples = true;
         form.parse(req, (err, fileds, files) => {
 
             // 写入数据库

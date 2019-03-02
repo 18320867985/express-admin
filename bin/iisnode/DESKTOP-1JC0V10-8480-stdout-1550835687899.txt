@@ -1,4 +1,0 @@
-服务器运行在 localhost:\\.\pipe\a735a794-461b-45bc-a26b-461a5d973db6 端口上...
-processId:8480
-mongodb connection success 
-[0mGET /admin/article/data/2/10 [32m200 [0m4166.678 ms - 319[0m

@@ -1,4 +1,0 @@
-服务器运行在 localhost:\\.\pipe\cb42739e-c0d0-4fed-a01a-5107d0f4a734 端口上...
-processId:10016
-[0mGET /favicon.ico [32m200 [0m48.817 ms - 439[0m
-mongodb connection success 
