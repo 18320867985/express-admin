@@ -1,0 +1,43 @@
+服务器运行在 localhost:\\.\pipe\e99ba8d9-54b7-4c66-b356-f4d4ad82268d 端口上...
+processId:8668
+[0mGET / [36m302 [0m11.457 ms - 66[0m
+[0mGET /admin/index [32m200 [0m12.926 ms - 6386[0m
+[0mGET /static/css/iframe/cstfont/iconfont.css [36m304 [0m5.491 ms - -[0m
+[0mGET /static/css/iframe/all.css [36m304 [0m63.401 ms - -[0m
+[0mGET /static/js/common/jquery-1.11.0.js [36m304 [0m62.237 ms - -[0m
+[0mGET /static/js/iframe/all.js [36m304 [0m61.601 ms - -[0m
+[0mGET /static/js/admin.js [36m304 [0m61.007 ms - -[0m
+[0mGET /static/css/iframe/fonts/glyphicons-halflings-regular.woff2 [36m304 [0m0.918 ms - -[0m
+[0mGET /static/css/iframe/cstfont/iconfont.css [36m304 [0m1.474 ms - -[0m
+[0mGET /static/css/iframe/all.css [36m304 [0m0.730 ms - -[0m
+[0mGET /admin/user [32m200 [0m3.010 ms - 854[0m
+[0mGET /static/css/cstFonts/iconfont.css [36m304 [0m2.275 ms - -[0m
+[0mGET /static/css/vue-admin.css [36m304 [0m1.481 ms - -[0m
+[0mGET /static/css/admin.css [36m304 [0m4.094 ms - -[0m
+[0mGET /static/js/admin.js [36m304 [0m0.800 ms - -[0m
+[0mGET /static/css/fonts/glyphicons-halflings-regular.woff2 [36m304 [0m0.745 ms - -[0m
+[0mGET /admin/index/data [36m304 [0m1.460 ms - -[0m
+mongodb connection success 
+[0mGET /admin/userRole/data [32m200 [0m2492.030 ms - 418[0m
+[0mGET /file [32m200 [0m4.244 ms - 1011[0m
+[0mGET /static/css/cstFonts/iconfont.css [36m304 [0m2.413 ms - -[0m
+[0mGET /static/css/admin.css [36m304 [0m3.004 ms - -[0m
+[0mGET /static/css/vue-admin.css [36m304 [0m0.969 ms - -[0m
+[0mGET /static/js/admin.js [36m304 [0m1.068 ms - -[0m
+[0mGET /admin/user/data/1/10 [32m200 [0m4540.906 ms - 938[0m
+[0mGET /static/js/admin.js [36m304 [0m2.289 ms - -[0m
+[0mGET /static/css/fonts/glyphicons-halflings-regular.woff2 [36m304 [0m0.803 ms - -[0m
+[0mPOST /file?_=1551675342460 [32m200 [0m13.981 ms - 98[0m
+[0mGET /public/upload/upload_094cb939272df1655fa49f7095de3645.jpg [32m200 [0m2.407 ms - 95158[0m
+[0mPOST /file [32m200 [0m6.831 ms - 98[0m
+[0mGET /file [32m200 [0m0.622 ms - 1011[0m
+[0mPOST /file?_=1551675352028 [32m200 [0m8.581 ms - 98[0m
+[0mGET /public/upload/upload_b7844a54271352c8fdccd24eef9d3baa.jpg [32m200 [0m1.466 ms - 97805[0m
+[0mPOST /file?_=1551675359384 [32m200 [0m11.514 ms - 98[0m
+[0mGET /public/upload/upload_3e15c2bdde36e47ff08a6b590f545189.jpg [32m200 [0m2.017 ms - 97805[0m
+[0mGET /file [36m304 [0m0.977 ms - -[0m
+[0mGET /static/css/cstFonts/iconfont.css [36m304 [0m2.616 ms - -[0m
+[0mGET /static/css/admin.css [36m304 [0m4.935 ms - -[0m
+[0mGET /static/css/vue-admin.css [36m304 [0m3.742 ms - -[0m
+[0mGET /static/js/admin.js [36m304 [0m4.962 ms - -[0m
+[0mGET /static/css/fonts/glyphicons-halflings-regular.woff2 [36m304 [0m0.986 ms - -[0m

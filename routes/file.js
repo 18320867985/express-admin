@@ -13,13 +13,13 @@ router.post("/", (req, res) => {
 
     try {
 
-        let _url = "public/upload";
+        let _url = "/public/upload";
         if(!fs.existsSync(path.resolve( _url))){
             fs.mkdirSync(path.resolve( _url));
         }
         let form = new formidable.IncomingForm();
         form.keepExtensions = true;
-        form.uploadDir = _url;
+        form.uploadDir = "public/upload";
         form.multiples = true;
         form.parse(req, (err, fileds, files) => {
 
@@ -30,8 +30,10 @@ router.post("/", (req, res) => {
                 //throw err;
             }
 
+            
+
             var _path = files.file.path;
-            var p = path.dirname(_path);
+            // var p = path.dirname(_path);
             var extname = path.extname(_path);
             var basename = path.basename(_path);
             let url = "/public/upload/" + basename;

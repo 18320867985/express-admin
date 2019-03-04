@@ -1,0 +1,20 @@
+服务器运行在 localhost:\\.\pipe\e41bb33e-1a75-415a-8b1d-f826e179873f 端口上...
+processId:9568
+[0mGET /admin/rotation [36m304 [0m23.459 ms - -[0m
+[0mGET /static/css/cstFonts/iconfont.css [36m304 [0m6.425 ms - -[0m
+[0mGET /static/css/vue-admin.css [36m304 [0m4.296 ms - -[0m
+[0mGET /static/css/admin.css [36m304 [0m3.879 ms - -[0m
+[0mGET /static/js/admin.js [36m304 [0m2.756 ms - -[0m
+[0mGET /static/css/fonts/glyphicons-halflings-regular.woff2 [36m304 [0m1.081 ms - -[0m
+mongodb connection success 
+[0mGET /admin/rotation/data/1/10 [36m304 [0m4048.795 ms - -[0m
+[0mPOST /file?_=1551675654060 [32m200 [0m23.737 ms - 97[0m
+[0mGET /public/upload/upload_cef2608576222cba62f6826330afc6dd.jpg [32m200 [0m3.354 ms - 93592[0m
+[0mPOST /file?_=1551675659595 [32m200 [0m9.661 ms - 97[0m
+[0mGET /public/upload/upload_b9460108fe7d1d6d31ca92416a54dcce.jpg [32m200 [0m1.101 ms - 93592[0m
+[0mPOST /file?_=1551675664525 [32m200 [0m8.442 ms - 97[0m
+[0mGET /public/upload/upload_607e14c4b61097132867a93193555ee0.jpg [32m200 [0m1.423 ms - 95158[0m
+[0mPOST /file?_=1551675667058 [32m200 [0m10.001 ms - 97[0m
+[0mGET /public/upload/upload_dd367b52705529721d62af21c97a6ef2.jpg [32m200 [0m1.176 ms - 97805[0m
+[0mPOST /file?_=1551675671093 [32m200 [0m8.891 ms - 97[0m
+[0mGET /public/upload/upload_2b1d14484b38f30ed765c44e85af276f.jpg [32m200 [0m1.800 ms - 97805[0m
