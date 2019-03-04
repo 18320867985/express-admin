@@ -22,23 +22,27 @@ export default function ($) {
         }
 
         var data = new FormData();
-
+        // name=file
         data.append('file', option.data);
-
+    
         $.ajax({
             url: option.url,
             data: data,
             type: "post",
             timeout: option.outTime,
+            dataType:'json',
             cache: false,
             processData: false,
             contentType: option.contentType || false,
+            enctype: 'multipart/form-data',
+            withCredentials:true,
             xhrFields: {
                 withCredentials: true
             },
             xhr: function () {
                 //获取ajaxSettings中的xhr对象，为它的upload属性绑定progress事件的处理函数
                 var myXhr = $.ajaxSettings.xhr();
+              
                 if (myXhr.upload) { //检查upload属性是否存在
                     //绑定progress事件的回调函数
                     myXhr.upload.onprogress = progressFunction;

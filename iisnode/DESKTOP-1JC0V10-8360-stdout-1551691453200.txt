@@ -1,0 +1,32 @@
+服务器运行在 localhost:\\.\pipe\74089a4d-3c69-4bb9-b891-2990a4c7a01d 端口上...
+processId:8360
+[0mGET / [36m302 [0m12.561 ms - 66[0m
+[0mGET /admin/index [36m304 [0m21.856 ms - -[0m
+[0mGET /static/css/iframe/cstfont/iconfont.css [36m304 [0m5.671 ms - -[0m
+[0mGET /static/css/iframe/all.css [36m304 [0m7.872 ms - -[0m
+[0mGET /static/js/common/jquery-1.11.0.js [36m304 [0m4.918 ms - -[0m
+[0mGET /static/js/iframe/all.js [36m304 [0m9.272 ms - -[0m
+[0mGET /static/js/admin.js [36m304 [0m12.660 ms - -[0m
+[0mGET /static/css/iframe/cstfont/iconfont.css [36m304 [0m1.815 ms - -[0m
+[0mGET /static/css/iframe/all.css [36m304 [0m2.717 ms - -[0m
+[0mGET /static/css/iframe/fonts/glyphicons-halflings-regular.woff2 [36m304 [0m0.846 ms - -[0m
+[0mGET /admin/user [36m304 [0m2.010 ms - -[0m
+[0mGET /static/css/cstFonts/iconfont.css [36m304 [0m3.225 ms - -[0m
+[0mGET /static/css/admin.css [36m304 [0m2.552 ms - -[0m
+[0mGET /static/js/admin.js [36m304 [0m6.504 ms - -[0m
+[0mGET /static/css/vue-admin.css [36m304 [0m5.733 ms - -[0m
+[0mGET /static/css/fonts/glyphicons-halflings-regular.woff2 [36m304 [0m1.040 ms - -[0m
+[0mGET /admin/index/data [36m304 [0m2.370 ms - -[0m
+[0mGET /favicon.ico [36m304 [0m2.794 ms - -[0m
+mongodb connection success 
+[0mGET /admin/userRole/data [36m304 [0m2347.131 ms - -[0m
+[0mGET /admin/user/data/1/10 [36m304 [0m4816.580 ms - -[0m
+[0mGET /admin/rotation [36m304 [0m2.035 ms - -[0m
+[0mGET /static/css/cstFonts/iconfont.css [36m304 [0m1.222 ms - -[0m
+[0mGET /static/css/admin.css [36m304 [0m3.773 ms - -[0m
+[0mGET /static/css/vue-admin.css [36m304 [0m2.521 ms - -[0m
+[0mGET /static/js/admin.js [36m304 [0m1.647 ms - -[0m
+[0mGET /admin/rotation/data/1/10 [36m304 [0m12.985 ms - -[0m
+[0mGET /static/css/fonts/glyphicons-halflings-regular.woff2 [36m304 [0m2.434 ms - -[0m
+[0mPOST /file?_=1551691468122 [32m200 [0m38.752 ms - 97[0m
+[0mGET /public/upload/upload_081165a1b947049a5ccd85ffc69a843b.jpg [32m200 [0m3.450 ms - 6932[0m

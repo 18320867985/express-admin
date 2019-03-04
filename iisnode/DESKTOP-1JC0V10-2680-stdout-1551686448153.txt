@@ -1,0 +1,42 @@
+服务器运行在 localhost:\\.\pipe\14606aca-e99b-4c1f-9c0c-772d92cde6ae 端口上...
+processId:2680
+[0mGET /file [32m200 [0m16.878 ms - 1027[0m
+[0mGET /favicon.ico [32m200 [0m5.610 ms - 439[0m
+mongodb connection success 
+[0mGET /file [36m304 [0m1.137 ms - -[0m
+[0mGET /static/css/cstFonts/iconfont.css [36m304 [0m4.541 ms - -[0m
+[0mGET /static/css/admin.css [36m304 [0m3.169 ms - -[0m
+[0mGET /static/css/vue-admin.css [36m304 [0m2.691 ms - -[0m
+[0mGET /static/js/admin.js [36m304 [0m2.228 ms - -[0m
+[0mGET /static/css/fonts/glyphicons-halflings-regular.woff2 [36m304 [0m1.006 ms - -[0m
+[0mGET /favicon.ico [32m200 [0m1.244 ms - 439[0m
+[0mGET /file [36m304 [0m0.666 ms - -[0m
+[0mGET /static/css/cstFonts/iconfont.css [36m304 [0m1.750 ms - -[0m
+[0mGET /static/css/admin.css [36m304 [0m1.240 ms - -[0m
+[0mGET /static/css/vue-admin.css [36m304 [0m1.970 ms - -[0m
+[0mGET /static/js/admin.js [36m304 [0m1.883 ms - -[0m
+[0mGET /static/css/fonts/glyphicons-halflings-regular.woff2 [36m304 [0m1.033 ms - -[0m
+[0mGET /favicon.ico [32m200 [0m0.925 ms - 439[0m
+[0mGET /file [36m304 [0m0.600 ms - -[0m
+[0mGET /static/css/cstFonts/iconfont.css [36m304 [0m4.816 ms - -[0m
+[0mGET /static/css/admin.css [36m304 [0m4.358 ms - -[0m
+[0mGET /static/css/vue-admin.css [36m304 [0m5.583 ms - -[0m
+[0mGET /static/js/admin.js [36m304 [0m5.029 ms - -[0m
+[0mGET /static/css/fonts/glyphicons-halflings-regular.woff2 [36m304 [0m1.073 ms - -[0m
+[0mGET /favicon.ico [32m200 [0m2.322 ms - 439[0m
+[0mGET /file [36m304 [0m0.615 ms - -[0m
+[0mGET /static/css/cstFonts/iconfont.css [36m304 [0m4.327 ms - -[0m
+[0mGET /static/css/admin.css [36m304 [0m2.793 ms - -[0m
+[0mGET /static/js/admin.js [36m304 [0m2.447 ms - -[0m
+[0mGET /static/css/vue-admin.css [36m304 [0m1.836 ms - -[0m
+[0mGET /static/css/fonts/glyphicons-halflings-regular.woff2 [36m304 [0m0.909 ms - -[0m
+[0mGET /favicon.ico [32m200 [0m1.124 ms - 439[0m
+[0mGET /file [36m304 [0m0.593 ms - -[0m
+[0mGET /static/css/cstFonts/iconfont.css [36m304 [0m2.674 ms - -[0m
+[0mGET /static/css/admin.css [36m304 [0m2.017 ms - -[0m
+[0mGET /static/css/vue-admin.css [36m304 [0m8.073 ms - -[0m
+[0mGET /static/js/admin.js [36m304 [0m6.690 ms - -[0m
+[0mGET /static/css/fonts/glyphicons-halflings-regular.woff2 [36m304 [0m1.013 ms - -[0m
+[0mGET /favicon.ico [32m200 [0m0.954 ms - 439[0m
+[0mPOST /file [32m200 [0m13.607 ms - 97[0m
+[0mGET /favicon.ico [36m304 [0m1.083 ms - -[0m

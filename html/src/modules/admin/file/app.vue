@@ -11,7 +11,7 @@
            name="vue-file-up"
           btn-class="btn-primary"
           v-model="file"
-          url="/file"
+          url="http://127.0.0.1/file"
           :ok="ok"
           :err="err"
           file-type="image/*"
@@ -33,6 +33,7 @@
 </template>
 
 <script>
+
 
 export default {
   data() {
