@@ -1,0 +1,12 @@
+服务器运行在 localhost:\\.\pipe\081f078c-b7a7-42a0-af0e-988536f7cf7d 端口上...
+processId:8548
+[0mGET /admin/rotation [36m304 [0m16.393 ms - -[0m
+[0mGET /static/css/cstFonts/iconfont.css [36m304 [0m7.450 ms - -[0m
+[0mGET /static/css/admin.css [36m304 [0m4.699 ms - -[0m
+[0mGET /static/js/admin.js [36m304 [0m8.800 ms - -[0m
+[0mGET /static/css/vue-admin.css [36m304 [0m6.096 ms - -[0m
+[0mGET /static/css/fonts/glyphicons-halflings-regular.woff2 [36m304 [0m1.049 ms - -[0m
+mongodb connection success 
+[0mGET /admin/rotation/data/1/10 [36m304 [0m4099.057 ms - -[0m
+[0mPOST /file?_=1551700531732 [32m200 [0m15.817 ms - 97[0m
+[0mGET /public/upload/upload_252214909a65bf40b1f5656ba95917e6.png [32m200 [0m4.061 ms - 80350[0m

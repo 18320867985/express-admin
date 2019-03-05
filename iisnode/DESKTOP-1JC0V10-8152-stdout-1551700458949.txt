@@ -1,0 +1,35 @@
+服务器运行在 localhost:\\.\pipe\39df0c99-d849-4c4d-9e1a-aa53b121a860 端口上...
+processId:8152
+[0mGET / [36m302 [0m11.544 ms - 66[0m
+[0mGET /admin/index [36m304 [0m19.424 ms - -[0m
+[0mGET /static/css/iframe/cstfont/iconfont.css [36m304 [0m4.623 ms - -[0m
+[0mGET /static/css/iframe/all.css [36m304 [0m1.463 ms - -[0m
+[0mGET /static/js/iframe/all.js [36m304 [0m2.365 ms - -[0m
+[0mGET /static/js/common/jquery-1.11.0.js [36m304 [0m2.702 ms - -[0m
+[0mGET /static/js/admin.js [36m304 [0m4.819 ms - -[0m
+[0mGET /static/js/admin.js [36m304 [0m2.491 ms - -[0m
+[0mGET /static/js/common/jquery-1.11.0.js [36m304 [0m1.813 ms - -[0m
+[0mGET /static/js/iframe/all.js [36m304 [0m7.040 ms - -[0m
+[0mGET /static/css/iframe/fonts/glyphicons-halflings-regular.woff2 [36m304 [0m1.274 ms - -[0m
+[0mGET /static/css/iframe/all.css [36m304 [0m3.012 ms - -[0m
+[0mGET /static/css/iframe/cstfont/iconfont.css [36m304 [0m3.337 ms - -[0m
+[0mGET /admin/user [36m304 [0m2.259 ms - -[0m
+[0mGET /static/css/cstFonts/iconfont.css [36m304 [0m1.650 ms - -[0m
+[0mGET /static/css/admin.css [36m304 [0m2.187 ms - -[0m
+[0mGET /static/css/vue-admin.css [36m304 [0m4.748 ms - -[0m
+[0mGET /static/js/admin.js [36m304 [0m2.084 ms - -[0m
+[0mGET /static/css/fonts/glyphicons-halflings-regular.woff2 [36m304 [0m0.815 ms - -[0m
+[0mGET /admin/index/data [36m304 [0m1.478 ms - -[0m
+[0mGET /favicon.ico [36m304 [0m2.118 ms - -[0m
+mongodb connection success 
+[0mGET /admin/rotation [36m304 [0m2.007 ms - -[0m
+[0mGET /static/css/cstFonts/iconfont.css [36m304 [0m1.124 ms - -[0m
+[0mGET /static/js/admin.js [36m304 [0m2.528 ms - -[0m
+[0mGET /static/css/admin.css [36m304 [0m2.034 ms - -[0m
+[0mGET /static/css/vue-admin.css [36m304 [0m3.492 ms - -[0m
+[0mGET /static/css/fonts/glyphicons-halflings-regular.woff2 [36m304 [0m0.775 ms - -[0m
+[0mGET /admin/userRole/data [36m304 [0m2631.846 ms - -[0m
+[0mGET /admin/rotation/data/1/10 [36m304 [0m2255.469 ms - -[0m
+[0mGET /admin/user/data/1/10 [36m304 [0m4752.251 ms - -[0m
+[0mPOST /file?_=1551700469483 [32m200 [0m4.250 ms - 37[0m
+[0mGET /admin/[object%20Object] [36m304 [0m3.984 ms - -[0m

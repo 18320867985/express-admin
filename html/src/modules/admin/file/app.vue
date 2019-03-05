@@ -11,7 +11,7 @@
            name="vue-file-up"
           btn-class="btn-primary"
           v-model="file"
-          url="http://127.0.0.1/file"
+          url="/file"
           :ok="ok"
           :err="err"
           file-type="image/*"

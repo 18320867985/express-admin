@@ -156,6 +156,10 @@ mongoimport -d admin -c  users --file  e:\mongodb\export\user.json
 
 
 
-
+==========================================================================
 //git保持本地仓库代码跟远程代码一致:
 git fetch --all && git reset --hard origin/master && git pull  
+
+//server 2008 r2
+1.ueditor 设置windows的temp 的权限为完全控制
+2.formidable 组件 在c:\盘 新建目录public\upload 解决上传文件路劲错误

@@ -198,7 +198,7 @@
                 <vue-file
                 name="vue-file-add"
                   btn-class="btn-primary"
-                  url="http://localhost:3000/file"
+                  url="/file"
                   :ok="addFileOk"
                   file-type="image/*"
                   :size="300"

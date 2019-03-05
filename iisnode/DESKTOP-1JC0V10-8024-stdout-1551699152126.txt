@@ -1,0 +1,10 @@
+服务器运行在 localhost:\\.\pipe\53e97ae0-8cf9-4a6c-a62f-740b51e20777 端口上...
+processId:8024
+[0mGET / [36m302 [0m25.820 ms - 66[0m
+[0mGET /admin/index [36m304 [0m21.762 ms - -[0m
+[0mGET /static/css/iframe/cstfont/iconfont.css [36m304 [0m7.285 ms - -[0m
+[0mGET /static/js/iframe/all.js [36m304 [0m1.669 ms - -[0m
+[0mGET /static/js/admin.js [36m304 [0m1.449 ms - -[0m
+[0mGET /static/css/iframe/all.css [36m304 [0m2.200 ms - -[0m
+[0mGET /static/js/common/jquery-1.11.0.js [36m304 [0m1.710 ms - -[0m
+mongodb connection success 
