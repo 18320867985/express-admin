@@ -1,5 +1,5 @@
 var gulp = require('gulp');
-var watch=require("gulp-watch");
+var watch = require("gulp-watch");
 var del = require("del");
 var minCss = require('gulp-clean-css'); //gulp-minify-css:压缩css文件 npm install gulp-clean-css
 var connect = require('gulp-connect'); //gulp-connect 创建服务器  npm install --save-dev gulp-connect
@@ -25,15 +25,14 @@ var autoprefixer = require('autoprefixer'); // npm install --save-dev autoprefix
 var sass = require('gulp-sass');
 var eslint = require("gulp-eslint"); // 检查es5 ees6 js gulp-eshint
 
-var appJs = require("./src/entry.js"); // js 打包入口
+var appJs = require("./src/modules/entry.js"); // js 打包入口
 var appScss = require("./src/styles/entry.js"); // scss 打包入口
 
 // 文件路径
 var paths = {
-	
-	scssPath: ['./src/styles/**/*.scss'],
+	stylePath: ['./src/styles/**/*.scss','./src/scss/**/*.scss'],
 	htmlPath: ['./src/**/*.html'],
-	jspath: ['./src/modules/**/*.*', './src/components/**/*.*']
+	jspath: ['./src/modules/**/*.*','./src/components/**/*.*'],
 
 }
 
@@ -52,7 +51,7 @@ gulp.task('release', ["build-scss", "build"], function () {
 		.pipe(minHtml({ collapseWhitespace: true }))  // 压缩html
 		.pipe(gulp.dest('./dist/'));                  //复制html
 
-	gulp.src(['./src/static/css/**/*.css','!./src/static/css/iframe/**/*.css']).pipe(minCss()).pipe(gulp.dest('./dist/static/css')); //复制css
+	gulp.src(['./src/static/css/**/*.css', '!./src/static/css/iframe/**/*.css']).pipe(minCss()).pipe(gulp.dest('./dist/static/css')); //复制css
 	gulp.src(['./src/static/css/iframe/**/*.css']).pipe(gulp.dest('./dist/static/css/iframe')); //兼容iframe框架 已有的css 不压缩css
 
 	gulp.src('./src/static/js/**/*.*')
@@ -62,8 +61,8 @@ gulp.task('release', ["build-scss", "build"], function () {
 		//.pipe(img())                     // 压缩图片
 		.pipe(gulp.dest('./dist/static/images/')); //复制img
 
-		gulp.src(['./src/ueditor/**/*.*'])  // ueditor 富文本编辑器
-		.pipe(gulp.dest('./dist/ueditor'));  
+	gulp.src(['./src/ueditor/**/*.*'])  // ueditor 富文本编辑器
+		.pipe(gulp.dest('./dist/ueditor'));
 
 	gulp.src(['./src/static/**/*.*', '!./src/static/css/**/*.css', '!./src/static/js/**/*.*', '!./src/static/images/**/*.*']).pipe(gulp.dest('./dist/static'));
 
@@ -73,34 +72,33 @@ gulp.task('release', ["build-scss", "build"], function () {
 gulp.task("watch", ['build-scss', 'build', 'connect'], function () {
 
 	//合拼vue组件css和js文件
-	watch(paths.jspath, function(){
+	watch(paths.jspath, function () {
 		gulp.start("dev");
 	});
 
-	//全局sass的css文件
-	watch(paths.scssPath, function () {
-		gulp.start("dev-scss",function(){
-			gulp.src(paths.scssPath).pipe(connect.reload());
+	//styles的scss
+	watch(paths.stylePath, function () {
+		gulp.start("dev-scss", function () {
+			gulp.src(paths.stylePath).pipe(connect.reload());
 		});
 
 	});
 
 	//监听html
-	watch(paths.htmlPath, ["html"],function(){
+	watch(paths.htmlPath, function () {
 		gulp.start("html");
 	});
 
-
 });
+
 
 gulp.task("html", function () {
 	gulp.src(paths.htmlPath).pipe(connect.reload());
 });
 
-
 //开启http服务器
 
-var sev=function(){
+var sev = function () {
 	connect.server({
 		root: 'src',
 		livereload: true,
@@ -110,9 +108,9 @@ var sev=function(){
 	});
 }
 gulp.task('connect',
- function () {
-	sev();
-});
+	function () {
+		sev();
+	});
 
 
 
@@ -137,7 +135,7 @@ gulp.task("dev-scss", async function () {
 
 });
 
-  gulp.task("build-scss", async function () {
+gulp.task("build-scss", async function () {
 
 	try {
 		return await Promise.all(appScss.list.map(async function (item) {
@@ -154,7 +152,7 @@ gulp.task("dev-scss", async function () {
 
 
 function buildScss(item, dir) {
-	
+
 	try {
 		return new Promise(function (resolve, reject) {
 			var result = gulp.src(dir + item + "/all.scss")
@@ -163,11 +161,11 @@ function buildScss(item, dir) {
 				.pipe(rename(item + ".css")).pipe(gulp.dest('./src/static/css'));
 			resolve(result);
 		});
-	
+
 	} catch (error) {
 		console.log(error);
 	}
-	
+
 }
 
 
