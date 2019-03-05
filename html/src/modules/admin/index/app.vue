@@ -21,7 +21,7 @@
 export default {
   data() {
     return {
-      name:""
+      name: ""
     };
   },
   methods: {
@@ -49,7 +49,7 @@ export default {
     this.$http.get("admin/index/data").then(data => {
       data = data.body;
       if (data.code == 1) {
-      this.name=data.data.name
+        this.name = data.data.name;
       } else {
       }
     });

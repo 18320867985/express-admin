@@ -1,0 +1,19 @@
+服务器运行在 localhost:\\.\pipe\03cb6fad-f5bf-40a2-b5b1-710b0c5b63d7 端口上...
+processId:9656
+[0mGET / [36m302 [0m64.766 ms - 66[0m
+[0mGET / [36m302 [0m1.488 ms - 66[0m
+[0mGET /admin/index [36m302 [0m3.782 ms - 56[0m
+[0mGET /login [36m304 [0m35.537 ms - -[0m
+[0mGET /static/css/cstFonts/iconfont.css [36m304 [0m4.507 ms - -[0m
+[0mGET /static/css/vue-admin.css [32m200 [0m8.082 ms - 6713[0m
+[0mGET /static/css/admin.css [32m200 [0m9.011 ms - 167382[0m
+[0mGET /static/js/admin.js [32m200 [0m10.469 ms - 938447[0m
+[0mGET /favicon.ico [36m304 [0m3.409 ms - -[0m
+[0mGET /login [36m304 [0m1.990 ms - -[0m
+[0mGET /static/css/cstFonts/iconfont.css [36m304 [0m4.646 ms - -[0m
+[0mGET /static/css/admin.css [36m304 [0m3.805 ms - -[0m
+[0mGET /static/css/vue-admin.css [32m200 [0m9.290 ms - 6713[0m
+[0mGET /static/js/admin.js [32m200 [0m7.337 ms - 938447[0m
+[0mGET /favicon.ico [32m200 [0m1.006 ms - 439[0m
+[0mPOST /login/data [0m- [0m- ms - -[0m
+[0mPOST /login/data [0m- [0m- ms - -[0m
