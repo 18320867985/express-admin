@@ -49,7 +49,7 @@ app.use("/ueditor", express.static(ueditorDir));
 app.set('view engine', 'html'); //   设置扩展名
 nunjucks.configure(nunjucksDir, {
     autoescape: true,
-    express: app,
+    express: app
     //throwOnUndefined :true
 });
 
@@ -57,7 +57,7 @@ nunjucks.configure(nunjucksDir, {
 // 跨域CORS
 app.use(function (req, res, next) {
     var reqOrigin = req.header("origin");
-    if (reqOrigin != undefined) {
+    if (reqOrigin !== undefined) {
         res.header("Access-Control-Allow-Origin", "*");   // * 表示所有站点可以访问,单个指定例如：http://localhost:8888
         res.header("Access-Control-Allow-Methods", "PUT,POST,GET,DELETE,OPTIONS");
         res.header("Access-Control-Allow-Headers", "Content-Type,Content-Length, Authorization, Accept,X-Requested-With");
@@ -71,13 +71,13 @@ app.use((req, res, next) => {
 
     // success return data
     res.ok = (data, desc) => {
-        let o= {
+        let o = {
             status: "success",
             code: 1,
-            data,
-        }
+            data
+        };
 
-        if( typeof data !="undefined"&& desc  instanceof Object){
+        if( typeof data !=="undefined"&& desc  instanceof Object){
             for(name in desc){
                 o[name]=desc[name];
             }
@@ -89,13 +89,13 @@ app.use((req, res, next) => {
 
     // error return data
     res.err = (data, desc) => {
-        let o= {
+        let o = {
             status: "error",
             code: 0,
-            data,
-        }
+            data
+        };
 
-        if( typeof data !="undefined"&& desc instanceof Object){
+        if( typeof data !=="undefined"&& desc instanceof Object){
             for(name in desc){
                 o[name]=desc[name];
             }
@@ -120,7 +120,7 @@ app.use('/file', file);
 var ueditor = require("ueditor");
 app.use("/ueditor/ue", ueditor(ueditorUpload, function (req, res, next) {
     //客户端上传文件设置
-    var imgDir = '/ueditor/upload-img/'
+    var imgDir = '/ueditor/upload-img/';
     var ActionType = req.query.action;
     if (ActionType === 'uploadimage' || ActionType === 'uploadfile' || ActionType === 'uploadvideo') {
         var file_url = imgDir;//默认图片上传地址
