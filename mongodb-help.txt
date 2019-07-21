@@ -4,30 +4,61 @@
 C:\mongodb\bin\mongod --dbpath c:\data\db
 如果执行成功，会输出如下信息：
 
+
+
+
 2.连接MongoDB
+
 我们可以在命令窗口中运行 mongo.exe 命令即可连接上 MongoDB，执行如下命令：
 C:\mongodb\bin\mongo.exe
 
+
 3.配置 MongoDB 服务
+
+
 创建目录，执行下面的语句来创建数据库和日志文件的目录
+
 mkdir c:\data\db
 mkdir c:\data\log
 
 创建配置文件
+
 例如，创建一个配置文件位于 C:\mongodb\mongod.cfg，
 其中指定 systemLog.path 和 storage.dbPath。具体配置内容如下：
 
+1.单例
 systemLog:
     destination: file
     path: c:\data\log\mongod.log
 storage:
     dbPath: c:\data\db
 
+2.复本集
+
+// 复本1 
+dbpath =c:\mongodb\data\db
+logpath =c:\mongodb\data\log\mongodb.log
+logappend = true
+port = 27017
+replSet=rs
+oplogSize=2048
+
+// 复本2
+dbpath =c:\mongodb\data2\db
+logpath =c:\mongodb\data2\log\mongodb.log
+logappend = true
+port = 27018
+replSet=rs
+oplogSize=2048
+
 
 4.安装 MongoDB服务
+
 通过执行mongod.exe，使用--install选项来安装服务，使用--config选项来指定之前创建的配置文件。
 
- mongod --config "e:\mongodb\data\mongod.cfg" --install --serviceName "mongodb" --serviceDisplayName  "mongodb" 
+ C:\mongodb\bin\mongod.exe --config "C:\mongodb\mongod.cfg" --install --serviceName "mongodb"  serviceDisplayName  "mongodb" 
+
+或全局:mongod --config "d:\mongodbData\data\mongod.cfg" --install --serviceName "mongodb" --serviceDisplayName  "mongodb"
 
 要使用备用 dbpath，可以在配置文件（例如：C:\mongodb\mongod.cfg）
 或命令行中通过 --dbpath 选项指定。
@@ -35,14 +66,16 @@ storage:
 只需要通过使用 --serviceName 和 --serviceDisplayName 指定不同的实例名。
 只有当存在足够的系统资源和系统的设计需要这么做。
 
+	
 启动MongoDB服务
-net start MongoDB
+net start "mongodb"
 
 关闭MongoDB服务
-net stop MongoDB
+net stop "mongodb"
 
 移除 MongoDB 服务
-C:\mongodb\bin\mongod.exe --remove
+
+C:\mongodb\bin\ mongod.exe --remove --serviceName "mongodb"
 
 命令行下运行 MongoDB 服务器 和 配置 MongoDB 服务 任选一个方式启动就可以。
 
@@ -53,7 +86,7 @@ MongoDB 后台管理 Shell
 用来对MongoDB进行操作和管理的交互式环境。
 当你进入mongoDB后台后，它默认会链接到 test 文档（数据库）：
 
-5.> mongo
+5.> mongo 27017
 MongoDB shell version: 3.0.6
 connecting to: test
 
@@ -71,18 +104,14 @@ connecting to: test
 6.3、
 添加secondary节点
 例如将第2台机器设为secondary节点
-rs.add("192.168.1.2:27018");
-
-// 添加裁判节点服务器
-rs.addArb("192.168.1.2:27019")
-
+rs.add("localhost:27018")
 
 6.4、
 添加仲裁节点ARBITER
 
 将第三台机器设为仲裁节点
 
-rs.addArb("192.168.32.138:27017")
+rs.addArb("localhost:27019")
 
 查看集群情况可以使用命令：rs.status()
 
@@ -94,6 +123,7 @@ rs.addArb("192.168.32.138:27017")
 不能在SECONDARY写数据
 
 例如：
+mongo 27018
 db.getMongo().setSlaveOk()或rs.slaveOk()
 
 6.6
@@ -117,7 +147,7 @@ rs:PRIMARY> db.auth("root","123456")
  mongodump -h localhost --port 27017 -o  e:\mongodb\dump
  
 7.2恢复
-mongorestore -h localhost --port 27017 -d  e:\mongodb\dump\admin
+mongorestore -h localhost --port 27017  --dir  e:\mongodb\dump\admin   -d admin
 
 // 备份
 --备份单个表
@@ -156,10 +186,22 @@ mongoimport -d admin -c  users --file  e:\mongodb\export\user.json
 
 
 
-==========================================================================
-//git保持本地仓库代码跟远程代码一致:
-git fetch --all && git reset --hard origin/master && git pull  
 
-//server 2008 r2
-1.ueditor 设置windows的temp 的权限为完全控制
-2.formidable 组件 在c:\盘 新建目录public\upload 解决上传文件路劲错误
+//git保持本地仓库代码跟远程代码一致:
+git fetch --all && git reset --hard origin/master && git pull 
+1.git checkout master #切换到要提交代码的分支
+2.git pull origin master --allow-unrelated-histories  #加上后面这个选项允许不相关历史提交
+
+// github 部署静态页  访问: https://18320867985.github.io/mobile/dist/index.html
+git checkout -b gh-pages
+git pull origin master 
+git push  origin gh-pages
+git checkout  master
+
+git config -e 编辑配置文件 
+git config --local -e 编辑仓库级别配置文件
+git config --global -e 编辑用户级别配置文件
+git config --system -e 编辑系统级别配置文件
+git config 添加配置项目 
+git config --global user.email “you@example.com”
+git config --global user.name “Your Name”

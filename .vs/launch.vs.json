@@ -1,0 +1,16 @@
+{
+  "version": "0.2.1",
+  "defaults": {},
+  "configurations": [
+    {
+      "type": "nodeDbg",
+      "name": "D:\\dev\\express-admin",
+      "project": ""
+    },
+    {
+      "type": "nodeDbg",
+      "name": "svc.js",
+      "project": "svc.js"
+    }
+  ]
+}
