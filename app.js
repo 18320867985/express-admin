@@ -25,6 +25,7 @@ app.use(session({
     }
 }));
 
+
 app.use("/public",express.static(path.join(__dirname, 'public')));
 
 // 配合前端打包工具使用 前端打包文件夹html

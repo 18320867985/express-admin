@@ -14,7 +14,7 @@ router.post("/reg/data", async (req, res) => {
          res.json(res.err(rule));
          return;
      }
-     user.roleId=rule._id
+    user.roleId = rule._id;
      let isok= user.validateSync();
       if(isok){
          res.json(res.err(isok));

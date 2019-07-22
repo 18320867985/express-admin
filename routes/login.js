@@ -29,9 +29,9 @@ router.post("/login/data", async (req, res) => {
         isLogin: true,
         code: 1,
         user: userinfo
-    }
+    };
 
-    res.json(res.ok(null, "登录成功！"))
+    res.json(res.ok(null, "登录成功！"));
     return;
 });
 
@@ -39,7 +39,7 @@ router.post("/logout/data", (req, res) => {
     if (req.session.login) {
         req.session.login.isLogin = false;
         req.session.login.code = 0;
-        req.session.login.user = null
+        req.session.login.user = null;
     }
     res.json(res.ok("ok"));
     return;
