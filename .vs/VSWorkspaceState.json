@@ -1,6 +1,10 @@
 {
   "ExpandedNodes": [
-    ""
+    "",
+    "\\lib",
+    "\\models",
+    "\\models\\main"
   ],
+  "SelectedNode": "\\lib\\dbHelp.js",
   "PreviewInSolutionExplorer": false
 }
