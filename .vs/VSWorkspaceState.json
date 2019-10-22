@@ -1,10 +1,9 @@
 {
   "ExpandedNodes": [
     "",
-    "\\lib",
-    "\\models",
-    "\\models\\main"
+    "\\routes",
+    "\\routes\\admin"
   ],
-  "SelectedNode": "\\lib\\dbHelp.js",
+  "SelectedNode": "\\routes\\admin\\banner.js",
   "PreviewInSolutionExplorer": false
 }

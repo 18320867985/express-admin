@@ -117,6 +117,10 @@ app.use('/', indexRouter);
 app.use('/admin', adminRouter);
 app.use('/file', file);
 
+
+let test = require('./routes/test');
+app.use('/test', test);
+
 // ueditor
 var ueditor = require("ueditor");
 app.use("/ueditor/ue", ueditor(ueditorUpload, function (req, res, next) {
