@@ -1,9 +1,7 @@
 {
   "ExpandedNodes": [
-    "",
-    "\\routes",
-    "\\routes\\admin"
+    ""
   ],
-  "SelectedNode": "\\routes\\admin\\banner.js",
+  "SelectedNode": "\\app.js",
   "PreviewInSolutionExplorer": false
 }
