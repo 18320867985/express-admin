@@ -116,6 +116,9 @@ let file = require('./routes/file');
 app.use('/', indexRouter);
 app.use('/admin', adminRouter);
 app.use('/file', file);
+let test = require('./routes/test');
+app.use('/test', test);
+
 
 
 let test = require('./routes/test');

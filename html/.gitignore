@@ -6,3 +6,15 @@
 
 #  node  html Dependency directory
 /html/node_modules
+
+
+/**/*.suo
+/**/*.sqlite
+
+
+# ==============自定义 ==============
+# multiModuleSetting
+#multiModuleSetting.js
+
+# static view css and js
+#src/static/css/view/*.css
