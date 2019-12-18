@@ -1,6 +1,16 @@
 {
   "ExpandedNodes": [
-    ""
+    "",
+    "\\html",
+    "\\html\\src",
+    "\\html\\src\\modules",
+    "\\html\\src\\modules\\admin",
+    "\\html\\src\\modules\\admin\\article",
+    "\\html\\src\\static",
+    "\\html\\src\\static\\js",
+    "\\routes",
+    "\\routes\\admin"
   ],
+  "SelectedNode": "\\html\\src\\modules\\admin\\reg",
   "PreviewInSolutionExplorer": false
 }

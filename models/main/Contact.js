@@ -24,12 +24,12 @@ const orm = require("./_mongoose");
 var schema = new orm.mongoose.Schema({
     name: {
         type: String,
-        default:""
+        default: ""
     },
-    code:{
-        type:String,
-        required:true,
-        default:""
+    code: {
+        type: String,
+        required: true,
+        default: ""
     },
     desc: {
         type: String,
@@ -43,24 +43,23 @@ var schema = new orm.mongoose.Schema({
         type: Date,
         default: Date.now
     },
-    x:{
-        type:Number,
-        default:0
+    x: {
+        type: Number,
+        default: 0
     },
-    y:{
-        type:Number,
-        default:0
+    y: {
+        type: Number,
+        default: 0
     },
-    
-    addr:{
-        type:String,
-        default:""
-    },
-    tel:{
-        type:String,
-        default:""
-    }
 
+    addr: {
+        type: String,
+        default: ""
+    },
+    tel: {
+        type: String,
+        default: ""
+    }
    
 });
 
