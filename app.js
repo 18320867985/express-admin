@@ -120,6 +120,10 @@ let test = require('./routes/test');
 app.use('/test', test);
 
 
+
+let test = require('./routes/test');
+app.use('/test', test);
+
 // ueditor
 var ueditor = require("ueditor");
 app.use("/ueditor/ue", ueditor(ueditorUpload, function (req, res, next) {
