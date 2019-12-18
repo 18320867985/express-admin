@@ -12,10 +12,10 @@
 /html-webpack/node_modules
 
 # Visual Studio  Dependency directory
-/.vs
 
-*.suo
-*.sqlite
+/.vs
+/**/*.suo
+/**/*.sqlite
 
 
 # ==============×Ô¶¨Òå ==============
@@ -25,5 +25,4 @@
 # static view css and js
 #src/static/css/view/*.css
 #src/static/js/view/*.js
-
 
