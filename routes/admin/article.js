@@ -128,7 +128,7 @@ router.put("/article/data", async (req, res) => {
 router.delete("/article/data/:listId", async (req, res) => {
     // let id = req.params.id;
     let listId = req.params.listId || "";
-    listId = listId.split(",")
+    listId = listId.split(",");
     let obj = await mainModel.Article.deleteMany({
         _id: {
             $in: listId
