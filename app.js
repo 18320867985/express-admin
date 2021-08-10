@@ -97,7 +97,7 @@ app.use((req, res, next) => {
         };
 
         if( typeof data !=="undefined"&& desc instanceof Object){
-            for(name in desc){
+            for(let name in desc){
                 o[name]=desc[name];
             }
             return o;
@@ -116,15 +116,9 @@ let file = require('./routes/file');
 app.use('/', indexRouter);
 app.use('/admin', adminRouter);
 app.use('/file', file);
-let test = require('./routes/test');
-app.use('/test', test);
 
 
-
-let test = require('./routes/test');
-app.use('/test', test);
-
-// ueditor
+//// ueditor
 var ueditor = require("ueditor");
 app.use("/ueditor/ue", ueditor(ueditorUpload, function (req, res, next) {
     //客户端上传文件设置

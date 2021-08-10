@@ -1,10 +1,15 @@
 {
   "ExpandedNodes": [
     "",
-    "\\models",
+    "\\html",
+    "\\html\\src",
+    "\\html\\src\\modules",
+    "\\html\\src\\modules\\admin",
+    "\\html\\src\\modules\\admin\\login",
+    "\\html\\src\\views\\admin",
     "\\models\\main",
-    "\\routes"
+    "\\routes\\admin"
   ],
-  "SelectedNode": "\\models\\main\\Article.js",
+  "SelectedNode": "\\html\\src\\modules\\admin\\login\\app.vue",
   "PreviewInSolutionExplorer": false
 }
