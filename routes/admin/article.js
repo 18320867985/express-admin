@@ -90,7 +90,7 @@ router.post("/article/data", async (req, res) => {
     }
 
 
-    var  rt = await mainModel.Article.create(o)
+    var rt = await mainModel.Article.create(o);
     if (!rt) {
         res.json(res.err("添加失败"));
         return;
@@ -119,7 +119,7 @@ router.put("/article/data", async (req, res) => {
         res.json(res.err("修改失败"));
         return;
     } else {
-        res.json(res.ok(v))/*  */
+        res.json(res.ok(v));
     }
 });
 
@@ -128,7 +128,7 @@ router.put("/article/data", async (req, res) => {
 router.delete("/article/data/:listId", async (req, res) => {
     // let id = req.params.id;
     let listId = req.params.listId || "";
-    listId = listId.split(",")
+    listId = listId.split(",");
     let obj = await mainModel.Article.deleteMany({
         _id: {
             $in: listId
