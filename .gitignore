@@ -17,12 +17,3 @@
 /**/*.suo
 /**/*.sqlite
 
-
-# ==============×Ô¶¨Òå ==============
-# multiModuleSetting
-#multiModuleSetting.js
-
-# static view css and js
-#src/static/css/view/*.css
-#src/static/js/view/*.js
-

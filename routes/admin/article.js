@@ -22,6 +22,7 @@ router.get("/article/data/:index/:pageItem", async (req, res) => {
      return;
     }
     let count = await mainModel.Article.countDocuments(); //edit line
+    
     if (count <= 0) {
         // 没有相关数据
         res.json(res.ok([], {

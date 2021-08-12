@@ -10,7 +10,6 @@ router.get("/login", async (req, res) => {
 });
 
 router.get("/login/not", async (req, res) => {
-    
     res.render("/admin/not");
 
 });

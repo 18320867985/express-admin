@@ -1,12 +1,10 @@
-//var createError = require('http-errors');
+
 var express = require('express');
 var path = require('path');
 var cookieParser = require('cookie-parser');
 var session = require('express-session');
 var logger = require('morgan');
-var nunjucks = require('nunjucks');
 var app = express();
-var isdev=true;
 
 app.use(logger('dev'));
 app.use(express.json());                           // for parsing application/json
@@ -14,7 +12,6 @@ app.use(express.urlencoded({ extended: true })); // for parsing application/x-ww
 app.use(cookieParser());
 
 // session
-// app.set('trust proxy', 1) // trust first proxy
 app.use(session({
     secret: 'keyboard cat',
     resave: false,
@@ -25,46 +22,41 @@ app.use(session({
     }
 }));
 
-
 app.use("/public",express.static(path.join(__dirname, 'public')));
 
+var isdev = true;
 // 配合前端打包工具使用 前端打包文件夹html
-let ueditorDir, ueditorUpload, htmlStatic, nunjucksDir;
+let ueditorDir, ueditorUpload, htmlStatic, ejsDir;
 
 // dev
 if(isdev){
 ueditorUpload = path.join(__dirname, 'html/src');
 ueditorDir = path.join(__dirname, 'html/src/ueditor');
 htmlStatic = path.join(__dirname, 'html/src/static');
-nunjucksDir = path.join(__dirname, 'html/src/views');
+ejsDir = path.join(__dirname, 'html/src/views');
 }else{
 // release
  ueditorUpload=path.join(__dirname, 'html/dist');
  ueditorDir=path.join(__dirname, 'html/dist/ueditor');
  htmlStatic=path.join(__dirname, 'html/dist/static');
- nunjucksDir=path.join(__dirname, 'html/dist/views');
+ ejsDir=path.join(__dirname, 'html/dist/views');
 }
 app.use("/static", express.static(htmlStatic));
 app.use("/ueditor", express.static(ueditorDir));
 
+app.set('views', path.join(ejsDir,""));
 app.set('view engine', 'html'); //   设置扩展名
-nunjucks.configure(nunjucksDir, {
-    autoescape: true,
-    express: app
-    //throwOnUndefined :true
-});
-
+app.engine("html",require("ejs").renderFile);
 
 // 跨域CORS
 app.use(function (req, res, next) {
-    var reqOrigin = req.header("origin");
+    let reqOrigin = req.header("origin");
     if (reqOrigin !== undefined) {
         res.header("Access-Control-Allow-Origin", "*");   // * 表示所有站点可以访问,单个指定例如：http://localhost:8888
         res.header("Access-Control-Allow-Methods", "PUT,POST,GET,DELETE,OPTIONS");
         res.header("Access-Control-Allow-Headers", "Content-Type,Content-Length, Authorization, Accept,X-Requested-With");
     }
     next();
-
 });
 
 // 返回处理的数据
@@ -79,7 +71,7 @@ app.use((req, res, next) => {
         };
 
         if( typeof data !=="undefined"&& desc  instanceof Object){
-            for(name in desc){
+            for(let name in desc){
                 o[name]=desc[name];
             }
             return o;
@@ -117,8 +109,7 @@ app.use('/', indexRouter);
 app.use('/admin', adminRouter);
 app.use('/file', file);
 
-
-//// ueditor
+// ueditor
 var ueditor = require("ueditor");
 app.use("/ueditor/ue", ueditor(ueditorUpload, function (req, res, next) {
     //客户端上传文件设置
@@ -149,12 +140,9 @@ app.use("/ueditor/ue", ueditor(ueditorUpload, function (req, res, next) {
     }
 }));
 
-
-
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {
     res.render("404.html");
 });
-
 
 module.exports = app;

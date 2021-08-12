@@ -412,10 +412,7 @@ export default {
 };
 </script>
 <style lang="scss">
-.template-add {
-}
-.template-edit {
-}
+
 .upload-img {
   margin: 10px 0;
   width: 100%;
