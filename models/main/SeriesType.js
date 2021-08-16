@@ -20,7 +20,6 @@ var schema = new orm.mongoose.Schema({
 
 });
 
-
 var SeriesType =orm.db.model("SeriesType", schema);
 
 module.exports = SeriesType;

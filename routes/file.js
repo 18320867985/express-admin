@@ -15,7 +15,7 @@ router.post("/", (req, res) =>
 
     try
     {
-        let _url = "./public/upload";
+        let _url = "./public/upload";   // 相对路径
         if (!fs.existsSync(path.resolve(_url)))
         {
             fs.mkdirSync(path.resolve(_url));

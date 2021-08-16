@@ -49,7 +49,6 @@ var schema = new orm.mongoose.Schema({
    
 });
 
-
 var Rotation =orm.db.model("Rotation", schema);
 
 module.exports = Rotation;

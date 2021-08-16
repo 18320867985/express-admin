@@ -74,8 +74,7 @@ router.get("/seriestype/data/:index/:pageItem", async (req, res) =>
     let maxIndex = Math.ceil(count / pageItem);
     index = index > maxIndex ? maxIndex : index;
     let index2 = (index - 1) * pageItem;
-    // paging end
-
+    
     let list = await mainModel.SeriesType.find({}).sort({order: -1}).skip(index2).limit(pageItem);
 
     res.json(res.ok(list, {

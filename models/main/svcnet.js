@@ -55,7 +55,6 @@ var schema = new orm.mongoose.Schema({
    
 });
 
-
 var Svcnet = orm.db.model("Svcnet", schema);
 
 module.exports = Svcnet;

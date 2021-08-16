@@ -53,7 +53,6 @@ var schema = new orm.mongoose.Schema({
     imgs: [childSchema]
 });
 
-
 var Series = orm.db.model("Series", schema);
 
 module.exports = Series;

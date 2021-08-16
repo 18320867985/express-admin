@@ -1,5 +1,6 @@
 // 用户类型
 const  orm= require("./_mongoose");
+
 var schema = new orm.mongoose.Schema({
     name:{type:String},
     code:{type:Number,
@@ -14,7 +15,6 @@ var schema = new orm.mongoose.Schema({
     }
 
 });
-
 
 var UserRole =orm.db.model("UserRole", schema);
 

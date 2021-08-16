@@ -1,15 +1,18 @@
 
 var router = require('./_router');
 
-router.get("/data", async (req, res) => {
-    res.json(res.ok([{name:"get"}], {
+router.get("/data", async (req, res) =>
+{
+    res.json(res.ok([ {name: "get"} ], {
         index: 0, //	当前页
         pageItem: 12, //  每页条数
-        allItem:100 //  总条数
+        allItem: 100 //  总条数
     }));
 });
-router.post("/", async (req, res) => {  
-    res.json(res.ok([{name:"post"}], {
+
+router.post("/", async (req, res) =>
+{
+    res.json(res.ok([ {name: "post"} ], {
         index: 0, //	当前页
         pageItem: 12, //  每页条数
         allItem: 100 //  总条数
@@ -17,8 +20,9 @@ router.post("/", async (req, res) => {
 
 });
 
-router.put("/", async (req, res) => {   
-    res.json(res.ok([{ name: "put" }], {
+router.put("/", async (req, res) =>
+{
+    res.json(res.ok([ {name: "put"} ], {
         index: 0, //	当前页
         pageItem: 12, //  每页条数
         allItem: 100 //  总条数
@@ -26,8 +30,9 @@ router.put("/", async (req, res) => {
 
 });
 
-router.delete("/", async (req, res) => {
-    res.json(res.ok([{ name: "detele" }], {
+router.delete("/", async (req, res) =>
+{
+    res.json(res.ok([ {name: "detele"} ], {
         index: 0, //	当前页
         pageItem: 12, //  每页条数
         allItem: 100 //  总条数
