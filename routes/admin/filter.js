@@ -1,17 +1,19 @@
 
 const router = require("./_router");
 
-router.use("/", (req, res, next) => {
+router.use("/", (req, res, next) =>
+{
 
-  if(req.session.login&&req.session.login.isLogin===true){
+  if (req.session.login && req.session.login.isLogin === true)
+  {
     next();
   }
-  else{
+  else
+  {
 
     res.redirect("/login");
   }
 
-  
 });
 
 module.exports = router;

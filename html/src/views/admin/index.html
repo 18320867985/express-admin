@@ -1,224 +1,281 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
 
-<head>
-	<meta charset="utf-8" />
-	<meta http-equiv="X-UA-Compatible" content="IE=edge" />
-	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=no" />
-	<meta name="Keywords" content="网站管理系统" />
-	<meta name="Description" content="网站管理系统" />
-	<title>网站管理系统</title>
-	<link rel="stylesheet" type="text/css" href="/static/css/iframe/cstfont/iconfont.css" />
-	<link rel="stylesheet" type="text/css" href="/static/css/iframe/all.css" />
-	<style>
-	.head-logo .iconfont {
-    position: relative;
-    top: 22px;
-    font-size: 32px;
-    color: #fff;
-}
-.head-logo .text-white{
-   position: relative;
-   top: 17px;
-   right: 20px;
-   cursor: pointer;
-}
-	</style>
-</head>
+	<head>
+		<meta charset="utf-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=no" />
+		<meta name="Keywords" content="网站管理系统" />
+		<meta name="Description" content="网站管理系统" />
+		<title>网站管理系统</title>
+		<link rel="stylesheet" type="text/css" href="/static/css/iframe/cstfont/iconfont.css" />
+		<link rel="stylesheet" type="text/css" href="/static/css/iframe/all.css" />
+		<style>
+			.head-logo h4 {
+				float: left;
+				padding: 0;
+				margin: 0 0 0 20px;
+				height: auto;
+				line-height: 40px;
+				font-size: 18px;
+				font-weight: 200;
+				color: #fff;
+			}
 
-<body>
-	<!--
+			.head-logo .iconfont {
+				position: relative;
+				top: 0;
+				font-size: 32px;
+				color: #fff;
+			}
+
+			.head-logo .text-white {
+				position: relative;
+				top: -4px;
+				right: 20px;
+				cursor: pointer;
+			}
+
+			.admin-left .box-big .nemu-1>li {
+				padding: 16px;
+				text-align: center;
+				border-bottom: 1px solid #e1e1e1;
+				-webkit-transition: all .5s;
+				transition: all .5s;
+			}
+
+			.admin-right .wrap-ttl {
+				position: relative;
+				border-left: none;
+				border-right: none;
+				-webkit-box-shadow: 2px 0px 5px #f0f0f0 inset, -2px 0px 5px #f0f0f0 inset;
+				box-shadow: 2px 0px 5px #f0f0f0 inset, -2px 0px 5px #f0f0f0 inset;
+				overflow: hidden;
+			}
+
+			.admin-left .ttl-1 {
+				border: none;
+				border-bottom: 1px solid #e1e1e1;
+			}
+
+			.admin-right .iframe-big {
+				width: 100%;
+				border-top: none;
+				overflow: hidden;
+			}
+
+			.admin-right ul.ttl-1 li.active {
+				color: #337ab7;
+				border-bottom: none;
+				font-weight: 600;
+			}
+
+			.admin-right ul.ttl-1 li {
+				border-right: 1px solid #f4f4f4;
+			}
+			.admin-left .ttl-1 {
+ position: relative;
+}
+			.btn-xs-x {
+				position: absolute;
+				right: 5px;
+				top: 50%;
+				transform: translateY(-50%);
+				line-height: 25px !important;
+				height: 25px !important;
+				padding: 0px 7px !important;
+				font-size: 12px !important;
+				
+			}
+		</style>
+	</head>
+
+	<body>
+		<!--
         	作者：724485868@qq.com
         	时间：2018-02-07
         	描述：
         -->
 
-	<header>
-		<div class="container-fluid-12">
-			<div class="row">
-				<div class="head-logo clearfix">
-					<div class="pull-left">
-						<a href="javascript:;">
-								
-							<!-- <img class="logo" src="/static/images/logo.png" alt="logo image" /> -->
-							<h4>网站管理系统</h4>
-						</a>
-					</div>
-					<div class="pull-right">
-						<div id="app"></div>
-						<!--头像图-->
-						<!-- <a href="javascript:;">
+		<header>
+			<div class="container-fluid-12">
+				<div class="row">
+					<div class="head-logo clearfix">
+						<div class="pull-left">
+							<a href="javascript:;">
+
+								<!-- <img class="logo" src="/static/images/logo.png" alt="logo image" /> -->
+								<h4>网站管理系统</h4>
+							</a>
+						</div>
+						<div class="pull-right">
+							<div id="app"></div>
+							<!--头像图-->
+							<!-- <a href="javascript:;">
 							<img class="head-img" src="/static/images/head.png" alt="头像图" />
 						</a>
 
 						<span class=" iconfont  icon-mima"> </span>
 						<span class=" iconfont icon-yonghu-copy"></span>
 						<span class=" iconfont icon-tuichu" data-toggle="tooltip" data-placement="left" title="退出登录"></span> -->
+						</div>
+
 					</div>
 
 				</div>
 
 			</div>
+		</header>
 
-		</div>
-	</header>
+		<section>
 
-	<section>
+			<div class="container-fluid-12 admin">
+				<div class="row clearfix">
 
-		<div class="container-fluid-12 admin">
-			<div class="row clearfix">
+					<!--左边-->
+					<div class="admin-left pull-left">
+						<h4 class="ttl-1"> 菜单管理		
+						</h4>
+						<div class="box-big">
 
-				<!--左边-->
-				<div class="admin-left pull-left">
-					<h4 class="ttl-1"> 菜单管理</h4>
-					<div class="box-big">
+							<ul class="nemu-1" data-maxcount="100">
 
-						<ul class="nemu-1" data-maxcount="100">
+								<li class="">
+									<!-- <span class="iconfont icon-ttpodicon"></span> -->
+									<a href="javascript:;">用户管理</a>
 
-							<li class="">
-								<!-- <span class="iconfont icon-ttpodicon"></span> -->
-								<a href="javascript:;">用户管理</a>
+									<!--二级菜单-->
+									<ul class="nemu-2">
+										<li class="active">
+											<a href="/admin/user">用户列表</a>
+										</li>
+										<li class="">
+											<a href="/admin/userrole">用户类型</a>
+										</li>
 
-								<!--二级菜单-->
-								<ul class="nemu-2">
-									<li class="active">
-										<a href="/admin/user">用户列表</a>
-									</li>
-									<li class="">
-										<a href="/admin/userrole">用户类型</a>
-									</li>
-									
+									</ul>
+								</li>
 
-								</ul>
-							</li>
+								<li class="">
+									<!-- <span class="iconfont icon-ccgl-rukuyugao-5"></span> -->
+									<a href="javascript:;">图片管理</a>
 
-							<li class="">
-								<!-- <span class="iconfont icon-ccgl-rukuyugao-5"></span> -->
-								<a href="javascript:;">图片管理</a>
+									<!--二级菜单-->
+									<ul class="nemu-2">
+										<li class="">
+											<a href="/admin/rotation">轮播图</a>
+										</li>
 
-								<!--二级菜单-->
-								<ul class="nemu-2">
-									<li class="">
-										<a href="/admin/rotation">轮播图</a>
-									</li>
-									
-									<li class="">
-										<a href="/admin/banner">页面Banner大图</a>
-									</li>
+										<li class="">
+											<a href="/admin/banner">页面Banner大图</a>
+										</li>
 
-								</ul>
-							</li>
+									</ul>
+								</li>
 
-							<li class="">
-								<!-- <span class="iconfont icon-ttpodicon"></span> -->
-								<a href="javascript:;">产品系列</a>
+								<li class="">
+									<!-- <span class="iconfont icon-ttpodicon"></span> -->
+									<a href="javascript:;">产品系列</a>
 
-								<!--二级菜单-->
-								<ul class="nemu-2">
-									<li class="">
-										<a href="/admin/series">系列列表</a>
-									</li>
-									<li class="">
-										<a href="/admin/seriestype">系列类型</a>
-									</li>
-									
+									<!--二级菜单-->
+									<ul class="nemu-2">
+										<li class="">
+											<a href="/admin/series">系列列表</a>
+										</li>
+										<li class="">
+											<a href="/admin/seriestype">系列类型</a>
+										</li>
 
-								</ul>
-							</li>
-							<li class="">
-								<!-- <span class="iconfont icon-ccgl-rukuyugao-5"></span> -->
-								<a href="javascript:;">关于我们</a>
+									</ul>
+								</li>
+								<li class="">
+									<!-- <span class="iconfont icon-ccgl-rukuyugao-5"></span> -->
+									<a href="javascript:;">关于我们</a>
 
-								<!--二级菜单-->
-								<ul class="nemu-2">
-									<li class="">
-										<a href="/admin/contact">联系我们</a>
-									</li>
-								</ul>
-							</li>
+									<!--二级菜单-->
+									<ul class="nemu-2">
+										<li class="">
+											<a href="/admin/contact">联系我们</a>
+										</li>
+									</ul>
+								</li>
 
-							<li class="">
-								<!-- <span class="iconfont icon-ccgl-rukuyugao-5"></span> -->
-								<a href="javascript:;">服务中心</a>
+								<li class="">
+									<!-- <span class="iconfont icon-ccgl-rukuyugao-5"></span> -->
+									<a href="javascript:;">服务中心</a>
 
-								<!--二级菜单-->
-								<ul class="nemu-2">
-									<li class="">
-										<a href="/admin/svcnet">服务网点</a>
-									</li>
-								</ul>
-							</li>
-							
-							<li class="">
-								<!-- <span class="iconfont icon-ccgl-rukuyugao-5"></span> -->
-								<a href="javascript:;">文章管理</a>
+									<!--二级菜单-->
+									<ul class="nemu-2">
+										<li class="">
+											<a href="/admin/svcnet">服务网点</a>
+										</li>
+									</ul>
+								</li>
 
-								<!--二级菜单-->
-								<ul class="nemu-2">
-									<li class="">
-										<a href="/admin/article">文章列表</a>
-									</li>
-								</ul>
-							</li>
+								<li class="">
+									<!-- <span class="iconfont icon-ccgl-rukuyugao-5"></span> -->
+									<a href="javascript:;">文章管理</a>
 
-							<li class="">
-								<!-- <span class="iconfont icon-ccgl-rukuyugao-5"></span> -->
-								<a href="javascript:;">公告信息</a>
+									<!--二级菜单-->
+									<ul class="nemu-2">
+										<li class="">
+											<a href="/admin/article">文章列表</a>
+										</li>
+									</ul>
+								</li>
 
-								<!--二级菜单-->
-								<ul class="nemu-2">
-									<li class="">
-										<a href="/admin/notify">公告列表</a>
-									</li>
-								</ul>
-							</li>
+								<li class="">
+									<!-- <span class="iconfont icon-ccgl-rukuyugao-5"></span> -->
+									<a href="javascript:;">公告信息</a>
 
-
-						</ul>
-
-					</div>
-
-				</div>
-
-				<!--右边-->
-				<div class="admin-right pull-left clearfix">
-
-					<div class="wrap-ttl col-xs-11">
-						<div class="row">
-							<ul class="ttl-1 clearfix">
-
-								<!--<li class="active"><span class="txt">产品档案报表 </span><span class="close">&times;</span></li>-->
+									<!--二级菜单-->
+									<ul class="nemu-2">
+										<li class="">
+											<a href="/admin/notify">公告列表</a>
+										</li>
+									</ul>
+								</li>
 
 							</ul>
+
 						</div>
-						<!--左右键移动btn-->
-						<span class="warp-left-btn glyphicon glyphicon-menu-left"></span>
-						<span class="warp-right-btn glyphicon glyphicon-menu-right"></span>
-					</div>
-
-					<div class="col-xs-1 ">
-						<button class=" btn btn-default btn-xs-x btn-refresh  " type="button" data-toggle="tooltip" data-placement="left"
-						 title="刷新子页面">
-							<span class="glyphicon glyphicon-refresh"></span>
-						</button>
 
 					</div>
 
-					<!--iframe-->
-					<div class="iframe-big">
+					<!--右边-->
+					<div class="admin-right pull-left clearfix">
 
-						<!--<iframe id="iframe" class="iframe-box active" src="系统管理-产品档案报表.html"></iframe>-->
+						<div class="wrap-ttl col-xs-12">
+							<div class="row">
+								<ul class="ttl-1 clearfix">
+									<!--<li class="active"><span class="txt">产品档案报表 </span><span class="close">&times;</span></li>-->
+								</ul>
+							</div>
+							<!--左右键移动btn-->
+							<span class="warp-left-btn glyphicon glyphicon-menu-left"></span>
+							<span class="warp-right-btn glyphicon glyphicon-menu-right"></span>
+						</div>
+						<!-- 
+						<div class="col-xs-1 ">
+							<button class=" btn btn-default btn-xs-x btn-refresh  " type="button" data-toggle="tooltip"
+								data-placement="left" title="刷新子页面">
+								<span class="glyphicon glyphicon-refresh"></span>
+							</button>
+						</div> -->
+
+						<!--iframe-->
+						<div class="iframe-big">
+							<!--<iframe id="iframe" class="iframe-box active" src="系统管理-产品档案报表.html"></iframe>-->
+						</div>
 
 					</div>
 
 				</div>
-
 			</div>
-		</div>
 
-	</section>
+		</section>
 
-	<footer>
+		<!-- <footer>
 		<div class="footer">
 			<div class="container-fluid-12">
 				<div class="cont">
@@ -227,18 +284,20 @@
 
 			</div>
 		</div>
-	</footer>
-	<script src="/static/js/common/jquery-1.11.0.js" type="text/javascript" charset="utf-8"></script>
-	<script src="/static/js/iframe/all.js" type="text/javascript" charset="utf-8"></script>
-	<script data-parent="umd" data-umd="index" defer src="/static/js/admin.js" type="text/javascript" charset="utf-8"></script>
+	</footer> -->
+		<script src="/static/js/common/jquery-1.11.0.js" type="text/javascript" charset="utf-8"></script>
+		<script src="/static/js/iframe/all.js" type="text/javascript" charset="utf-8"></script>
+		<script data-parent="umd" data-umd="index" defer src="/static/js/admin.js" type="text/javascript"
+			charset="utf-8"></script>
 
-	<script type="text/javascript">
-		$(function () {
-			admin.init();
-			admin.showIframeActive(); // 第一次显示页面  li元素 class="active"
+		<script type="text/javascript">
+			$(function ()
+			{
+				admin.init();
+				admin.showIframeActive(); // 第一次显示页面  li元素 class="active"
 
-		});
-	</script>
-</body>
+			});
+		</script>
+	</body>
 
 </html>

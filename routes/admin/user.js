@@ -3,25 +3,30 @@ const router = require("./_router");
 const mainModel = require("../../models/main");
 const cpy = require("../../lib/crypto");
 
-router.get("/user", async (req, res) => {
+router.get("/user", async (req, res) =>
+{
 
     res.render("admin/user.html");
 });
 
 // 检测是否存在
-router.get("/user/data-unique/:v", async (req, res) => {
+router.get("/user/data-unique/:v", async (req, res) =>
+{
     let name = req.params.v || "";
-    let count = await mainModel.User.countDocuments({ name: name });
-    if (count > 0) {
+    let count = await mainModel.User.countDocuments({name: name});
+    if (count > 0)
+    {
         res.json(false);
-    } else {
+    } else
+    {
         res.json(true);
     }
 
 });
 
 // 获取ids数组获取详细信息
-router.get("/user/data-dtl/:ids", async (req, res) => {
+router.get("/user/data-dtl/:ids", async (req, res) =>
+{
     let ids = req.params.ids || "";
     ids = ids.split(",");
     let list = await mainModel.User.find({
@@ -33,12 +38,14 @@ router.get("/user/data-dtl/:ids", async (req, res) => {
 });
 
 // 分页
-router.get("/user/data/:index/:pageItem", async (req, res) => {
+router.get("/user/data/:index/:pageItem", async (req, res) =>
+{
 
     // paging start
     let index = Number(req.params.index) || 0;
     let pageItem = Number(req.params.pageItem) || 10;
-    if (!mainModel.User) {
+    if (!mainModel.User)
+    {
         // 没有相关数据
         res.json(res.ok([], {
             index: 0, //	当前页
@@ -48,7 +55,8 @@ router.get("/user/data/:index/:pageItem", async (req, res) => {
         return;
     }
     let count = await mainModel.User.countDocuments(); //edit line
-    if (count <= 0) {
+    if (count <= 0)
+    {
         // 没有相关数据
         res.json(res.ok([], {
             index: 0, //	当前页
@@ -71,7 +79,8 @@ router.get("/user/data/:index/:pageItem", async (req, res) => {
 });
 
 //  添加
-router.post("/user/data", async (req, res) => {
+router.post("/user/data", async (req, res) =>
+{
     let user = new mainModel.User({
         name: req.body.name,
         pwd: cpy.md5(req.body.pwd),
@@ -80,49 +89,56 @@ router.post("/user/data", async (req, res) => {
     });
 
     let isok = user.validateSync();
-    if (isok) {
+    if (isok)
+    {
         res.json(res.err(isok));
         return;
     }
 
-    var count = await mainModel.User.countDocuments({ name: user.name });
-    if (count > 0) {
+    var count = await mainModel.User.countDocuments({name: user.name});
+    if (count > 0)
+    {
         res.json(res.err("用户名已存在！"));
         return;
     };
 
     var userinfo = await mainModel.User.create(user)
-    if (!userinfo) {
+    if (!userinfo)
+    {
         res.json(res.err("添加失败"));
         return;
     }
     res.json(res.ok(userinfo));
 });
 
-
 // 修改
-router.put("/user/data", async (req, res) => {
+router.put("/user/data", async (req, res) =>
+{
 
     let id = req.body._id;
     let roleId = req.body.roleId;
-    try {
+    try
+    {
         roleId = mainModel.orm.mongoose.Types.ObjectId(roleId).toHexString();
-    } catch (error) {
+    } catch (error)
+    {
         res.json(res.err("用户类型 roleId 有误！"));
         return;
     }
-    let v = await mainModel.User.findByIdAndUpdate(id, { $set: { roleId } }, { new: true });
-    if (!v) {
+    let v = await mainModel.User.findByIdAndUpdate(id, {$set: {roleId}}, {new: true});
+    if (!v)
+    {
         res.json(res.err("修改失败"));
         return;
-    } else {
+    } else
+    {
         res.json(res.ok(v))
     }
 });
 
-
 // 删除
-router.delete("/user/data/:listId", async (req, res) => {
+router.delete("/user/data/:listId", async (req, res) =>
+{
     // let id = req.params.id;
     let listId = req.params.listId || "";
     listId = listId.split(",")
@@ -132,13 +148,13 @@ router.delete("/user/data/:listId", async (req, res) => {
         }
     }).catch(err => { });
 
-    if (!obj) {
+    if (!obj)
+    {
         res.json(res.err());
         return;
     }
     res.json(res.ok(obj));
 
 });
-
 
 module.exports = router;

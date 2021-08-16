@@ -337,7 +337,6 @@ import VueEdit from "../../template-share/edit.vue";
 import VueAdd from "../../template-share/add.vue";
 import VueDtl from "../../template-share/dtl.vue";
 import { mixin } from "../../template-share/mixin";
-import { eventBus } from "../../../components/eventBus.js";
 
 export default {
   mixins: [mixin],
@@ -443,10 +442,7 @@ export default {
 };
 </script>
 <style lang="scss">
-.template-add {
-}
-.template-edit {
-}
+
 .upload-img {
   margin: 10px 0;
   width: 100%;

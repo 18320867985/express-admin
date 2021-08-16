@@ -2,25 +2,6 @@
 // 文章
 const orm = require("./_mongoose");
 
-// var childSchema = new orm.mongoose.Schema({
-//     ttl: {
-//         type: String,
-//         default: ""
-//     },
-//     url: {
-//         type: String,
-//         default: ""
-//     },
-//     src: {
-//         type: String,
-//         default: ""
-//     },
-//     order: {
-//         type: Number,
-//         default: 1
-//     }
-// });
-
 var schema = new orm.mongoose.Schema({
     title: {
         type: String,
@@ -47,8 +28,6 @@ var schema = new orm.mongoose.Schema({
         type: Date,
         default: Date.now
     },
-   
-
    
 });
 
