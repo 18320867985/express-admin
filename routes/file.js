@@ -15,11 +15,11 @@ router.post("/", (req, res) =>
 
     try
     {
-        // let _url = "/public/upload";
-        // if (!fs.existsSync(path.resolve(_url)))
-        // {
-        //     fs.mkdirSync(path.resolve(_url));
-        // }
+        let _url = "./public/upload";
+        if (!fs.existsSync(path.resolve(_url)))
+        {
+            fs.mkdirSync(path.resolve(_url));
+        }
         let form = new formidable.IncomingForm();  
         form.keepExtensions = true;
         form.uploadDir = "./public/upload"; // 相对路径
