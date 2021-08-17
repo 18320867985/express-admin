@@ -25,7 +25,6 @@ import VueResource from 'vue-resource';
  Vue.use(VueResource);
  Vue.http.options.root = '/';
  Vue.http.options.emulateJSON = true;
- 
  import VueComponent from "../../components/vue-share/index";
  Vue.use(VueComponent) ; // 全局注册组件
  
@@ -49,7 +48,7 @@ import VueResource from 'vue-resource';
  export {series}  from "./series";
  export {contact}  from "./contact";
  export {svcnet}  from "./svcnet";
- //export {article}  from "./article";
+ export {article}  from "./article";
  
  export {file}  from "./file";
 

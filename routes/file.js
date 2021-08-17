@@ -12,7 +12,6 @@ router.get("/", (req, res) =>
 
 router.post("/", (req, res) =>
 {
-
     try
     {
         let _url = "./public/upload";   // 相对路径
@@ -29,7 +28,7 @@ router.post("/", (req, res) =>
             // 写入数据库
             if (err)
             {
-                res.json(res.err(err));
+                res.json(res._err(err));
                 return;
                 //throw err;
             }
@@ -39,13 +38,13 @@ router.post("/", (req, res) =>
            // var extname = path.extname(_path);
             var basename = path.basename(_path);
             let url ="/public/upload/" + basename;
-            res.json(res.ok(url));
+            res.json(res._ok(url));
 
         });
 
     } catch (error)
     {
-        res.json(res.err(error));
+        res.json(res._err(error));
         return;
     }
 });

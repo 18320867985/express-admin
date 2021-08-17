@@ -30,7 +30,7 @@
         </div>
         <div class="form-group clearfix">
           <div class="pull-left">
-            <vue-checkbox v-model="isAuto">记住密码</vue-checkbox>
+            <vue-checkbox >记住密码</vue-checkbox>
           </div>
           <div class="pull-right">
             <a href="javascript:;">忘记密码？</a>

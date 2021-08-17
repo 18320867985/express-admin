@@ -1,3 +1,0 @@
-(node:9112) [DEP0005] DeprecationWarning: Buffer() is deprecated due to security and usability issues. Please use the Buffer.alloc(), Buffer.allocUnsafe(), or Buffer.from() methods instead.
-Application has thrown an uncaught exception and is terminated:
-Error: ENOENT: no such file or directory, open 'E:\nodejs\express-admin\routes\public\upload\upload_3a7a7a12c082e69e4e1cb8b18be1c29a.png'

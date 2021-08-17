@@ -31,7 +31,6 @@ var schema = new orm.mongoose.Schema({
    
 });
 
-
 var Article = orm.db.model("Article", schema);
 
 module.exports = Article;

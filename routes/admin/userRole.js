@@ -14,7 +14,7 @@ router.get("/userRole/data", async (req, res) =>
     {
         userRoles = [];
     }
-    res.json(res.ok(userRoles));
+    res.json(res._ok(userRoles));
 });
 
 
@@ -43,7 +43,7 @@ router.get("/userRole/data-dtl/:ids", async (req, res) =>
             $in: ids
         }
     });
-    res.json(res.ok(list));
+    res.json(res._ok(list));
 });
 
 // 分页
@@ -56,7 +56,7 @@ router.get("/userRole/data/:index/:pageItem", async (req, res) =>
     if (!mainModel.UserRole)
     {
         // 没有相关数据
-        res.json(res.ok([], {
+        res.json(res._ok([], {
             index: 0, //	当前页
             pageItem: pageItem, //  每页条数
             allItem: 0, //  总条数
@@ -67,7 +67,7 @@ router.get("/userRole/data/:index/:pageItem", async (req, res) =>
     if (count <= 0)
     {
         // 没有相关数据
-        res.json(res.ok([], {
+        res.json(res._ok([], {
             index: 0, //	当前页
             pageItem: pageItem, //  每页条数
             allItem: count, //  总条数
@@ -80,7 +80,7 @@ router.get("/userRole/data/:index/:pageItem", async (req, res) =>
 
     let list = await mainModel.UserRole.find({}).sort({order: -1}).skip(index2).limit(pageItem);
 
-    res.json(res.ok(list, {
+    res.json(res._ok(list, {
         index: index, //	当前页
         pageItem: pageItem, //  每页条数
         allItem: count, //  总条数
@@ -97,17 +97,17 @@ router.post("/userRole/data", async (req, res) =>
     let isok = o.validateSync();
     if (isok)
     {
-        res.json(res.err(isok));
+        res.json(res._err(isok));
         return;
     }
 
     var rt = await mainModel.UserRole.create(o)
     if (!rt)
     {
-        res.json(res.err("添加失败"));
+        res.json(res._err("添加失败"));
         return;
     }
-    res.json(res.ok(rt));
+    res.json(res._ok(rt));
 });
 
 // 修改
@@ -121,14 +121,13 @@ router.put("/userRole/data", async (req, res) =>
     let v = await mainModel.UserRole.findByIdAndUpdate(id, {$set: {name, order}}, {new: true});
     if (!v)
     {
-        res.json(res.err("修改失败"));
+        res.json(res._err("修改失败"));
         return;
     } else
     {
-        res.json(res.ok(v))
+        res.json(res._ok(v))
     }
 });
-
 
 // 删除
 router.delete("/userRole/data/:listId", async (req, res) =>
@@ -144,10 +143,10 @@ router.delete("/userRole/data/:listId", async (req, res) =>
 
     if (!obj)
     {
-        res.json(res.err());
+        res.json(res._err());
         return;
     }
-    res.json(res.ok(obj));
+    res.json(res._ok(obj));
 
 });
 

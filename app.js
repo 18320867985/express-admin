@@ -8,7 +8,7 @@ var app = express();
 
 app.use(logger('dev'));
 app.use(express.json());                           // for parsing application/json
-app.use(express.urlencoded({extended: true})); // for parsing application/x-www-form-urlencoded
+app.use(express.urlencoded({extended: true}));    // for parsing application/x-www-form-urlencoded
 app.use(cookieParser());
 
 // session
@@ -64,53 +64,107 @@ app.use(function (req, res, next)
     next();
 });
 
-// 返回处理的数据
+// 处理api返回的数据格式
 app.use((req, res, next) =>
 {
+     // error return data
+     if(!res._err)
+     {
+        res._err = (data, desc) =>
+        {
+            let o = {
+                status: "error",
+                code: 0,
+                data
+            };
+    
+            if(desc instanceof Object)
+            {
+              return Object.assign(o,desc) ;
+            }
+    
+            o.desc = desc;
+            return o;
+        };
+    
+     }
+    
     // success return data
-    res.ok = (data, desc) =>
+    if(!res._ok)
     {
-        let o = {
-            status: "success",
-            code: 1,
-            data
-        };
-
-        if (typeof data !== "undefined" && desc instanceof Object)
+        res._ok = (data, desc) =>
         {
-            for (let name in desc)
+            let o = {
+                status: "success",
+                code: 1,
+                data
+            };
+    
+            if(desc instanceof Object)
             {
-                o[ name ] = desc[ name ];
+              return Object.assign(o,desc) ;
             }
+            
+            o.desc = desc;
             return o;
-        }
-        o.desc = desc;
-        return o;
-    };
-
-    // error return data
-    res.err = (data, desc) =>
-    {
-        let o = {
-            status: "error",
-            code: 0,
-            data
         };
-
-        if (typeof data !== "undefined" && desc instanceof Object)
-        {
-            for (let name in desc)
-            {
-                o[ name ] = desc[ name ];
-            }
-            return o;
-        }
-        o.desc = desc;
-        return o;
-    };
-
+    
+    }
+       // not token return data
+       if(!res._notToken)
+       {
+           res._notToken = (data, desc) =>
+           {
+               let o = {
+                   status: "not token  no access 403",
+                   code: 2,
+                   data
+               };
+       
+               if(desc instanceof Object)
+               {
+                 return Object.assign(o,desc) ;
+               }
+               
+               o.desc = desc;
+               return o;
+           };
+       
+       }
+  
     next();
 });
+
+// token 验证
+// let jwt = require("./libs/jwt");
+// app.use((req, res, next) =>
+// {
+//     if (jwt.notSignTokenUrlList.indexOf(req.url) === -1)
+//     {    
+//         //[ 'x-access-token' ] = token // 让每个请求携带自定义 token 请根据实际情况自行修改
+//         let token = req.headers[ 'x-access-token' ];
+//         console.log("headers",req.headers)
+//         console.log("headers-common",req.headers.common)
+//         console.log("token",token)
+//         next();
+//         jwt.verify(token, function (err, decorded)
+//         {
+//             console.log("decorded",decorded)
+//             if (err)
+//             {
+//                 res.json(res._notToken({token:"无效的token,请登录去获取token"},));
+
+//             }else{
+//                 next();
+//             }
+//         })
+
+//     } else
+//     {
+//         next();
+//     }
+
+// });
 
 // route 
 let indexRouter = require('./routes/index');

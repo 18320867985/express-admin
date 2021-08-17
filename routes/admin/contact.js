@@ -16,7 +16,7 @@ router.get("/contact/data/:index/:pageItem", async (req, res) =>
     if (!mainModel.Contact)
     {
         // 没有相关数据
-        res.json(res.ok([], {
+        res.json(res._ok([], {
             index: 0, //	当前页
             pageItem: pageItem, //  每页条数
             allItem: 0, //  总条数
@@ -27,7 +27,7 @@ router.get("/contact/data/:index/:pageItem", async (req, res) =>
     if (count <= 0)
     {
         // 没有相关数据
-        res.json(res.ok([], {
+        res.json(res._ok([], {
             index: 0, //	当前页
             pageItem: pageItem, //  每页条数
             allItem: count, //  总条数
@@ -41,13 +41,12 @@ router.get("/contact/data/:index/:pageItem", async (req, res) =>
 
     let list = await mainModel.Contact.find({}).skip(index2).limit(pageItem).sort({order: -1});
 
-    res.json(res.ok(list, {
+    res.json(res._ok(list, {
         index: index, //	当前页
         pageItem: pageItem, //  每页条数
         allItem: count, //  总条数
     }));
 });
-
 
 // 检测是否存在
 router.get("/contact/data-unique/:v", async (req, res) =>
@@ -74,14 +73,12 @@ router.get("/contact/data-dtl/:ids", async (req, res) =>
             $in: ids
         }
     });
-    res.json(res.ok(list));
+    res.json(res._ok(list));
 });
-
 
 //  添加
 router.post("/contact/data", async (req, res) =>
 {
-
     let o = new mainModel.Contact({
         name: req.body.name,
         code: req.body.code,
@@ -96,17 +93,17 @@ router.post("/contact/data", async (req, res) =>
     let isok = o.validateSync();
     if (isok)
     {
-        res.json(res.err(isok));
+        res.json(res._err(isok));
         return;
     }
 
     var rt = await mainModel.Contact.create(o)
     if (!rt)
     {
-        res.json(res.err("添加失败"));
+        res.json(res._err("添加失败"));
         return;
     }
-    res.json(res.ok(rt));
+    res.json(res._ok(rt));
 });
 
 // 修改
@@ -125,21 +122,20 @@ router.put("/contact/data", async (req, res) =>
         id = mainModel.orm.mongoose.Types.ObjectId(id).toHexString();
     } catch (error)
     {
-        res.json(res.err("_id 有误！"));
+        res.json(res._err("_id 有误！"));
         return;
     }
 
     let v = await mainModel.Contact.findByIdAndUpdate(id, {$set: {name, order, x, y, tel, addr}}, {new: true});
     if (!v)
     {
-        res.json(res.err("修改失败"));
+        res.json(res._err("修改失败"));
         return;
     } else
     {
-        res.json(res.ok(v))/*  */
+        res.json(res._ok(v))/*  */
     }
 });
-
 
 // 删除
 router.delete("/contact/data/:listId", async (req, res) =>
@@ -155,10 +151,10 @@ router.delete("/contact/data/:listId", async (req, res) =>
 
     if (!obj)
     {
-        res.json(res.err());
+        res.json(res._err());
         return;
     }
-    res.json(res.ok(obj));
+    res.json(res._ok(obj));
 
 });
 

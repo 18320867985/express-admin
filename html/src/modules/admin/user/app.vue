@@ -107,7 +107,7 @@
                 <option
                   v-for="(item ,index) of roles"
                   :key="index"
-                  :selected="editObj.roleId===item_id"
+                  :selected="editObj.roleId===item._id"
                   :value="item._id"
                 >{{item.name}}</option>
               </select>
@@ -316,10 +316,6 @@ export default {
 };
 </script>
 <style lang="scss">
-.template-add {
-}
-.template-edit {
-}
 </style>
 
 

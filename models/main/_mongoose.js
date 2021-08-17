@@ -1,5 +1,5 @@
 const mongoose = require("mongoose");
-const config = require("../../lib/config");
+const config = require("../../libs/config");
 const url=config.mainConfig.url;
 
 let db = mongoose.createConnection(url, { useNewUrlParser: true, useFindAndModify: false, useCreateIndex: true ,useUnifiedTopology:true});

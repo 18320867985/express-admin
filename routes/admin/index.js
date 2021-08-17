@@ -1,8 +1,8 @@
 
 const router = require("./_router");
 
-// filter
-require("./filter");
+// sessionCheck
+require("./_sessionCheck");
 
 router.get("/index", (req, res) =>
 {
@@ -13,16 +13,15 @@ router.get("/index/data", (req, res) =>
 {
     if (req.session.login && req.session.login.isLogin)
     {
-        res.json(res.ok(req.session.login.user));
+        res.json(res._ok(req.session.login.user));
         return;
     } else
     {
-        res.json(res.err());
+        res.json(res._err());
         return;
     }
 
 });
-
 
 // user
 require("./user");

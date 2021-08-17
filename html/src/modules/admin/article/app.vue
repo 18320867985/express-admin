@@ -93,7 +93,7 @@
                 <label for>文章内容:</label>
                 <div v-html="item.content"> </div>
               </div>
-              
+              </div>
           </div>
         </template>
       </vue-dtl>
@@ -288,7 +288,6 @@ import VueEdit from "../../template-share/edit.vue";
 import VueAdd from "../../template-share/add.vue";
 import VueDtl from "../../template-share/dtl.vue";
 import { mixin } from "../../template-share/mixin";
-import { eventBus } from "../../../components/eventBus.js";
 
 export default {
   mixins: [mixin],
