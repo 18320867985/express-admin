@@ -59,7 +59,7 @@ app.use(function (req, res, next)
     {
         res.header("Access-Control-Allow-Origin", "*");   // * 表示所有站点可以访问,单个指定例如：http://localhost:8888
         res.header("Access-Control-Allow-Methods", "PUT,POST,GET,DELETE,OPTIONS");
-        res.header("Access-Control-Allow-Headers", "Content-Type,Content-Length, Authorization, Accept,X-Requested-With");
+        res.header("Access-Control-Allow-Headers", "Content-Type,Content-Length, Authorization, Accept,X-Requested-With,Access-Token");
     }
     next();
 });
@@ -116,7 +116,7 @@ app.use((req, res, next) =>
            res._notToken = (data, desc) =>
            {
                let o = {
-                   status: "not token  no access 403",
+                   status: "not access token",
                    code: 2,
                    data
                };
@@ -141,8 +141,8 @@ app.use((req, res, next) =>
 // {
 //     if (jwt.notSignTokenUrlList.indexOf(req.url) === -1)
 //     {    
-//         //[ 'x-access-token' ] = token // 让每个请求携带自定义 token 请根据实际情况自行修改
-//         let token = req.headers[ 'x-access-token' ];
+//         //[ 'Access-Token' ] = token // 让每个请求携带自定义 token 请根据实际情况自行修改
+//         let token = req.headers[ 'access-token' ];  // 接受必须是小写
 //         console.log("headers",req.headers)
 //         console.log("headers-common",req.headers.common)
 //         console.log("token",token)

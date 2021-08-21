@@ -1,0 +1,40 @@
+服务器运行在 localhost:\\.\pipe\93175f0c-5132-4ad8-93a1-661497568cd9 端口上...
+processId:5552
+[0mGET / [36m302 [0m12.452 ms - 66[0m
+mongodb connection success 
+[0mGET /admin/index [36m302 [0m4.840 ms - 56[0m
+[0mGET /login [36m304 [0m7.203 ms - -[0m
+[0mGET /static/css/cstFonts/iconfont.css [36m304 [0m7.838 ms - -[0m
+[0mGET /static/css/vue-admin.css [36m304 [0m2.472 ms - -[0m
+[0mGET /static/css/admin.css [36m304 [0m2.221 ms - -[0m
+[0mGET /static/js/admin.js [36m304 [0m3.684 ms - -[0m
+[0mGET /favicon.ico [36m304 [0m3.159 ms - -[0m
+[0mPOST /login/data [32m200 [0m37.915 ms - 64[0m
+[0mGET /admin/index [32m200 [0m3.762 ms - 7896[0m
+[0mGET /static/css/iframe/all.css [36m304 [0m3.916 ms - -[0m
+[0mGET /static/js/common/jquery-1.11.0.js [36m304 [0m3.235 ms - -[0m
+[0mGET /static/js/iframe/all.js [36m304 [0m6.915 ms - -[0m
+[0mGET /static/css/iframe/cstfont/iconfont.css [36m304 [0m3.104 ms - -[0m
+[0mGET /static/js/admin.js [36m304 [0m1.483 ms - -[0m
+[0mGET /admin/user [36m304 [0m2.404 ms - -[0m
+[0mGET /static/css/iframe/cstfont/iconfont.css [36m304 [0m1.549 ms - -[0m
+[0mGET /static/css/iframe/all.css [36m304 [0m0.982 ms - -[0m
+[0mGET /static/css/iframe/all.css [36m304 [0m0.873 ms - -[0m
+[0mGET /static/css/cstFonts/iconfont.css [36m304 [0m1.568 ms - -[0m
+[0mGET /static/css/admin.css [36m304 [0m3.268 ms - -[0m
+[0mGET /static/css/vue-admin.css [36m304 [0m1.890 ms - -[0m
+[0mGET /static/js/admin.js [36m304 [0m1.712 ms - -[0m
+[0mGET /admin/userRole/data [36m304 [0m15.938 ms - -[0m
+[0mGET /admin/index/data [36m304 [0m1.446 ms - -[0m
+[0mGET /admin/user/data/1/10 [36m304 [0m61.518 ms - -[0m
+[0mGET /static/css/fonts/glyphicons-halflings-regular.woff2 [36m304 [0m22.410 ms - -[0m
+[0mGET /favicon.ico [36m304 [0m3.695 ms - -[0m
+[0mGET /admin/user/data-unique/admin [36m304 [0m4.301 ms - -[0m
+[0mGET /admin/user/data/2/10 [36m304 [0m12.428 ms - -[0m
+[0mGET /admin/user/data/1/10 [36m304 [0m12.377 ms - -[0m
+[0mGET /admin/user/data-unique/admin8 [32m200 [0m2.965 ms - 5[0m
+[0mGET /admin/user/data-unique/admin88 [32m200 [0m2.614 ms - 5[0m
+[0mGET /admin/user/data-unique/admin888 [32m200 [0m2.765 ms - 4[0m
+[0mGET /admin/user/data-unique/admin888 [36m304 [0m2.348 ms - -[0m
+[0mPOST /admin/user/data [32m200 [0m22.403 ms - 214[0m
+[0mGET /admin/user/data/1/10 [32m200 [0m19.335 ms - 2235[0m
