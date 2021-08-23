@@ -1,0 +1,31 @@
+服务器运行在 localhost:\\.\pipe\d94876f0-dbca-466e-860b-5dde3b2d5d9b 端口上...
+processId:4980
+mongodb connection success 
+[0mGET / [36m302 [0m9.016 ms - 66[0m
+[0mGET /admin/index [36m302 [0m2.766 ms - 56[0m
+[0mGET /login [36m304 [0m6.913 ms - -[0m
+[0mGET /static/css/cstFonts/iconfont.css [36m304 [0m5.687 ms - -[0m
+[0mGET /static/css/vue-admin.css [36m304 [0m3.518 ms - -[0m
+[0mGET /static/js/admin.js [36m304 [0m3.209 ms - -[0m
+[0mGET /static/css/admin.css [36m304 [0m2.847 ms - -[0m
+[0mGET /favicon.ico [36m304 [0m2.012 ms - -[0m
+[0mPOST /login/data [32m200 [0m35.161 ms - 64[0m
+[0mGET /admin/index [32m200 [0m3.715 ms - 7896[0m
+[0mGET /static/js/common/jquery-1.11.0.js [36m304 [0m2.991 ms - -[0m
+[0mGET /static/css/iframe/cstfont/iconfont.css [36m304 [0m2.817 ms - -[0m
+[0mGET /static/js/iframe/all.js [36m304 [0m2.557 ms - -[0m
+[0mGET /static/css/iframe/all.css [36m304 [0m2.276 ms - -[0m
+[0mGET /static/js/admin.js [36m304 [0m2.610 ms - -[0m
+[0mGET /admin/user [36m304 [0m2.714 ms - -[0m
+[0mGET /static/css/iframe/cstfont/iconfont.css [36m304 [0m1.711 ms - -[0m
+[0mGET /static/css/iframe/all.css [36m304 [0m1.241 ms - -[0m
+[0mGET /static/css/iframe/all.css [36m304 [0m0.718 ms - -[0m
+[0mGET /static/css/cstFonts/iconfont.css [36m304 [0m1.493 ms - -[0m
+[0mGET /static/css/admin.css [36m304 [0m2.825 ms - -[0m
+[0mGET /static/css/vue-admin.css [36m304 [0m1.998 ms - -[0m
+[0mGET /static/js/admin.js [36m304 [0m1.606 ms - -[0m
+[0mGET /admin/userRole/data [36m304 [0m14.758 ms - -[0m
+[0mGET /admin/index/data [36m304 [0m1.208 ms - -[0m
+[0mGET /admin/user/data/1/10 [36m304 [0m64.835 ms - -[0m
+[0mGET /static/css/fonts/glyphicons-halflings-regular.woff2 [36m304 [0m22.359 ms - -[0m
+[0mGET /favicon.ico [36m304 [0m2.157 ms - -[0m
