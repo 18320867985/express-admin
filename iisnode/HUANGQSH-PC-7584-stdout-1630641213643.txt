@@ -1,0 +1,8 @@
+服务器运行在 localhost:\\.\pipe\4c1e42f3-160b-4b29-b615-fa325260f048 端口上...
+processId:7584
+mongodb connection success 
+[0mGET /ueditor/themes/default/images/icons.png [36m304 [0m14.729 ms - -[0m
+[0mGET /ueditor/themes/default/images/loading.gif [32m200 [0m5.266 ms - 734[0m
+[0mGET /ueditor/themes/default/images/spacer.gif [32m200 [0m2.400 ms - 43[0m
+[0mPOST /ueditor/ue?action=uploadimage [32m200 [0m18.439 ms - 96[0m
+[0mGET /ueditor/upload-img/1433639307410804736.png [32m200 [0m1.013 ms - 110052[0m

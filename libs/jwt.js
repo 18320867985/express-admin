@@ -8,6 +8,7 @@ let expires=60*30;                  // 有效30分钟
 let notSignTokenUrlList=[
 "/login",
 "/login/data",
+"ueditor/ue"
 ];  
 
 function sign(signData,expiresIn=expires)

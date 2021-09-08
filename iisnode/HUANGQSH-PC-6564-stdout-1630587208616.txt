@@ -1,0 +1,47 @@
+服务器运行在 localhost:\\.\pipe\662671c9-8a46-456f-bc70-96b2c64aefda 端口上...
+processId:6564
+[0mGET / [36m302 [0m10.750 ms - 66[0m
+mongodb connection success 
+[0mGET /admin/index [36m302 [0m4.184 ms - 56[0m
+[0mGET /login [36m304 [0m8.018 ms - -[0m
+[0mGET /static/css/cstFonts/iconfont.css [36m304 [0m5.275 ms - -[0m
+[0mGET /static/css/vue-admin.css [36m304 [0m4.112 ms - -[0m
+[0mGET /static/css/admin.css [36m304 [0m3.803 ms - -[0m
+[0mGET /static/js/admin.js [36m304 [0m2.917 ms - -[0m
+[0mGET /static/css/cstFonts/iconfont.css [36m304 [0m3.020 ms - -[0m
+[0mGET /static/css/admin.css [36m304 [0m2.291 ms - -[0m
+[0mGET /static/css/vue-admin.css [36m304 [0m1.868 ms - -[0m
+[0mGET /favicon.ico [36m304 [0m2.062 ms - -[0m
+[0mPOST /login/data [32m200 [0m40.242 ms - 64[0m
+[0mGET /admin/index [32m200 [0m4.430 ms - 7896[0m
+[0mGET /static/css/iframe/cstfont/iconfont.css [36m304 [0m3.342 ms - -[0m
+[0mGET /static/js/common/jquery-1.11.0.js [36m304 [0m2.245 ms - -[0m
+[0mGET /static/js/iframe/all.js [36m304 [0m2.164 ms - -[0m
+[0mGET /static/css/iframe/all.css [36m304 [0m1.825 ms - -[0m
+[0mGET /static/js/admin.js [36m304 [0m3.079 ms - -[0m
+[0mGET /admin/user [36m304 [0m2.046 ms - -[0m
+[0mGET /static/css/iframe/all.css [36m304 [0m1.060 ms - -[0m
+[0mGET /static/css/iframe/cstfont/iconfont.css [36m304 [0m0.953 ms - -[0m
+[0mGET /static/css/iframe/cstfont/iconfont.css [36m304 [0m1.524 ms - -[0m
+[0mGET /static/css/iframe/all.css [36m304 [0m0.993 ms - -[0m
+[0mGET /static/css/cstFonts/iconfont.css [36m304 [0m2.616 ms - -[0m
+[0mGET /static/css/vue-admin.css [36m304 [0m1.941 ms - -[0m
+[0mGET /static/css/admin.css [36m304 [0m1.663 ms - -[0m
+[0mGET /static/js/admin.js [36m304 [0m1.835 ms - -[0m
+[0mGET /admin/userRole/data [36m304 [0m21.278 ms - -[0m
+[0mGET /admin/index/data [36m304 [0m2.858 ms - -[0m
+[0mGET /admin/user/data/1/10 [36m304 [0m60.650 ms - -[0m
+[0mGET /static/css/fonts/glyphicons-halflings-regular.woff2 [36m304 [0m28.862 ms - -[0m
+[0mGET /favicon.ico [36m304 [0m2.023 ms - -[0m
+[0mGET /admin/contact [36m304 [0m3.898 ms - -[0m
+[0mGET /static/css/cstFonts/iconfont.css [36m304 [0m2.034 ms - -[0m
+[0mGET /static/css/admin.css [36m304 [0m1.376 ms - -[0m
+[0mGET /static/css/vue-admin.css [36m304 [0m1.174 ms - -[0m
+[0mGET /static/js/admin.js [36m304 [0m1.899 ms - -[0m
+[0mGET /admin/contact/data/1/10 [36m304 [0m9.145 ms - -[0m
+[0mGET /admin/svcnet [36m304 [0m3.126 ms - -[0m
+[0mGET /static/css/cstFonts/iconfont.css [36m304 [0m2.424 ms - -[0m
+[0mGET /static/css/admin.css [36m304 [0m1.654 ms - -[0m
+[0mGET /static/css/vue-admin.css [36m304 [0m1.490 ms - -[0m
+[0mGET /static/js/admin.js [36m304 [0m1.589 ms - -[0m
+[0mGET /admin/svcnet/data/1/10 [36m304 [0m27.179 ms - -[0m
